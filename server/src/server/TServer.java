@@ -1,5 +1,8 @@
 package server;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
 
@@ -15,7 +18,11 @@ public class TServer {
 
 	        // HTTP connector
 	        ServerConnector http = new ServerConnector(server);
-	        http.setHost("192.168.1.108");
+	        try {
+				http.setHost(InetAddress.getLocalHost().getHostAddress());
+			} catch (UnknownHostException e1) {
+				e1.printStackTrace();
+			}
 	        http.setPort(8080);
 	        http.setIdleTimeout(30000);
 
