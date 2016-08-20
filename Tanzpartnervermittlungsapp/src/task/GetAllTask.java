@@ -13,7 +13,6 @@ public class GetAllTask extends BaseHttpRequestTask {
 		super(menue);
 		this.userID = userID;
 	}
-
 	public void execute() {
 		GetAllRequest request = new GetAllRequest(userID);
 
@@ -21,9 +20,9 @@ public class GetAllTask extends BaseHttpRequestTask {
 			String xml = buildXML(request);
 			super.execute(Command.getall, xml);
 		} catch (Exception e) {
-			Log.e("Request", e.toString());
-			e.printStackTrace();
-		}
+		Log.e("Request", e.toString());
+		e.printStackTrace();
+	}
 	}
 
 	@Override
@@ -31,18 +30,17 @@ public class GetAllTask extends BaseHttpRequestTask {
 		try {
 			GetAllResponse response = (GetAllResponse) parseXML(result,
 					GetAllResponse.class);
-			
-			// if(!(response.getEc() == ErrorCode.ok))
-			// {
-			//
-			// }
-			// else
-			// {
-			// Antwort erfolgreich erhalten
-
+//			
+//			// if(!(response.getEc() == ErrorCode.ok))
+//			// {
+//			//
+//			// }
+//			// else
+//			// {
+//			// Antwort erfolgreich erhalten
+//
 			((Menue) activity).testAusgabe(response.getText());
-
-			// }
+//			// }
 		} catch (Exception e) {
 			Log.e("test", e.toString());
 		}

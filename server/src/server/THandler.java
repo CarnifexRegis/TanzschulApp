@@ -11,6 +11,8 @@ import org.eclipse.jetty.server.handler.AbstractHandler;
 
 import protocol.Command;
 import tasks.GetAllTask;
+import tasks.LoginTask;
+import tasks.UpdateChartTask;
 
 
 
@@ -31,7 +33,7 @@ public class THandler extends AbstractHandler {
 		String body = getHttpBody(request);
 
 		String antwort = "<h1>Fehler!<h1>";
-		
+		System.out.println("got any request");
 		
 		if (command != null) {
 			
@@ -40,18 +42,25 @@ public class THandler extends AbstractHandler {
 				GetAllTask getalltask = new GetAllTask();
 				System.out.println("Body: " + body);
 				antwort = getalltask.handle(body);
+				baseRequest.setHandled(true);
+				System.out.println("Get All Request");
 				break;
 			case register:
 				// RegisterTask registertask = new RegisterTask();
 				//antwort = getalltask.handle(body);
 				break;
 			case login:
-				//LoginTask logintask = new LoginTask();
-				//antwort = logintask.handle(body);
+				System.out.println("LogInRequest");
+				LoginTask logintask = new LoginTask();
+				antwort = logintask.handle(body);
+				baseRequest.setHandled(true);
 				break;
 			case updatechart:
-				//UpdateChartTask ucharttask = new UpdateChartTask();
-				//antwort = ucharttask.handle(body);
+				System.out.println("Update ChartRequest");
+				UpdateChartTask ucharttask = new UpdateChartTask();
+				System.out.println("Body: " + body);
+				antwort = ucharttask.handle(body);
+				baseRequest.setHandled(true);
 				break;
 			case updateprofile:
 				//UpdateProfileTask uprofiletask = new UpdateProfileTask();

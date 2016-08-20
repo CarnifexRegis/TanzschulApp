@@ -1,6 +1,7 @@
 package main;
 
 
+import model.Model;
 import database2.SQL;
 import server.TServer;
 
@@ -18,7 +19,7 @@ public class Main {
 	//	sql = new SQL();
 	//
 	TServer server = new TServer();
-	System.out.println("halloW");	
+	
 		
 		
 		

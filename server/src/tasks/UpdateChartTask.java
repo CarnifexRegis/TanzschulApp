@@ -17,9 +17,10 @@ public class UpdateChartTask extends AbstractHandler {
 		int  kstu = request.getKursstufe();
 		ArrayList<ProfileChart> antwort= Model.getInstance().getCharts(id, gender, kstu, 0);
 		if(antwort !=null){
-			System.out.println("recieved Data");
+			System.out.println("recieved Data UpdateProfilechart Task");
 		}
-		else{System.out.println("derp");}
+		else{System.out.println("did not rechieve any data");}
+		
 		UpdateChartResponse response = new UpdateChartResponse(antwort);
 		return buildXML(response);
 	}

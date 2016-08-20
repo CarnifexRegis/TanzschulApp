@@ -2,12 +2,14 @@ package task;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.StringWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.logging.LogManager;
 
 import model.Properties;
 
@@ -18,6 +20,8 @@ import org.simpleframework.xml.stream.HyphenStyle;
 import org.simpleframework.xml.stream.Style;
 
 import android.app.Activity;
+import android.content.Context;
+import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.util.Log;
 import protocol.Command;
@@ -33,7 +37,8 @@ public class BaseHttpRequestTask extends AsyncTask<String, Void, String> {
 	@Override
 	protected String doInBackground(String... params) {
 		String result = "Error";
-
+		//http://stackoverflow.com/questions/32553297/verify-android-internet-connection-and-error
+		
 		try {
 			URL url = new URL(Properties.SERVERURL + "?&do=" + params[0]);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -41,9 +46,15 @@ public class BaseHttpRequestTask extends AsyncTask<String, Void, String> {
 			conn.setRequestProperty("Content-Type",
 					"application/xml; charset=UTF-8");
 			byte[] outputInBytes = params[1].getBytes("UTF-8");
+			try{
 			OutputStream os = conn.getOutputStream();
 			os.write(outputInBytes);
 			os.close();
+			//e. cause failed to connect to /192.168.56.1 (port 8080): connect failed: ETIMEDOUT (Connection timed out)
+			// e. detailed message android.system.ErrnoException: connect failed: ETIMEDOUT (Connection timed out)
+			//  Server ip read out by server :http://192.168.56.1/ checked with browser
+			}catch(IOException e){
+				Log.e("couldn´t write output in Bytes", e.toString());}
 			InputStream instream = new BufferedInputStream(
 					conn.getInputStream());
 			BufferedReader r = new BufferedReader(new InputStreamReader(

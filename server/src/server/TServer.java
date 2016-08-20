@@ -1,8 +1,7 @@
 package server;
 
 import org.eclipse.jetty.server.Server;
-
-import tasks.DefaultTask;
+import org.eclipse.jetty.server.ServerConnector;
 
 public class TServer {
 	public TServer(){
@@ -10,8 +9,22 @@ public class TServer {
 		/**
 		 * Instanziert einen Jetty-Webserver, der später auf Port 8080 horchen soll
 		 */
-		 Server server = new Server(8080);
- 
+		 Server server = new Server();
+		 
+		
+
+	        // HTTP connector
+	        ServerConnector http = new ServerConnector(server);
+	        http.setHost("192.168.1.108");
+	        http.setPort(8080);
+	        http.setIdleTimeout(30000);
+
+	        // Set the connector
+	        server.addConnector(http);
+
+	   
+	       
+	    
 		 	/**
 		 	 * Bei jedem Request wird vom Webserver die handle-Methode der Handler-Klasse MyHandler aufgerufen. 
 		 	 */
@@ -22,8 +35,8 @@ public class TServer {
 		    	/**
 		    	 * Starten des Webservers
 		    	 */
-				server.start();
-				server.join();	
+				server.start();;
+				server.join();;	
 					
 			} catch (Exception e) {
  

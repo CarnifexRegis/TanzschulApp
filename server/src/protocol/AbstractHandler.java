@@ -1,5 +1,6 @@
 package protocol;
 
+import java.io.PrintWriter;
 import java.io.StringWriter;
 
 import org.simpleframework.xml.Serializer;
@@ -48,7 +49,13 @@ public abstract class AbstractHandler {
 			return writer.getBuffer().toString();
 
 		} catch (Exception ex) {
-			return null; // TODO handle Exception
+			//http://stackoverflow.com/questions/14606293/java-logging-exceptions-how-to-log-as-much-information-as-possible
+			StringWriter sw = new StringWriter();
+			  ex.printStackTrace(new PrintWriter(sw));
+			  
+			  return  sw.toString();
+					  
+			   // TODO handle Exception
 		}
 
 	}

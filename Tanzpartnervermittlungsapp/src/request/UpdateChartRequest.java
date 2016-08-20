@@ -16,6 +16,7 @@ public class UpdateChartRequest {
 	int kursstufe;
 	@Element(name = "gender")
 	boolean gender;
+	
 	public int getId() {
 		return id;
 	}

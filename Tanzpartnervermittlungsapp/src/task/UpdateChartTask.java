@@ -26,7 +26,7 @@ public void execute() {
 		String xml = buildXML(request);
 		super.execute(Command.updatechart, xml);
 	} catch (Exception e) {
-		// FIXME Errorhandling
+		Log.e("Task couldn´t call execute() from SuperClass",e.toString());
 	}
 }
 @Override
@@ -47,7 +47,7 @@ public void onPostExecute(String result) {
 
 		// }
 	} catch (Exception e) {
-		Log.e("test", e.toString());
+		Log.e("Error in post Execute", e.toString());
 	}
 }
 }

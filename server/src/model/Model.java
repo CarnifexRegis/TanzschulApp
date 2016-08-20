@@ -17,16 +17,16 @@ public class Model {
 	public static Model getInstance() {
 		if (instance == null)
 			instance = new Model();
-		System.out.println("bla");
+		System.out.println("got new Instance of the Model");
 		return instance;
 	}
-
+	
 	public ArrayList<ProfileChart> getCharts(int id,boolean gender,int kstu, int age) {
 		int g;
 		if (gender){
 			 g = 1;
 		}else{
-			g= 0;
+			g = 0;
 		}
 		
 		if (sql.checkID(id)) {
@@ -36,5 +36,12 @@ public class Model {
 		else {
 			return null ;
 			}
+	}
+	public int Login (String em ,String ps){
+		return sql.LogIn(em, ps);
+		
+	}
+	public int getGender(int id){
+		return sql.getGender(id);
 	}
 }

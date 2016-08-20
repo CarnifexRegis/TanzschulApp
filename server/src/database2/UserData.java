@@ -7,6 +7,9 @@ String ln;
 boolean gender; // true is female false is male; 0=False  1=True -> fm =1 m = 0
 boolean publicAge;
 int age;
+public UserData(){
+	super();
+}
 public UserData(String eMail,String fn, String ln, int g,int pa,int age){
 	this.eMail= eMail;
 	this.fn = fn;

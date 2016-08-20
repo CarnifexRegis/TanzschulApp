@@ -424,12 +424,12 @@ private Connection c;
 		return pc;
 	}
 	/**
-	 * 
-	 * @param ptext
-	 * @param pnumber
-	 * @param pa
-	 * @param hight
-	 * @param id
+	 * With this Method the User can modify the saved Data about himself.
+	 * @param ptext		Some Text the user writes about himself
+	 * @param pnumber	The users Phone Number
+	 * @param pa		This parameter indicates if the users Age shall be public
+	 * @param hight		The users hight
+	 * @param id		The id of the users account used to verify himself
 	 */
 	public void updateProfile(String ptext, int pnumber, int pa, int hight, int id ){
 		//Source  http://www.w3schools.com/sql/sql_update.asp
@@ -452,9 +452,9 @@ private Connection c;
 //	public Login logIn(){}
 	/**
 	 * 
-	 * @param em
-	 * @param ps
-	 * @return
+	 * @param em	the email you want to log in with
+	 * @param ps	the fitting password
+	 * @return 		returns the User ID according to the Login E-Mail
 	 */
 		public 	int LogIn(String em, String ps){ // id check
 			Statement stmt;
@@ -503,15 +503,15 @@ private Connection c;
 			}
 /**
  * 
- * @param id
- * @return
+ * @param  The Users ID
+ * @return	Checks if the users ID exist 
  */
 		public  boolean checkID(int id){ // Login returns the user id
 			Statement stmt;
 			int i;
-			boolean exists = false;
+			
 			try{
-				String sql ="SELECT COUNT (ID) AS COUNT FROM USER WHERE ID = '"+ id+ "');";
+				String sql ="SELECT COUNT (ID) AS COUNT FROM USER WHERE ID = '"+ id+ "';";
 				stmt = c.createStatement();
 				ResultSet rs = stmt.executeQuery(sql);
 				i = rs.getInt("COUNT");
@@ -529,7 +529,26 @@ private Connection c;
 				e.printStackTrace();
 			}
 			System.out.println("Something went wrong checkID");
-			return exists;
+			return false;
+		}
+		public int getGender(int id){
+			Statement stmt; 
+			int gender;
+			try{
+				 stmt = c.createStatement();
+				String sql = "SELECT GENDER FROM USER WHERE ID = '" +id + "' ;";
+				ResultSet rs = stmt.executeQuery(sql);
+				gender = rs.getInt("GENDER");
+				if(stmt!=null)stmt.close();
+				if(rs!=null)rs.close();
+				System.out.println("Extracted Gender = "+gender);
+				return gender;
+			}catch(Exception e){
+				System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+		        System.exit(0);
+				e.printStackTrace();
+			}
+			return -1;
 		}
 	
 	
@@ -664,41 +683,41 @@ private Connection c;
 	
 	
 //Tim 	
-	private String buildXML(Object object)
-	{
-		Style style = new HyphenStyle();
-		Format format = new Format(style);
-		
-		Serializer serializer = new Persister(format);
-		
-		StringWriter writer = new StringWriter();
-		
-		try
-		{
-			serializer.write(object, writer);
-			return writer.getBuffer().toString();
-		}
-		catch(Exception e)
-		{
-			return null; //TODO Error-Handling
-		}
-	}
-	
-	private Object parseXML(String xml, Class myClass)
-	{
-		Serializer serializer = new Persister();
-		
-		try
-		{
-			Object object = serializer.read(myClass, xml);
-			return object;
-		}
-		catch(Exception e)
-		{
-			return null; //TODO: Error-Handling
-		}
-	}
-	
+//	private String buildXML(Object object)
+//	{
+//		Style style = new HyphenStyle();
+//		Format format = new Format(style);
+//		
+//		Serializer serializer = new Persister(format);
+//		
+//		StringWriter writer = new StringWriter();
+//		
+//		try
+//		{
+//			serializer.write(object, writer);
+//			return writer.getBuffer().toString();
+//		}
+//		catch(Exception e)
+//		{
+//			return null; //TODO Error-Handling
+//		}
+//	}
+//	
+//	private Object parseXML(String xml, Class myClass)
+//	{
+//		Serializer serializer = new Persister();
+//		
+//		try
+//		{
+//			Object object = serializer.read(myClass, xml);
+//			return object;
+//		}
+//		catch(Exception e)
+//		{
+//			return null; //TODO: Error-Handling
+//		}
+//	}
+//	
 	
 	
 	
