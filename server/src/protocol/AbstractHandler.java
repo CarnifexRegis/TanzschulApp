@@ -8,8 +8,15 @@ import org.simpleframework.xml.core.Persister;
 import org.simpleframework.xml.stream.Format;
 import org.simpleframework.xml.stream.HyphenStyle;
 import org.simpleframework.xml.stream.Style;
-
+/**
+ * 
+ * @author Simon Stolz
+ *Source:
+ *			http://www.pabst-software.de/doku.php?id=programmieren:java:android:httpclient:start
+ *			http://stackoverflow.com/questions/14606293/java-logging-exceptions-how-to-log-as-much-information-as-possible
+ */
 public abstract class AbstractHandler {
+	
 
 	abstract public String handle(String httpBody);
 

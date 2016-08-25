@@ -38,6 +38,11 @@ import android.widget.Spinner;
  * 
  * @author Simon
  * @attribute This Activity is used to fulfill the core funktion of the app: finding people who intend to participate in the same course
+ * Source: 
+ * 			http://stackoverflow.com/questions/2789612/how-can-i-check-whether-an-android-device-is-connected-to-the-web
+ * 
+ * 
+ * 
  */
 	public class SearchForDancingpartner extends Activity {
 		Adapter adapterCustom;
@@ -57,7 +62,7 @@ import android.widget.Spinner;
 			if(extras != null){
 				System.out.println(extras);
 			ID = extras.getInt("ID", -1);
-			gender = extras.getBoolean("intentGender");
+			gender = extras.getBoolean("gender");
 			}
 			super.onCreate(savedInstanceState);
 			
@@ -81,23 +86,20 @@ import android.widget.Spinner;
 		 final Button sB = (Button) findViewById(R.id.searchButton);
 	        sB.setOnClickListener(new View.OnClickListener() {
 	            public void onClick(View v) {
-	            	// do the request
-	            	// wit succesfull answer execute:
-	            	
-	            	//TODO set topical ArrayList to returned List
-	            	adapterCustom.clear();
-	            	//kursbuchungView.invalidate();//tells the gui to update the values
-	            	adapterCustom.notifyDataSetChanged();
-	            	
+//	            	adapterCustom.clear();
+//	            	adapterCustom.notifyDataSetChanged();
+	            	if(isOnline (sfdp)){
 	        			kursstufe = 1;
-	        			ID = 1;
-	        			gender = true;
+//	        			ID = 1;
+//	        			gender = true;
 	        			if(isOnline(sfdp)){
 	        			UpdateChartTask updateChartTask = new UpdateChartTask (sfdp,ID, kursstufe, gender );
 	        			updateChartTask.execute();}else{System.out.println("not connected");}
+	            	}
 	            }
 	        });
 		    }
+		//http://stackoverflow.com/questions/2789612/how-can-i-check-whether-an-android-device-is-connected-to-the-web
 		public boolean isOnline(Context context) {
 		    ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 		    android.net.NetworkInfo networkinfo = cm.getActiveNetworkInfo();
@@ -129,22 +131,23 @@ import android.widget.Spinner;
 		@Override
 		public boolean onCreateOptionsMenu(Menu menu) {
 		    MenuInflater inflater=getMenuInflater();
-		    inflater.inflate(R.layout.main_menue, menu);
+		    inflater.inflate(R.layout.new_main_menue, menu);
 		    return super.onCreateOptionsMenu(menu);
 		}
-		
 		@Override
 		public boolean onOptionsItemSelected(MenuItem item) {
 		    switch(item.getItemId())
 		    {
-		    case R.id.logIn:
-		    	Intent intent = new Intent(getApplicationContext(),LogIn.class);
-				//if(ID >= 0){ it causes a bug in this shape but may be later needed
-				intent.putExtra("intentID", ID);//}
-				intent.putExtra("intentGender", gender);
-				
-				 startActivity(new Intent(intent));
-		        break;
+//		    case R.id.logIn:
+//		    	Intent intent = new Intent(getApplicationContext(),LogIn.class);
+//				if(ID >= 0){
+//				intent.putExtra("intentID", ID);}
+//				intent.putExtra("intentGender", gender);
+//				
+//				 startActivity(new Intent(intent));
+//		        break;
+		    case R.id.options:
+		    	break;
 		    case R.id.logOut:
 		    	//http://stacktips.com/tutorials/android/android-custom-dialog-example
 		    	if(ID >= 0){
@@ -159,8 +162,13 @@ import android.widget.Spinner;
 		    		yButton.setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View v) {
-						ID = -1;
 						dialog.dismiss();	
+						Intent intent = new Intent(getApplicationContext(),LogIn.class);
+//						if(ID >= 0){
+//						intent.putExtra("intentID", -1);}
+//						intent.putExtra("intentGender", false);
+						
+						 startActivity(new Intent(intent));
 					}
 					});
 					
@@ -171,43 +179,81 @@ import android.widget.Spinner;
 							dialog.dismiss();
 						}
 				});
-				dialog.show();
+				dialog.show();}
 		        
-		    	}else{
-		    		final Dialog dialog2 = new Dialog(SearchForDancingpartner.this);
-		    		//setting custom layout to dialog
-		    		dialog2.setContentView(R.layout.no_log_out_dialog);
-		    		dialog2.setTitle("Sie sind bereits ausgeloggt.");
-		    		//adding text dynamically
-		    		Button okButton = (Button) dialog2.findViewById(R.id.okButton);
-		    		
-		    		//adding button click event
-		    		okButton.setOnClickListener(new OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						dialog2.dismiss();	
-					}
-					});
-		    		dialog2.show();
-		    	}
 		    	break;
-		    	}
-		    return true;
-		}
-//		public boolean onCreateOptionsMenu(Menu menu) {
-//			
-//			//ActionBar actionBar = getActionBar(); With the following code you could hide the MenureBar, obviously.
-//		   // actionBar.hide();
-//			// Inflate the menu; this adds items to the action bar if it is present.
-//			getMenuInflater().inflate(R.layout.main_menue, menu);
-//			return true;   
+	    	}
+	    return true;
+	}
+
+//		@Override
+//		public boolean onOptionsItemSelected(MenuItem item) {
+//		    switch(item.getItemId())
+//		    {
+//		    case R.id.logIn:
+//		    	Intent intent = new Intent(getApplicationContext(),LogIn.class);
+//				//if(ID >= 0){ it causes a bug in this shape but may be later needed
+//				intent.putExtra("intentID", ID);//}
+//				intent.putExtra("intentGender", gender);
+//				
+//				 startActivity(new Intent(intent));
+//		        break;
+//		    case R.id.logOut:
+//		    	//http://stacktips.com/tutorials/android/android-custom-dialog-example
+//		    	if(ID >= 0){
+//		    		final Dialog dialog = new Dialog(SearchForDancingpartner.this);
+//		    		//setting custom layout to dialog
+//		    		dialog.setContentView(R.layout.log_out_dialog);
+//		    		dialog.setTitle("Wirklich abmelden?");
+//		    		//adding text dynamically
+//		    		Button yButton = (Button) dialog.findViewById(R.id.yesButton);
+//		    		Button nButton = (Button) dialog.findViewById(R.id.noButton);
+//		    		//adding button click event
+//		    		yButton.setOnClickListener(new OnClickListener() {
+//					@Override
+//					public void onClick(View v) {
+//						ID = -1;
+//						dialog.dismiss();	
+//					}
+//					});
+//					
+//					nButton. setOnClickListener(new OnClickListener() {
+//						
+//						@Override
+//						public void onClick(View v) {
+//							dialog.dismiss();
+//						}
+//				});
+//				dialog.show();
+//		        
+//		    	}else{
+//		    		final Dialog dialog2 = new Dialog(SearchForDancingpartner.this);
+//		    		//setting custom layout to dialog
+//		    		dialog2.setContentView(R.layout.no_log_out_dialog);
+//		    		dialog2.setTitle("Sie sind bereits ausgeloggt.");
+//		    		//adding text dynamically
+//		    		Button okButton = (Button) dialog2.findViewById(R.id.okButton);
+//		    		
+//		    		//adding button click event
+//		    		okButton.setOnClickListener(new OnClickListener() {
+//					@Override
+//					public void onClick(View v) {
+//						dialog2.dismiss();	
+//					}
+//					});
+//		    		dialog2.show();
+//		    	}
+//		    	break;
+//		    	}
+//		    return true;
 //		}
+
 		@Override
 		public void onBackPressed(){
 			super.onBackPressed();
 			Intent intent = new Intent(getApplicationContext(),Menue.class);
-		intent.putExtra("intentID", ID);
-		intent.putExtra("intentGender", gender);
+		intent.putExtra("ID", ID);
+		intent.putExtra("gender", gender);
 			 startActivity(new Intent(intent));
 		}
 	}

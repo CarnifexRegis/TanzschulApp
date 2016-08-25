@@ -1,5 +1,11 @@
 package protocol;
-
+/**
+ * 
+ * @author Simon Stolz
+ * Source:
+ * 			http://www.pabst-software.de/doku.php?id=programmieren:java:android:httpclient:start
+ *
+ */
 public enum Command {
 	getall("getall"), register("register"), login("login"), updatechart("updatechart"), updateprofile("updateprofile"),getprofile("getprofile");
 

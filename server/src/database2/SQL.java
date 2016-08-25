@@ -18,7 +18,16 @@ import org.simpleframework.xml.core.Persister;
 import org.simpleframework.xml.stream.Format;
 import org.simpleframework.xml.stream.HyphenStyle;
 import org.simpleframework.xml.stream.Style;
-
+/**
+ * 
+ * @author Simon
+ *Sources: 
+ *			Abi Quiz-App by Tim Möschel
+ *			http://stackoverflow.com/questions/23851158/check-if-some-string-is-in-sqlite-database
+ *			http://stackoverflow.com/questions/7886462/how-to-get-row-count-using-resultset-in-java
+ *			http://www.tutorialspoint.com/jdbc/jdbc-select-records.htm
+ *			http://www.w3schools.com/sql/sql_update.asp		
+ */
 public class SQL {
 	
 private Connection c;
@@ -41,14 +50,21 @@ private Connection c;
 			
 			//creating Table KURS
 			
-			DatabaseMetaData dbm =c.getMetaData();
-			ResultSet tables = dbm.getTables(null,null,"KURS",null);
-			
-			if(!tables.next()){
+			//DatabaseMetaData dbm =c.getMetaData();
+			//ResultSet tables = dbm.getTables(null,null,"KURS",null);
+			try{
+				//TODO buggy
+				String sql2 = "SELECT COUNT(*) AS I FROM KURS ;";
+				//String sql = "SELECT COUNT(*) AS PS FROM USER WHERE EMAIL = 'hallo' AND PASSWORD = 'geheim' ;";
+				stmt = c.createStatement();
+				ResultSet rs = stmt.executeQuery(sql2);
+				int i = rs.getInt("I");
+				
+			}catch(Exception e){
 				try{
 					Class.forName("org.sqlite.JDBC");
 					stmt = c.createStatement();
-					String sql = "CREATE TABLE KURS"+
+					String sql = "CREATE TABLE KURS "+
 							"(ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
 							" KURSSTUFE TEXT NOT NULL, " +
 							" DATUM     DATE NOT NULL, " +
@@ -56,23 +72,31 @@ private Connection c;
 							" UHRZEIT   TEXT NOT NULL)";
 		
 					stmt.executeUpdate(sql);
+					
+					c.commit();
+					
 					if(stmt != null){
-						stmt.close();
-						}
+						stmt.close();}
 					System.out.println("New KURS Instance");
-				}catch(Exception e){
-					System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+				}catch(Exception e1){
+					System.err.println( e1.getClass().getName() + ": " + e1.getMessage() );
 			        System.exit(0);
 				}
-			}else {
-				System.out.println("Table exists");
+			
 			}
 			// creating Table USER
 			//	7.8.16 combined USER with Profileddata due reasons of simplicity
-			dbm =c.getMetaData();	
-			tables = dbm.getTables(null,null,"USER",null);
-			
-			if(!tables.next()){	
+		//	dbm =c.getMetaData();	
+			//tables = dbm.getTables(null,null,"USER",null);
+			try{
+				//TODO buggy
+				String sql2 = "SELECT COUNT(*) AS I FROM USER ;";
+				//String sql = "SELECT COUNT(*) AS PS FROM USER WHERE EMAIL = 'hallo' AND PASSWORD = 'geheim' ;";
+				stmt = c.createStatement();
+				ResultSet rs = stmt.executeQuery(sql2);
+				int i = rs.getInt("I");
+				
+			}catch(Exception e){	
 				try{
 				Class.forName("org.sqlite.JDBC");
 				stmt = c.createStatement();
@@ -86,23 +110,33 @@ private Connection c;
 							" AGE INTEGER NOT NULL,"+					//6 age						!
 							" PTEXT TEXT,"+								//7 profile text			 (a possibility for the User to introduce him self)
 							" PNumber INTEGER ,"+						//8 phone number
-							" PA INTEGER ,"+			//9 Public Age				!(Boolean, always set 0=False  1=True
+							" PA INTEGER NOT NULL ,"+			//9 Public Age				!(Boolean, always set 0=False  1=True
 							" HIGHT INTEGER)";							//10 hight
 				stmt.executeUpdate(sql);
 				if(stmt != null){
-				stmt.close();
+				c.commit();
+					stmt.close();
 				}
 				System.out.println("New USER Instance");	
-				}catch(Exception e){
-					System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+				}catch(Exception e1){
+					System.err.println( e1.getClass().getName() + ": " + e1.getMessage() );
 			        System.exit(0);
 				}
 			}
 				// creating link Table
 				// 7.8.16
-				dbm = c.getMetaData();
-				tables = dbm.getTables(null, null, "LINK", null);
-				if(!tables.next()){
+				//dbm = c.getMetaData();
+				//tables = dbm.getTables(null, null, "LINK", null);
+			try{
+				//TODO buggy
+				String sql2 = "SELECT COUNT(*) AS I FROM LINK ;";
+				//String sql = "SELECT COUNT(*) AS PS FROM USER WHERE EMAIL = 'hallo' AND PASSWORD = 'geheim' ;";
+				stmt = c.createStatement();
+				ResultSet rs = stmt.executeQuery(sql2);
+				int i = rs.getInt("I");
+				
+			}catch(Exception e){
+				
 					try{
 					Class.forName("org.sqlite.JDBC");
 						stmt= c.createStatement();
@@ -112,25 +146,26 @@ private Connection c;
 									 " KID INTEGER NOT NULL)";
 								 
 					stmt.executeUpdate(sql);
+					c.commit();
 					if(stmt != null){
 						stmt.close();
 						}	
 					
 						System.out.println("New LINK Instance");
-						}catch(Exception e){
-							System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+						}catch(Exception e1){
+							System.err.println( e1.getClass().getName() + ": " + e1.getMessage() );
 					        System.exit(0);
 						}
 								}
 			//Tests
 		//	eMailExists("hi");
-			addUser("Huan@huan.de","geheim","a","Wurst",0,8);
-			addUser("df@huan.de","geheim","b","Wurst",1,8);
-			addUser("mfmn@huan.de","geheim","c","Wurst",0,8);
-			addUser("hallo","geheim","Hans","d",1,8);
-			addUser("jzt@huan.de","geheim","e","Wurst",0,8);
-			addUser("Hjzg@huan.de","geheim","f","Wurst",0,8);
-			addUser("zjg@huan.de","geheim","g","Wurst",0,8);
+			addUser("Huan@huan.de","geheim","a","Wurst",0,8,0);
+			addUser("df@huan.de","geheim","b","Wurst",1,8,0);
+			addUser("mfmn@huan.de","geheim","c","Wurst",0,8,1);
+			addUser("hallo","geheim","Hans","d",1,8,0);
+			addUser("jzt@huan.de","geheim","e","Wurst",0,8,1);
+			addUser("Hjzg@huan.de","geheim","f","Wurst",0,8,0);
+			addUser("zjg@huan.de","geheim","g","Wurst",0,8,1);
 		//	getAllUserData();
 			
 			addKurs(1,"25.03.2016","Donnerstag","15:25");
@@ -155,7 +190,7 @@ private Connection c;
 				        System.exit(0);	}
 			}
 	//methods
-	// sources: http://stackoverflow.com/questions/23851158/check-if-some-string-is-in-sqlite-database und AbiQuiz
+	// sources: http://stackoverflow.com/questions/23851158/check-if-some-string-is-in-sqlite-database
 	/**
 	 * 
 	 * @param em
@@ -199,11 +234,22 @@ private Connection c;
 	 * @param age
 	 * @return
 	 */
-	public int addUser(String em, String ps,String ln,  String fn, int g,int age){
+	public int addUser(String em, String ps,String ln,  String fn, int g,int age,int pa){
+		int i;
+		Statement stmt;
 		try{
+			String sql2 = "SELECT COUNT(EMAIL) AS I FROM USER"
+					+ " WHERE USER.EMAIL= '"+ em + "' ;";
+		
+			 stmt = c.createStatement();
 			
+			ResultSet rs = stmt.executeQuery(sql2);
+			i = rs.getInt("I");
+		//if(rs!=null){rs.close();}
+		if(i==0){
+		
 			String sql = "INSERT INTO USER(EMAIL,PASSWORD,LN,FN,GENDER,AGE,PA)"+ 
-					  	 "VALUES(?,?,?,?,?,?,0);";						// new Version similar to the dedicated source
+					  	 "VALUES(?,?,?,?,?,?,?);";						// new Version similar to the dedicated source
 			PreparedStatement p = c.prepareStatement (sql);
 			p.setString(1,em);
 			p.setString(2, ps);
@@ -211,9 +257,11 @@ private Connection c;
 			p.setString(4,fn);
 			p.setInt(5, g);
 			p.setInt(6,age);
+			p.setInt(7,pa);
 			p.executeUpdate();
+			c.commit();
 			if(p!=null)p.close();
-			}
+			}}
 		catch(Exception e){
 			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 	        System.exit(0);
@@ -314,6 +362,7 @@ private Connection c;
             //}
             //
             //rs.close();
+            c.commit();
            if(p!=null) p.close();
 		} catch (SQLException | ParseException e) {
 			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
@@ -322,9 +371,9 @@ private Connection c;
 				}
 	}
 	/**
-	 * 
-	 * @param uid		
-	 * @param kid		
+	 * Creates a Connection between the KURS and USER table
+	 * @param uid	ID of The User	that shall be connected
+	 * @param kid	ID of the Kurs	that shall be connected
 	 */
 	public void addLink(int uid, int kid){
 		PreparedStatement p ;
@@ -334,7 +383,9 @@ private Connection c;
 			p.setInt(1, uid);
 			p.setInt(2, kid);
 			p.executeUpdate();
+			c.commit();
 			if(p!=null)p.close();
+			
 		}catch(Exception e){
 			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 	        System.exit(0);
@@ -350,6 +401,7 @@ private Connection c;
 	public ArrayList<Integer> myKurs(int uid){
 		Statement stmt;
 		ArrayList<Integer> kursList = new ArrayList<Integer>();
+		//TODO also Extract UHRZEIT DATUM  KURSSTUFE
 		try{
 			//System.out.println(""+uid);
 			stmt = c.createStatement();
@@ -378,12 +430,13 @@ private Connection c;
 	
 	public void restorePassword (){}
 	
+	
 	public void fullProfiledata(){}
 	/**
 	 * 
-	 * @param gender
-	 * @param kstu
-	 * @param myage
+	 * @param gender	The gender of the requesting User
+	 * @param kstu		The required dancing lesson "level"
+	 * @param myage		The age of the requesting user (not used but may be in the Future)
 	 * @return
 	 */
 	public ArrayList<ProfileChart> getProfilecharts(int gender, int kstu,int myage){
@@ -391,7 +444,7 @@ private Connection c;
 		Statement stmt;
 		ArrayList<ProfileChart>  pc = new ArrayList<ProfileChart>();
 		try{
-			String sql = "SELECT USER.FN, USER.LN, USER.AGE, KURS.UHRZEIT, KURS.DATUM "
+			String sql = "SELECT USER.FN, USER.LN, USER.AGE, KURS.UHRZEIT,USER.EMAIL, KURS.DATUM "
 						+ "FROM KURS "
 						+ "JOIN LINK  ON LINK.KID = KURS.ID"
 						+ " JOIN USER ON LINK.UID = USER.ID "
@@ -406,13 +459,14 @@ private Connection c;
 				int age = rs.getInt("AGE");
 				String uhr = rs.getString("UHRZEIT");
 				String date = "" +rs.getDate("DATUM");
+				String eMail = rs.getString("EMAIL");
 				
 				System.out.println(fn);
 				System.out.println(ln);
 				System.out.println(age);
 				System.out.println(uhr);
 				System.out.println(date);
-				pc.add(new ProfileChart(fn,ln,age,uhr,date));
+				pc.add(new ProfileChart(fn,ln,age,uhr,date,eMail));
 			}
 			if(stmt!= null)stmt.close();
 			if(rs!= null) stmt.close();
@@ -442,6 +496,7 @@ private Connection c;
 			p.setInt(3, pa);
 			p.setInt(4,hight);
 			p.setInt(5,id);
+			c.commit();
 			if (p != null)p.close();		
 		}catch(Exception e){
 			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
@@ -502,15 +557,16 @@ private Connection c;
 					return -1;
 			}
 /**
- * 
- * @param  The Users ID
- * @return	Checks if the users ID exist 
+ * @attribute 	Checks if an User with this ID exists
+ * @param  		The Users ID
+ * @return		returns true if it exists.
  */
 		public  boolean checkID(int id){ // Login returns the user id
 			Statement stmt;
 			int i;
 			
 			try{
+				
 				String sql ="SELECT COUNT (ID) AS COUNT FROM USER WHERE ID = '"+ id+ "';";
 				stmt = c.createStatement();
 				ResultSet rs = stmt.executeQuery(sql);
@@ -527,28 +583,43 @@ private Connection c;
 				System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 		        System.exit(0);
 				e.printStackTrace();
+				System.out.println("Something went wrong at checkID(id)");
+			
 			}
-			System.out.println("Something went wrong checkID");
 			return false;
 		}
+		/**
+		 * Recieves the ID and reads out the Gender according to the id.
+		 * @param id	ID of the User
+		 * @return		Returns the Gender of the User as int three Values are possible :
+		 * 				1 for female, 0 for male and -1 in case of an Error
+		 */
 		public int getGender(int id){
 			Statement stmt; 
 			int gender;
 			try{
-				 stmt = c.createStatement();
+				//Creates a new Satement
+				stmt = c.createStatement();
+				//Creates a new String that will be executed as SQL Statement / Query
 				String sql = "SELECT GENDER FROM USER WHERE ID = '" +id + "' ;";
+				//The Query gets executed and its result is saved in an ResultSet Object
 				ResultSet rs = stmt.executeQuery(sql);
+				//Reads out the int Value of the extracted Integer "GENDER" from the ResultSet
 				gender = rs.getInt("GENDER");
 				if(stmt!=null)stmt.close();
 				if(rs!=null)rs.close();
 				System.out.println("Extracted Gender = "+gender);
+				// returns the extracted int value "gender"
 				return gender;
 			}catch(Exception e){
 				System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 		        System.exit(0);
 				e.printStackTrace();
+				
 			}
-			return -1;
+			// in case of an Error it returns -1
+				return -1;
+			
 		}
 	
 	

@@ -4,32 +4,19 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-
-        </LinearLayout>
-
-    </LinearLayout>
-
     <TextView
         android:id="@+id/loginView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Anmelden"
+        android:text="@string/anmelden"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
         android:id="@+id/sEmailView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="E-Mail" />
+        android:text="@string/email" />
 
     <EditText
         android:id="@+id/sEmailInsert"
@@ -43,9 +30,9 @@
 
     <TextView
         android:id="@+id/skeyView"
-        android:layout_width="wrap_content"
+        android:layout_width="118dp"
         android:layout_height="wrap_content"
-        android:text="Kennwort" />
+        android:text="@string/kennwort" />
 
     <EditText
         android:id="@+id/sKeyInsert"
@@ -53,6 +40,18 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPassword" />
+
+    <CheckBox
+        android:id="@+id/safelogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/safe_login" />
+
+    <TextView
+        android:id="@+id/errorView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/missing_email" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -63,13 +62,13 @@
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Anmelden !" />
+            android:text="@string/anmelden" />
 
         <TextView
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="oder"
+            android:text="@string/oder"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
     </LinearLayout>
@@ -78,6 +77,6 @@
         android:id="@+id/rButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Registrieren!" />
+        android:text="@string/registrieren" />
 
 </LinearLayout>

@@ -26,8 +26,8 @@ import com.example.Tanzpartnervermittlung.R;
 public class Menue extends Activity {
 	//https://developer.android.com/guide/topics/data/data-storage.html#pref
 	 public static final String prefName = "MyPrefsFile";
-	int ID = -1;
-	boolean gender =true;
+	int ID ;
+	boolean gender;
 	final Menue menue = this;
 	@Override
 	/**
@@ -43,14 +43,15 @@ public class Menue extends Activity {
 		
 		Bundle extras = getIntent().getExtras();
 		if(extras != null){
-		ID = extras.getInt("intentID", -1);
-		gender = extras.getBoolean("intentGender", true);
+		ID = extras.getInt("ID", -1);
+		gender = extras.getBoolean("gender", true);
 		}
 		setContentView(R.layout.menue);
+		
 		// Restore preferences
-	       SharedPreferences settings = getSharedPreferences(prefName, 0);
-	       settings.getBoolean("gender",true);
-	       settings.getInt("ID", -1);
+	    //   SharedPreferences settings = getSharedPreferences(prefName, 0);
+	    //   settings.getBoolean("gender",true);
+	     //  settings.getInt("ID", -1);
 	      
 		//button to open SearchDancingPartner Activity and pass on i and gender
 		final Button tpFinden = (Button) findViewById(R.id.TpFinden);
@@ -59,8 +60,8 @@ public class Menue extends Activity {
 		
 				Intent intent = new Intent(getApplicationContext(),SearchForDancingpartner.class);
 				
-				intent.putExtra("intentID", ID);
-				intent.putExtra("intentGender", gender);
+				intent.putExtra("ID", ID);
+				intent.putExtra("gender", gender);
 				
 				 startActivity(new Intent(intent));
 			}
@@ -83,28 +84,28 @@ public class Menue extends Activity {
 		//	}
 		//});
 	}
-	@Override
-	public void onPause(){
-		super.onPause();
-		 SharedPreferences settings = getSharedPreferences(prefName, 0);
-	      SharedPreferences.Editor editor = settings.edit();
-	      editor.putBoolean("gender", gender);
-	      editor.putInt("ID",ID );
-	      editor.commit();
-	}
-	@Override 
-	public void onResume(){
-		super.onResume();
-		if(ID < 0){
-		SharedPreferences settings = getSharedPreferences(prefName, 0);
-		ID = settings.getInt("ID", -1);
-		gender = settings.getBoolean("gender",true);
-		System.out.println("onResume() set ID =" + ID + " and gender = "+ gender);}
-		else{
-			System.out.println("Couldn´t set ID. ID already dedined. ID ="+ ID);
-		}
+//	@Override
+//	public void onPause(){
+//		super.onPause();
+//		 SharedPreferences settings = getSharedPreferences(prefName, 0);
+//	      SharedPreferences.Editor editor = settings.edit();
+//	      editor.putBoolean("gender", gender);
+//	      editor.putInt("ID",ID );
+//	      editor.commit();
+//	}
+//	@Override 
+//	public void onResume(){
+//		super.onResume();
+//		if(ID < 0){
+//		SharedPreferences settings = getSharedPreferences(prefName, 0);
+//		ID = settings.getInt("ID", -1);
+//		gender = settings.getBoolean("gender",true);
+//		System.out.println("onResume() set ID =" + ID + " and gender = "+ gender);}
+//		else{
+//			System.out.println("Couldn´t set ID. ID already defined. ID ="+ ID);
+//		}
 		
-	}
+//	}
 	public void testAusgabe(String text) {
 	//	TextView testView = (TextView) findViewById(R.id.test1);
 		//testView.setText(text);
@@ -113,28 +114,30 @@ public class Menue extends Activity {
 	public void onBackPressed(){
 		super.onBackPressed();
 		Intent intent = new Intent(getApplicationContext(),Menue.class);
-		intent.putExtra("intentID", ID);
-		intent.putExtra("intentGender", gender);
+		intent.putExtra("ID", ID);
+		intent.putExtra("gender", gender);
 			 startActivity(new Intent(intent));
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 	    MenuInflater inflater=getMenuInflater();
-	    inflater.inflate(R.layout.main_menue, menu);
+	    inflater.inflate(R.layout.new_main_menue, menu);
 	    return super.onCreateOptionsMenu(menu);
 	}
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    switch(item.getItemId())
 	    {
-	    case R.id.logIn:
-	    	Intent intent = new Intent(getApplicationContext(),LogIn.class);
-			if(ID >= 0){
-			intent.putExtra("intentID", ID);}
-			intent.putExtra("intentGender", gender);
-			
-			 startActivity(new Intent(intent));
-	        break;
+//	    case R.id.logIn:
+//	    	Intent intent = new Intent(getApplicationContext(),LogIn.class);
+//			if(ID >= 0){
+//			intent.putExtra("intentID", ID);}
+//			intent.putExtra("intentGender", gender);
+//			
+//			 startActivity(new Intent(intent));
+//	        break;
+	    case R.id.options:
+	    	break;
 	    case R.id.logOut:
 	    	//http://stacktips.com/tutorials/android/android-custom-dialog-example
 	    	if(ID >= 0){
@@ -149,8 +152,13 @@ public class Menue extends Activity {
 	    		yButton.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					ID = -1;
 					dialog.dismiss();	
+					Intent intent = new Intent(getApplicationContext(),LogIn.class);
+//					if(ID >= 0){
+//					intent.putExtra("intentID", -1);}
+//					intent.putExtra("intentGender", false);
+					
+					 startActivity(new Intent(intent));
 				}
 				});
 				
@@ -163,23 +171,24 @@ public class Menue extends Activity {
 			});
 			dialog.show();
 	        
-	    	}else{
-	    		final Dialog dialog2 = new Dialog(Menue.this);
-	    		//setting custom layout to dialog
-	    		dialog2.setContentView(R.layout.no_log_out_dialog);
-	    		dialog2.setTitle("Sie sind bereits ausgeloggt.");
-	    		//adding text dynamically
-	    		Button okButton = (Button) dialog2.findViewById(R.id.okButton);
-	    		
-	    		//adding button click event
-	    		okButton.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					dialog2.dismiss();	
-				}
-				});
-	    		dialog2.show();
 	    	}
+//	    	else{
+//	    		final Dialog dialog2 = new Dialog(Menue.this);
+//	    		//setting custom layout to dialog
+//	    		dialog2.setContentView(R.layout.no_log_out_dialog);
+//	    		dialog2.setTitle("Sie sind bereits ausgeloggt.");
+//	    		//adding text dynamically
+//	    		Button okButton = (Button) dialog2.findViewById(R.id.okButton);
+//	    		
+//	    		//adding button click event
+//	    		okButton.setOnClickListener(new OnClickListener() {
+//				@Override
+//				public void onClick(View v) {
+//					dialog2.dismiss();	
+//				}
+//				});
+//	    		dialog2.show();
+//	    	}
 	    	break;
 	    	}
 	    return true;

@@ -1,5 +1,9 @@
 package task;
-
+/**
+ * @author Simon Stolz, Martin Pabst
+ * Soruces: http://www.pabst-software.de/doku.php?id=programmieren:java:android:httpclient:start
+ * 			Abi Quiz-App by Tim Möschel
+ */
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -50,11 +54,11 @@ public class BaseHttpRequestTask extends AsyncTask<String, Void, String> {
 			OutputStream os = conn.getOutputStream();
 			os.write(outputInBytes);
 			os.close();
-			//e. cause failed to connect to /192.168.56.1 (port 8080): connect failed: ETIMEDOUT (Connection timed out)
-			// e. detailed message android.system.ErrnoException: connect failed: ETIMEDOUT (Connection timed out)
-			//  Server ip read out by server :http://192.168.56.1/ checked with browser
+			
 			}catch(IOException e){
-				Log.e("couldn´t write output in Bytes", e.toString());}
+				
+				Log.e("couldn´t write output in Bytes", e.toString());
+				}
 			InputStream instream = new BufferedInputStream(
 					conn.getInputStream());
 			BufferedReader r = new BufferedReader(new InputStreamReader(
@@ -85,13 +89,13 @@ public class BaseHttpRequestTask extends AsyncTask<String, Void, String> {
 	protected Object parseXML(String xml, Class myClass) throws Exception {
 		Serializer serializer = new Persister();
 
-//		try {
+		try {
 			Object object = serializer.read(myClass, xml);
 			return object;
-//		} catch (Exception e) {
-//			Log.e("test", e.toString());
-//		}
-//		return null; // TODO: Error-Handling
+		} catch (Exception e) {
+			Log.e("test", e.toString());
+		}
+		return null; // TODO: Error-Handling
 	}
 
 	protected void execute(Command command, String postBody) {

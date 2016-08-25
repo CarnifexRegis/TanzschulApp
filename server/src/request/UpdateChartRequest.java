@@ -1,6 +1,11 @@
 package request;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
+/**
+ * 
+ * @author Simon Stolz
+ *
+ */
 @Root(name = "updatechartrequest")
 //gender needed
 public class UpdateChartRequest {

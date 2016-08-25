@@ -2,12 +2,17 @@ package response;
 
 import java.util.ArrayList;
 
+
+
+
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementArray;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
 import database2.ProfileChart;
+
+
 
 @Root(name = "updatechartresponse")
 public class UpdateChartResponse {
@@ -23,7 +28,9 @@ String[] age;
 String[] uhr; 
 	@ElementArray(name= "date" )
 String[] date;
-	
+	@ElementArray(name= "email" )
+String[] eMail;
+	public UpdateChartResponse(){}
 	public UpdateChartResponse(ArrayList<ProfileChart> chartList) {
 		super();
 		ArrayList<ProfileChart>chartListTemp = chartList;
@@ -33,6 +40,7 @@ String[] date;
 		age = new String [i];
 		uhr = new String [i];
 		date = new String [i];
+		eMail = new String [i];
 	//	for(ProfileChart item :chartListTemp){
 	//		}
 		for (int c = 0; c<i; c++ ){
@@ -42,6 +50,7 @@ String[] date;
 			age[c] = temp.getAge();
 			uhr[c] = temp.getUhr();
 			date[c] = temp.getdate();
+			eMail[c] = temp.geteMail();
 		}
 	}
 
@@ -49,7 +58,7 @@ String[] date;
 		ArrayList<ProfileChart> chartList= new ArrayList<ProfileChart>();
 		int l = fn.length;
 		for(int i = 0; i< l;i++){
-			chartList.add(new ProfileChart(fn[i],ln[i],age[i],uhr[i],date[i]));
+			chartList.add(new ProfileChart(fn[i],ln[i],age[i],uhr[i],date[i],eMail[i]));
 			
 		}
 		return chartList;

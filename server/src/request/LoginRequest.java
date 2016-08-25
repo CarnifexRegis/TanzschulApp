@@ -2,7 +2,11 @@ package request;
 
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
-
+/**
+ * 
+ * @author Simon Stolz
+ *
+ */
 @Root(name = "loginrequest")
 public class LoginRequest {
 	@Element (name = "email")

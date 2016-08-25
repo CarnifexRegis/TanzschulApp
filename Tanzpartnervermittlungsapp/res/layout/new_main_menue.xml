@@ -1,11 +1,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content" >
-
- <item android:id="@+id/logIn"
-     android:icon="@drawable/login"
-	android:title="Anmelden" />
+     
 <item android:id="@+id/logOut"
     android:icon="@drawable/logout"
 	android:title="Abmelden" />
+<item android:id="@+id/options"
+	android:title="Einstellungen" />
+
 </menu>

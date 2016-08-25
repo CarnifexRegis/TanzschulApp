@@ -1,6 +1,13 @@
 package model;
 
 import java.util.ArrayList;
+/**
+ * @author Simon Stolz
+ * Source:  
+ *			Abi Quiz-App by Tim Möschel
+ *	@attribute If an Task needs acces to the database it calls an instance of this class
+ *
+ */
 
 import database2.ProfileChart;
 import database2.SQL;
@@ -8,19 +15,30 @@ import database2.SQL;
 public class Model {
 	private static Model instance;
 	private SQL sql;
-
+/**
+ * The constructor gets an instance of the SQL class, which uses JDBC to access the Server sDatabase
+ */
 	private Model() {
 		sql = new SQL();
-		System.out.println("bla");
+		System.out.println("Constructor of the Model was called");
 	}
-
+/**
+ * Static Method that calls an instance of it self if it doesn´t already exist
+ */
 	public static Model getInstance() {
 		if (instance == null)
 			instance = new Model();
-		System.out.println("got new Instance of the Model");
+		System.out.println("got an Instance of the Model");
 		return instance;
 	}
-	
+	/**
+	 * 
+	 * @param id		the id of the user
+	 * @param gender	the gender of the user
+	 * @param kstu		the "level" of the dancing lesson
+	 * @param age		the age of the User
+	 * @return returns an Profile Chart Array<List>
+	 */
 	public ArrayList<ProfileChart> getCharts(int id,boolean gender,int kstu, int age) {
 		int g;
 		if (gender){
@@ -37,10 +55,21 @@ public class Model {
 			return null ;
 			}
 	}
+	/**
+	 * @attribute This method recieves your E-Mail and password and passes it on to SQL.LogIn
+	 * E-Mail and password and returns your id if it´s correct
+	 * @param em	The E-Mail of the User
+	 * @param ps	The  Users Password
+	 * @return returns the id of the User
+	 */
 	public int Login (String em ,String ps){
 		return sql.LogIn(em, ps);
-		
 	}
+	/**
+	 * This method is called to extract the Gender of an specific user 
+	 * @param id	The id of the user
+	 * @return		Returns the Gender of the User as int three Values are possible : 1 for female, 0 for male and -1 in case of an Error
+	 */
 	public int getGender(int id){
 		return sql.getGender(id);
 	}

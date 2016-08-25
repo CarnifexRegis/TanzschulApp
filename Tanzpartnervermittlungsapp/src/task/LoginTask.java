@@ -2,12 +2,8 @@ package task;
 
 import protocol.Command;
 import request.LoginRequest;
-import request.UpdateChartRequest;
 import response.LoginResponse;
-import response.UpdateChartResponse;
 import activitys.LogIn;
-import activitys.SearchForDancingpartner;
-import android.app.Activity;
 import android.util.Log;
 
 public class LoginTask extends BaseHttpRequestTask{
@@ -28,6 +24,7 @@ public class LoginTask extends BaseHttpRequestTask{
 			String xml = buildXML(request);
 			super.execute(Command.login, xml);
 		} catch (Exception e) {
+			((LogIn) activity).connectionError();
 			// FIXME Errorhandling
 			System.out.println("An error occured bulding the xml/exceuting command");
 		}

@@ -25,6 +25,8 @@ String[] age;
 String[] uhr; 
 	@ElementArray(name= "date" )
 String[] date;
+	@ElementArray(name= "email" )
+String[] eMail;
 	public UpdateChartResponse(){}
 	public UpdateChartResponse(ArrayList<ProfileChart> chartList) {
 		super();
@@ -35,6 +37,7 @@ String[] date;
 		age = new String [i];
 		uhr = new String [i];
 		date = new String [i];
+		eMail = new String [i];
 	//	for(ProfileChart item :chartListTemp){
 	//		}
 		for (int c = 0; c<i; c++ ){
@@ -44,6 +47,7 @@ String[] date;
 			age[c] = temp.getAge();
 			uhr[c] = temp.getUhr();
 			date[c] = temp.getdate();
+			eMail[c] = temp.geteMail();
 		}
 	}
 
@@ -51,7 +55,7 @@ String[] date;
 		ArrayList<ProfileChart> chartList= new ArrayList<ProfileChart>();
 		int l = fn.length;
 		for(int i = 0; i< l;i++){
-			chartList.add(new ProfileChart(fn[i],ln[i],age[i],uhr[i],date[i]));
+			chartList.add(new ProfileChart(fn[i],ln[i],age[i],uhr[i],date[i],eMail[i]));
 			
 		}
 		return chartList;

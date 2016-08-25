@@ -27,8 +27,23 @@
     <string name="title_search_dancingpartner">Tantpartner/in finden</string>
     <string name="title_edit_profile">Mein Profil</string>
 	<string name="title_log_in">Willkommen</string>
+		<string name="registrieren">Registrieren!</string>
+		<string name="anmelden">Anmelden</string>
+		<string name="oder">oder</string>
+		<string name="email">E-Mail</string>
+		<string name="kennwort">Kennwort</string>
+		<string name="missing_key">Es wurde kein Kennwort eingetragen.</string>
+		<string name="missing_email">Es wurde keine E-Mail eingetragen.</string>
+		<string name="missing_login_data">Es wurden weder E-Mail noch Kennwort eingetragen.</string>
+		<string name="wrong_login">Falsche E-Mail oder Passwort, versuchen Sie es bitte erneut.</string>
+		<string name="safe_login">Angemeldet bleiben?</string>
 	<string name ="title_registration">Registrieren</string>
 	<string name ="title_other_profile">Profil</string>
+	<string name ="check_connection">Bitte überprüfen sie ihre Internet Verbindung.</string>
+	<string name ="connection_failed">Wir konnten den Server nicht erreichen bitte versuchen sie es später erneut.</string>
+	<string name ="required_field">Dies ist ein Pflichtfeld!</string>
+	<string name ="no_accordance_key">Die beiden Kennwörter stimmen nicht überein!</string>
+	<string name ="no_accordance_email">Die beiden E-Mail Adressen stimmen nicht überein!</string>
 	
 </resources>
 

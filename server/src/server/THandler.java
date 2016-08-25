@@ -13,7 +13,13 @@ import protocol.Command;
 import tasks.GetAllTask;
 import tasks.LoginTask;
 import tasks.UpdateChartTask;
-
+/**
+ * 
+ * @author Simon Stolz
+ * Source:  http://www.pabst-software.de/doku.php?id=programmieren:java:android:httpclient:start
+ * 			
+ *
+ */
 
 
 
@@ -46,7 +52,7 @@ public class THandler extends AbstractHandler {
 				System.out.println("Get All Request");
 				break;
 			case register:
-				// RegisterTask registertask = new RegisterTask();
+				//RegisterTask registertask = new RegisterTask();
 				//antwort = getalltask.handle(body);
 				break;
 			case login:

@@ -9,6 +9,9 @@ public class LoginResponse {
 	int id;
 	@Element (name = "gender")
 	int gender;
+	public LoginResponse() {
+		super();
+	}
 	public LoginResponse(int id, int gender) {
 		super();
 		this.id = id;

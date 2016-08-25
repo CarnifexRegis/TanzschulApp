@@ -1,5 +1,7 @@
 package activitys;
 
+import task.RegisterTask;
+
 import com.example.Tanzpartnervermittlung.R;
 
 import android.app.Activity;
@@ -7,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 
 
@@ -21,8 +24,11 @@ public class EditProfile extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.edit_profile);
 		
-		final EditText fn = (EditText)findViewById(R.id.fnameInsert);
-		final EditText ln= (EditText)findViewById(R.id.lnameInsert);
+		final TextView fnView= (TextView) findViewById(R.id.fnameView);
+		final TextView lnView= (TextView) findViewById(R.id.lnameView);
+		RegisterTask loginTask = new RegisterTask(r, eMail, key, age, gender, aVisible);
+    	loginTask.execute();
+		
 		
 		// This Button reads the Users inserted information and saves it in a ProfileDataForServer Object 
 		final Button ready = (Button) findViewById(R.id.fertigButton);

@@ -1,5 +1,9 @@
 package task;
-
+/**
+ * @author Simon Stolz, Martin Pabst
+ * Sources:	http://www.pabst-software.de/doku.php?id=programmieren:java:android:httpclient:start
+ *			Abi Quiz-App by Tim Möschel
+ */
 import protocol.Command;
 import request.GetAllRequest;
 import response.GetAllResponse;

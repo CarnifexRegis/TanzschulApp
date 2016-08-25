@@ -15,7 +15,11 @@ public class UpdateChartTask extends AbstractHandler {
 		int id = request.getId();
 		boolean gender = request.isGender();
 		int  kstu = request.getKursstufe();
-		ArrayList<ProfileChart> antwort= Model.getInstance().getCharts(id, gender, kstu, 0);
+		ArrayList<ProfileChart> antwort;
+		if(id>=0){
+		antwort= Model.getInstance().getCharts(id, gender, kstu, 0);
+		}else{
+		antwort = null;}
 		if(antwort !=null){
 			System.out.println("recieved Data UpdateProfilechart Task");
 		}
