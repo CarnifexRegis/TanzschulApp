@@ -31,7 +31,7 @@ public class LogIn extends Activity{
 	String password = null;
 	//Special thanks to Leander for this Tip
 	//https://developer.android.com/training/basics/activity-lifecycle/recreating.html
-	
+	String errorCode = null;
 	static final String STATE_EMAIL = "logineMail";
 	static final String STATE_PASSWORD = "loginPassword";
 	private TextView errorView;
@@ -46,16 +46,29 @@ public class LogIn extends Activity{
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		
+		 Bundle extras = getIntent().getExtras();
+		if(extras != null){
+		errorCode = extras.getString("error");
+		}
+		
 		//TODO Hardcoded Create XML Fiel color in values
 		 
 		super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
         errorView = (TextView)findViewById(R.id.errorView);
+       
+        
          keyInsert =(EditText)findViewById(R.id.sKeyInsert);
          eMailInsert =(EditText)findViewById(R.id.sEmailInsert);
-        
-		errorView.setVisibility(View.GONE);
-		errorView.setTextColor(0xffff0000);
+         errorView.setTextColor(0xffff0000);
+		if (errorCode== null){
+			errorView.setVisibility(View.GONE);
+		}else{
+			errorView.setVisibility(View.VISIBLE);
+			errorView.setText(errorCode);
+		}
+		
+		
 	    prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 	    safelogin = (CheckBox) findViewById(R.id.safelogin);
 	   String p = prefs.getString("password", null);

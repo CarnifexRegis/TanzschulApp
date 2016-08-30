@@ -30,14 +30,14 @@ import android.widget.TextView;
 public class Registration extends Activity {
 	TextView[] errorViews = new TextView[7];
 	TextView rErrorView;
-	TextView rNameErrorView;
-	TextView rSurnameErrorView;
+	TextView rFNErrorView;
+	TextView rLNErrorView;
 	TextView rAgeErrorView;
 	TextView rEmailErrorView;
 	TextView rKeyErrorView;
 	
-	EditText rNameInsert;
-	EditText rSurnameInsert;
+	EditText rFNameInsert;
+	EditText rLNameInsert;
 	EditText rAgeInsert;
 	EditText rEmailInsert1;
 	EditText rEmailInsert2;
@@ -46,8 +46,8 @@ public class Registration extends Activity {
 	
 	Boolean[] correct = new Boolean[6];
 	Registration r = this;
-	String name;
-	String surname;
+	String fn;
+	String ln;
 	int age;
 	String eMail;
 	String key;
@@ -64,8 +64,8 @@ public class Registration extends Activity {
 		final CheckBox ageVisible = (CheckBox) findViewById(R.id.rAgeVisibleBox);
 		
 		
-		rNameInsert = (EditText) findViewById(R.id.rNameInsert);
-		rSurnameInsert= (EditText) findViewById(R.id.rSurnameInsert);
+		rFNameInsert = (EditText) findViewById(R.id.rFNameInsert);
+		rLNameInsert= (EditText) findViewById(R.id.rLNameInsert);
 		rAgeInsert = (EditText) findViewById(R.id.rAgeInsert);
 		rEmailInsert1 = (EditText) findViewById(R.id.rEmailInsert1);
 		rEmailInsert2 = (EditText) findViewById(R.id.rEmailInsert2);
@@ -79,23 +79,23 @@ public class Registration extends Activity {
 //		errorViews [6] = (TextView) findViewById(R.id.rKeyErrorView);
 		final TextView rErrorView = (TextView) findViewById(R.id.rErrorView);
 		final TextView rSexErrorView = (TextView) findViewById(R.id.rSexErrorView);
-		final TextView rNameErrorView = (TextView) findViewById(R.id.rNameErrorView);
-		final TextView rSurnameErrorView = (TextView) findViewById(R.id.rSurnameErrorView);
+		final TextView rFNErrorView = (TextView) findViewById(R.id.rFNameErrorView);
+		final TextView rLNErrorView = (TextView) findViewById(R.id.rLNameErrorView);
 		final TextView rAgeErrorView = (TextView) findViewById(R.id.rAgeErrorView);
 		final TextView rEmailErrorView = (TextView) findViewById(R.id.rEmailErrorView);
 		final TextView rKeyErrorView = (TextView) findViewById(R.id.rKeyErrorView);
 		rErrorView.setVisibility(View.GONE);
 		rSexErrorView.setVisibility(View.GONE);
-		rNameErrorView.setVisibility(View.GONE);
-		rSurnameErrorView.setVisibility(View.GONE);
+		rFNErrorView.setVisibility(View.GONE);
+		rLNErrorView.setVisibility(View.GONE);
 		rAgeErrorView.setVisibility(View.GONE);
 		rEmailErrorView.setVisibility(View.GONE);
 		rKeyErrorView.setVisibility(View.GONE);
 		
 		rErrorView.setTextColor(0xffff0000);
 		rSexErrorView.setTextColor(0xffff0000);
-		rNameErrorView.setTextColor(0xffff0000);
-		rSurnameErrorView.setTextColor(0xffff0000);
+		rFNErrorView.setTextColor(0xffff0000);
+		rLNErrorView.setTextColor(0xffff0000);
 		rAgeErrorView.setTextColor(0xffff0000);
 		rEmailErrorView.setTextColor(0xffff0000);
 		rKeyErrorView.setTextColor(0xffff0000);
@@ -112,8 +112,8 @@ public class Registration extends Activity {
 	final Button registerButton=  (Button) findViewById(R.id.registerButton);
 	registerButton.setOnClickListener(new View.OnClickListener() {
 		public void onClick(View v) {
-		name = rNameInsert.getText().toString();
-		surname = rSurnameInsert.getText().toString();
+		ln = rLNameInsert.getText().toString();
+		fn = rFNameInsert.getText().toString();
 		try{
 		age = Integer.valueOf(rAgeInsert.getText().toString());}
 		catch(Exception e){}
@@ -130,11 +130,11 @@ public class Registration extends Activity {
 		 correct[5]= false;
         if(selectedId !=-1){
 		
-        	if(selectedId == 0x7f070043){
+        	if(selectedId == 2131165249){//0x7f070043
         		gender = true;
         		correct[5]= true;
         	}else{
-        	if(selectedId == 0x7f070044){
+        	if(selectedId == 2131165250){//0x7f070044
         		gender = false;
         		correct[5]= true;
         		rSexErrorView.setVisibility(View.GONE);
@@ -150,19 +150,19 @@ public class Registration extends Activity {
 		}
         
 		radioSexButton=(RadioButton)findViewById(selectedId);
-		if(name.length()>1){
+		if(fn.length()>1){
 			correct[0]= true;
-			rNameErrorView.setVisibility(View.GONE);
+			rFNErrorView.setVisibility(View.GONE);
 		}else{
-			rNameErrorView.setVisibility(View.VISIBLE);
-			rNameErrorView.setText(getResources().getString(R.string.required_field));
+			rFNErrorView.setVisibility(View.VISIBLE);
+			rFNErrorView.setText(getResources().getString(R.string.required_field));
 		}
-		if(surname.length()>1){
+		if(ln.length()>1){
 			correct[1]= true;
-			rSurnameErrorView.setVisibility(View.GONE);
+			rLNErrorView.setVisibility(View.GONE);
 		}else{
-			rSurnameErrorView.setVisibility(View.VISIBLE);
-			rSurnameErrorView.setText(getResources().getString(R.string.required_field));
+			rLNErrorView.setVisibility(View.VISIBLE);
+			rLNErrorView.setText(getResources().getString(R.string.required_field));
 		}
 		if(age>0){
 			correct[2]= true;
@@ -205,7 +205,7 @@ public class Registration extends Activity {
 		
 		
 			if(isCorrect()){
-				RegisterTask registerTask = new RegisterTask(r, eMail, key, age, gender, aVisible);
+				RegisterTask registerTask = new RegisterTask(r,fn, ln, eMail, key, age, gender, aVisible);
 				registerTask.execute();
 				rErrorView.setVisibility(View.GONE);
 			}
@@ -242,18 +242,27 @@ public class Registration extends Activity {
 	public void onError(String error){
 		String ae = ErrorCode.ae.getError();
 		switch (error){
-		case  "alreadyExists" :
-			rErrorView.setText(ErrorCode.ae.getOutput());
-		
+		case "alreadyExists" :
+			rErrorView.setText("Es existiert bereits ein Account mit dieser E-Mail!");
+		break;
+		case "notFound" : 
+			rErrorView.setText("Es ist ein Fehler aufgetreten!");
+		break;
 		}
 		}
 	public void getLoginValues(int id){
 		if(id > -1){
 			Intent intent = new Intent(getApplicationContext(),EditProfile.class);
 			intent.putExtra("ID", id);
-			intent.putExtra("gender", gender);
+	//		intent.putExtra("gender", gender);
 			startActivity(new Intent(intent));
 			}
+	}
+	@Override
+	public void onBackPressed(){
+		super.onBackPressed();
+		Intent intent = new Intent(getApplicationContext(),LogIn.class);
+			 startActivity(new Intent(intent));
 	}
 		
 		

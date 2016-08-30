@@ -2,22 +2,20 @@ package protocol;
 
 public enum ErrorCode {
 	
-ja("ja","Korrekt!"),wl("wrongLogin","Falsche E-MAil oder Kennwort."),ae("alreadyExists","Diese E-Mail existiert bereits in unserer Datenbank."),nf("notFound","Der Nutzer konnte nicht gefunden werden.");
+ja("ja"),wl("wrongLogin"),ae("alreadyExists"),nf("notFound");
 
 String error;
-String output;
 
-private ErrorCode(String error,String output) {
+private ErrorCode(String error) {
 	this.error = error;
-	this.output =  output;
+	
 }
 
-public String getError() {
+public  String getError() {
 	return error;
 }
-public String getOutput() {
-	return output;
-}
+
+
 public static ErrorCode fromString(String error) {
 
 	if (error == null) {

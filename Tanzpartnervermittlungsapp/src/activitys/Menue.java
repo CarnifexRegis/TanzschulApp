@@ -110,13 +110,16 @@ public class Menue extends Activity {
 	//	TextView testView = (TextView) findViewById(R.id.test1);
 		//testView.setText(text);
 	}
+//	@Override
+//	public void onBackPressed(){
+//		super.onBackPressed();
+//		Intent intent = new Intent(getApplicationContext(),Menue.class);
+//		intent.putExtra("ID", ID);
+//		intent.putExtra("gender", gender);
+//			 startActivity(new Intent(intent));
+//	}
 	@Override
-	public void onBackPressed(){
-		super.onBackPressed();
-		Intent intent = new Intent(getApplicationContext(),Menue.class);
-		intent.putExtra("ID", ID);
-		intent.putExtra("gender", gender);
-			 startActivity(new Intent(intent));
+	public void onBackPressed() {
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

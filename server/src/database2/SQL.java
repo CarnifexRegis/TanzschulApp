@@ -112,6 +112,7 @@ private Connection c;
 							" PNumber INTEGER ,"+						//8 phone number
 							" PA INTEGER NOT NULL ,"+			//9 Public Age				!(Boolean, always set 0=False  1=True
 							" HIGHT INTEGER)";							//10 hight
+				
 				stmt.executeUpdate(sql);
 				if(stmt != null){
 				c.commit();
@@ -159,32 +160,33 @@ private Connection c;
 								}
 			//Tests
 		//	eMailExists("hi");
-			addUser("Huan@huan.de","geheim","a","Wurst",0,8,0);
-			addUser("df@huan.de","geheim","b","Wurst",1,8,0);
-			addUser("mfmn@huan.de","geheim","c","Wurst",0,8,1);
+		//	addUser("Huan@huan.de","geheim","a","Wurst",0,8,0);
+		//	addUser("df@huan.de","geheim","b","Wurst",1,8,0);
+		//	addUser("mfmn@huan.de","geheim","c","Wurst",0,8,1);
 			addUser("hallo","geheim","Hans","d",1,8,0);
-			addUser("jzt@huan.de","geheim","e","Wurst",0,8,1);
-			addUser("Hjzg@huan.de","geheim","f","Wurst",0,8,0);
-			addUser("zjg@huan.de","geheim","g","Wurst",0,8,1);
-		//	getAllUserData();
+		//	addUser("jzt@huan.de","geheim","e","Wurst",0,8,1);
+		//	addUser("Hjzg@huan.de","geheim","f","Wurst",0,8,0);
+		//	addUser("zjg@huan.de","geheim","g","Wurst",0,8,1);
+			getAllUserData();
 			
-			addKurs(1,"25.03.2016","Donnerstag","15:25");
-			addKurs(2,"25.03.2016","Donnerstag","15:25");
+			//addKurs(1,"25.03.2016","Donnerstag","15:25");
+			//addKurs(2,"25.03.2016","Donnerstag","15:25");
 		//	readKurs();
-			addLink(1, 1);
-			addLink(2,1);
-			addLink(3,1);
-			addLink(4,1);
-			addLink(5,1);
-			addLink(6,1);
-			addLink(7,2);
-			addLink(1,2);
+		//	addLink(1, 1);
+		//	addLink(2,1);
+		//	addLink(3,1);
+		//	addLink(4,1);
+		//	addLink(5,1);
+		//	addLink(6,1);
+		//	addLink(7,2);
+		//	addLink(1,2);
 			//eMailExists("Huan@huan.de");
 		//	readLinks();
 		//	myKurs(1);
 		//	getProfilecharts(1, 1,87);
-			getProfilecharts(1, 1,50);
-			LogIn("hallo","geheim");
+		//	getProfilecharts(1, 1,50);
+		//	LogIn("hallo","geheim");
+			getProfileData(1);
 						}catch(Exception e){
 						System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 				        System.exit(0);	}
@@ -261,13 +263,23 @@ private Connection c;
 			p.executeUpdate();
 			c.commit();
 			if(p!=null)p.close();
-			}}
+			System.out.println(getUserIDByEMAIL(em));
+			return getUserIDByEMAIL(em);// returns the id after success
+			
+			}
+		else{
+			return -1;//email already exists
+		}
+		}
 		catch(Exception e){
 			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 	        System.exit(0);
+	        return -2;// Sql Error
+	        
 			}
-		System.out.println(getUserIDByEMAIL(em));
-		return getUserIDByEMAIL(em);
+		
+		
+		
 	}
 	public int getUserIDByEMAIL(String em){
 		Statement stmt = null;
@@ -331,6 +343,7 @@ private Connection c;
 		
 		return dataList;
 	}
+	
 	/**
 	 * 
 	 * @param kursstufe		
@@ -619,6 +632,52 @@ private Connection c;
 			}
 			// in case of an Error it returns -1
 				return -1;
+			
+		}
+		public ProfileData getProfileData(int id){
+			
+			Statement stmt= null;
+			ProfileData pd = null;
+			try {
+				String sql = "SELECT EMAIL,LN,FN,GENDER,AGE,PA,PTEXT, PNumber, HIGHT FROM USER WHERE ID = '"+id+"';";
+				stmt = c.createStatement(); 
+				ResultSet rs = stmt.executeQuery(sql);
+				
+				//	String eMail = rs.getString("EMAIL");
+					String ln = rs.getString("LN");
+					String fn = rs.getString("FN");
+					String pText = rs.getString("PTEXT");
+					int hight = rs.getInt("HIGHT");
+					int phoneNumber = rs.getInt("PNumber");
+					
+					int g = rs.getInt("GENDER");
+					int age = rs.getInt("AGE");
+					int pa =  rs.getInt("PA");
+					boolean gender;
+					boolean pAge;
+					if (pa ==1){
+						pAge = true;
+					}else {
+						pAge = false;
+					}
+					if (g ==1){
+						gender = true;
+					}else {
+						gender = false;
+					}
+					//System.out.println(" "+eMail+" "+ln+ " "+fn+ " "+ g +" " +age+ " " + pa);
+				pd =   new ProfileData(fn, ln, pText, age, hight, phoneNumber, gender, pAge);
+				
+				if (rs != null)rs.close();
+				if(stmt!= null)stmt.close();
+				
+			} catch (SQLException e) {
+				System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+		        System.exit(0);
+				e.printStackTrace();
+				return null;
+			}
+			return pd;
 			
 		}
 	

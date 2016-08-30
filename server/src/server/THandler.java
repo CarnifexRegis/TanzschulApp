@@ -12,6 +12,7 @@ import org.eclipse.jetty.server.handler.AbstractHandler;
 import protocol.Command;
 import tasks.GetAllTask;
 import tasks.LoginTask;
+import tasks.RegisterTask;
 import tasks.UpdateChartTask;
 /**
  * 
@@ -52,8 +53,8 @@ public class THandler extends AbstractHandler {
 				System.out.println("Get All Request");
 				break;
 			case register:
-				//RegisterTask registertask = new RegisterTask();
-				//antwort = getalltask.handle(body);
+				RegisterTask registertask = new RegisterTask();
+				antwort = registertask.handle(body);
 				break;
 			case login:
 				System.out.println("LogInRequest");

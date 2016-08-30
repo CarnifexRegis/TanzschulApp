@@ -1,7 +1,7 @@
 package protocol;
 
 public enum Command {
-	getall("getall"), register("register"), login("login"), updatechart("updatechart"), updateprofile("updateprofile"),getprofile("getprofile");
+	getall("getall"), register("register"), login("login"), updatechart("updatechart"), updateprofile("updateprofile"),getprofile("getprofile"), foreignprofile("foreignprofile");
 
 	private String text;
 

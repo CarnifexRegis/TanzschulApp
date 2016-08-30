@@ -19,7 +19,9 @@ public class RegisterTask  extends BaseHttpRequestTask{
 	int age;
 	boolean gender;
 	boolean ageVisible;
-	public RegisterTask(Registration r , String eMail, String password,
+	String fn;
+	String ln;
+	public RegisterTask(Registration r ,String fn, String ln, String eMail, String password,
 			int age, boolean gender, boolean ageVisible) {
 		super(r);
 		this.eMail = eMail;
@@ -27,9 +29,12 @@ public class RegisterTask  extends BaseHttpRequestTask{
 		this.age = age;
 		this.gender = gender;
 		this.ageVisible = ageVisible;
+		this.fn = fn;
+		this.ln = ln;
+				
 	}
 	public void execute() {
-		RegisterRequest request = new RegisterRequest(eMail,  password,  age,  gender,
+		RegisterRequest request = new RegisterRequest(fn, ln,eMail,  password,  age,  gender,
 				 ageVisible);
 
 		try {
@@ -60,7 +65,7 @@ public class RegisterTask  extends BaseHttpRequestTask{
 			
 			((Registration) activity).getLoginValues(response.getId());
 			 }
-			// }
+			
 		} catch (Exception e) {
 			Log.e("Error in  LoginTask", e.toString());
 		}

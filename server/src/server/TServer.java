@@ -24,9 +24,9 @@ public class TServer {
 
 	        // HTTP connector
 	        ServerConnector http = new ServerConnector(server);
-	        // http.setHost("192.168.1.105");
+	         http.setHost("192.168.1.107");
 	        
-	        http.setHost("localhost");
+	       // http.setHost("localhost");
 	        http.setPort(8080);
 	        http.setIdleTimeout(30000);
 

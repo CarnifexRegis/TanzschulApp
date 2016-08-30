@@ -9,7 +9,9 @@ import java.util.ArrayList;
  *
  */
 
+
 import database2.ProfileChart;
+import database2.ProfileData;
 import database2.SQL;
 
 public class Model {
@@ -68,9 +70,19 @@ public class Model {
 	/**
 	 * This method is called to extract the Gender of an specific user 
 	 * @param id	The id of the user
+	 * @return 
 	 * @return		Returns the Gender of the User as int three Values are possible : 1 for female, 0 for male and -1 in case of an Error
 	 */
+	public ProfileData getProfileData(int id){
+		if(sql.checkID(id)){
+		return sql.getProfileData(id);
+		}
+		return null;
+	}
 	public int getGender(int id){
 		return sql.getGender(id);
+	}
+	public int register(String em,String ps, String ln, String fn, int g,int age, int pa ){
+		return sql.addUser(em, ps, ln, fn, g, age, pa);
 	}
 }
