@@ -10,6 +10,10 @@ import java.util.ArrayList;
  */
 
 
+
+
+
+import database2.Kurs;
 import database2.ProfileChart;
 import database2.ProfileData;
 import database2.SQL;
@@ -78,6 +82,30 @@ public class Model {
 		return sql.getProfileData(id);
 		}
 		return null;
+	}
+	public boolean UpdateProfile(int id, int pn, int hight,int age,String pText, boolean pa){
+		int intPa;
+		if(pa){
+			intPa = 1;
+		}else{
+			intPa= 0;
+		}
+		return sql.updateProfile(id, pn, hight, age, pText, intPa);
+	
+		
+	}
+	public ArrayList<Kurs> readKurs(int id){
+		if(sql.checkID(id)){
+		return sql.readKurs();
+		}
+		return null;
+	}
+	public Boolean addLink(int id, int kid){
+		if(sql.checkID(id)){
+			sql.addLink(id, kid);
+		}
+		return true;
+		
 	}
 	public int getGender(int id){
 		return sql.getGender(id);

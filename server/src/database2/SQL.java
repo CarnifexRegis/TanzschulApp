@@ -36,6 +36,7 @@ private Connection c;
 /**
  * 
  */
+
 	public SQL(){
 		try
 		{
@@ -73,10 +74,11 @@ private Connection c;
 		
 					stmt.executeUpdate(sql);
 					
-					c.commit();
+					
 					
 					if(stmt != null){
 						stmt.close();}
+					c.commit();
 					System.out.println("New KURS Instance");
 				}catch(Exception e1){
 					System.err.println( e1.getClass().getName() + ": " + e1.getMessage() );
@@ -115,8 +117,9 @@ private Connection c;
 				
 				stmt.executeUpdate(sql);
 				if(stmt != null){
-				c.commit();
+				
 					stmt.close();
+					c.commit();
 				}
 				System.out.println("New USER Instance");	
 				}catch(Exception e1){
@@ -159,22 +162,22 @@ private Connection c;
 						}
 								}
 			//Tests
-		//	eMailExists("hi");
-		//	addUser("Huan@huan.de","geheim","a","Wurst",0,8,0);
-		//	addUser("df@huan.de","geheim","b","Wurst",1,8,0);
-		//	addUser("mfmn@huan.de","geheim","c","Wurst",0,8,1);
+			eMailExists("hi");
+			addUser("Huan@huan.de","geheim","a","Wurst",0,8,0);
+			addUser("df@huan.de","geheim","b","Wurst",1,8,0);
+			addUser("mfmn@huan.de","geheim","c","Wurst",0,8,1);
 			addUser("hallo","geheim","Hans","d",1,8,0);
-		//	addUser("jzt@huan.de","geheim","e","Wurst",0,8,1);
-		//	addUser("Hjzg@huan.de","geheim","f","Wurst",0,8,0);
-		//	addUser("zjg@huan.de","geheim","g","Wurst",0,8,1);
+		addUser("jzt@huan.de","geheim","e","Wurst",0,8,1);
+			addUser("Hjzg@huan.de","geheim","f","Wurst",0,8,0);
+			addUser("zjg@huan.de","geheim","g","Wurst",0,8,1);
 			getAllUserData();
 			
-			//addKurs(1,"25.03.2016","Donnerstag","15:25");
-			//addKurs(2,"25.03.2016","Donnerstag","15:25");
+			addKurs(1,"25.03.2016","Donnerstag","15:25");
+			addKurs(2,"25.03.2016","Donnerstag","15:25");
 		//	readKurs();
-		//	addLink(1, 1);
-		//	addLink(2,1);
-		//	addLink(3,1);
+			addLink(1, 1);
+			addLink(2,1);
+			addLink(3,1);
 		//	addLink(4,1);
 		//	addLink(5,1);
 		//	addLink(6,1);
@@ -186,7 +189,9 @@ private Connection c;
 		//	getProfilecharts(1, 1,87);
 		//	getProfilecharts(1, 1,50);
 		//	LogIn("hallo","geheim");
+			addLink(1, 8);
 			getProfileData(1);
+			readKurs();
 						}catch(Exception e){
 						System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 				        System.exit(0);	}
@@ -261,8 +266,9 @@ private Connection c;
 			p.setInt(6,age);
 			p.setInt(7,pa);
 			p.executeUpdate();
-			c.commit();
+			
 			if(p!=null)p.close();
+			c.commit();
 			System.out.println(getUserIDByEMAIL(em));
 			return getUserIDByEMAIL(em);// returns the id after success
 			
@@ -375,8 +381,9 @@ private Connection c;
             //}
             //
             //rs.close();
-            c.commit();
+          
            if(p!=null) p.close();
+           c.commit();
 		} catch (SQLException | ParseException e) {
 			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 	        System.exit(0);
@@ -388,23 +395,45 @@ private Connection c;
 	 * @param uid	ID of The User	that shall be connected
 	 * @param kid	ID of the Kurs	that shall be connected
 	 */
-	public void addLink(int uid, int kid){
+	public boolean addLink(int uid, int kid){
+		//TODO NOT READY
+		int i =1;
+		ResultSet rs;
+		PreparedStatement p2 ;
 		PreparedStatement p ;
+		try{
+			String sql2 = "SELECT COUNT (*) AS I FROM LINK WHERE UID = ? AND KID =  ?;";
+			p2= c.prepareStatement(sql2); 
+			p2.setInt(1, uid);
+			p2.setInt(2, kid);
+			rs = p2.executeQuery();
+			i =  rs.getInt("I");
+			if (p2 != null) p2.close();
+			if(rs != null) rs.close();
+		}catch(Exception e){
+			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	        System.exit(0);
+			e.printStackTrace();
+		}
+		if(i<1){
 		try{
 			String sql = "INSERT INTO LINK (UID, KID) VALUES(?,?);";
 			p= c.prepareStatement(sql); 
 			p.setInt(1, uid);
 			p.setInt(2, kid);
 			p.executeUpdate();
-			c.commit();
-			if(p!=null)p.close();
 			
+			if(p!=null)p.close();
+			c.commit();
+			return true;
 		}catch(Exception e){
 			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 	        System.exit(0);
 			e.printStackTrace();
-		}	
-	
+			
+			
+		}	}
+	return false;
 	}
 	/**
 	 * 
@@ -498,23 +527,29 @@ private Connection c;
 	 * @param hight		The users hight
 	 * @param id		The id of the users account used to verify himself
 	 */
-	public void updateProfile(String ptext, int pnumber, int pa, int hight, int id ){
+	//int id, int pn, int hight,int age,String pText, boolean pa
+	//String ptext, int pnumber, int pa, int hight, int id, int age
+	public boolean updateProfile(int id, int pn, int hight,int age,String pText, int pa){
 		//Source  http://www.w3schools.com/sql/sql_update.asp
 		PreparedStatement p;
 		try{
-			String sql = "UPDATE USER SET PTEXT = ? , PNUMBER = ? , PA = ?, HIGHT = ? WHERE ID = ?;";
+			String sql = "UPDATE USER SET PTEXT = ? , PNUMBER = ? , PA = ?, HIGHT = ?,AGE = ? WHERE ID = ?;";
 			p = c.prepareStatement(sql);
-			p.setString(1, ptext);
-			p.setInt(2, pnumber);
+			p.setString(1, pText);
+			p.setInt(2, pn);
 			p.setInt(3, pa);
 			p.setInt(4,hight);
-			p.setInt(5,id);
+			p.setInt(5,age);
+			p.setInt(6,id);
+			
+			if (p != null)p.close();	
 			c.commit();
-			if (p != null)p.close();		
+			return true;
 		}catch(Exception e){
 			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 	        System.exit(0);
 			e.printStackTrace();
+			return false;
 		}	
 	}
 //	public Login logIn(){}
@@ -584,10 +619,12 @@ private Connection c;
 				stmt = c.createStatement();
 				ResultSet rs = stmt.executeQuery(sql);
 				i = rs.getInt("COUNT");
+				if(stmt != null)stmt.close();
+				if(rs!= null)rs.close();
 				if(i== 1){
 					return true;
 				}else{
-					if(i ==0){
+					if(i == 0){
 						System.out.println("Wrong ID");
 						return false;
 					}
@@ -655,12 +692,12 @@ private Connection c;
 					int pa =  rs.getInt("PA");
 					boolean gender;
 					boolean pAge;
-					if (pa ==1){
+					if (pa == 1){
 						pAge = true;
 					}else {
 						pAge = false;
 					}
-					if (g ==1){
+					if (g == 1){
 						gender = true;
 					}else {
 						gender = false;
@@ -680,196 +717,8 @@ private Connection c;
 			return pd;
 			
 		}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-//Tim 	
-//	private String buildXML(Object object)
-//	{
-//		Style style = new HyphenStyle();
-//		Format format = new Format(style);
-//		
-//		Serializer serializer = new Persister(format);
-//		
-//		StringWriter writer = new StringWriter();
-//		
-//		try
-//		{
-//			serializer.write(object, writer);
-//			return writer.getBuffer().toString();
-//		}
-//		catch(Exception e)
-//		{
-//			return null; //TODO Error-Handling
-//		}
-//	}
-//	
-//	private Object parseXML(String xml, Class myClass)
-//	{
-//		Serializer serializer = new Persister();
-//		
-//		try
-//		{
-//			Object object = serializer.read(myClass, xml);
-//			return object;
-//		}
-//		catch(Exception e)
-//		{
-//			return null; //TODO: Error-Handling
-//		}
-//	}
-//	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	//Test methods
+
+
 		public void readLinks(){
 			Statement stmt ;
 			try{
@@ -889,21 +738,32 @@ private Connection c;
 				e.printStackTrace();
 			}
 		}
-		public void readKurs(){
+		
+		
+		public ArrayList<Kurs> readKurs(){
 			Statement stmt;
+			ArrayList<Kurs> kurs = new ArrayList<Kurs>();
 			try{
 				stmt=c.createStatement();
-				String sql = " SELECT ID FROM KURS;";
+				String sql = " SELECT *  FROM KURS ORDER BY KURSSTUFE ASC,DATUM DESC;";
 				ResultSet rs = stmt.executeQuery(sql);
 				while(rs.next()){
-					System.out.println(rs.getString("ID"));
+					int  id = rs.getInt("ID");
+					int cl  =rs.getInt("kursstufe");
+					String uhr = rs.getString("UHRZEIT");
+					String date = "" +rs.getDate("DATUM");
+					String day = rs.getString("WOCHENTAG");
+					
+					kurs.add(new Kurs(id, cl, date, day, uhr));
 				}
 				if(stmt!=null)stmt.close();
 				if(rs!=null)rs.close();
+				return kurs;
 			}catch(Exception e){
 				System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 		        System.exit(0);
 				e.printStackTrace();
+				return null;
 			}
 			
 		}

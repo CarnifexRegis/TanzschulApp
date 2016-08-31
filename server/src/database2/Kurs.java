@@ -10,12 +10,13 @@ public class Kurs {
 	private int ID;
 	private int kursstufe;
 	private String uhrzeit;
-	private Date datum; // User Kurs DAO needs a String datum has to put in like : Day(int).Month(int).Year(int)
+	//private Date datum; // User Kurs DAO needs a String datum has to put in like : Day(int).Month(int).Year(int)
+	private String datum;
 	private String wochentag;
 	//Boolean "SingUpAviable" must be added later 
 	
 	
-	public Kurs(int kursID,int kursstufe, Date datum, String wochentag, String uhrzeit) {
+	public Kurs(int kursID,int kursstufe, String datum, String wochentag, String uhrzeit) {
 		super();
 		this.kursstufe = kursstufe;
 		this.uhrzeit = uhrzeit;
@@ -49,11 +50,11 @@ public class Kurs {
 		this.uhrzeit = uhrzeit;
 	}
 
-	public Date getDatum() {
+	public String getDatum() {
 		return datum;
 	}
 
-	public void setDatum(Date datum) {
+	public void setDatum(String datum) {
 		this.datum = datum;
 	}
 

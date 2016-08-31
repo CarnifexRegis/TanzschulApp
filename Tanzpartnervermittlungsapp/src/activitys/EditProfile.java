@@ -61,22 +61,23 @@ EditProfile edp = this;
         });
 		
 	    }
-	public void onBackPressed() {
-	}
+//	public void onBackPressed() {
+//		
+//	}
 	public void rechieveData(ProfileData pd) {
 		
 		if(pd.getPhoneNumber()>0){
 			pNumber.setText(""+ pd.getPhoneNumber());
 		}
-		if(pd.getpText()!= null){
+		if(pd.getpText()!= "jklenedhdsuzhfsdhfdsfh9sdhfsdd9fhfd"){
 			 pText.setText(pd.getpText());
 		}
+		
 		fnView.setText(pd.getFn());
 		lnView.setText(pd.getLn());
 		
 		paCheck.setChecked(pd.isPa());
 		gender = pd.isGender();
-		
 				}
 	
 	
@@ -89,6 +90,13 @@ EditProfile edp = this;
 			Intent intent = new Intent(getApplicationContext(),LogIn.class);
 			intent.putExtra("error", "Sitzung abgelaufen");
 				 startActivity(new Intent(intent));
+		
+	}
+	public void updateSucessful() {
+		Intent intent = new Intent(getApplicationContext(),Menue.class);
+		intent.putExtra("ID", id);
+		intent.putExtra("gender", gender);
+			 startActivity(new Intent(intent));
 		
 	}
 	}

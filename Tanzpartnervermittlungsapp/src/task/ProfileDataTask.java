@@ -40,7 +40,7 @@ public class ProfileDataTask  extends BaseHttpRequestTask{
 			ProfileDataResponse response = (ProfileDataResponse) parseXML(result,
 					ProfileDataResponse.class);
 			
-			String error =response.getErrorCode();
+			String error = response.getErrorCode();
 			 if(!(error.equals( ErrorCode.ja.getError())))
 			 {
 					((EditProfile) activity).onError(error);
@@ -49,6 +49,7 @@ public class ProfileDataTask  extends BaseHttpRequestTask{
 			 {
 			
 			ProfileData pd = response.getPd();
+			
 			
 			
 			((EditProfile) activity).rechieveData(pd);

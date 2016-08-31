@@ -10,20 +10,20 @@ public class ProfileDataResponse {
 	@Element(name = "profiledata")
 	ProfileData pd;
 	@Element(name = "errorcode") 
-	String ErrorCode;
+	String errorCode;
 	public ProfileDataResponse(){
 		super();
 	}
 	public ProfileDataResponse(ProfileData pd, String errorCode) {
 		super();
 		this.pd = pd;
-		ErrorCode = errorCode;
+		this.errorCode = errorCode;
 	}
 	public ProfileData getPd() {
 		return pd;
 	}
 	public String getErrorCode() {
-		return ErrorCode;
+		return errorCode;
 	}
 	
 //	String fn;

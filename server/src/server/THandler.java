@@ -12,6 +12,7 @@ import org.eclipse.jetty.server.handler.AbstractHandler;
 import protocol.Command;
 import tasks.GetAllTask;
 import tasks.LoginTask;
+import tasks.ProfiledataTask;
 import tasks.RegisterTask;
 import tasks.UpdateChartTask;
 /**
@@ -74,8 +75,8 @@ public class THandler extends AbstractHandler {
 				//antwort = uprofiletask.handle(body);
 				break;
 			case getprofile:
-				//GetProfileTask gprofiletask = new UpdateProfileZask();
-			//	antwort = uprofiletask.handle(body);
+				ProfiledataTask pfdtask = new ProfiledataTask();
+			antwort = pfdtask.handle(body);
 				break;
 			default:
 

@@ -71,8 +71,10 @@ public class Menue extends Activity {
 		final Button myProfile = (Button) findViewById(R.id.Profil);
 		myProfile.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				startActivity(new Intent(getApplicationContext(),
-						EditProfile.class));
+Intent intent = new Intent(getApplicationContext(),EditProfile.class);
+				intent.putExtra("ID", ID);
+				intent.putExtra("gender", gender);
+				startActivity(new Intent(intent));
 			}
 		});
 		// Temporary to test Login

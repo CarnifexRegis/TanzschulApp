@@ -19,7 +19,9 @@ public class ProfiledataTask extends AbstractHandler {
 	if(pd == null){
 		error = ErrorCode.wl.getError();
 	}
-		
+	if(pd.getpText()== null){
+		pd.setpText("jklenedhdsuzhfsdhfdsfh9sdhfsdd9fhfd");
+	}
 		
 		
 		ProfileDataResponse response = new ProfileDataResponse(pd, error);
