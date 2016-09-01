@@ -42,7 +42,7 @@ private Connection c;
 		{
 			//Create Database
 			c= null;
-			Statement stmt = null;
+			Statement stmt ;
 			
 			Class.forName("org.sqlite.JDBC");
 			c = DriverManager.getConnection("jdbc:sqlite:serverDatabase");
@@ -60,7 +60,12 @@ private Connection c;
 				stmt = c.createStatement();
 				ResultSet rs = stmt.executeQuery(sql2);
 				int i = rs.getInt("I");
-				
+				if (rs!= null){
+					rs.close();
+					}
+				if (stmt != null){
+					stmt.close();
+					}
 			}catch(Exception e){
 				try{
 					Class.forName("org.sqlite.JDBC");
@@ -97,7 +102,8 @@ private Connection c;
 				stmt = c.createStatement();
 				ResultSet rs = stmt.executeQuery(sql2);
 				int i = rs.getInt("I");
-				
+				if (rs!= null){rs.close();}
+				if (stmt != null){stmt.close();}
 			}catch(Exception e){	
 				try{
 				Class.forName("org.sqlite.JDBC");
@@ -113,7 +119,7 @@ private Connection c;
 							" PTEXT TEXT,"+								//7 profile text			 (a possibility for the User to introduce him self)
 							" PNumber INTEGER ,"+						//8 phone number
 							" PA INTEGER NOT NULL ,"+			//9 Public Age				!(Boolean, always set 0=False  1=True
-							" HIGHT INTEGER)";							//10 hight
+							" HEIGHT INTEGER)";							//10 height
 				
 				stmt.executeUpdate(sql);
 				if(stmt != null){
@@ -138,7 +144,12 @@ private Connection c;
 				stmt = c.createStatement();
 				ResultSet rs = stmt.executeQuery(sql2);
 				int i = rs.getInt("I");
-				
+				if (rs!= null){
+					rs.close();
+					}
+				if (stmt != null){
+					stmt.close();
+					}
 			}catch(Exception e){
 				
 					try{
@@ -167,7 +178,7 @@ private Connection c;
 			addUser("df@huan.de","geheim","b","Wurst",1,8,0);
 			addUser("mfmn@huan.de","geheim","c","Wurst",0,8,1);
 			addUser("hallo","geheim","Hans","d",1,8,0);
-		addUser("jzt@huan.de","geheim","e","Wurst",0,8,1);
+		    addUser("jzt@huan.de","geheim","e","Wurst",0,8,1);
 			addUser("Hjzg@huan.de","geheim","f","Wurst",0,8,0);
 			addUser("zjg@huan.de","geheim","g","Wurst",0,8,1);
 			getAllUserData();
@@ -214,7 +225,7 @@ private Connection c;
 				if (rs != null)rs.close();
 				if(stmt!= null)stmt.close();
 				if(count == 0){
-				//	System.out.println("nope");
+					System.out.println("nope");
 					return false;
 					}
 				else
@@ -524,21 +535,21 @@ private Connection c;
 	 * @param ptext		Some Text the user writes about himself
 	 * @param pnumber	The users Phone Number
 	 * @param pa		This parameter indicates if the users Age shall be public
-	 * @param hight		The users hight
+	 * @param height		The users height
 	 * @param id		The id of the users account used to verify himself
 	 */
-	//int id, int pn, int hight,int age,String pText, boolean pa
-	//String ptext, int pnumber, int pa, int hight, int id, int age
-	public boolean updateProfile(int id, int pn, int hight,int age,String pText, int pa){
+	//int id, int pn, int height,int age,String pText, boolean pa
+	//String ptext, int pnumber, int pa, int height, int id, int age
+	public boolean updateProfile(int id, int pn, int height,int age,String pText, int pa){
 		//Source  http://www.w3schools.com/sql/sql_update.asp
 		PreparedStatement p;
 		try{
-			String sql = "UPDATE USER SET PTEXT = ? , PNUMBER = ? , PA = ?, HIGHT = ?,AGE = ? WHERE ID = ?;";
+			String sql = "UPDATE USER SET PTEXT = ? , PNUMBER = ? , PA = ?, HEIGHT = ?,AGE = ? WHERE ID = ?;";
 			p = c.prepareStatement(sql);
 			p.setString(1, pText);
 			p.setInt(2, pn);
 			p.setInt(3, pa);
-			p.setInt(4,hight);
+			p.setInt(4,height);
 			p.setInt(5,age);
 			p.setInt(6,id);
 			
@@ -580,9 +591,11 @@ private Connection c;
 						String sql2 = "SELECT ID FROM USER WHERE EMAIL = '" + em + "' ;";
 						ResultSet rs2 = stmt.executeQuery(sql2);
 						id = rs2.getInt("ID");
-						if(stmt!=null)stmt.close();
-						if(rs!=null)rs.close();
+						
 						System.out.println(id);
+						
+						if(rs!=null)rs.close();
+						if(stmt!=null)stmt.close();
 						return id;
 					}catch(Exception e){
 						System.err.println( e.getClass().getName() + ": " + e.getMessage() );
@@ -656,10 +669,12 @@ private Connection c;
 				ResultSet rs = stmt.executeQuery(sql);
 				//Reads out the int Value of the extracted Integer "GENDER" from the ResultSet
 				gender = rs.getInt("GENDER");
-				if(stmt!=null)stmt.close();
-				if(rs!=null)rs.close();
+				
+				
 				System.out.println("Extracted Gender = "+gender);
 				// returns the extracted int value "gender"
+				if(rs!=null)rs.close();
+				if(stmt!=null)stmt.close();
 				return gender;
 			}catch(Exception e){
 				System.err.println( e.getClass().getName() + ": " + e.getMessage() );
@@ -673,10 +688,10 @@ private Connection c;
 		}
 		public ProfileData getProfileData(int id){
 			
-			Statement stmt= null;
-			ProfileData pd = null;
+			Statement stmt;
+			ProfileData pd ;
 			try {
-				String sql = "SELECT EMAIL,LN,FN,GENDER,AGE,PA,PTEXT, PNumber, HIGHT FROM USER WHERE ID = '"+id+"';";
+				String sql = "SELECT EMAIL,LN,FN,GENDER,AGE,PA,PTEXT, PNumber, HEIGHT FROM USER WHERE ID = '"+id+"';";
 				stmt = c.createStatement(); 
 				ResultSet rs = stmt.executeQuery(sql);
 				
@@ -684,12 +699,14 @@ private Connection c;
 					String ln = rs.getString("LN");
 					String fn = rs.getString("FN");
 					String pText = rs.getString("PTEXT");
-					int hight = rs.getInt("HIGHT");
+					int height = rs.getInt("HEIGHT");
 					int phoneNumber = rs.getInt("PNumber");
 					
 					int g = rs.getInt("GENDER");
 					int age = rs.getInt("AGE");
 					int pa =  rs.getInt("PA");
+					if (rs != null)rs.close();
+				    if(stmt!= null)stmt.close();
 					boolean gender;
 					boolean pAge;
 					if (pa == 1){
@@ -703,10 +720,9 @@ private Connection c;
 						gender = false;
 					}
 					//System.out.println(" "+eMail+" "+ln+ " "+fn+ " "+ g +" " +age+ " " + pa);
-				pd =   new ProfileData(fn, ln, pText, age, hight, phoneNumber, gender, pAge);
+				pd =   new ProfileData(fn, ln, pText, age, height, phoneNumber, gender, pAge);
 				
-				if (rs != null)rs.close();
-				if(stmt!= null)stmt.close();
+				
 				
 			} catch (SQLException e) {
 				System.err.println( e.getClass().getName() + ": " + e.getMessage() );

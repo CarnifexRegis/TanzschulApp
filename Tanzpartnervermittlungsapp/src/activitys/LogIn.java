@@ -27,13 +27,15 @@ public class LogIn extends Activity{
 	final LogIn login = this;
 	//http://stacktips.com/tutorials/android/android-checkbox-example
 	private CheckBox safelogin;
-	String eMail = null;
-	String password = null;
+	private String eMail = null;
+	private String password = null;
+	private boolean c = false;
 	//Special thanks to Leander for this Tip
 	//https://developer.android.com/training/basics/activity-lifecycle/recreating.html
 	String errorCode = null;
-	static final String STATE_EMAIL = "logineMail";
-	static final String STATE_PASSWORD = "loginPassword";
+	//static final String STATE_EMAIL = "logineMail";
+	//static final String STATE_PASSWORD = "loginPassword";
+	//static final String STATE_CHECK = "check";
 	private TextView errorView;
 	private EditText keyInsert;
 	private EditText eMailInsert;
@@ -45,6 +47,7 @@ public class LogIn extends Activity{
 	//https://www.youtube.com/watch?v=iW71-sVyMzM
 	
 	protected void onCreate(Bundle savedInstanceState) {
+		
 		
 		 Bundle extras = getIntent().getExtras();
 		if(extras != null){
@@ -71,19 +74,35 @@ public class LogIn extends Activity{
 		
 	    prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 	    safelogin = (CheckBox) findViewById(R.id.safelogin);
+	    safelogin.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Editor editor = prefs.edit();
+                if(safelogin.isChecked()){
+                	c = true;
+                	//editor.putBoolean("c ", true);  
+                }else{
+                	c = false;
+            	     // editor.putBoolean("c ", false);
+                }
+                editor.commit();
+            }
+        });
 	   String p = prefs.getString("password", null);
 	   String  e = prefs.getString("eMail", null);
-	   
-		   password =  p;
+	   c = prefs.getBoolean("c", false);
+		   
+	 password =  p;
 	   
 	   if(e!=null){
 		  eMail =  e;
 	   }
 	   
-		   safelogin.setChecked(prefs.getBoolean("checked", false));
+		   safelogin.setChecked(c);
 	   
-		if(password!= null) keyInsert.setText(password);
-        if(eMail != null )eMailInsert.setText(eMail);
+		 keyInsert.setText(password);
+       eMailInsert.setText(eMail);
        
        
         final Button register = (Button) findViewById(R.id.rButton);
@@ -139,32 +158,35 @@ public class LogIn extends Activity{
 		startActivity(new Intent(intent));
 		}
 		else{
-			final TextView errorView = (TextView)findViewById(R.id.errorView);	
+			final TextView errorView = (TextView)findViewById(R.id.errorView);
+			errorView.setVisibility(View.VISIBLE);
 			errorView.setText(getResources().getString(R.string.wrong_login));
 		}
 		
 	}
-	@Override
-	public void onSaveInstanceState(Bundle savedInstanceState) {
-	    // Save the user's current game state
-	    savedInstanceState.putString(STATE_EMAIL, eMailInsert.getText().toString());
-	    
-	    
-	    if(safelogin.isChecked()){
-    		savedInstanceState.putString(STATE_PASSWORD,keyInsert.getText().toString() );
-    	}
+//	@Override
+//	public void onSaveInstanceState(Bundle savedInstanceState) {
+//	    // Save the user's current game state
+//	    savedInstanceState.putString(STATE_EMAIL, eMailInsert.getText().toString());
+//	    
+//	    
+//	    if(safelogin.isChecked()){
+//    		savedInstanceState.putString(STATE_PASSWORD,keyInsert.getText().toString() );
+//    		savedInstanceState.putBoolean(STATE_CHECK, true);
+//    	}
 
-	    // Always call the superclass so it can save the view hierarchy state
-	    super.onSaveInstanceState(savedInstanceState);
-	}
-	public void onRestoreInstanceState(Bundle savedInstanceState) {
-	    // Always call the superclass so it can restore the view hierarchy
-	    super.onRestoreInstanceState(savedInstanceState);
-
-	    // Restore state members from saved instance
-	    eMail = savedInstanceState.getString(STATE_EMAIL);
-	    password = savedInstanceState.getString(STATE_PASSWORD);
-	}
+//	    // Always call the superclass so it can save the view hierarchy state
+//	    super.onSaveInstanceState(savedInstanceState);
+//	}
+//	public void onRestoreInstanceState(Bundle savedInstanceState) {
+//	    // Always call the superclass so it can restore the view hierarchy
+//	    super.onRestoreInstanceState(savedInstanceState);
+//
+//	    // Restore state members from saved instance
+//	    eMail = savedInstanceState.getString(STATE_EMAIL);
+//	    password = savedInstanceState.getString(STATE_PASSWORD);
+//	  checked =   savedInstanceState.getBoolean(STATE_CHECK);
+//	}
 	public void connectionError(){
 		if(!isOnline(this)){
 			errorView.setText(getResources().getString(R.string.check_connection));
@@ -188,13 +210,13 @@ public class LogIn extends Activity{
 		
 		// prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 	      Editor editor = prefs.edit();
-	      if(safelogin.isChecked()){
+	      if(c){
 	      editor.putString("password",keyInsert.getText().toString());
-	      editor.putBoolean("checked ", true);
+	      editor.putBoolean("c", true);
 	      }
 	      else{
 	    	  editor.putString("password",null); 
-	    	  editor.putBoolean("checked ",true);
+	    	  editor.putBoolean("c",false);
 	      }
 	      editor.putString("eMail",eMailInsert.getText().toString() );
 	      editor.commit();

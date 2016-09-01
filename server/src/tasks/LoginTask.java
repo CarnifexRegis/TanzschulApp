@@ -9,6 +9,7 @@ import response.LoginResponse;
 import database2.ProfileChart;
 
 public class LoginTask extends AbstractHandler {
+	// TODO add errorCode
 	public String handle(String httpBody){
 		//gets the information from the request
 		LoginRequest request = (LoginRequest)parseXML(httpBody,LoginRequest.class);
@@ -16,7 +17,8 @@ public class LoginTask extends AbstractHandler {
 		String eMail = request.geteMail();
 		Model m = Model.getInstance();
 		int  id = m.Login(eMail, key);
-		int gender = m.getGender(id);
+		int gender = 0;
+		if (id != -1){gender = m.getGender(id);}
 		if(id >= 0 && gender == 1 || gender == 0 ){
 			System.out.println("recieved Data UpdateProfilechart Task");
 		}

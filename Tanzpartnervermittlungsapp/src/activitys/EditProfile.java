@@ -69,9 +69,12 @@ EditProfile edp = this;
 		if(pd.getPhoneNumber()>0){
 			pNumber.setText(""+ pd.getPhoneNumber());
 		}
-		if(pd.getpText()!= "jklenedhdsuzhfsdhfdsfh9sdhfsdd9fhfd"){
-			 pText.setText(pd.getpText());
-		}
+		if(pd.getpText().equals("jklenedhdsuzhfsdhfdsfh9sdhfsdd9fhfd")){
+		
+			pText.setText("");}
+		else{
+			pText.setText(pd.getpText());}
+	
 		
 		fnView.setText(pd.getFn());
 		lnView.setText(pd.getLn());

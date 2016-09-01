@@ -56,6 +56,7 @@ public class THandler extends AbstractHandler {
 			case register:
 				RegisterTask registertask = new RegisterTask();
 				antwort = registertask.handle(body);
+				baseRequest.setHandled(true);
 				break;
 			case login:
 				System.out.println("LogInRequest");
@@ -73,10 +74,12 @@ public class THandler extends AbstractHandler {
 			case updateprofile:
 				//UpdateProfileTask uprofiletask = new UpdateProfileTask();
 				//antwort = uprofiletask.handle(body);
+				baseRequest.setHandled(true);
 				break;
 			case getprofile:
 				ProfiledataTask pfdtask = new ProfiledataTask();
 			antwort = pfdtask.handle(body);
+			baseRequest.setHandled(true);
 				break;
 			default:
 

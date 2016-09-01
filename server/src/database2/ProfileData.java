@@ -13,22 +13,25 @@ public class ProfileData {
 	String pText;
 	@Element (name = "age")
 	int age;
-	@Element (name = "hight")
-	int hight;
+	@Element (name = "height")
+	int height;
 	@Element (name = "phonenumber")
 	int phoneNumber;
 	@Element (name = "gender")
 	boolean gender;
 	@Element (name = "pa")
 	boolean pa;
-	public ProfileData(String fn, String ln, String pText, int age, int hight,
+	public ProfileData(){
+		super();
+	}
+	public ProfileData(String fn, String ln, String pText, int age, int height,
 			int phoneNumber, boolean gender, boolean pa) {
 		super();
 		this.fn = fn;
 		this.ln = ln;
 		this.pText = pText;
 		this.age = age;
-		this.hight = hight;
+		this.height = height;
 		this.phoneNumber = phoneNumber;
 		this.gender = gender;
 		this.pa = pa;
@@ -61,10 +64,10 @@ public class ProfileData {
 		this.age = age;
 	}
 	public int getHight() {
-		return hight;
+		return height;
 	}
-	public void setHight(int hight) {
-		this.hight = hight;
+	public void setHight(int height) {
+		this.height = height;
 	}
 	public int getPhoneNumber() {
 		return phoneNumber;
