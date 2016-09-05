@@ -1,8 +1,8 @@
-package searchutils;
-
+package model;
+/**
+ * 
+ */
 import java.util.ArrayList;
-
-import model.ProfileChart;
 
 import com.example.Tanzpartnervermittlung.R;
 
@@ -10,11 +10,17 @@ import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+/**
+ * 
+ * @author Simon Stolz, MartinPabst
+ * @Sources:http://stackoverflow.com/questions/8486511/how-to-set-on-click-listener-on-the-custom-list-view-in-android
+ *
+ */
 public class Adapter extends ArrayAdapter<ProfileChart> {
 	
 	public Adapter(Context context, ArrayList<ProfileChart> arrayList) {
@@ -22,6 +28,7 @@ public class Adapter extends ArrayAdapter<ProfileChart> {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View ProfileChartView = convertView;
+		
 		ProfileChart profileChart = getItem(position);
 		if (ProfileChartView == null) {
 			ProfileChartView = LayoutInflater.from(getContext()).inflate(R.layout.list_item_chart, parent, false);
@@ -38,11 +45,14 @@ public class Adapter extends ArrayAdapter<ProfileChart> {
         TextView tvViewOfKurszeit = (TextView) ProfileChartView.findViewById(R.id.ViewOfKurszeit);
        
         Log.d("derp", "tvname = " + tvname);
- 
+        // general on click listerner
+     String eMail =   profileChart.geteMail();
+        
+        
 		tvname.setText(profileChart.getFn() + " "+ profileChart.getLn());
 		tvViewOfAge.setText(profileChart.getAge());
-	    tvViewOfKursstart.setText(""+profileChart.getUhr());
-	    tvViewOfKurszeit.setText(""+profileChart.getdate());
+	    tvViewOfKursstart.setText(""+profileChart.getdate());
+	    tvViewOfKurszeit.setText(""+profileChart.getUhr());
 	    
 	    // How to change ImageViews Resource : myImageView.setImageResource(mynewImageDrawable)
 	    // http://stackoverflow.com/questions/10726519/how-to-get-the-source-of-imageview-in-order-to-change-it 
@@ -50,4 +60,13 @@ public class Adapter extends ArrayAdapter<ProfileChart> {
 	       }
 		return ProfileChartView;	
 	}
+//	private class MyOnClickListener implements OnClickListener
+//	{
+//	  @Override
+//	  public void onClick(View view) {
+//	     //Do what needs to be done.
+//		  
+//	  }
+//	}
+	
 	}

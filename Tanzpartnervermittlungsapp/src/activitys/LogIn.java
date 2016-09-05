@@ -188,6 +188,7 @@ public class LogIn extends Activity{
 //	  checked =   savedInstanceState.getBoolean(STATE_CHECK);
 //	}
 	public void connectionError(){
+		errorView.setVisibility(View.VISIBLE);
 		if(!isOnline(this)){
 			errorView.setText(getResources().getString(R.string.check_connection));
 		}else{

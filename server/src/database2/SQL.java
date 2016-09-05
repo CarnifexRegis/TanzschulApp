@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -92,8 +93,7 @@ private Connection c;
 			
 			}
 			// creating Table USER
-			//	7.8.16 combined USER with Profileddata due reasons of simplicity
-		//	dbm =c.getMetaData();	
+			//	dbm =c.getMetaData();	
 			//tables = dbm.getTables(null,null,"USER",null);
 			try{
 				//TODO buggy
@@ -117,7 +117,7 @@ private Connection c;
 							" GENDER INTEGER NOT NULL, "+				//5 gender					!
 							" AGE INTEGER NOT NULL,"+					//6 age						!
 							" PTEXT TEXT,"+								//7 profile text			 (a possibility for the User to introduce him self)
-							" PNumber INTEGER ,"+						//8 phone number
+							" PNumber TEXT ,"+						//8 phone number
 							" PA INTEGER NOT NULL ,"+			//9 Public Age				!(Boolean, always set 0=False  1=True
 							" HEIGHT INTEGER)";							//10 height
 				
@@ -156,7 +156,7 @@ private Connection c;
 					Class.forName("org.sqlite.JDBC");
 						stmt= c.createStatement();
 						String sql = "CREATE TABLE LINK" +
-									 "(ID INTEGER PRIMARY KEY AUTOINCREMENT,"+ // some Guys on Stackoverflow said you better have a primary key so i got me one....
+									 "(ID INTEGER PRIMARY KEY AUTOINCREMENT,"+ 
 									 " UID INTEGER NOT NULL,"+
 									 " KID INTEGER NOT NULL)";
 								 
@@ -173,36 +173,65 @@ private Connection c;
 						}
 								}
 			//Tests
-			eMailExists("hi");
-			addUser("Huan@huan.de","geheim","a","Wurst",0,8,0);
-			addUser("df@huan.de","geheim","b","Wurst",1,8,0);
-			addUser("mfmn@huan.de","geheim","c","Wurst",0,8,1);
-			addUser("hallo","geheim","Hans","d",1,8,0);
-		    addUser("jzt@huan.de","geheim","e","Wurst",0,8,1);
-			addUser("Hjzg@huan.de","geheim","f","Wurst",0,8,0);
-			addUser("zjg@huan.de","geheim","g","Wurst",0,8,1);
-			getAllUserData();
+			//eMailExists("hi");
+			addUser("ich@also.de","geheim1","Stronk","Vitaly",0,8,0);
+			addUser("naja@hier.de","geheim2","Hanse","Hanna",1,8,0);
+			addUser("alles@jetzt.de","geheim3","Dicke","Berta",1,8,1);
+			addUser("hallo","geheim","von Richthofen","Manfred",0,8,0);
+		    addUser("wann@geht.de","geheim5","Sturm","Edric",0,8,1);
+			addUser("hier@jetzt.de","geheim6","Baratheon","Stannis",0,8,0);
+			addUser("nun@hier.de","geheim8","Tagaryen","Denaerys",1,8,1);
+			addUser("die@Steppe.de","geheim9","Khal","Drogo",0,8,1);
+			addUser("jma@pampam.de","geheim10","Lang","Lang",0,8,1);
+			addUser("Needle@Nadel.de","geheim11","Stark","Arya",1,8,1);
+			addUser("faceless@men.de","geheim12","Nobody","Noone",0,8,1);
+			addUser("a@girl.de","geheim13","Nobody","Noone",0,8,1);
 			
-			addKurs(1,"25.03.2016","Donnerstag","15:25");
-			addKurs(2,"25.03.2016","Donnerstag","15:25");
+			
+			
+		//	getAllUserData();
+			// kein goldstar b im quartal
+			addKurs(3,"25.03.2016","Donnerstag","15:25");
+			addKurs(4,"25.03.2016","Donnerstag","16:25");
+			addKurs(6,"26.03.2016","Freitag","16:35");
+			addKurs(1,"26.03.2016","Freitag","13:25");
+			addKurs(2,"26.03.2016","Freitag","14:35");
+			addKurs(3,"26.03.2016","Freitag","15:35");
+			addKurs(4,"26.03.2016","Freitag","16:35");
+			addKurs(5,"26.03.2016","Freitag","17:35");
+			
+			
 		//	readKurs();
 			addLink(1, 1);
 			addLink(2,1);
 			addLink(3,1);
-		//	addLink(4,1);
-		//	addLink(5,1);
-		//	addLink(6,1);
-		//	addLink(7,2);
-		//	addLink(1,2);
+			addLink(4,1);
+			addLink(5,1);
+			addLink(6,1);
+			addLink(7,1);
+			addLink(8,1);
+			addLink(9,1);
+			addLink(10,1);
+			addLink(11,1);
+			addLink(12,1);
+			addLink(13,1);
+			addLink(10,2);
+			addLink(10,3);
+			addLink(10,4);
+			addLink(10,5);
+			addLink(10,6);
+			
+			
+		
 			//eMailExists("Huan@huan.de");
 		//	readLinks();
 		//	myKurs(1);
-		//	getProfilecharts(1, 1,87);
+		getProfilecharts(1, 3,87,null);
 		//	getProfilecharts(1, 1,50);
 		//	LogIn("hallo","geheim");
-			addLink(1, 8);
-			getProfileData(1);
-			readKurs();
+		//	addLink(1, 8);
+		//	getProfileData(1);
+		//	readKurs();
 						}catch(Exception e){
 						System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 				        System.exit(0);	}
@@ -263,7 +292,7 @@ private Connection c;
 			
 			ResultSet rs = stmt.executeQuery(sql2);
 			i = rs.getInt("I");
-		//if(rs!=null){rs.close();}
+		if(rs!=null){rs.close();}
 		if(i==0){
 		
 			String sql = "INSERT INTO USER(EMAIL,PASSWORD,LN,FN,GENDER,AGE,PA)"+ 
@@ -294,9 +323,7 @@ private Connection c;
 	        return -2;// Sql Error
 	        
 			}
-		
-		
-		
+			
 	}
 	public int getUserIDByEMAIL(String em){
 		Statement stmt = null;
@@ -492,17 +519,14 @@ private Connection c;
 	 * @param myage		The age of the requesting user (not used but may be in the Future)
 	 * @return
 	 */
-	public ArrayList<ProfileChart> getProfilecharts(int gender, int kstu,int myage){
+	public ArrayList<ProfileChart> getProfilecharts(int gender, int kstu,int myage,String day){
 		//TODO age
 		Statement stmt;
+		//int notgender ;
+		
 		ArrayList<ProfileChart>  pc = new ArrayList<ProfileChart>();
 		try{
-			String sql = "SELECT USER.FN, USER.LN, USER.AGE, KURS.UHRZEIT,USER.EMAIL, KURS.DATUM "
-						+ "FROM KURS "
-						+ "JOIN LINK  ON LINK.KID = KURS.ID"
-						+ " JOIN USER ON LINK.UID = USER.ID "
-						+ "WHERE GENDER != "+gender 
-						+ " AND KURSSTUFE = "+ kstu;
+			String sql = "SELECT USER.FN, USER.LN, USER.AGE, KURS.UHRZEIT,USER.EMAIL, KURS.DATUM FROM KURS INNER JOIN LINK  ON LINK.KID = KURS.ID INNER JOIN USER ON LINK.UID = USER.ID WHERE USER.GENDER != '"+gender+"' AND KURSSTUFE = '"+ kstu+"';";
 			stmt = c.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 			
@@ -511,14 +535,15 @@ private Connection c;
 				String ln =rs.getString("LN");
 				int age = rs.getInt("AGE");
 				String uhr = rs.getString("UHRZEIT");
-				String date = "" +rs.getDate("DATUM");
+				DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+				String date = df.format(rs.getDate("DATUM"));
 				String eMail = rs.getString("EMAIL");
 				
-				System.out.println(fn);
-				System.out.println(ln);
-				System.out.println(age);
-				System.out.println(uhr);
-				System.out.println(date);
+				System.out.println(fn+" "+ln);
+				//System.out.println(ln);
+				//System.out.println(age);
+				//System.out.println(uhr);
+				//System.out.println(date);
 				pc.add(new ProfileChart(fn,ln,age,uhr,date,eMail));
 			}
 			if(stmt!= null)stmt.close();
@@ -540,18 +565,19 @@ private Connection c;
 	 */
 	//int id, int pn, int height,int age,String pText, boolean pa
 	//String ptext, int pnumber, int pa, int height, int id, int age
-	public boolean updateProfile(int id, int pn, int height,int age,String pText, int pa){
+	public boolean updateProfile(int id, String pn, int height,int age,String pText, int pa){
 		//Source  http://www.w3schools.com/sql/sql_update.asp
 		PreparedStatement p;
 		try{
 			String sql = "UPDATE USER SET PTEXT = ? , PNUMBER = ? , PA = ?, HEIGHT = ?,AGE = ? WHERE ID = ?;";
 			p = c.prepareStatement(sql);
 			p.setString(1, pText);
-			p.setInt(2, pn);
+			p.setString(2, pn);
 			p.setInt(3, pa);
 			p.setInt(4,height);
 			p.setInt(5,age);
 			p.setInt(6,id);
+			p.executeUpdate();
 			
 			if (p != null)p.close();	
 			c.commit();
@@ -679,12 +705,10 @@ private Connection c;
 			}catch(Exception e){
 				System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 		        System.exit(0);
-				e.printStackTrace();
-				
+				e.printStackTrace();		
 			}
 			// in case of an Error it returns -1
-				return -1;
-			
+				return -1;	
 		}
 		public ProfileData getProfileData(int id){
 			
@@ -699,9 +723,16 @@ private Connection c;
 					String ln = rs.getString("LN");
 					String fn = rs.getString("FN");
 					String pText = rs.getString("PTEXT");
+					// in case someone did not proceed to the editProfile Activity
+					if(pText == null||!(pText.length()>0)){
+						pText = "Nicht angegeben.";
+					}
 					int height = rs.getInt("HEIGHT");
-					int phoneNumber = rs.getInt("PNumber");
-					
+					// in case someone did not proceed to the editProfile Activity
+					String phoneNumber = rs.getString("PNumber");
+					if(phoneNumber == null||!(phoneNumber.length()>0)){
+						phoneNumber = "Nicht angegeben.";
+					}
 					int g = rs.getInt("GENDER");
 					int age = rs.getInt("AGE");
 					int pa =  rs.getInt("PA");
@@ -720,9 +751,12 @@ private Connection c;
 						gender = false;
 					}
 					//System.out.println(" "+eMail+" "+ln+ " "+fn+ " "+ g +" " +age+ " " + pa);
+					if(rs.next()){
 				pd =   new ProfileData(fn, ln, pText, age, height, phoneNumber, gender, pAge);
-				
-				
+					}
+					else{
+						pd = null;
+					}
 				
 			} catch (SQLException e) {
 				System.err.println( e.getClass().getName() + ": " + e.getMessage() );
@@ -731,9 +765,7 @@ private Connection c;
 				return null;
 			}
 			return pd;
-			
 		}
-
 
 		public void readLinks(){
 			Statement stmt ;
@@ -754,8 +786,7 @@ private Connection c;
 				e.printStackTrace();
 			}
 		}
-		
-		
+			
 		public ArrayList<Kurs> readKurs(){
 			Statement stmt;
 			ArrayList<Kurs> kurs = new ArrayList<Kurs>();
@@ -784,10 +815,3 @@ private Connection c;
 			
 		}
 }
-
-
-				
-				
-						
-		
-

@@ -1,4 +1,4 @@
-package futurerequest;
+package task;
 
 import protocol.Command;
 import protocol.ErrorCode;
@@ -8,29 +8,32 @@ import activitys.Registration;
 import android.app.Activity;
 import android.util.Log;
 import request.RegisterRequest;
+import request.UpdateProfileRequest;
 import response.RegisterResponse;
-import task.BaseHttpRequestTask;
+import response.UpdateProfileResponse;
 
 
 public class UpdateProfileTask extends  BaseHttpRequestTask {
 	private int id;
-	private int pn;
-	private int hight;
+	private String pn;
+	private int height;
 	private int age ;
 	private String pText;
 	private boolean pa;
-	public UpdateProfileTask(EditProfile ep, int id, int pn, int hight,
+	public UpdateProfileTask(EditProfile ep, int id, String pn, int height,
 			int age, String pText, boolean pa) {
 		super(ep);
 		this.id = id;
 		this.pn = pn;
-		this.hight = hight;
+		
+		this.height = height;
 		this.age = age;
+		
 		this.pText = pText;
 		this.pa = pa;
 	}
 	public void execute() {
-		UpdateProfileRequest request = new UpdateProfileRequest(id,pn,hight,age,pText,pa);
+		UpdateProfileRequest request = new UpdateProfileRequest(id,pn,height,age,pText,pa);
 		try {
 			String xml = buildXML(request);
 			super.execute(Command.updateprofile, xml);
@@ -58,6 +61,7 @@ public class UpdateProfileTask extends  BaseHttpRequestTask {
 			
 		} catch (Exception e) {
 			Log.e("Error in  LoginTask", e.toString());
+			
 		}
 	}
 

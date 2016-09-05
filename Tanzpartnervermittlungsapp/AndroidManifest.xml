@@ -43,7 +43,7 @@
             android:label="@string/title_registration" >
         </activity>
         <activity
-            android:name="activitys.OtherProfile"
+            android:name="activitys.ShowProfile"
             android:label="@string/title_other_profile" >
         </activity>
        

@@ -1,4 +1,4 @@
-package searchutils;
+package model;
 
 //an attribute for an image has to be added
 

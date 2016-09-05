@@ -93,7 +93,7 @@ public class BaseHttpRequestTask extends AsyncTask<String, Void, String> {
 			Object object = serializer.read(myClass, xml);
 			return object;
 		} catch (Exception e) {
-			Log.e("test", e.toString());
+			Log.e("ParsingString", e.toString());
 		}
 		return null; // TODO: Error-Handling
 	}

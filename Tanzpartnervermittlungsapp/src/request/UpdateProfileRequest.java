@@ -1,4 +1,4 @@
-package futurerequest;
+package request;
 
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
@@ -8,9 +8,9 @@ public class UpdateProfileRequest {
 	@Element (name = "id")
 	private int id;
 	@Element (name = "pn")
-	private int pn;
-	@Element (name = "hight")
-	private int hight;
+	private String pn;
+	@Element (name = "height")
+	private int height;
 	@Element (name = "age")
 	private int age;
 	@Element (name = "ptext")
@@ -21,12 +21,12 @@ public class UpdateProfileRequest {
 		super();
 	}
 	
-	public UpdateProfileRequest(int id, int pn, int hight,int age,
+	public UpdateProfileRequest(int id, String pn, int height,int age,
 			String pText, boolean pa) {
 		super();
 		this.id = id;
 		this.pn = pn;
-		this.hight = hight;
+		this.height = height;
 		this.age= age;
 		this.pText = pText;
 		this.pa = pa;
@@ -37,11 +37,11 @@ public class UpdateProfileRequest {
 	public int getAge() {
 		return age;
 	}
-	public int getPn() {
+	public String getPn() {
 		return pn;
 	}
-	public int getHight() {
-		return hight;
+	public int getHeight() {
+		return height;
 	}
 	public String getpText() {
 		return pText;

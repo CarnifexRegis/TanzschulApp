@@ -16,8 +16,11 @@ public class UpdateChartTask extends AbstractHandler {
 		boolean gender = request.isGender();
 		int  kstu = request.getKursstufe();
 		ArrayList<ProfileChart> antwort;
+		
+		
+		// TODO add possibility to ad Day Filter
 		if(id>=0){
-		antwort= Model.getInstance().getCharts(id, gender, kstu, 0);
+		antwort= Model.getInstance().getCharts(id, gender, kstu, 0,null);
 		}else{
 		antwort = null;}
 		if(antwort !=null){

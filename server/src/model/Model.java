@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 
 
+
 import database2.Kurs;
 import database2.ProfileChart;
 import database2.ProfileData;
@@ -45,7 +46,7 @@ public class Model {
 	 * @param age		the age of the User
 	 * @return returns an Profile Chart Array<List>
 	 */
-	public ArrayList<ProfileChart> getCharts(int id,boolean gender,int kstu, int age) {
+	public ArrayList<ProfileChart> getCharts(int id,boolean gender,int kstu, int age,String day) {
 		int g;
 		if (gender){
 			 g = 1;
@@ -55,7 +56,7 @@ public class Model {
 		
 		if (sql.checkID(id)) {
 			
-			return sql.getProfilecharts(g, kstu, 0);
+			return sql.getProfilecharts(g, kstu, 0,day);
 		}
 		else {
 			return null ;
@@ -83,14 +84,14 @@ public class Model {
 		}
 		return null;
 	}
-	public boolean UpdateProfile(int id, int pn, int hight,int age,String pText, boolean pa){
+	public boolean UpdateProfile(int id, String pn, int height,int age,String pText, boolean pa){
 		int intPa;
 		if(pa){
 			intPa = 1;
 		}else{
 			intPa= 0;
 		}
-		return sql.updateProfile(id, pn, hight, age, pText, intPa);
+		return sql.updateProfile(id, pn, height, age, pText, intPa);
 	
 		
 	}
@@ -112,5 +113,8 @@ public class Model {
 	}
 	public int register(String em,String ps, String ln, String fn, int g,int age, int pa ){
 		return sql.addUser(em, ps, ln, fn, g, age, pa);
+	}
+	public ProfileData getfProfile(String eMail) {
+	return sql.getProfileData(sql.getUserIDByEMAIL(eMail));
 	}
 }

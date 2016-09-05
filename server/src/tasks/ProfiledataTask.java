@@ -22,6 +22,9 @@ public class ProfiledataTask extends AbstractHandler {
 	if(pd.getpText()== null){
 		pd.setpText("jklenedhdsuzhfsdhfdsfh9sdhfsdd9fhfd");
 	}
+	if(pd.getPhoneNumber()== null){
+		pd.setPhoneNumber("Nicht Eingetragen");
+	}
 		
 		
 		ProfileDataResponse response = new ProfileDataResponse(pd, error);

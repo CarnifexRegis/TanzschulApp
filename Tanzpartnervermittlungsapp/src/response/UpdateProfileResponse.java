@@ -1,4 +1,4 @@
-package futurerequest;
+package response;
 
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;

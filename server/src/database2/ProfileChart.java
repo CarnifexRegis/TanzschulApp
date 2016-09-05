@@ -36,6 +36,7 @@ public ProfileChart(String fn, String ln,int age, String uhr, String date,String
 	}
 	this.uhr = uhr;
 	this.date = date;
+	this.eMail= eMail;
 }
 public String getFn() {
 	return fn;

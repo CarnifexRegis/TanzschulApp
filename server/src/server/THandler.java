@@ -10,11 +10,13 @@ import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
 
 import protocol.Command;
+import tasks.ForeignProfileTask;
 import tasks.GetAllTask;
 import tasks.LoginTask;
 import tasks.ProfiledataTask;
 import tasks.RegisterTask;
 import tasks.UpdateChartTask;
+import tasks.UpdateProfileTask;
 /**
  * 
  * @author Simon Stolz
@@ -72,15 +74,21 @@ public class THandler extends AbstractHandler {
 				baseRequest.setHandled(true);
 				break;
 			case updateprofile:
-				//UpdateProfileTask uprofiletask = new UpdateProfileTask();
-				//antwort = uprofiletask.handle(body);
+				UpdateProfileTask uprofiletask = new UpdateProfileTask();
+				antwort = uprofiletask.handle(body);
+				baseRequest.setHandled(true);
+				break;
+			case foreignprofile:
+				ForeignProfileTask d = new ForeignProfileTask();
+				antwort = d.handle(body);
 				baseRequest.setHandled(true);
 				break;
 			case getprofile:
 				ProfiledataTask pfdtask = new ProfiledataTask();
-			antwort = pfdtask.handle(body);
-			baseRequest.setHandled(true);
+				antwort = pfdtask.handle(body);
+				baseRequest.setHandled(true);
 				break;
+			
 			default:
 
 				

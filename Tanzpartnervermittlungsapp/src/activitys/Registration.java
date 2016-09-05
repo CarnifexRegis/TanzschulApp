@@ -224,6 +224,7 @@ public class Registration extends Activity {
 	}
 	
 	public void connectionError(){
+		rErrorView.setVisibility(View.VISIBLE);
 		if(!isOnline(this)){
 			rErrorView.setText(getResources().getString(R.string.check_connection));
 		}else{
@@ -241,6 +242,7 @@ public class Registration extends Activity {
 	
 	public void onError(String error){
 		String ae = ErrorCode.ae.getError();
+		rErrorView.setVisibility(View.VISIBLE);
 		switch (error){
 		case "alreadyExists" :
 			rErrorView.setText("Es existiert bereits ein Account mit dieser E-Mail!");
@@ -252,6 +254,7 @@ public class Registration extends Activity {
 		}
 	public void getLoginValues(int id){
 		if(id > -1){
+			rErrorView.setVisibility(View.GONE);
 			Intent intent = new Intent(getApplicationContext(),EditProfile.class);
 			intent.putExtra("ID", id);
 	//		intent.putExtra("gender", gender);

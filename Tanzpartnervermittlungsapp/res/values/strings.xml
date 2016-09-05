@@ -9,13 +9,20 @@
 <string-array name="kurs_array">
     <item>Grundkurs 1</item>
         <item>Grundkurs 2</item>
-        <item>Bronzekurs</item>
-        <item>Silberkurs</item>
-        <item>Goldkurs Teil A</item>
-        <item>Goldstarkurs Teil B</item>
-        <item>Jugendkreis Stufe 1</item>
-        <item>Jugendkreis Stufe 2</item>
-      
+        <item>Bronze</item>
+        <item>Silber</item>
+         <item>Gold</item>
+        <item>Goldstar Teil A</item>
+        <item>Goldstar Teil B</item>
+        <item>Jugendkreis 1</item>
+        <item>Jugendkreis 2</item>  
+  </string-array>
+  <string-array name="day_array">
+    <item>Montag</item>
+    <item>Dienstag</item>
+    <item>Mittwoch</item>
+    <item>Donnerstag</item>
+    <item>Freitag</item>
   </string-array>
   <string name="fnView">    Vorname:</string>
   <string name="lnView">    Nachname:</string>
@@ -25,8 +32,8 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_main2">MainActivity</string>
     <string name="title_search_dancingpartner">Tantpartner/in finden</string>
-    <string name="title_edit_profile">Mein Profil</string>
-	<string name="title_log_in">Willkommen</string>
+    <string name="title_edit_profile">Profil anpassen</string>
+	<string name="title_log_in">Anmelden</string>
 		<string name="registrieren">Registrieren!</string>
 		<string name="anmelden">Anmelden</string>
 		<string name="oder">oder</string>
@@ -44,6 +51,7 @@
 	<string name ="required_field">Dies ist ein Pflichtfeld!</string>
 	<string name ="no_accordance_key">Die beiden Kennwörter stimmen nicht überein!</string>
 	<string name ="no_accordance_email">Die beiden E-Mail Adressen stimmen nicht überein!</string>
-	
+	<string name ="missing_value">Nicht angegeben.</string>
+	<string name ="about_me">Hier kannst du einen netten Spruch oder Wissenswertes über dich einragen!</string>
 </resources>
 

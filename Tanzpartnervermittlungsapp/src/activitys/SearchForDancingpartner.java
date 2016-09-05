@@ -4,13 +4,13 @@ package activitys;
 
 	import java.util.ArrayList;
 
+import model.Adapter;
+import model.Kursbuchung;
 import model.ProfileChart;
 
 import com.example.Tanzpartnervermittlung.R;
 
 import enums.Gender;
-import searchutils.Adapter;
-import searchutils.Kursbuchung;
 import task.UpdateChartTask;
 import android.app.Activity;
 import android.app.Dialog;
@@ -23,6 +23,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -40,7 +42,9 @@ import android.widget.Spinner;
  * @attribute This Activity is used to fulfill the core funktion of the app: finding people who intend to participate in the same course
  * Source: 
  * 			http://stackoverflow.com/questions/2789612/how-can-i-check-whether-an-android-device-is-connected-to-the-web
+ * 			http://stackoverf
  * 
+ * low.com/questions/9208827/how-to-extract-the-text-from-the-selected-item-on-the-listview
  * 
  * 
  */
@@ -49,7 +53,9 @@ import android.widget.Spinner;
 		ArrayList<ProfileChart> pc;
 		int ID = -1;
 		boolean gender;
-		int kursstufe;
+		int kursstufe = 1;
+		String day;
+		String eMail;
 		final SearchForDancingpartner sfdp = this;
 		
 		@Override
@@ -64,14 +70,74 @@ import android.widget.Spinner;
 			ID = extras.getInt("ID", -1);
 			gender = extras.getBoolean("gender");
 			}
+			
 			super.onCreate(savedInstanceState);
-			
 			setContentView(R.layout.search_for_dancingpartner); //instanziieren des Spinners, http://developer.android.com/guide/topics/ui/controls/spinner.html
-			Spinner spinner = (Spinner) findViewById(R.id.KurseSpinner);
 			
-			ArrayAdapter<CharSequence> adapterSimple = ArrayAdapter.createFromResource(this, R.array.kurs_array, android.R.layout.simple_spinner_item); // Specify the layout to use when the list of choices appears
-			adapterSimple.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // Apply the adapter to the spinner
-			spinner.setAdapter(adapterSimple);
+			Spinner kSpinner = (Spinner) findViewById(R.id.KurseSpinner);
+			ArrayAdapter<CharSequence> adapterSimple1 = ArrayAdapter.createFromResource(this, R.array.kurs_array, android.R.layout.simple_spinner_item); // Specify the layout to use when the list of choices appears
+			adapterSimple1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // Apply the adapter to the spinner
+			kSpinner.setAdapter(adapterSimple1);
+			
+kSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        Spinner spinner = (Spinner) parent;
+      String ks =  spinner.getSelectedItem().toString();
+      switch (ks){
+      
+      case "Grundkurs 1" :
+    	kursstufe = 1;
+    	  break;
+      case "Grundkurs 2":
+    	  kursstufe = 2;
+    	  break;
+      case "Bronze":
+    	  kursstufe = 3;
+    	  break;
+      case "Silber":
+    	  kursstufe = 4;
+    	  break;
+      case "Gold":
+    	  kursstufe = 5;
+    	  break;
+      case "Goldstar Teil A":
+    	  kursstufe = 6;
+    	  break;
+      case "Goldstar Teil B":
+    	  kursstufe = 7;
+    	  break;
+      case "Jugendkreis 1":
+    	  kursstufe = 8;
+    	  break;
+      case "Jugendkreis 2":
+    	  kursstufe = 9;
+    	  break;
+      } 
+    } 
+
+	@Override
+	public void onNothingSelected(AdapterView<?> parent) {
+		// TODO Auto-generated method stub
+	}
+});		
+			Spinner dSpinner = (Spinner) findViewById(R.id.daySpinner);
+			ArrayAdapter<CharSequence> adapterSimple2 = ArrayAdapter.createFromResource(this, R.array.day_array, android.R.layout.simple_spinner_item); // Specify the layout to use when the list of choices appears
+			adapterSimple2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // Apply the adapter to the spinner
+			dSpinner.setAdapter(adapterSimple2);
+			
+			dSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+			    @Override
+			    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+			        Spinner spinner = (Spinner) parent;
+			     day =  spinner.getSelectedItem().toString();
+			    }
+				@Override
+				public void onNothingSelected(AdapterView<?> parent) {
+					// TODO Auto-generated method stub
+					
+				}
+			});
 			
 			pc =  new ArrayList<ProfileChart>();
 			// Create the adapter to convert the array to views
@@ -81,6 +147,21 @@ import android.widget.Spinner;
 			// Attach the adapter to a ListView
 			kursbuchungView.setAdapter(adapterCustom);
 			//Adds test user
+			kursbuchungView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+	            @Override
+	            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+	                //the .getName() is accessed from the School POJO class.
+	              //  String eMail = adapterCustom.getItem(position).geteMail();
+	                //http://stackoverflow.com/questions/9208827/how-to-extract-the-text-from-the-selected-item-on-the-listview
+	                Intent intent = new Intent(getApplicationContext(),ShowProfile.class);
+					intent.putExtra("ID", ID);
+					intent.putExtra("gender", gender);
+			//		eMail = adapterCustom.getItem(position).getAge();
+					eMail=adapterCustom.getItem(position).geteMail();
+					intent.putExtra("eMail", adapterCustom.getItem(position).geteMail());
+					 startActivity(new Intent(intent));
+	            }
+	        });
 			
 			
 		 final Button sB = (Button) findViewById(R.id.searchButton);
@@ -89,7 +170,7 @@ import android.widget.Spinner;
 //	            	adapterCustom.clear();
 //	            	adapterCustom.notifyDataSetChanged();
 	            	if(isOnline (sfdp)){
-	        			kursstufe = 1;
+	        		//	kursstufe = 3;
 //	        			ID = 1;
 //	        			gender = true;
 	        			if(isOnline(sfdp)){
@@ -257,7 +338,3 @@ import android.widget.Spinner;
 			 startActivity(new Intent(intent));
 		}
 	}
-
-
-
-		

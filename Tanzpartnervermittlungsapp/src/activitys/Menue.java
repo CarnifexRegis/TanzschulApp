@@ -77,49 +77,13 @@ Intent intent = new Intent(getApplicationContext(),EditProfile.class);
 				startActivity(new Intent(intent));
 			}
 		});
-		// Temporary to test Login
-		//final Button social = (Button) findViewById(R.id.Sozial);
-		//social.setOnClickListener(new View.OnClickListener() {
-		//	public void onClick(View v) {
-				// startActivity(new
-				// Intent(getApplicationContext(),LogIn.class));
-		//	}
-		//});
 	}
-//	@Override
-//	public void onPause(){
-//		super.onPause();
-//		 SharedPreferences settings = getSharedPreferences(prefName, 0);
-//	      SharedPreferences.Editor editor = settings.edit();
-//	      editor.putBoolean("gender", gender);
-//	      editor.putInt("ID",ID );
-//	      editor.commit();
-//	}
-//	@Override 
-//	public void onResume(){
-//		super.onResume();
-//		if(ID < 0){
-//		SharedPreferences settings = getSharedPreferences(prefName, 0);
-//		ID = settings.getInt("ID", -1);
-//		gender = settings.getBoolean("gender",true);
-//		System.out.println("onResume() set ID =" + ID + " and gender = "+ gender);}
-//		else{
-//			System.out.println("Couldn´t set ID. ID already defined. ID ="+ ID);
-//		}
-		
-//	}
+
 	public void testAusgabe(String text) {
 	//	TextView testView = (TextView) findViewById(R.id.test1);
 		//testView.setText(text);
 	}
-//	@Override
-//	public void onBackPressed(){
-//		super.onBackPressed();
-//		Intent intent = new Intent(getApplicationContext(),Menue.class);
-//		intent.putExtra("ID", ID);
-//		intent.putExtra("gender", gender);
-//			 startActivity(new Intent(intent));
-//	}
+
 	@Override
 	public void onBackPressed() {
 	}
@@ -133,14 +97,7 @@ Intent intent = new Intent(getApplicationContext(),EditProfile.class);
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    switch(item.getItemId())
 	    {
-//	    case R.id.logIn:
-//	    	Intent intent = new Intent(getApplicationContext(),LogIn.class);
-//			if(ID >= 0){
-//			intent.putExtra("intentID", ID);}
-//			intent.putExtra("intentGender", gender);
-//			
-//			 startActivity(new Intent(intent));
-//	        break;
+
 	    case R.id.options:
 	    	break;
 	    case R.id.logOut:

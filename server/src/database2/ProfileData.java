@@ -16,7 +16,7 @@ public class ProfileData {
 	@Element (name = "height")
 	int height;
 	@Element (name = "phonenumber")
-	int phoneNumber;
+	String phoneNumber;
 	@Element (name = "gender")
 	boolean gender;
 	@Element (name = "pa")
@@ -25,7 +25,7 @@ public class ProfileData {
 		super();
 	}
 	public ProfileData(String fn, String ln, String pText, int age, int height,
-			int phoneNumber, boolean gender, boolean pa) {
+			String phoneNumber, boolean gender, boolean pa) {
 		super();
 		this.fn = fn;
 		this.ln = ln;
@@ -63,16 +63,16 @@ public class ProfileData {
 	public void setAge(int age) {
 		this.age = age;
 	}
-	public int getHight() {
+	public int getHeight() {
 		return height;
 	}
-	public void setHight(int height) {
+	public void setHeight(int height) {
 		this.height = height;
 	}
-	public int getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
-	public void setPhoneNumber(int phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 	public boolean isGender() {

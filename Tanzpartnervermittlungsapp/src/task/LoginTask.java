@@ -60,7 +60,9 @@ public class LoginTask extends BaseHttpRequestTask{
 
 			// }
 		} catch (Exception e) {
+			((LogIn) activity).connectionError();
 			Log.e("Error in  LoginTask", e.toString());
+			
 		}
 	}
 
