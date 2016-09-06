@@ -77,7 +77,17 @@ Intent intent = new Intent(getApplicationContext(),EditProfile.class);
 				startActivity(new Intent(intent));
 			}
 		});
-	}
+	
+	final Button myKurs = (Button) findViewById(R.id.mMyKurs);
+	myKurs.setOnClickListener(new View.OnClickListener() {
+		public void onClick(View v) {
+			Intent intent = new Intent(getApplicationContext(),AssignToKurs.class);
+			intent.putExtra("ID", ID);
+			intent.putExtra("gender", gender);
+			startActivity(new Intent(intent));
+		}
+	});
+}
 
 	public void testAusgabe(String text) {
 	//	TextView testView = (TextView) findViewById(R.id.test1);

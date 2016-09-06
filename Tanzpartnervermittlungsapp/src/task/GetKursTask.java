@@ -1,17 +1,18 @@
 package task;
 
 import protocol.Command;
-
+import protocol.ErrorCode;
 import activitys.AssignToKurs;
 import activitys.Menue;
 import android.app.Activity;
 import android.util.Log;
 import request.GetKursRequest;
+import response.GetKursResponse;
 
 public class GetKursTask extends BaseHttpRequestTask{
 	int id;
 	int ks;
-	protected GetKursTask(AssignToKurs atk, int id, int ks) {
+	public GetKursTask(AssignToKurs atk, int id, int ks) {
 		super(atk);
 		this.id=id;
 		this.ks =ks;
@@ -25,28 +26,28 @@ public class GetKursTask extends BaseHttpRequestTask{
 			String xml = buildXML(request);
 			super.execute(Command.getkurs, xml);
 		} catch (Exception e) {
+		((AssignToKurs) activity).onConnectionError();
 		Log.e("Request", e.toString());
 		e.printStackTrace();
+		
 	}
 	}
 
 	@Override
 	public void onPostExecute(String result) {
 		try {
-			GetAllResponse response = (GetAllResponse) parseXML(result,
-					GetAllResponse.class);
-//			
-//			// if(!(response.getEc() == ErrorCode.ok))
-//			// {
-//			//
-//			// }
-//			// else
-//			// {
-//			// Antwort erfolgreich erhalten
-//
-			((Menue) activity).testAusgabe(response.getText());
-//			// }
+			GetKursResponse response = (GetKursResponse) parseXML(result,
+					GetKursResponse.class);
+		 if(!(response.getEc().equals( ErrorCode.ja.getError())))
+			 {
+			 ((AssignToKurs) activity).onError(response.getEc());
+			 }
+			 else
+			 {
+			((AssignToKurs) activity).recieveData(response.getKl());
+			 }
 		} catch (Exception e) {
+			((AssignToKurs) activity).onConnectionError();
 			Log.e("test", e.toString());
 		}
 	}

@@ -61,8 +61,6 @@ public class RegisterTask  extends BaseHttpRequestTask{
 			 {
 			
 			int id = response.getId();
-			
-			
 			((Registration) activity).getLoginValues(response.getId());
 			 }
 			

@@ -20,13 +20,14 @@
             android:label="@string/title_log_in">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
+				
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         
         <activity
             android:name="activitys.SearchForDancingpartner"
+          android:screenOrientation="portrait"
             android:label="@string/title_search_dancingpartner" >
         </activity>
         <activity
@@ -45,6 +46,11 @@
         <activity
             android:name="activitys.ShowProfile"
             android:label="@string/title_other_profile" >
+        </activity>
+        <activity
+            android:name="activitys.AssignToKurs"
+            android:screenOrientation="portrait"
+            android:label="@string/title_assign_to_kurs" >
         </activity>
        
     </application>

@@ -11,7 +11,7 @@
         android:text="Mein Profil" />
 
     <Button
-        android:id="@+id/Sozial"
+        android:id="@+id/mMyKurs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Meine Kurse" />

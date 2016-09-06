@@ -186,42 +186,48 @@ private Connection c;
 			addUser("Needle@Nadel.de","geheim11","Stark","Arya",1,8,1);
 			addUser("faceless@men.de","geheim12","Nobody","Noone",0,8,1);
 			addUser("a@girl.de","geheim13","Nobody","Noone",0,8,1);
+			addUser("syrio@forell.de","geheim14","Forell","Syrio",0,8,1);
 			
 			
 			
 		//	getAllUserData();
 			// kein goldstar b im quartal
-			addKurs(3,"25.03.2016","Donnerstag","15:25");
-			addKurs(4,"25.03.2016","Donnerstag","16:25");
-			addKurs(6,"26.03.2016","Freitag","16:35");
-			addKurs(1,"26.03.2016","Freitag","13:25");
-			addKurs(2,"26.03.2016","Freitag","14:35");
-			addKurs(3,"26.03.2016","Freitag","15:35");
-			addKurs(4,"26.03.2016","Freitag","16:35");
-			addKurs(5,"26.03.2016","Freitag","17:35");
+//			addKurs(3,"25.03.2016","Donnerstag","15:25");
+//			addKurs(4,"25.03.2016","Donnerstag","16:25");
+//			addKurs(6,"26.03.2016","Freitag","16:35");
+//			addKurs(1,"26.03.2016","Freitag","13:25");
+//			addKurs(2,"26.03.2016","Freitag","14:35");
+//			addKurs(3,"26.03.2016","Freitag","15:35");
+//			addKurs(4,"26.03.2016","Freitag","16:35");
+//			addKurs(5,"26.03.2016","Freitag","17:35");
+//			addKurs(1,"24.03.2016","Mittwoch","13:25");
+//			addKurs(2,"24.03.2016","Mittwoch","14:25");
 			
 			
 		//	readKurs();
-			addLink(1, 1);
-			addLink(2,1);
-			addLink(3,1);
-			addLink(4,1);
-			addLink(5,1);
-			addLink(6,1);
-			addLink(7,1);
-			addLink(8,1);
-			addLink(9,1);
-			addLink(10,1);
-			addLink(11,1);
-			addLink(12,1);
-			addLink(13,1);
-			addLink(10,2);
-			addLink(10,3);
-			addLink(10,4);
-			addLink(10,5);
-			addLink(10,6);
+//			addLink(1, 1);
+//			addLink(2,1);
+//			addLink(3,1);
+//			addLink(4,1);
+//			addLink(5,1);
+//			addLink(6,1);
+//			addLink(7,1);
+//			addLink(8,1);
+//			addLink(9,1);
+//			addLink(10,1);
+//			addLink(11,1);
+//			addLink(12,1);
+//			addLink(13,1);
+//			addLink(10,2);
+//			addLink(10,3);
+//			addLink(10,4);
+//			addLink(10,5);
+//			addLink(10,6);
+//			addLink(10,7);
+//			addLink(10,8);
 			
 			
+			getKurs(1,1);
 		
 			//eMailExists("Huan@huan.de");
 		//	readLinks();
@@ -433,8 +439,67 @@ private Connection c;
 	 * @param uid	ID of The User	that shall be connected
 	 * @param kid	ID of the Kurs	that shall be connected
 	 */
+	public void deleteAllLink(){
+		Statement stmt;
+		try{
+			String sql = "DELETE FROM LINK;";
+			stmt = c.createStatement();
+			stmt.executeUpdate(sql);
+			c.commit();
+		}
+		catch(Exception e){
+			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	        System.exit(0);
+			e.printStackTrace();}	
+	}
+//public void deleteAllUser(){
+//		PreparedStatement p;
+//	try{
+//		String sql = "DELETE FROM User;";
+//		p = c.prepareStatement(sql);
+//		p.executeUpdate();
+//		c.commit();
+//	}
+//	catch(Exception e){
+//		System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+//        System.exit(0);
+//		e.printStackTrace();}	
+//	}
+	public void deleteAllKurs(){
+		Statement stmt;
+		try{
+			String sql = "DELETE FROM Kurs;";
+			stmt = c.createStatement();
+			stmt.executeUpdate(sql);
+			c.commit();
+		}
+		catch(Exception e){
+			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	        System.exit(0);
+			e.printStackTrace();}	
+	}
+	
+	public boolean deleteLink (int uid, int kid){
+		PreparedStatement p;
+		try{
+			String sql = "DELETE FROM LINK WHERE UID = ? AND KID = ?;";
+			p = c.prepareStatement(sql);
+			p.setInt(1, uid);
+			p.setInt(2, kid);
+			p.executeUpdate();
+			c.commit();
+			return true;
+		}
+		catch(Exception e){
+			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	        System.exit(0);
+			e.printStackTrace();
+			return false;
+		}
+		
+	}
 	public boolean addLink(int uid, int kid){
-		//TODO NOT READY
+		//TODO NOT READY check debug 
 		int i =1;
 		ResultSet rs;
 		PreparedStatement p2 ;
@@ -468,10 +533,10 @@ private Connection c;
 			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 	        System.exit(0);
 			e.printStackTrace();
-			
+			return false;
 			
 		}	}
-	return false;
+		return false;
 	}
 	/**
 	 * 
@@ -522,6 +587,10 @@ private Connection c;
 	public ArrayList<ProfileChart> getProfilecharts(int gender, int kstu,int myage,String day){
 		//TODO age
 		Statement stmt;
+		
+		 
+		
+		
 		//int notgender ;
 		
 		ArrayList<ProfileChart>  pc = new ArrayList<ProfileChart>();
@@ -540,10 +609,6 @@ private Connection c;
 				String eMail = rs.getString("EMAIL");
 				
 				System.out.println(fn+" "+ln);
-				//System.out.println(ln);
-				//System.out.println(age);
-				//System.out.println(uhr);
-				//System.out.println(date);
 				pc.add(new ProfileChart(fn,ln,age,uhr,date,eMail));
 			}
 			if(stmt!= null)stmt.close();
@@ -784,12 +849,12 @@ private Connection c;
 			}
 		}
 			
-		public ArrayList<Kurs> readKurs(){
+		public ArrayList<Kurs> getKurs2(int ks){
 			Statement stmt;
 			ArrayList<Kurs> kurs = new ArrayList<Kurs>();
 			try{
 				stmt=c.createStatement();
-				String sql = " SELECT *  FROM KURS ORDER BY KURSSTUFE ASC,DATUM DESC;";
+				String sql = " SELECT *  FROM KURS WHERE KURSSTUFE = '"+ks+"' ORDER BY KURSSTUFE ASC,DATUM DESC ;";
 				ResultSet rs = stmt.executeQuery(sql);
 				while(rs.next()){
 					int  id = rs.getInt("ID");
@@ -797,8 +862,47 @@ private Connection c;
 					String uhr = rs.getString("UHRZEIT");
 					String date = "" +rs.getDate("DATUM");
 					String day = rs.getString("WOCHENTAG");
-					
-					kurs.add(new Kurs(id, cl, date, day, uhr));
+					System.out.println(id + "");
+					kurs.add(new Kurs(id, cl, date, day, uhr,false));
+				}
+				if(stmt!=null)stmt.close();
+				if(rs!=null)rs.close();
+				return kurs;
+			}catch(Exception e){
+				System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+		        System.exit(0);
+				e.printStackTrace();
+				return null;
+			}
+			
+		}
+		public ArrayList<Kurs> getKurs(int kstu, int uid){
+			Statement stmt;
+			
+			
+			
+			ArrayList<Kurs> kurs = new ArrayList<Kurs>();
+			//SELECT KURS.ID,KURS.DATUM,KURS.KURSSTUFE,KURS.UHRZEIT,KURS.WOCHENTAG ,COUNT (USER.ID)AS C FROM KURS LEFT JOIN LINK ON KURS.ID = LINK.KID LEFT JOIN USER ON LINK.UID = USER.ID AND USER.ID = '"+uid+"' WHERE KURSSTUFE = '"+ks+"' GROUP BY KURS.ID ORDER BY KURSSTUFE ASC,DATUM DESC 
+			try{
+				stmt=c.createStatement();
+				String sql = " SELECT KURS.ID,KURS.DATUM,KURS.KURSSTUFE,KURS.UHRZEIT,KURS.WOCHENTAG ,COUNT (USER.ID)AS C FROM KURS"
+						+ " LEFT JOIN LINK ON KURS.ID = LINK.KID "
+						+ "LEFT JOIN USER ON LINK.UID = USER.ID AND USER.ID = '"+uid+"' WHERE KURSSTUFE = '"+kstu+"' GROUP BY KURS.ID ORDER BY KURSSTUFE ASC,DATUM DESC   ;";
+				ResultSet rs = stmt.executeQuery(sql);
+				while(rs.next()){
+					int  kid = rs.getInt("ID");
+					int cl  =rs.getInt("kursstufe");
+					String uhr = rs.getString("UHRZEIT");
+					String date = "" +rs.getDate("DATUM");
+					String day = rs.getString("WOCHENTAG");
+					boolean enlisted;
+					if (rs.getInt("C")>0){
+						enlisted = true;
+					}else{
+						enlisted = false;
+					}
+					System.out.println(kid + "");
+					kurs.add(new Kurs(kid, cl, date, day, uhr,enlisted));
 				}
 				if(stmt!=null)stmt.close();
 				if(rs!=null)rs.close();

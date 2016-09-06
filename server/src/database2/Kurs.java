@@ -1,37 +1,45 @@
 package database2;
 
-import java.sql.Date;
+//import java.sql.Date;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
 
-
-
+@Root (name  = "kurs")
 public class Kurs {
-	
-	
-	private int ID;
+	@Element(name  = "id")
+	private int id;
+	@Element (name  = "kursstufe")
 	private int kursstufe;
+	@Element (name = "uhrzeit")
 	private String uhrzeit;
 	//private Date datum; // User Kurs DAO needs a String datum has to put in like : Day(int).Month(int).Year(int)
+	@Element (name = "datum")
 	private String datum;
+	@Element (name  = "wochentag")
 	private String wochentag;
+	@Element (name = "enlisted")
+	private boolean enlisted;
 	//Boolean "SingUpAviable" must be added later 
 	
-	
-	public Kurs(int kursID,int kursstufe, String datum, String wochentag, String uhrzeit) {
+	public Kurs(){
+		super ();
+	}
+	public Kurs(int kursID,int kursstufe, String datum, String wochentag, String uhrzeit,boolean enlisted) {
 		super();
 		this.kursstufe = kursstufe;
 		this.uhrzeit = uhrzeit;
 		this.datum = datum;
-		this.ID = kursID;
+		this.id = kursID;
+		this.wochentag=wochentag;
+		this.enlisted = enlisted;
 	}
 	
-	public Kurs() {}
-
-	public int getKursID() {
-		return ID;
+	public int getKursId() {
+		return id;
 	}
 
 	public void setKursID(int kursID) {
-		this.ID = kursID;
+		this.id = kursID;
 	}
 
 	public int getKursstufe() {
@@ -64,6 +72,9 @@ public class Kurs {
 
 	public void setWochentag(String wochentag) {
 		this.wochentag = wochentag;
+	}
+	public boolean isEnlisted() {
+		return enlisted;
 	}
 	
 	//private Date kursende

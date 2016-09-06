@@ -7,6 +7,7 @@
     <string name="wTpf">Tanzpartner finden</string>
 
 <string-array name="kurs_array">
+   
     <item>Grundkurs 1</item>
         <item>Grundkurs 2</item>
         <item>Bronze</item>
@@ -33,7 +34,10 @@
     <string name="title_activity_main2">MainActivity</string>
     <string name="title_search_dancingpartner">Tantpartner/in finden</string>
     <string name="title_edit_profile">Profil anpassen</string>
-	<string name="title_log_in">Anmelden</string>
+	<string name="title_log_in">Tanzpartnervermittlungsapp</string>
+	<string name="title_assign_to_kurs">In Kurse eintragen</string>
+
+	
 		<string name="registrieren">Registrieren!</string>
 		<string name="anmelden">Anmelden</string>
 		<string name="oder">oder</string>
@@ -53,5 +57,7 @@
 	<string name ="no_accordance_email">Die beiden E-Mail Adressen stimmen nicht überein!</string>
 	<string name ="missing_value">Nicht angegeben.</string>
 	<string name ="about_me">Hier kannst du einen netten Spruch oder Wissenswertes über dich einragen!</string>
+	<string name="kurs_header_m">Wenn sie sich hier für einen Kurs eintragen, können weibliche Nutzer sehen, dass sie für diesen Kurs eine Tanzpartnerin suchen.</string>
+	<string name="kurs_header_f">Wenn sie sich hier für einen Kurs eintragen, können männliche Nutzer sehen, dass sie für diesen Kurs einen Tanzpartner suchen.</string>
 </resources>
 

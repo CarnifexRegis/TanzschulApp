@@ -59,7 +59,7 @@ import android.widget.Toast;
 		String eMail;
 		String error = null;
 		final SearchForDancingpartner sfdp = this;
-		
+		private Button sB;
 		@Override
 		/**
 		 * @Sources: http://stackoverflow.com/questions/2091465/how-do-i-pass-data-between-activities-on-android
@@ -84,7 +84,7 @@ import android.widget.Toast;
 			ArrayAdapter<CharSequence> adapterSimple1 = ArrayAdapter.createFromResource(this, R.array.kurs_array, android.R.layout.simple_spinner_item); // Specify the layout to use when the list of choices appears
 			adapterSimple1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // Apply the adapter to the spinner
 			kSpinner.setAdapter(adapterSimple1);
-			
+			 sB = (Button) findViewById(R.id.searchButton);
 kSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -120,6 +120,10 @@ kSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
     	  kursstufe = 9;
     	  break;
       } 
+      sB.setEnabled(false);
+		if(isOnline(sfdp)){
+		UpdateChartTask updateChartTask = new UpdateChartTask (sfdp,ID, kursstufe, gender );
+		updateChartTask.execute();}else{System.out.println("not connected");}
     } 
 
 	@Override
@@ -166,19 +170,20 @@ kSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 	        });
 			
 			
-		 final Button sB = (Button) findViewById(R.id.searchButton);
+		 
 	        sB.setOnClickListener(new View.OnClickListener() {
 	            public void onClick(View v) {
 //	            	adapterCustom.clear();
 //	            	adapterCustom.notifyDataSetChanged();
-	            	if(isOnline (sfdp)){
+	            	
 	        		//	kursstufe = 3;
 //	        			ID = 1;
 //	        			gender = true;
+	            		sB.setEnabled(false);
 	        			if(isOnline(sfdp)){
 	        			UpdateChartTask updateChartTask = new UpdateChartTask (sfdp,ID, kursstufe, gender );
 	        			updateChartTask.execute();}else{System.out.println("not connected");}
-	            	}
+	            	
 	            }
 	        });
 		    }
@@ -205,6 +210,7 @@ kSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 		
 		}
 		public void chartsUpdate(ArrayList<ProfileChart> pc){
+			sB.setEnabled(true);
 			newKursbuchungen( pc);
 				
 			}
@@ -330,6 +336,21 @@ kSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 //		    	}
 //		    return true;
 //		}
+		public void onError(String error){
+			Toast.makeText(this,"Fehler: "+ error, Toast.LENGTH_SHORT).show();
+			sB.setEnabled(true);
+		}
+		public void onConnectionError(){
+			sB.setEnabled(true);
+			if(!isOnline(this)){
+				Toast.makeText(getApplicationContext(), getResources().getString(R.string.check_connection), 
+		                Toast.LENGTH_SHORT).show(); 
+			
+			}else{
+				Toast.makeText(getApplicationContext(), getResources().getString(R.string.connection_failed), 
+		                Toast.LENGTH_SHORT).show();} 
+				
+			}
 
 		@Override
 		public void onBackPressed(){

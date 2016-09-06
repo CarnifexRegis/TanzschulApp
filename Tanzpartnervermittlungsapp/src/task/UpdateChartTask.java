@@ -26,6 +26,7 @@ public void execute() {
 		String xml = buildXML(request);
 		super.execute(Command.updatechart, xml);
 	} catch (Exception e) {
+		((SearchForDancingpartner) activity).onConnectionError();
 		Log.e("Task couldn´t call execute() from SuperClass",e.toString());
 	}
 }
@@ -47,6 +48,7 @@ public void onPostExecute(String result) {
 
 		// }
 	} catch (Exception e) {
+		((SearchForDancingpartner) activity).onConnectionError();
 		Log.e("Error in post Execute", e.toString());
 	}
 }

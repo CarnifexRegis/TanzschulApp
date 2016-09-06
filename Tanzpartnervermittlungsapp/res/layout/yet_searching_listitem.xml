@@ -5,12 +5,14 @@
     android:orientation="horizontal" >
 
     <ToggleButton
-        android:id="@+id/searchtButton"
+        android:id="@+id/ayEnlistButton"
+        
         android:layout_width="104dp"
         android:layout_height="75dp"
-        android:text="nah"
-        android:textOff="Nicht Eingetragen"
-        android:textOn="Eingetragen" />
+        android:background="@drawable/enlist_toggle"
+        android:textOff="Eintragen"
+        android:textOn="Austragen" 
+        />
 
     <LinearLayout
         android:layout_width="match_parent"

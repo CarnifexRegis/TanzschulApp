@@ -2,11 +2,12 @@ package activitys;
 
 import java.util.ArrayList;
 
+import task.GetKursTask;
 import model.Adapter;
 import model.Kurs;
 import model.ProfileChart;
-import model.aeAdapter;
-import model.ayAdapter;
+import model.aAdapter;
+
 
 import com.example.Tanzpartnervermittlung.R;
 
@@ -22,6 +23,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class AssignToKurs extends Activity{
@@ -29,10 +31,11 @@ public class AssignToKurs extends Activity{
 	boolean gender;
 	AssignToKurs atk = this;
 	int kursstufe = 1;
-	ArrayList<Kurs> k;
-	aeAdapter eAdapter;
-	ayAdapter yAdapter;
+	ArrayList<Kurs> k = new ArrayList <Kurs>();
+	aAdapter Adapter;
+	
 	ListView kView;
+	Button refresh;
 //http://stackoverflow.com/questions/5195321/remove-an-onclick-listener	
 	
 	@Override
@@ -48,8 +51,13 @@ public class AssignToKurs extends Activity{
 		gender = extras.getBoolean("gender");
 		}
 		// instanciating and configuring Spinner
-		final Button refresh = (Button) findViewById(R.id.aRefreshButton);
-		
+		 refresh = (Button) findViewById(R.id.aRefreshButton);
+		final TextView header = (TextView)findViewById(R.id.aKursHeader);
+		if (gender){
+			header.setText(getResources().getString(R.string.kurs_header_f));
+		}else{
+			header.setText(getResources().getString(R.string.kurs_header_m));
+		}
 		Spinner kSpinner = (Spinner) findViewById(R.id.aKurseSpinner);
 		ArrayAdapter<CharSequence> adapterSimple = ArrayAdapter.createFromResource(this, R.array.kurs_array, android.R.layout.simple_spinner_item); // Specify the layout to use when the list of choices appears
 		adapterSimple.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // Apply the adapter to the spinner
@@ -61,7 +69,7 @@ public class AssignToKurs extends Activity{
 		        Spinner spinner = (Spinner) parent;
 		      String ks =  spinner.getSelectedItem().toString();
 		      switch (ks){
-		      
+		     
 		      case "Grundkurs 1" :
 		    	kursstufe = 1;
 		    	  break;
@@ -90,6 +98,9 @@ public class AssignToKurs extends Activity{
 		    	  kursstufe = 9;
 		    	  break;
 		      } 
+		      refresh.setEnabled(false);
+				GetKursTask gkt = new GetKursTask(atk,atk.id, kursstufe);
+				gkt.execute();
 		    }
 
 			@Override
@@ -101,42 +112,50 @@ public class AssignToKurs extends Activity{
 			
 	});
 		kView  = (ListView) findViewById(R.id.aKursList);
-		eAdapter = new aeAdapter(this, k, id) ;
-		kView.setAdapter(eAdapter);
+		Adapter = new aAdapter(this, k, id,atk) ;
+		kView.setAdapter(Adapter);
 		refresh.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v){
-//				k =  new ArrayList<Kurs>();
-//				eAdapter = new aeAdapter(atk, k, id) ;
-//				kView.setAdapter(eAdapter);
-				// execute rrequest
+				
+				refresh.setEnabled(false);
+				GetKursTask gkt = new GetKursTask(atk,id, kursstufe);
+				gkt.execute();
+
+
+
 			}
 		});
 }	
-	public void recieveData(ArrayList<Kurs> k,boolean requesIdentifer){
-		// true to add false to delete
-		if(requesIdentifer){
-			eAdapter.clear();
-			eAdapter.addAll(k);
-			eAdapter.notifyDataSetChanged();
-		}else{
-			yAdapter.clear();
-			yAdapter.addAll(k);
-			yAdapter.notifyDataSetChanged();
-		}
+	public void recieveData(ArrayList<Kurs> k){
+		// didn´t wor if u got the smae number of objects from the server
+		//TODO  find  a better way to fix this
+	// true to add false to delete
+//			Adapter.clear();
+//			Adapter.notifyDataSetInvalidated();
+//			Adapter.addAll(k);
+//			Adapter.notifyDataSetChanged();
+		Adapter = new aAdapter(this, k, id,atk) ;
+		kView.setAdapter(Adapter);
+		refresh.setEnabled(true);
 	}
-	public void Added(int kid,int position) {
-			eAdapter.getItem(position);
+	public void added(int position) {
+		Toast.makeText(this,"Eingetragen", Toast.LENGTH_SHORT).show();
+			//Adapter.getItem(position);
+			
 		}
-	public void Deleted(int kid,int position) {
-		eAdapter.getItem(position);
+	public void deleted(int position) {
+		Toast.makeText(this,"Ausgetragen", Toast.LENGTH_SHORT).show();
+		//Adapter.getItem(position);
 		
 	}
 	public void onError(String error){
 		Toast.makeText(this,"Fehler: "+ error, Toast.LENGTH_SHORT).show();
+		refresh.setEnabled(true);
 	}
 	public void onConnectionError(){
+		refresh.setEnabled(true);
 		if(!isOnline(this)){
 			Toast.makeText(getApplicationContext(), getResources().getString(R.string.check_connection), 
 	                Toast.LENGTH_SHORT).show(); 
@@ -154,4 +173,5 @@ public class AssignToKurs extends Activity{
 	        return true;
 	    }
 	    return false;}
+	
 }

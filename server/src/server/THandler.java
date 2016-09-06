@@ -12,10 +12,12 @@ import org.eclipse.jetty.server.handler.AbstractHandler;
 import protocol.Command;
 import tasks.ForeignProfileTask;
 import tasks.GetAllTask;
+import tasks.GetKursTask;
 import tasks.LoginTask;
 import tasks.ProfiledataTask;
 import tasks.RegisterTask;
 import tasks.UpdateChartTask;
+import tasks.UpdateLinkTask;
 import tasks.UpdateProfileTask;
 /**
  * 
@@ -83,9 +85,19 @@ public class THandler extends AbstractHandler {
 				antwort = d.handle(body);
 				baseRequest.setHandled(true);
 				break;
+			case updatelink:
+				UpdateLinkTask ult = new UpdateLinkTask();
+				antwort = ult.handle(body);
+				baseRequest.setHandled(true);
+				break;
 			case getprofile:
 				ProfiledataTask pfdtask = new ProfiledataTask();
 				antwort = pfdtask.handle(body);
+				baseRequest.setHandled(true);
+				break;
+			case getkurs:
+				GetKursTask gkt = new GetKursTask();
+				antwort = gkt.handle(body);
 				baseRequest.setHandled(true);
 				break;
 			

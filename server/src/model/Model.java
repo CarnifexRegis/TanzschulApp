@@ -95,17 +95,24 @@ public class Model {
 	
 		
 	}
-	public ArrayList<Kurs> readKurs(int id){
+	public ArrayList<Kurs> getKurs(int id,int ks){
 		if(sql.checkID(id)){
-		return sql.readKurs();
+		return sql.getKurs(ks,id);
 		}
 		return null;
 	}
-	public Boolean addLink(int id, int kid){
-		if(sql.checkID(id)){
-			sql.addLink(id, kid);
+	public Boolean addLink(int uid, int kid){
+		if(sql.checkID(uid)){
+			return sql.addLink(uid, kid);
 		}
-		return true;
+		return false;
+		
+	}
+	public Boolean deleteLink(int uid, int kid){
+		if(sql.checkID(uid)){
+			return sql.deleteLink(uid, kid);
+		}
+		return false;
 		
 	}
 	public int getGender(int id){
