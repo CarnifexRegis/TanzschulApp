@@ -19,7 +19,7 @@ import android.widget.TextView;
  * 
  * @author Simon Stolz, MartinPabst
  * @Sources:http://stackoverflow.com/questions/8486511/how-to-set-on-click-listener-on-the-custom-list-view-in-android
- *
+ *				http://stackoverflow.com/questions/10726519/how-to-get-the-source-of-imageview-in-order-to-change-it 
  */
 public class Adapter extends ArrayAdapter<ProfileChart> {
 	
@@ -45,10 +45,8 @@ public class Adapter extends ArrayAdapter<ProfileChart> {
         TextView tvViewOfKurszeit = (TextView) ProfileChartView.findViewById(R.id.ViewOfKurszeit);
        
         Log.d("derp", "tvname = " + tvname);
-        // general on click listerner
-     String eMail =   profileChart.geteMail();
-        
-        
+   //  String eMail =   profileChart.geteMail();
+
 		tvname.setText(profileChart.getFn() + " "+ profileChart.getLn());
 		tvViewOfAge.setText(profileChart.getAge());
 	    tvViewOfKursstart.setText(""+profileChart.getdate());
@@ -60,13 +58,5 @@ public class Adapter extends ArrayAdapter<ProfileChart> {
 	       }
 		return ProfileChartView;	
 	}
-//	private class MyOnClickListener implements OnClickListener
-//	{
-//	  @Override
-//	  public void onClick(View view) {
-//	     //Do what needs to be done.
-//		  
-//	  }
-//	}
 	
 	}

@@ -751,12 +751,9 @@ private Connection c;
 						gender = false;
 					}
 					//System.out.println(" "+eMail+" "+ln+ " "+fn+ " "+ g +" " +age+ " " + pa);
-					if(rs.next()){
+					
 				pd =   new ProfileData(fn, ln, pText, age, height, phoneNumber, gender, pAge);
-					}
-					else{
-						pd = null;
-					}
+					
 				
 			} catch (SQLException e) {
 				System.err.println( e.getClass().getName() + ": " + e.getMessage() );

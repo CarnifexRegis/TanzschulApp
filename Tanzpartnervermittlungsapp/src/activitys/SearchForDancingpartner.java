@@ -29,6 +29,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 
 	
@@ -56,6 +57,7 @@ import android.widget.Spinner;
 		int kursstufe = 1;
 		String day;
 		String eMail;
+		String error = null;
 		final SearchForDancingpartner sfdp = this;
 		
 		@Override
@@ -69,6 +71,10 @@ import android.widget.Spinner;
 				System.out.println(extras);
 			ID = extras.getInt("ID", -1);
 			gender = extras.getBoolean("gender");
+			error = extras.getString("error");
+			if (error!= null){
+				Toast.makeText(getApplicationContext(), error, Toast.LENGTH_LONG).show(); 
+			}
 			}
 			
 			super.onCreate(savedInstanceState);
@@ -140,14 +146,10 @@ kSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 			});
 			
 			pc =  new ArrayList<ProfileChart>();
-			// Create the adapter to convert the array to views
 			adapterCustom = new Adapter(this,pc );
-			// Create ListView
-		final ListView kursbuchungView = (ListView) findViewById(R.id.userListView);
-			// Attach the adapter to a ListView
-			kursbuchungView.setAdapter(adapterCustom);
-			//Adds test user
-			kursbuchungView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+		final ListView ProfileChartView = (ListView) findViewById(R.id.userListView);
+		ProfileChartView.setAdapter(adapterCustom);
+		ProfileChartView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 	            @Override
 	            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 	                //the .getName() is accessed from the School POJO class.

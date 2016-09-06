@@ -23,6 +23,9 @@ public class ForeignProfileTask extends AbstractHandler{
 			if(!pd.isPa()){
 				pd.setAge(0);
 			}
+			if(pd.getpText()== null){
+				pd.setpText("Nicht angegeben."); 
+			}
 		}
 		
 		ForeignProfileResponse response = new ForeignProfileResponse(pd,ec);

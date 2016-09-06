@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TableRow
+        android:id="@+id/aetableRow1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+        </LinearLayout>
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/aeTableRow2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/aeKurszeitText"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:text="Uhrzeit: "
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <TextView
+                android:id="@+id/aeKurszeitView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="17:30"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        </LinearLayout>
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/aeTableRow3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/aeDayText"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:text="Wochentag: "
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <TextView
+                android:id="@+id/aeDayView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Donnerstag"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+        </LinearLayout>
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/aeTableRow4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/aeDateText"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:text="Kursstart: "
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <TextView
+                android:id="@+id/aeDateView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="23/07/2016"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+        </LinearLayout>
+    </TableRow>
+
+    <Button
+        android:id="@+id/aeAddButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_green_light"
+        android:text="Hinzufügen"
+        android:textColor="@android:color/black" />
+
+</LinearLayout>

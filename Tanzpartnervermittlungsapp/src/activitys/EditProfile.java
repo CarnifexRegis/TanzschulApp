@@ -8,13 +8,16 @@ import task.UpdateProfileTask;
 import com.example.Tanzpartnervermittlung.R;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 
@@ -125,8 +128,31 @@ boolean gender;
 	}
 	public void onError(String error) {
 		Intent intent = new Intent(getApplicationContext(),LogIn.class);
-		intent.putExtra("error", error);
+		intent.putExtra("error", "Fatal error: " + error);
 		startActivity(new Intent(intent));
+		
+	}
+	public boolean isOnline(Context context) {
+	    ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+	    android.net.NetworkInfo networkinfo = cm.getActiveNetworkInfo();
+	    if (networkinfo != null && networkinfo.isConnected()) {
+	        return true;
+	    }
+	    return false;}
+	
+	public void ConnectionError() {
+		
+			
+			if(!isOnline(this)){
+				Toast.makeText(getApplicationContext(), getResources().getString(R.string.check_connection), 
+		                Toast.LENGTH_SHORT).show(); 
+			
+			}else{
+				Toast.makeText(getApplicationContext(), getResources().getString(R.string.connection_failed), 
+		                Toast.LENGTH_SHORT).show(); 
+				
+			}
+			
 		
 	}
 	}

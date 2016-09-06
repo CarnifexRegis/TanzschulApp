@@ -32,8 +32,7 @@ public class ForeignProfileTask extends BaseHttpRequestTask {
 	@Override
 	public void onPostExecute(String result) {
 		try {
-			ProfileDataResponse response = (ProfileDataResponse) parseXML(result,
-					ProfileDataResponse.class);
+			ProfileDataResponse response = (ProfileDataResponse) parseXML(result,ProfileDataResponse.class);
 			
 			String error = response.getErrorCode();
 			 if(!(error.equals( ErrorCode.ja.getError())))
@@ -43,16 +42,15 @@ public class ForeignProfileTask extends BaseHttpRequestTask {
 			 else
 			 {
 			
-			ProfileData pd = response.getPd();
-			
-			
+			  ProfileData pd = response.getPd();
 			
 			((ShowProfile) activity).rechieveData(pd);
 			 }
 			
 		} catch (Exception e) {
 			Log.e("Error in  LoginTask", e.toString());
-			((ShowProfile) activity).connectionError();
+			((ShowProfile) activity).connectionError();	
 		}
 	}
+
 }

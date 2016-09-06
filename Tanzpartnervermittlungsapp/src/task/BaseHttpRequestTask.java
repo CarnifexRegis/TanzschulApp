@@ -15,8 +15,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.logging.LogManager;
 
-import model.Properties;
-
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 import org.simpleframework.xml.stream.Format;
@@ -29,6 +27,7 @@ import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.util.Log;
 import protocol.Command;
+import protocol.Properties;
 
 public class BaseHttpRequestTask extends AsyncTask<String, Void, String> {
 	protected Activity activity;

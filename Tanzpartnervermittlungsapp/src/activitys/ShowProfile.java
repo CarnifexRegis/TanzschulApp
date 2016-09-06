@@ -55,13 +55,12 @@ private ClipboardManager myClipboard;
 			ageText = (TextView) findViewById(R.id.spAgeText);
 			ageView = (TextView) findViewById(R.id.spAgeView);
 			heightView = (TextView) findViewById(R.id.spHeightView);
-			aboutMeView = (TextView) findViewById(R.id.aboutMeView);
-			pnView = (TextView) findViewById(R.id.pnView);
+			aboutMeView = (TextView) findViewById(R.id.spAboutMeView);
+			pnView = (TextView) findViewById(R.id.spPhoneView);
 			errorView = (TextView) findViewById(R.id.spErrorView);
 			errorView.setTextColor(0xffff0000);
 			errorView.setVisibility(View.GONE);
-			ForeignProfileTask fpt =new ForeignProfileTask(sp, eMail);
-			fpt.execute();
+			
 	       final Button menueButton = (Button) findViewById(R.id.spMenueButton);
 	       menueButton.setOnClickListener(new View.OnClickListener() {
 	            public void onClick(View v) {
@@ -93,11 +92,13 @@ private ClipboardManager myClipboard;
 	                Toast.LENGTH_SHORT).show(); 
 	            	}}
 	        });	  
-	   }
+	   ForeignProfileTask fpt =new ForeignProfileTask(sp, eMail);
+			fpt.execute();
+			}
 
 	
 		public void connectionError(){
-			errorView.setVisibility(View.VISIBLE);
+			
 			String error;
 			if(!isOnline(this)){
 				
@@ -105,17 +106,17 @@ private ClipboardManager myClipboard;
 			}else{
 				error =getResources().getString(R.string.connection_failed);
 			}
-			Toast.makeText(getApplicationContext(), error, 
-	                Toast.LENGTH_SHORT).show(); 
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch bloc
-				e.printStackTrace();
-			}
+//				Toast.makeText(getApplicationContext(), error, Toast.LENGTH_SHORT).show(); 
+//			try {
+//				Thread.sleep(3000);
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch bloc
+//				e.printStackTrace();
+//			}
 			Intent intent = new Intent(getApplicationContext(),SearchForDancingpartner.class);
 			intent.putExtra("ID", id);
 			intent.putExtra("gender", gender);
+			intent.putExtra("error", error);
 			startActivity(new Intent(intent));
 			}
 		
@@ -133,17 +134,17 @@ private ClipboardManager myClipboard;
 
 //		errorView.setVisibility(View.VISIBLE);
 //		errorView.setText("Das gesuchte Benutzerkonto konnte nicht gefunden werden.");
-		Toast.makeText(getApplicationContext(), "Das gesuchte Benutzerkonto konnte nicht gefunden werden.", 
-                Toast.LENGTH_SHORT).show(); 
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch bloc
-			e.printStackTrace();
-		}
+//		Toast.makeText(getApplicationContext(), "Das gesuchte Benutzerkonto konnte nicht gefunden werden.", Toast.LENGTH_LONG).show(); 
+//		try {
+//			Thread.sleep(3000);
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch bloc
+//			e.printStackTrace();
+//		}
 		Intent intent = new Intent(getApplicationContext(),SearchForDancingpartner.class);
 		intent.putExtra("ID", id);
 		intent.putExtra("gender", gender);
+		intent.putExtra("error", "Fatal error: "+error);
 		startActivity(new Intent(intent));
 	}
 
@@ -157,8 +158,19 @@ private ClipboardManager myClipboard;
 		 }
 		 heightView.setText(pd.getHeight()+"");
 		 aboutMeView.setText(pd.getpText());
-		 pnView.setText(pd.getPhoneNumber());
+		 pnView.setText(pd.getPhoneNumber()+"");
 		 nameView.setText(pd.getFn()+" "+pd.getLn());
 	}
-	
+	@Override
+	public void onBackPressed(){
+		super.onBackPressed();
+		String e  = null;
+		Intent intent = new Intent(getApplicationContext(),SearchForDancingpartner.class);
+		intent.putExtra("ID", id);
+		intent.putExtra("gender", gender);
+		intent.putExtra("error", e);
+		startActivity(new Intent(intent));
+	}
 }
+	
+
