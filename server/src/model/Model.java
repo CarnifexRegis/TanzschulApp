@@ -46,8 +46,35 @@ public class Model {
 	 * @param age		the age of the User
 	 * @return returns an Profile Chart Array<List>
 	 */
-	public ArrayList<ProfileChart> getCharts(int id,boolean gender,int kstu, int age,String day) {
+	public ArrayList<ProfileChart> getCharts(int id,boolean gender,int kstu, int age,int day) {
 		int g;
+		String sDay;
+		switch(day){
+		case 1:
+			sDay = Week.MONDAY.getdNa();
+			break;
+		case 2:
+			sDay = Week.TUESDAY.getdNa();
+			break;
+		case 3:
+			sDay = Week.WEDNESSDAY.getdNa();
+			break;
+		case 4:
+			sDay = Week.THURSDAY.getdNa();
+			break;
+		case 5:
+			sDay = Week.FRIDAY.getdNa();
+			break;
+		case 6:
+			sDay = Week.SATURDAY.getdNa();
+			break;
+		case 7:
+			sDay = Week.NONE.getdNa();
+			break;
+		default:
+			sDay = Week.MONDAY.getdNa();
+			break;
+		}
 		if (gender){
 			 g = 1;
 		}else{
@@ -56,7 +83,7 @@ public class Model {
 		
 		if (sql.checkID(id)) {
 			
-			return sql.getProfilecharts(g, kstu, 0,day);
+			return sql.getProfilecharts(g, kstu, 0,sDay);
 		}
 		else {
 			return null ;
@@ -69,6 +96,7 @@ public class Model {
 	 * @param ps	The  Users Password
 	 * @return returns the id of the User
 	 */
+	
 	public int Login (String em ,String ps){
 		return sql.LogIn(em, ps);
 	}
@@ -121,7 +149,7 @@ public class Model {
 	public int register(String em,String ps, String ln, String fn, int g,int age, int pa ){
 		return sql.addUser(em, ps, ln, fn, g, age, pa);
 	}
-	public ProfileData getfProfile(String eMail) {
-	return sql.getProfileData(sql.getUserIDByEMAIL(eMail));
+	public ProfileData getfProfile(String idp) {
+	return sql.getProfileData(sql.getUserIDByIDP(idp));
 	}
 }

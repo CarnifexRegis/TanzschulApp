@@ -12,9 +12,9 @@ public class ForeignProfileTask extends AbstractHandler{
 	public String handle(String httpBody){
 		//gets the information from the request
 		ForeignProfileRequest request = (ForeignProfileRequest)parseXML(httpBody,ForeignProfileRequest.class);
-		String eMail = request.geteMail();
+		String idp = request.geteMail();
 		 
-		ProfileData pd = Model.getInstance().getfProfile(eMail);
+		ProfileData pd = Model.getInstance().getfProfile(idp);
 		ec = ErrorCode.ja.getError();
 		if (pd==null){
 			pd = new ProfileData();

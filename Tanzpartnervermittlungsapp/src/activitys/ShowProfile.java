@@ -13,6 +13,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -26,7 +27,7 @@ import android.widget.Toast;
 public class ShowProfile extends Activity {
 int id;
 boolean gender;
-String eMail;
+String idp;
 ShowProfile sp = this;
 TextView nameView;
 
@@ -36,9 +37,10 @@ TextView ageView;
 TextView heightView;
 TextView aboutMeView;
 TextView pnView;
-TextView errorView;
+
 private ClipData myClip;
 private ClipboardManager myClipboard;
+ private ProfileData pd = new ProfileData();
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -47,7 +49,7 @@ private ClipboardManager myClipboard;
 			if(extras != null){
 			id = extras.getInt("ID");
 			gender = extras.getBoolean("gender");
-			eMail = extras.getString("eMail");
+			idp = extras.getString("idp");
 			}
 			
 			nameView = (TextView) findViewById(R.id.spnView);
@@ -57,9 +59,7 @@ private ClipboardManager myClipboard;
 			heightView = (TextView) findViewById(R.id.spHeightView);
 			aboutMeView = (TextView) findViewById(R.id.spAboutMeView);
 			pnView = (TextView) findViewById(R.id.spPhoneView);
-			errorView = (TextView) findViewById(R.id.spErrorView);
-			errorView.setTextColor(0xffff0000);
-			errorView.setVisibility(View.GONE);
+			
 			
 	       final Button menueButton = (Button) findViewById(R.id.spMenueButton);
 	       menueButton.setOnClickListener(new View.OnClickListener() {
@@ -70,8 +70,14 @@ private ClipboardManager myClipboard;
 	        			 startActivity(new Intent(intent));     	
 	            }
 	        });	
-	       final Button addUserButton = (Button) findViewById(R.id.spAddUserButton);
-	       addUserButton.setOnClickListener(new View.OnClickListener() {
+	       final Button addToContactsButton = (Button) findViewById(R.id.spAddToContactsButton);
+	       addToContactsButton.setOnClickListener(new View.OnClickListener() {
+	            public void onClick(View v) {
+	            	addAsContactConfirmed(sp,pd);
+	            }
+	        });	
+	       final Button FriendRequestButton = (Button) findViewById(R.id.spAddFriendButton);
+	       FriendRequestButton.setOnClickListener(new View.OnClickListener() {
 	            public void onClick(View v) {
 	            	
 	            }
@@ -86,13 +92,14 @@ private ClipboardManager myClipboard;
 	            	}
 	            	else{
 	            	String text = pnView.getText().toString();
+	            	ClipboardManager myClipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE); 
 	                myClip = ClipData.newPlainText("text", text);
 	                myClipboard.setPrimaryClip(myClip);
 	                Toast.makeText(getApplicationContext(), "In Zwischenablage.", 
 	                Toast.LENGTH_SHORT).show(); 
 	            	}}
 	        });	  
-	   ForeignProfileTask fpt =new ForeignProfileTask(sp, eMail);
+	   ForeignProfileTask fpt =new ForeignProfileTask(sp, idp);
 			fpt.execute();
 			}
 
@@ -150,7 +157,7 @@ private ClipboardManager myClipboard;
 
 
 	public void rechieveData(ProfileData pd) {
-		
+		this.pd = pd;
 		if(pd.isPa()){
 		 ageView.setText(pd.getAge()+"");
 		 }else{
@@ -171,6 +178,20 @@ private ClipboardManager myClipboard;
 		intent.putExtra("error", e);
 		startActivity(new Intent(intent));
 	}
+	//http://stackoverflow.com/questions/14278587/insert-a-new-contact-intent
+	public static void addAsContactConfirmed(final Context context, final ProfileData pd) {
+
+	    Intent intent = new Intent(Intent.ACTION_INSERT);
+	    intent.setType(ContactsContract.Contacts.CONTENT_TYPE);
+
+	    intent.putExtra(ContactsContract.Intents.Insert.NAME, pd.getFn()+" "+pd.getLn());
+	    intent.putExtra(ContactsContract.Intents.Insert.PHONE, pd.getPhoneNumber());
+	    //intent.putExtra(ContactsContract.Intents.Insert.EMAIL, person.email);
+
+	    context.startActivity(intent);
+
+	}
+
 }
 	
 

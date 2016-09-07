@@ -1,14 +1,16 @@
-package enums;
+package model;
 
 
 public enum Week {
-	  MONDAY("Montag",1),
-	  TUESDAY("Dienstag",2),
-	  WEDNESSDAY("Mittwoch",3),
-	  THURSDAY("Donnserstag",4),
-	  FRIDAY("Freitag",5),
-	  SATURDAY("Samstag",6),
-	  SUNDAY("Sonntag",7);
+	//TODO test and debug
+	  MONDAY("'Montag'",1),
+	  TUESDAY("'Dienstag'",2),
+	  WEDNESSDAY("'Mittwoch'",3),
+	  THURSDAY("'Donnerstag'",4),
+	  FRIDAY("'Freitag'",5),
+	  SATURDAY("'Samstag'",6),
+	  SUNDAY("'Sonntag'",7),
+	  NONE("WOCHENTAG",8);
 		
 		
 		public String getdNa() {

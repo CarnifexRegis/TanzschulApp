@@ -55,8 +55,8 @@ import android.widget.Toast;
 		int ID = -1;
 		boolean gender;
 		int kursstufe = 1;
-		String day;
-		String eMail;
+		int day;
+		String idp;
 		String error = null;
 		final SearchForDancingpartner sfdp = this;
 		private Button sB;
@@ -120,10 +120,11 @@ kSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
     	  kursstufe = 9;
     	  break;
       } 
-      sB.setEnabled(false);
-		if(isOnline(sfdp)){
-		UpdateChartTask updateChartTask = new UpdateChartTask (sfdp,ID, kursstufe, gender );
-		updateChartTask.execute();}else{System.out.println("not connected");}
+      sB.setEnabled(true);
+		
+	//	UpdateChartTask updateChartTask = new UpdateChartTask (sfdp,ID, kursstufe, gender );
+		//updateChartTask.execute();}else{System.out.println("not connected");
+		
     } 
 
 	@Override
@@ -140,7 +141,37 @@ kSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 			    @Override
 			    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 			        Spinner spinner = (Spinner) parent;
-			     day =  spinner.getSelectedItem().toString();
+			     String d =  spinner.getSelectedItem().toString();
+			     switch (d){
+			      
+			     case "Alle" :
+				    	day = 7;
+				    	  break;
+				    	  // i took my dancing scool as pattern wich didn`t feature dancing lessons on mondays tuesdays and sundays
+				    	  //  The server keeps the other days (except Sunday) because that might chhange some day. In that cas you would just have to update your client
+//			      case "Montag" :
+//			    	day = 1;
+//			    	  break;
+//			      case "Dienstag":
+//			    	  day = 2;
+//			    	  break;
+			      case "Mittwoch":
+			    	  day = 3;
+			    	  break;
+			      case "Donnerstag":
+			    	  day = 4;
+			    	  break;
+			      case "Freitag":
+			    	  day = 5;
+			    	  break;
+			      case "Samstag":
+			    	  day = 6;
+			    	  break;
+			    	  default: 
+			    		  day = 1;
+			    		  break;
+			      } 
+			     sB.setEnabled(true);
 			    }
 				@Override
 				public void onNothingSelected(AdapterView<?> parent) {
@@ -163,8 +194,8 @@ kSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 					intent.putExtra("ID", ID);
 					intent.putExtra("gender", gender);
 			//		eMail = adapterCustom.getItem(position).getAge();
-					eMail=adapterCustom.getItem(position).geteMail();
-					intent.putExtra("eMail", adapterCustom.getItem(position).geteMail());
+					idp= adapterCustom.getItem(position).getIdp();
+					intent.putExtra("idp", idp);
 					 startActivity(new Intent(intent));
 	            }
 	        });
@@ -181,8 +212,11 @@ kSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 //	        			gender = true;
 	            		sB.setEnabled(false);
 	        			if(isOnline(sfdp)){
-	        			UpdateChartTask updateChartTask = new UpdateChartTask (sfdp,ID, kursstufe, gender );
-	        			updateChartTask.execute();}else{System.out.println("not connected");}
+	        			UpdateChartTask updateChartTask = new UpdateChartTask (sfdp,ID, kursstufe, gender,day );
+	        			updateChartTask.execute();}else{
+	        				Toast.makeText(getApplicationContext(), getResources().getString(R.string.check_connection), 
+	        		                Toast.LENGTH_SHORT).show(); 
+	        			}
 	            	
 	            }
 	        });

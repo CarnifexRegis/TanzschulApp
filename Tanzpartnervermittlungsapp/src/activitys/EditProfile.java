@@ -30,9 +30,9 @@ public class EditProfile extends Activity {
 	EditText pTextInsert;
 	EditText ageInsert;
 	EditText heightInsert;
-	TextView fnView;
-	TextView lnView;
-	TextView errorView;
+	TextView nView;
+	
+	
 	CheckBox paCheck;
 EditProfile edp = this;
 int id;
@@ -57,14 +57,14 @@ boolean gender;
 		 pTextInsert = (EditText) findViewById(R.id.aboutMeInsert);
 		 ageInsert = (EditText) findViewById(R.id.ageInsert);
 		 heightInsert = (EditText) findViewById(R.id.heightInsert);
-		 fnView = (TextView) findViewById(R.id.fnameView);
-		 lnView = (TextView) findViewById(R.id.lnameView);
-		 errorView = (TextView) findViewById(R.id.epErrorView);
+		 nView = (TextView) findViewById(R.id.epNameView);
+		
+		
 		 paCheck = (CheckBox) findViewById(R.id.checkBox1);
 		 
 	ProfileDataTask pdTask = new ProfileDataTask(edp,id);
     	pdTask.execute();
-    	errorView.setVisibility(View.GONE);
+    	
 		
 		// This Button reads the Users inserted information and saves it in a ProfileDataForServer Object 
 		final Button ready = (Button) findViewById(R.id.fertigButton);
@@ -104,8 +104,8 @@ boolean gender;
 			pnInsert.setText( pd.getPhoneNumber());
 		}
 		pTextInsert.setText(pd.getpText());
-		fnView.setText(pd.getFn());
-		lnView.setText(pd.getLn());
+		nView.setText(pd.getFn()+" "+pd.getLn());
+		
 		gender = pd.isGender();
 		paCheck.setChecked(pd.isPa());
 		pnInsert.setText(pd.getPhoneNumber()+"");

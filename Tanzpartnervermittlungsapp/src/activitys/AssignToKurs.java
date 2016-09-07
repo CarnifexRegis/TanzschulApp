@@ -59,7 +59,7 @@ public class AssignToKurs extends Activity{
 			header.setText(getResources().getString(R.string.kurs_header_m));
 		}
 		Spinner kSpinner = (Spinner) findViewById(R.id.aKurseSpinner);
-		ArrayAdapter<CharSequence> adapterSimple = ArrayAdapter.createFromResource(this, R.array.kurs_array2, android.R.layout.simple_spinner_item); // Specify the layout to use when the list of choices appears
+		ArrayAdapter<CharSequence> adapterSimple = ArrayAdapter.createFromResource(this, R.array.kurs_array, android.R.layout.simple_spinner_item); // Specify the layout to use when the list of choices appears
 		adapterSimple.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // Apply the adapter to the spinner
 		kSpinner.setAdapter(adapterSimple);
 		
@@ -70,9 +70,9 @@ public class AssignToKurs extends Activity{
 		      String ks =  spinner.getSelectedItem().toString();
 		      switch (ks){
 		      
-		      case "Alle" :
-			    	kursstufe = 0625725735;
-			    	  break;
+//		      case "Alle" :
+//			    	kursstufe = 0625725735;
+//			    	  break;
 		     
 		      case "Grundkurs 1" :
 		    	kursstufe = 1;

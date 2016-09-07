@@ -54,8 +54,8 @@ public class Registration extends Activity {
 	boolean gender;
 	boolean aVisible;
 	
-	 private RadioGroup radioSexGroup;
-	 private RadioButton radioSexButton;
+//	 private RadioGroup radioSexGroup;
+//	 private RadioButton radioSexButton;
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -120,36 +120,34 @@ public class Registration extends Activity {
 		eMail= rEmailInsert1.getText().toString();
 		key = rKeyInsert1.getText().toString();
 		aVisible = ageVisible.isChecked();
-		radioSexGroup= (RadioGroup) findViewById(R.id.radioSexGroup);
-		int selectedId = radioSexGroup.getCheckedRadioButtonId();
+//		radioSexGroup= (RadioGroup) findViewById(R.id.radioSexGroup);
+//		int selectedId = radioSexGroup.getCheckedRadioButtonId();
+		RadioButton fbutton = (RadioButton) findViewById(R.id.rFemaleRadio);
+		RadioButton mbutton = (RadioButton) findViewById(R.id.rMaleRadio);
+		
+		
 		 correct[0]= false;
 		 correct[1]= false;
 		 correct[2]= false;
 		 correct[3]= false;
 		 correct[4]= false;
 		 correct[5]= false;
-        if(selectedId !=-1){
+        
 		
-        	if(selectedId == 2131165249){//0x7f070043
+        	if(fbutton.isChecked()){//0x7f070043
         		gender = true;
         		correct[5]= true;
         	}else{
-        	if(selectedId == 2131165250){//0x7f070044
+        	if(mbutton.isChecked()){//0x7f070044
         		gender = false;
         		correct[5]= true;
         		rSexErrorView.setVisibility(View.GONE);
         	}else{
         		rSexErrorView.setVisibility(View.VISIBLE);
         		rSexErrorView.setText("Ups das hätte nich passieren dürfen: Fehler beim auswählen des Geschlechts.");
-        	}
+        	}}
         	
-        	}
-		}else {
-			rSexErrorView.setVisibility(View.VISIBLE);
-			rSexErrorView.setText(getResources().getString(R.string.required_field));
-		}
-        
-		radioSexButton=(RadioButton)findViewById(selectedId);
+
 		if(fn.length()>1){
 			correct[0]= true;
 			rFNErrorView.setVisibility(View.GONE);
@@ -254,7 +252,6 @@ public class Registration extends Activity {
 		}
 	public void getLoginValues(int id){
 		if(id > -1){
-			rErrorView.setVisibility(View.GONE);
 			Intent intent = new Intent(getApplicationContext(),EditProfile.class);
 			intent.putExtra("ID", id);
 	//		intent.putExtra("gender", gender);

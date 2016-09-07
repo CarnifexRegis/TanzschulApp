@@ -2,9 +2,7 @@ package task;
 
 import protocol.Command;
 import request.UpdateChartRequest;
-import response.GetAllResponse;
 import response.UpdateChartResponse;
-import activitys.Menue;
 import activitys.SearchForDancingpartner;
 import android.util.Log;
 
@@ -12,15 +10,17 @@ public class UpdateChartTask extends BaseHttpRequestTask{
 private int id;
 private int kursstufe ;
 public boolean gender;
-public UpdateChartTask(SearchForDancingpartner sfdp,int id, int kursstufe, boolean gender) {
+int day;
+public UpdateChartTask(SearchForDancingpartner sfdp,int id, int kursstufe, boolean gender,int day) {
 	super(sfdp);
 	this.id = id;
 	this.kursstufe = kursstufe;
 	this.gender = gender;
+	this.day =day;
 	
 }
 public void execute() {
-	UpdateChartRequest request = new UpdateChartRequest( id, kursstufe, gender);
+	UpdateChartRequest request = new UpdateChartRequest( id, kursstufe, gender,day);
 
 	try {
 		String xml = buildXML(request);
@@ -44,7 +44,7 @@ public void onPostExecute(String result) {
 		// {
 		// Antwort erfolgreich erhalten
 
-		((SearchForDancingpartner) activity).chartsUpdate(response.getChartList());
+		((SearchForDancingpartner) activity).chartsUpdate(response.getPc());
 
 		// }
 	} catch (Exception e) {

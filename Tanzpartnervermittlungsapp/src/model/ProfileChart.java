@@ -15,19 +15,22 @@ String age;
 String uhr; 
 	@Element(name= "date" )
 String date;
-	@Element(name= "email" )
-String eMail;
-public ProfileChart(String fn, String ln, String age, String uhr,
-			String date, String eMail) {
+	@Element(name= "idp" )
+String idp;
+	
+	public ProfileChart(){
+		super();
+	}
+public ProfileChart(String fn, String ln, String age, String uhr,String date, String idp) {
 		super();
 		this.fn = fn;
 		this.ln = ln;
 		this.age = age;
 		this.uhr = uhr;
 		this.date = date;
-		this.eMail = eMail;
+		this.idp = idp;
 	}
-public ProfileChart(String fn, String ln,int age, String uhr, String date) {
+public ProfileChart(String fn, String ln,int age, String uhr, String date,String idp) {
 	this.fn = fn;
 	this.ln = ln;
 	if(age>=0){
@@ -37,6 +40,7 @@ public ProfileChart(String fn, String ln,int age, String uhr, String date) {
 	}
 	this.uhr = uhr;
 	this.date = date;
+	this.idp= idp;
 }
 public String getFn() {
 	return fn;
@@ -68,11 +72,11 @@ public String getdate() {
 public void setdate(String date) {
 	this.date = date;
 }
-public String geteMail() {
-	return eMail;
+public String getIdp() {
+	return idp;
 }
-public void seteMail(String eMail) {
-	this.eMail = eMail;
+public void setIdp(String idp) {
+	this.idp = idp;
 }
 
 }
