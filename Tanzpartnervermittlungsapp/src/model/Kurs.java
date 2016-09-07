@@ -76,6 +76,9 @@ public class Kurs {
 	public boolean isEnlisted() {
 		return enlisted;
 	}
+	public void setEnlisted(boolean enlisted) {
+		this.enlisted = enlisted;
+	}
 	
 	//private Date kursende
 

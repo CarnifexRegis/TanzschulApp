@@ -6,6 +6,18 @@
     <string name="mTpf">Tanzpartnerin finden</string>
     <string name="wTpf">Tanzpartner finden</string>
 
+    <string-array name="kurs_array2">
+   	<item>Alle</item>
+    <item>Grundkurs 1</item>
+        <item>Grundkurs 2</item>
+        <item>Bronze</item>
+        <item>Silber</item>
+         <item>Gold</item>
+        <item>Goldstar Teil A</item>
+        <item>Goldstar Teil B</item>
+        <item>Jugendkreis 1</item>
+        <item>Jugendkreis 2</item>  
+  </string-array>
 <string-array name="kurs_array">
    
     <item>Grundkurs 1</item>

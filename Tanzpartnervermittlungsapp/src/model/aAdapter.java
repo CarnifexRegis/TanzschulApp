@@ -18,52 +18,88 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.TextView;
 import android.widget.ToggleButton;
-
+/**
+ * 
+ * @author Simon
+ *@Sources: http://stackoverflow.com/questions/21053979/listview-duplicates-android
+ *			model.adapter
+ *			http://developer.android.com/resources/samples/ApiDemos/src/com/example/android/apis/view/List14.html
+ */
 public class aAdapter extends ArrayAdapter<Kurs>{
 	int id;
+	Context context;
 	AssignToKurs atk;
 	public aAdapter(Context context, ArrayList<Kurs> arrayList,int id, AssignToKurs atk) {
 		super(context, R.layout.yet_searching_listitem, arrayList);
 		this.id= id;
 		this.atk = atk;
+		this.context= context;
 		}
 	
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		View KursView = convertView;
-		
+		//http://stackoverflow.com/questions/21053979/listview-duplicates-android
+		View row = null;
+		if (convertView == null) {
+            LayoutInflater inflater = ((AssignToKurs) context).getLayoutInflater();
+            row = inflater.inflate(R.layout.yet_searching_listitem, parent, false);
+            //Make sure the textview exists in this xml
+     } else {
+            row = convertView;
+     }
 		Kurs k = getItem(position);
-		if (KursView == null) {
-			KursView = LayoutInflater.from(getContext()).inflate(R.layout.yet_searching_listitem, parent, false);
-			TextView day =  (TextView) KursView.findViewById(R.id.ayDayView);
-			TextView time  =  (TextView) KursView.findViewById(R.id.ayKurszeitView);
-			TextView date =  (TextView) KursView.findViewById(R.id.ayDateView);
+		
+			
+			TextView day =  (TextView) row.findViewById(R.id.ayDayView);
+			TextView time  =  (TextView) row.findViewById(R.id.ayKurszeitView);
+			TextView date =  (TextView) row.findViewById(R.id.ayDateView);
 			day.setText(k.getWochentag());
 			time.setText(k.getUhrzeit());
 			date.setText(k.getDatum());
-			ToggleButton delete = (ToggleButton) KursView.findViewById(R.id.ayEnlistButton);
-			// test
+			ToggleButton delete = (ToggleButton) row.findViewById(R.id.ayEnlistButton);
+			
+			//http://developer.android.com/resources/samples/ApiDemos/src/com/example/android/apis/view/List14.html
 			delete.setTag(position);
 			delete.setClickable(true);
 			delete.setChecked(k.isEnlisted());
-			delete.setOnCheckedChangeListener( new OnCheckedChangeListener() {
-		        @Override
-		        public void onCheckedChanged(CompoundButton tb, boolean isChecked) {
+			
+			delete.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					int position =  (int) v.getTag();
+					Kurs k = getItem(position);
+					
+					UpdateLinkTask ult = new UpdateLinkTask(atk, id,k.getKursId(),((CompoundButton) v).isChecked(),position,v);
+					v.setClickable(false);
 		        	
-		        	int position =  (int) tb.getTag();
-		        	Kurs k = getItem(position);
+		        	((CompoundButton) v).setChecked(!((CompoundButton) v).isChecked());
 		        	
-		        	UpdateLinkTask ult = new UpdateLinkTask(atk, id,k.getKursId(), isChecked,position);
-		        	//tb.setChecked(!isChecked);
 		        	ult.execute();
-		        	
-		        }
+				}
+			});
+//			delete.setOnCheckedChangeListener( new OnCheckedChangeListener() {
+//		        @Override
+//		        public void onCheckedChanged(CompoundButton tb, boolean isChecked) {
+//		        	
+//		        	int position =  (int) tb.getTag();
+//		        	Kurs k = getItem(position);
+//		        	
+//		        	UpdateLinkTask ult = new UpdateLinkTask(atk, id,k.getKursId(), isChecked,position,tb);
+//		        	tb.setClickable(false);
+//		        	tb.setEnabled(false);
+//		        	tb.setChecked(!isChecked);
+//		        	
+//		        	ult.execute();
+//		        	
+//		        }
 
 				
-		    }) ;
+		   // }) ;
 			
 
-	}
-		return KursView;
+	
+		return row;
 		}
 }

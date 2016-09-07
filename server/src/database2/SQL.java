@@ -185,10 +185,40 @@ private Connection c;
 			addUser("jma@pampam.de","geheim10","Lang","Lang",0,8,1);
 			addUser("Needle@Nadel.de","geheim11","Stark","Arya",1,8,1);
 			addUser("faceless@men.de","geheim12","Nobody","Noone",0,8,1);
-			addUser("a@girl.de","geheim13","Nobody","Noone",0,8,1);
+			addUser("a@girl.de","geheim13","Nobody","Noone",1,8,1);
 			addUser("syrio@forell.de","geheim14","Forell","Syrio",0,8,1);
+			addUser("sansa@Stark.de","geheim14","Stark","Sansa",1,8,1);
+			addUser("meera@reet.de","geheim14","Reet","Meera",1,8,1);
+			addUser("youknow@nothing.de","geheim14","Freeborn","Ygritte",1,8,1);
+			addUser ("fortheNighttisfull@terrors.de","geheim14","Redwoman","Melisandre",1,8,1);
+			addUser ("war@ftw.de","geheim14","Sand","Obara",1,8,1);
+			addUser ("Freedom@dorne.de","geheim14","Sand","Nymeria",1,8,1);
+			addUser ("KillingForFreedom@dorne.de","geheim14","Sand","Tyene",1,8,1);
 			
 			
+			
+			
+			addLink(1,3);
+			addLink(2,3);
+			addLink(3,3);
+			addLink(4,3);
+			addLink(5,3);
+			addLink(6,3);
+			addLink(7,3);
+			addLink(8,3);
+			addLink(9,3);
+			addLink(10,3);
+			addLink(11,3);
+			addLink(12,3);
+			addLink(13,3);
+			addLink(14,3);
+			addLink(15,3);
+			addLink(16,3);
+			addLink(17,3);
+			addLink(18,3);
+			addLink(19,3);
+			addLink(20,3);
+			addLink(21,3);
 			
 		//	getAllUserData();
 			// kein goldstar b im quartal
@@ -206,12 +236,12 @@ private Connection c;
 			
 		//	readKurs();
 //			addLink(1, 1);
-//			addLink(2,1);
+//		addLink(2,1);
 //			addLink(3,1);
 //			addLink(4,1);
 //			addLink(5,1);
 //			addLink(6,1);
-//			addLink(7,1);
+//		addLink(7,1);
 //			addLink(8,1);
 //			addLink(9,1);
 //			addLink(10,1);
@@ -225,9 +255,9 @@ private Connection c;
 //			addLink(10,6);
 //			addLink(10,7);
 //			addLink(10,8);
-			
-			
-			getKurs(1,1);
+//			
+//			
+//			getKurs(1,1);
 		
 			//eMailExists("Huan@huan.de");
 		//	readLinks();
@@ -574,8 +604,6 @@ private Connection c;
 	}
 	
 	public void restorePassword (){}
-	
-	
 	public void fullProfiledata(){}
 	/**
 	 * 
@@ -585,7 +613,7 @@ private Connection c;
 	 * @return
 	 */
 	public ArrayList<ProfileChart> getProfilecharts(int gender, int kstu,int myage,String day){
-		//TODO age
+		//TODO age,day
 		Statement stmt;
 		
 		 
@@ -849,36 +877,16 @@ private Connection c;
 			}
 		}
 			
-		public ArrayList<Kurs> getKurs2(int ks){
-			Statement stmt;
-			ArrayList<Kurs> kurs = new ArrayList<Kurs>();
-			try{
-				stmt=c.createStatement();
-				String sql = " SELECT *  FROM KURS WHERE KURSSTUFE = '"+ks+"' ORDER BY KURSSTUFE ASC,DATUM DESC ;";
-				ResultSet rs = stmt.executeQuery(sql);
-				while(rs.next()){
-					int  id = rs.getInt("ID");
-					int cl  =rs.getInt("kursstufe");
-					String uhr = rs.getString("UHRZEIT");
-					String date = "" +rs.getDate("DATUM");
-					String day = rs.getString("WOCHENTAG");
-					System.out.println(id + "");
-					kurs.add(new Kurs(id, cl, date, day, uhr,false));
-				}
-				if(stmt!=null)stmt.close();
-				if(rs!=null)rs.close();
-				return kurs;
-			}catch(Exception e){
-				System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-		        System.exit(0);
-				e.printStackTrace();
-				return null;
-			}
 			
-		}
+		
 		public ArrayList<Kurs> getKurs(int kstu, int uid){
 			Statement stmt;
-			
+//			String kstu ;
+//			if (intkstu == 0625725735){
+//				kstu = "KURSSTUFE";
+//			}else{
+//				kstu = intkstu +"";
+//			}
 			
 			
 			ArrayList<Kurs> kurs = new ArrayList<Kurs>();

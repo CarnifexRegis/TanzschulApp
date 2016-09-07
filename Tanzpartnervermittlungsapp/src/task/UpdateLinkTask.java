@@ -7,6 +7,9 @@ import response.UpdateLinkResponse;
 import activitys.AssignToKurs;
 import activitys.EditProfile;
 import android.util.Log;
+import android.view.View;
+import android.widget.CompoundButton;
+import android.widget.ToggleButton;
 /**
  * 
  * @author Simon
@@ -16,6 +19,7 @@ public class UpdateLinkTask extends BaseHttpRequestTask{
 int uid;
 int kid;
 int position ;
+View tb;
 boolean command;// trur for add fals for delete
 	/**
 	 * 
@@ -24,22 +28,26 @@ boolean command;// trur for add fals for delete
 	 * @param kid		The Kurs id fo the Link object
 	 * @param command	True for adding dedicated Link false for deleting it
 	 */
-	public UpdateLinkTask(AssignToKurs atk ,int uid,int  kid, boolean command, int position) {
+	public UpdateLinkTask(AssignToKurs atk ,int uid,int  kid, boolean command, int position,View tb) {
 		super(atk);
 		this.kid = kid;
 		this.uid = uid;
 		this.command = command;
 		this.position = position;
+		this.tb = tb;
 		
 		// TODO Auto-generated constructor stub
 	}
 	public void execute() {
 		UpdateLinkRequest request = new UpdateLinkRequest(uid ,kid,command);
 		try {
+			
 			String xml = buildXML(request);
 			super.execute(Command.updatelink, xml);
 		} catch (Exception e) {
 			((AssignToKurs) activity).onConnectionError();
+			 tb.setClickable(true);
+//			 tb.setEnabled(true);
 			// FIXME Errorhandling
 			System.out.println("An error occured bulding the xml/connection error");
 		}
@@ -53,15 +61,26 @@ boolean command;// trur for add fals for delete
 			String error =response.getEc();
 			 if(!(error.equals( ErrorCode.ja.getError())))
 			 {
-					((EditProfile) activity).onError(error);
+					((AssignToKurs) activity).onError(error);
+					((CompoundButton) tb).setChecked(!command);
 			 }
 			 else
-			 {
-			((AssignToKurs) activity).added(position);
-			 }
-			
+			 {	
+				 
+				 ((CompoundButton) tb).setChecked(command);
+				 
+				 if (command ){
+					 ((AssignToKurs) activity).added(position);
+	
+				 }else{
+				 	((AssignToKurs) activity).deleted(position);}
+				 }
+		 tb.setClickable(true);
+//			 tb.setEnabled(true);
 		} catch (Exception e) {
 			Log.e("Error in  LoginTask", e.toString());
+			 tb.setClickable(true);
+//			 tb.setEnabled(true);
 			((AssignToKurs) activity).onConnectionError();
 		}
 	}

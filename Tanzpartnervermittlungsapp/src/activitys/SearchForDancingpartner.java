@@ -205,8 +205,9 @@ kSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 		 */
 		public void newKursbuchungen(ArrayList<ProfileChart> pc){
 			adapterCustom.clear();
-			adapterCustom.addAll(pc);
-			adapterCustom.notifyDataSetChanged();
+		
+		adapterCustom.addAll(pc);
+		adapterCustom.notifyDataSetChanged();
 		
 		}
 		public void chartsUpdate(ArrayList<ProfileChart> pc){
