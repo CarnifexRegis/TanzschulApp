@@ -1,6 +1,7 @@
 package database2;
 import java.awt.List;
 import java.io.StringWriter;
+import java.security.SecureRandom;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
@@ -28,10 +29,14 @@ import org.simpleframework.xml.stream.Style;
  *			http://stackoverflow.com/questions/7886462/how-to-get-row-count-using-resultset-in-java
  *			http://www.tutorialspoint.com/jdbc/jdbc-select-records.htm
  *			http://www.w3schools.com/sql/sql_update.asp		
+ *			http://docs.oracle.com/javase/7/docs/api/java/security/SecureRandom.html
+ *			http://www.javapractices.com/topic/TopicAction.do?Id=62
  */
 public class SQL {
-	
+SecureRandom random = new SecureRandom();
 private Connection c;
+// TODO DEBUGGING
+int i = 0;
 //https://coderanch.com/t/300886/JDBC/databases/Proper-close-Connection-Statement-ResultSet
 // TODO try out that fancy shit if you have leaft over time
 /**
@@ -106,10 +111,12 @@ private Connection c;
 				if (stmt != null){stmt.close();}
 			}catch(Exception e){	
 				try{
+					// TODO RESET AUTO INCREMENT AFTER DEBUGGING
 				Class.forName("org.sqlite.JDBC");
 				stmt = c.createStatement();
 				String sql= "CREATE TABLE USER" +
 							"(ID INTEGER PRIMARY KEY AUTOINCREMENT, " + //0 identification Number   auto
+							"IDP TEXT, "+
 							" EMAIL TEXT NOT NULL," +					//1 e-Mail					!
 							" PASSWORD TEXT NOT NULL," +				//2 password				!
 							" LN TEXT NOT NULL,"+						//3 last name				!
@@ -222,39 +229,39 @@ private Connection c;
 			
 		//	getAllUserData();
 			// kein goldstar b im quartal
-//			addKurs(3,"25.03.2016","Donnerstag","15:25");
-//			addKurs(4,"25.03.2016","Donnerstag","16:25");
-//			addKurs(6,"26.03.2016","Freitag","16:35");
-//			addKurs(1,"26.03.2016","Freitag","13:25");
-//			addKurs(2,"26.03.2016","Freitag","14:35");
-//			addKurs(3,"26.03.2016","Freitag","15:35");
-//			addKurs(4,"26.03.2016","Freitag","16:35");
-//			addKurs(5,"26.03.2016","Freitag","17:35");
-//			addKurs(1,"24.03.2016","Mittwoch","13:25");
-//			addKurs(2,"24.03.2016","Mittwoch","14:25");
+			addKurs(3,"25.03.2016","Donnerstag","15:25");
+			addKurs(4,"25.03.2016","Donnerstag","16:25");
+			addKurs(6,"26.03.2016","Freitag","16:35");
+			addKurs(1,"26.03.2016","Freitag","13:25");
+			addKurs(2,"26.03.2016","Freitag","14:35");
+			addKurs(3,"26.03.2016","Freitag","15:35");
+			addKurs(4,"26.03.2016","Freitag","16:35");
+			addKurs(5,"26.03.2016","Freitag","17:35");
+			addKurs(1,"24.03.2016","Mittwoch","13:25");
+			addKurs(2,"24.03.2016","Mittwoch","14:25");
 			
 			
-		//	readKurs();
-//			addLink(1, 1);
-//		addLink(2,1);
-//			addLink(3,1);
-//			addLink(4,1);
-//			addLink(5,1);
-//			addLink(6,1);
-//		addLink(7,1);
-//			addLink(8,1);
-//			addLink(9,1);
-//			addLink(10,1);
-//			addLink(11,1);
-//			addLink(12,1);
-//			addLink(13,1);
-//			addLink(10,2);
-//			addLink(10,3);
-//			addLink(10,4);
-//			addLink(10,5);
-//			addLink(10,6);
-//			addLink(10,7);
-//			addLink(10,8);
+	
+			addLink(1, 1);
+			addLink(2,1);
+			addLink(3,1);
+			addLink(4,1);
+			addLink(5,1);
+			addLink(6,1);
+			addLink(7,1);
+			addLink(8,1);
+			addLink(9,1);
+			addLink(10,1);
+			addLink(11,1);
+			addLink(12,1);
+			addLink(13,1);
+			addLink(10,2);
+			addLink(10,3);
+			addLink(10,4);
+			addLink(10,5);
+			addLink(10,6);
+			addLink(10,7);
+			addLink(10,8);
 //			
 //			
 //			getKurs(1,1);
@@ -291,13 +298,13 @@ private Connection c;
 				if(stmt!= null)stmt.close();
 				if(count == 0){
 					System.out.println("nope");
-					return false;
+					return true;
 					}
 				else
 					{
 					
 					System.out.println("The requested E-Mail already exists in our database");
-					return true;
+					return false;
 					}
 				}	
 			}
@@ -305,7 +312,7 @@ private Connection c;
 			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 		    System.exit(0);
 			}
-		return true;
+		return false;
 		}
 	/**
 	 * 
@@ -317,10 +324,88 @@ private Connection c;
 	 * @param age
 	 * @return
 	 */
-	public int addUser(String em, String ps,String ln,  String fn, int g,int age,int pa){
-		int i;
-		Statement stmt;
+	public boolean aviableID(int id){
+		Statement stmt = null;
 		try{
+			stmt = c.createStatement();
+			String sql = " SELECT COUNT(*) AS COUNT FROM USER WHERE ID = '" + id + "';";
+			ResultSet rs = stmt.executeQuery(sql);
+			if(rs.next()){
+				int count = rs.getInt("count");
+				if (rs != null)rs.close();
+				if(stmt!= null)stmt.close();
+				if(count == 0){
+					System.out.println("nope");
+					return true;
+					}
+				else
+					{
+					
+					System.out.println("The requested E-Mail already exists in our database");
+					return false;
+					}
+				}	
+			}
+		catch(Exception e){
+			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+		    System.exit(0);
+			}
+		return false;
+		}
+	
+	public boolean aviableIDP(String idp)
+	{Statement stmt = null;
+	try{
+		stmt = c.createStatement();
+		String sql = " SELECT COUNT(*) AS COUNT FROM USER WHERE IDP = '" + idp + "';";
+		ResultSet rs = stmt.executeQuery(sql);
+		if(rs.next()){
+			int count = rs.getInt("count");
+			if (rs != null)rs.close();
+			if(stmt!= null)stmt.close();
+			if(count == 0){
+				System.out.println("nope");
+				return true;
+				}
+			else
+				{
+				
+				System.out.println("The requested IDP already exists in our database");
+				return false;
+				}
+			}	
+		}
+	catch(Exception e){
+		System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	    System.exit(0);
+		}
+	return false;
+	}
+	
+	public int addUser(String em, String ps,String ln,  String fn, int g,int age,int pa){
+		
+		Statement stmt;
+		String idp;
+		int id;
+		//http://docs.oracle.com/javase/7/docs/api/java/security/SecureRandom.html
+		//http://www.javapractices.com/topic/TopicAction.do?Id=62
+		 idp =random.nextInt(10000000)+"";
+		 id = random.nextInt(10000000);
+	     
+	      while(!aviableIDP(idp)){
+	    	  idp =random.nextInt(10000000)+"";
+	      }
+	      //TODO deactivated for easier debugging
+//	      while(!aviableID(id)){
+//	    	  id = random.nextInt(10000000);
+//	      }
+	      
+	      idp =random.nextInt(10000000)+"";
+	    //TODO deactivated for easier debugging
+		// id = random.nextInt(10000000);
+	     
+		try{
+			
 			String sql2 = "SELECT COUNT(EMAIL) AS I FROM USER"
 					+ " WHERE USER.EMAIL= '"+ em + "' ;";
 		
@@ -330,17 +415,30 @@ private Connection c;
 			i = rs.getInt("I");
 		if(rs!=null){rs.close();}
 		if(i==0){
-		
-			String sql = "INSERT INTO USER(EMAIL,PASSWORD,LN,FN,GENDER,AGE,PA)"+ 
-					  	 "VALUES(?,?,?,?,?,?,?);";						// new Version similar to the dedicated source
+		// TODO ADD ID AFTER DEBUGGING
+			String sql = "INSERT INTO USER(IDP, EMAIL,PASSWORD,LN,FN,GENDER,AGE,PA)"+ 
+					  	 "VALUES(?,?,?,?,?,?,?,?);";						// new Version similar to the dedicated source
 			PreparedStatement p = c.prepareStatement (sql);
-			p.setString(1,em);
-			p.setString(2, ps);
-			p.setString(3,ln);
-			p.setString(4,fn);
-			p.setInt(5, g);
-			p.setInt(6,age);
-			p.setInt(7,pa);
+			// TODO Deactivated for Debugging
+//			p.setInt(1,id);
+//			p.setString(2,idp);
+//			p.setString(3,em);
+//			p.setString(4, ps);
+//			p.setString(5,ln);
+//			p.setString(6,fn);
+//			p.setInt(7, g);
+//			p.setInt(8,age);
+//			p.setInt(9,pa);
+//			p.executeUpdate();
+			
+			p.setString(1,idp);
+			p.setString(2,em);
+			p.setString(3, ps);
+			p.setString(4,ln);
+			p.setString(5,fn);
+			p.setInt(6, g);
+			p.setInt(7,age);
+			p.setInt(8,pa);
 			p.executeUpdate();
 			
 			if(p!=null)p.close();
@@ -365,6 +463,7 @@ private Connection c;
 		Statement stmt = null;
 		try{
 			stmt = c.createStatement();
+			//String sql = "SELECT ID FROM USER WHERE EMAIL = '" + em + "';";
 			String sql = "SELECT ID FROM USER WHERE EMAIL = '" + em + "';";
 			ResultSet rs = stmt.executeQuery(sql);
 			if (rs.next()){
@@ -399,11 +498,11 @@ private Connection c;
 		ArrayList<UserData> dataList = new ArrayList<UserData>();
 		// Change to get full Userdata later on
 		try {
-			String sql = "SELECT EMAIL,LN,FN,GENDER,AGE,PA FROM USER";
+			String sql = "SELECT IDP,LN,FN,GENDER,AGE,PA FROM USER";
 			stmt = c.createStatement(); 
 			ResultSet rs = stmt.executeQuery(sql);
 			while(rs.next()){
-				String eMail = rs.getString("EMAIL");
+				String eMail = rs.getString("IDP");
 				String ln = rs.getString("LN");
 				String fn = rs.getString("FN");
 				int g = rs.getInt("GENDER");
@@ -623,7 +722,7 @@ private Connection c;
 		
 		ArrayList<ProfileChart>  pc = new ArrayList<ProfileChart>();
 		try{
-			String sql = "SELECT USER.FN, USER.LN, USER.AGE, KURS.UHRZEIT,USER.EMAIL, KURS.DATUM FROM KURS INNER JOIN LINK  ON LINK.KID = KURS.ID INNER JOIN USER ON LINK.UID = USER.ID WHERE USER.GENDER != '"+gender+"' AND KURSSTUFE = '"+ kstu+"';";
+			String sql = "SELECT USER.FN, USER.LN, USER.AGE, KURS.UHRZEIT,USER.IDP, KURS.DATUM FROM KURS INNER JOIN LINK  ON LINK.KID = KURS.ID INNER JOIN USER ON LINK.UID = USER.ID WHERE USER.GENDER != '"+gender+"' AND KURSSTUFE = '"+ kstu+"';";
 			stmt = c.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 			
@@ -634,7 +733,7 @@ private Connection c;
 				String uhr = rs.getString("UHRZEIT");
 				DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 				String date = df.format(rs.getDate("DATUM"));
-				String eMail = rs.getString("EMAIL");
+				String eMail = rs.getString("IDP");
 				
 				System.out.println(fn+" "+ln);
 				pc.add(new ProfileChart(fn,ln,age,uhr,date,eMail));
@@ -808,7 +907,7 @@ private Connection c;
 			Statement stmt;
 			ProfileData pd ;
 			try {
-				String sql = "SELECT EMAIL,LN,FN,GENDER,AGE,PA,PTEXT, PNumber, HEIGHT FROM USER WHERE ID = '"+id+"';";
+				String sql = "SELECT LN,FN,GENDER,AGE,PA,PTEXT, PNumber, HEIGHT FROM USER WHERE ID = '"+id+"';";
 				stmt = c.createStatement(); 
 				ResultSet rs = stmt.executeQuery(sql);
 				
