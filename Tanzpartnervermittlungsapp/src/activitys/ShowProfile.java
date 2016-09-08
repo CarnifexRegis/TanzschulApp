@@ -24,7 +24,7 @@ import android.widget.Toast;
  * @author Simon
  *@ Source: http://stackoverflow.com/questions/19253786/how-to-copy-text-to-clip-board-in-android
  */
-public class ShowProfile extends Activity {
+public class ShowProfile extends ConnectedActivity {
 int id;
 boolean gender;
 String idp;
@@ -103,7 +103,7 @@ private ClipboardManager myClipboard;
 			fpt.execute();
 			}
 
-	
+	@Override
 		public void onConnectionError(){
 			
 			String error;
@@ -113,30 +113,14 @@ private ClipboardManager myClipboard;
 			}else{
 				error =getResources().getString(R.string.connection_failed);
 			}
-//				Toast.makeText(getApplicationContext(), error, Toast.LENGTH_SHORT).show(); 
-//			try {
-//				Thread.sleep(3000);
-//			} catch (InterruptedException e) {
-//				// TODO Auto-generated catch bloc
-//				e.printStackTrace();
-//			}
+
 			Intent intent = new Intent(getApplicationContext(),SearchForDancingpartner.class);
 			intent.putExtra("ID", id);
 			intent.putExtra("gender", gender);
 			intent.putExtra("error", error);
 			startActivity(new Intent(intent));
 			}
-		
-		
-		
-	public boolean isOnline(Context context) {
-	    ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-	    android.net.NetworkInfo networkinfo = cm.getActiveNetworkInfo();
-	    if (networkinfo != null && networkinfo.isConnected()) {
-	        return true;
-	    }
-	    return false;}
-
+	@Override
 	public void onError(String ec) {
 		Intent intent;
 		switch (ec){
@@ -152,16 +136,12 @@ private ClipboardManager myClipboard;
 			intent.putExtra("error", "Fatal error: "+ec);
 			startActivity(new Intent(intent));
 			break;
+		default:
+			intent = new Intent(getApplicationContext(),LogIn.class);
+			intent.putExtra("error", "Fatal error: " + ec);
+			startActivity(new Intent(intent));
+			break;
 		}
-//		errorView.setVisibility(View.VISIBLE);
-//		errorView.setText("Das gesuchte Benutzerkonto konnte nicht gefunden werden.");
-//		Toast.makeText(getApplicationContext(), "Das gesuchte Benutzerkonto konnte nicht gefunden werden.", Toast.LENGTH_LONG).show(); 
-//		try {
-//			Thread.sleep(3000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch bloc
-//			e.printStackTrace();
-//		}
 	}
 
 

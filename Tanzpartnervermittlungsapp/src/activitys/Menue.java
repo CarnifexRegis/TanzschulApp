@@ -23,7 +23,7 @@ import com.example.Tanzpartnervermittlung.R;
  * @author Simon
  *
  */
-public class Menue extends Activity {
+public class Menue extends ConnectedActivity {
 	//https://developer.android.com/guide/topics/data/data-storage.html#pref
 	 public static final String prefName = "MyPrefsFile";
 	int ID ;

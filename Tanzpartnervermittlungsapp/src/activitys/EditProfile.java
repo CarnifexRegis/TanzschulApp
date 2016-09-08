@@ -24,7 +24,7 @@ import android.widget.Toast;
 // Added: 13.06.2016
 //Last Modofied:14.6.2016 
 // Add Listeners for 2 Radio Groups and one Button Mabe do the first request
-public class EditProfile extends Activity {
+public class EditProfile extends ConnectedActivity {
 //	ProfileDataForServer data;
 	EditText pnInsert;
 	EditText pTextInsert;
@@ -121,35 +121,9 @@ boolean gender;
 		intent.putExtra("gender", gender);
 		startActivity(new Intent(intent));
 	}
-	public void onError(String ec) {
-		Intent intent ;
-		switch (ec){
-	case  "wrongLogin":
-		intent = new Intent(getApplicationContext(),LogIn.class);
-		intent.putExtra("error", getResources().getString(R.string.session_expired));
-		startActivity(new Intent(intent));
-		break;
-	case "notFound" :
-		Toast.makeText(getApplicationContext(),getResources().getString(R.string.unknown_error), 
-                Toast.LENGTH_LONG).show(); 
-		break;
-		default:
-			intent = new Intent(getApplicationContext(),LogIn.class);
-			intent.putExtra("error", "Fatal error: " + ec);
-			startActivity(new Intent(intent));
-			break;
-	}
-		
-	}
-	public boolean isOnline(Context context) {
-	    ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-	    android.net.NetworkInfo networkinfo = cm.getActiveNetworkInfo();
-	    if (networkinfo != null && networkinfo.isConnected()) {
-	        return true;
-	    }
-	    return false;}
 	
-	public void ConnectionError() {
+	@Override // must be overrided see TODO
+	public void onConnectionError() {
 		
 			//TODO Error Handling 
 			//this activity has to switch back to the activity that called it
@@ -162,8 +136,7 @@ boolean gender;
 				Toast.makeText(getApplicationContext(), getResources().getString(R.string.connection_failed), 
 		                Toast.LENGTH_SHORT).show(); 
 				
-			}
-			
-		
+			}	
 	}
+	
 	}

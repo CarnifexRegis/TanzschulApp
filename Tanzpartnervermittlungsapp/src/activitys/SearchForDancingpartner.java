@@ -49,7 +49,7 @@ import android.widget.Toast;
  * 
  * 
  */
-	public class SearchForDancingpartner extends Activity {
+	public class SearchForDancingpartner extends ConnectedActivity {
 		Adapter adapterCustom;
 		ArrayList<ProfileChart> pc;
 		int ID = -1;
@@ -230,14 +230,7 @@ kSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
     		                Toast.LENGTH_SHORT).show(); }
 		    }
 		//http://stackoverflow.com/questions/2789612/how-can-i-check-whether-an-android-device-is-connected-to-the-web
-		public boolean isOnline(Context context) {
-		    ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-		    android.net.NetworkInfo networkinfo = cm.getActiveNetworkInfo();
-		    if (networkinfo != null && networkinfo.isConnected()) {
-		        return true;
-		    }
-		    return false;
-		}
+		
 		/**
 		 * 
 		 * @param pc	An Array List of Profilecharts recieved from the Server
@@ -375,10 +368,29 @@ kSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 //		    	}
 //		    return true;
 //		}
-		public void onError(String error){
-			Toast.makeText(this,"Fehler: "+ error, Toast.LENGTH_SHORT).show();
+		@Override
+		public void onError(String ec){
+			Intent intent;
+			
+			switch (ec){
+			case  "wrongLogin":
+				intent = new Intent(getApplicationContext(),LogIn.class);
+				intent.putExtra("error", getResources().getString(R.string.session_expired));
+				startActivity(new Intent(intent));
+				break;
+			case "notFound" :
+				Toast.makeText(getApplicationContext(),getResources().getString(R.string.unknown_error), 
+		                Toast.LENGTH_LONG).show(); 
+				break;
+			default:
+				intent = new Intent(getApplicationContext(),LogIn.class);
+				intent.putExtra("error", "Fatal error: " + ec);
+				startActivity(new Intent(intent));
+				break;
+			}
 			sB.setEnabled(true);
 		}
+		@Override
 		public void onConnectionError(){
 			sB.setEnabled(true);
 			if(!isOnline(this)){

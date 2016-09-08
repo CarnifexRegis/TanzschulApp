@@ -29,7 +29,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class AssignToKurs extends Activity{
+public class AssignToKurs extends ConnectedActivity{
 	int id = -1;
 	boolean gender;
 	AssignToKurs atk = this;
@@ -129,20 +129,10 @@ public class AssignToKurs extends Activity{
 				refresh.setEnabled(false);
 				GetKursTask gkt = new GetKursTask(atk,id, kursstufe);
 				gkt.execute();
-
-
-
 			}
 		});
 }	
 	public void recieveData(ArrayList<Kurs> k){
-		// didn´t wor if u got the smae number of objects from the server
-		//TODO  find  a better way to fix this
-	// true to add false to delete
-//			Adapter.clear();
-//			Adapter.notifyDataSetInvalidated();
-//			Adapter.addAll(k);
-//			Adapter.notifyDataSetChanged();
 		if (k.isEmpty()){
 			Toast.makeText(this,getResources().getString(R.string.empty_result), Toast.LENGTH_LONG).show();
 		}
@@ -164,6 +154,7 @@ public class AssignToKurs extends Activity{
 		//Adapter.getItem(position);
 		
 	}
+	@Override
 	public void onError(String ec){
 		Intent intent;
 		switch (ec){
@@ -184,6 +175,7 @@ public class AssignToKurs extends Activity{
 		}
 		refresh.setEnabled(true);
 	}
+	@Override
 	public void onConnectionError(){
 		refresh.setEnabled(true);
 		if(!isOnline(this)){
@@ -195,13 +187,5 @@ public class AssignToKurs extends Activity{
 	                Toast.LENGTH_LONG).show(); 
 			
 		}
-	}
-	public boolean isOnline(Context context) {
-	    ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-	    android.net.NetworkInfo networkinfo = cm.getActiveNetworkInfo();
-	    if (networkinfo != null && networkinfo.isConnected()) {
-	        return true;
-	    }
-	    return false;}
-	
+	}	
 }

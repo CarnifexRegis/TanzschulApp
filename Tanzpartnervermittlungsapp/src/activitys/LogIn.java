@@ -2,13 +2,10 @@ package activitys;
 
 
 
-import protocol.ErrorCode;
+
 import task.LoginTask;
-
 import com.example.Tanzpartnervermittlung.R;
-
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -23,7 +20,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 // maby change to popup that runs in an seperate thread
-public class LogIn extends Activity{
+public class LogIn extends ConnectedActivity{
 	Activity calledBy ;
 	final LogIn login = this;
 	//http://stacktips.com/tutorials/android/android-checkbox-example
@@ -164,7 +161,7 @@ public class LogIn extends Activity{
 
 		
 	}
-
+	@Override
 	public void onConnectionError(){
 		errorView.setVisibility(View.VISIBLE);
 		if(!isOnline(this)){
@@ -186,7 +183,6 @@ public class LogIn extends Activity{
 	@Override
 	public void onPause(){
 		super.onPause();
-		
 		// prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 	      Editor editor = prefs.edit();
 	      if(c){
@@ -201,6 +197,7 @@ public class LogIn extends Activity{
 	      editor.commit();
 	     
 	}
+	@Override
 	public void onError(String ec) {
 		switch (ec){
 		case  "wrongLogin":
@@ -213,5 +210,7 @@ public class LogIn extends Activity{
 			break;
 		}
 		
-	}		
+	}
+	
+		
 	}

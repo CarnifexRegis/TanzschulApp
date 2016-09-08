@@ -41,7 +41,7 @@ public class RegisterTask  extends BaseHttpRequestTask{
 			String xml = buildXML(request);
 			super.execute(Command.register, xml);
 		} catch (Exception e) {
-			((Registration) activity).connectionError();
+			((Registration) activity).onConnectionError();
 			// FIXME Errorhandling
 			System.out.println("An error occured bulding the xml/exceuting command");
 		}
@@ -63,6 +63,7 @@ public class RegisterTask  extends BaseHttpRequestTask{
 			 }
 			
 		} catch (Exception e) {
+			((Registration) activity).onConnectionError();
 			Log.e("Error in  LoginTask", e.toString());
 		}
 	}

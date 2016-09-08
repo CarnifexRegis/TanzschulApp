@@ -29,7 +29,7 @@ public class ProfileDataTask  extends BaseHttpRequestTask{
 			String xml = buildXML(request);
 			super.execute(Command.getprofile, xml);
 		} catch (Exception e) {
-			((EditProfile) activity).ConnectionError();
+			((EditProfile) activity).onConnectionError();
 			// FIXME Errorhandling
 			System.out.println("An error occured bulding the xml/exceuting command");
 		}
@@ -53,7 +53,7 @@ public class ProfileDataTask  extends BaseHttpRequestTask{
 			
 		} catch (Exception e) {
 			Log.e("Error in  LoginTask", e.toString());
-			((EditProfile) activity).ConnectionError();
+			((EditProfile) activity).onConnectionError();
 		}
 	}
 

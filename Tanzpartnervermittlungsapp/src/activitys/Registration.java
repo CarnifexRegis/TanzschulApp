@@ -27,7 +27,7 @@ import android.widget.TextView;
  * 
  *
  */
-public class Registration extends Activity {
+public class Registration extends ConnectedActivity {
 	TextView[] errorViews = new TextView[7];
 	TextView rErrorView;
 	TextView rFNErrorView;
@@ -220,8 +220,8 @@ public class Registration extends Activity {
 		}
 		return true;
 	}
-	
-	public void connectionError(){
+	@Override // i kept it the  "View way" because the user has much other data he has to pay atention  so that he might not recognize a Toast
+	public void onConnectionError(){
 		rErrorView.setVisibility(View.VISIBLE);
 		if(!isOnline(this)){
 			rErrorView.setText(getResources().getString(R.string.check_connection));
@@ -230,16 +230,9 @@ public class Registration extends Activity {
 		}
 		}
 	
-	public boolean isOnline(Context context) {
-	    ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-	    android.net.NetworkInfo networkinfo = cm.getActiveNetworkInfo();
-	    if (networkinfo != null && networkinfo.isConnected()) {
-	        return true;
-	    }
-	    return false;}
 	
+	@Override
 	public void onError(String error){
-		String ae = ErrorCode.ae.getError();
 		rErrorView.setVisibility(View.VISIBLE);
 		switch (error){
 		case "alreadyExists" :
@@ -248,6 +241,9 @@ public class Registration extends Activity {
 		case "notFound" : 
 			rErrorView.setText(getResources().getString(R.string.unknown_error));
 		break;
+		default:
+			rErrorView.setText(getResources().getString(R.string.unknown_error)+": "+ error);
+			break;
 		}
 		}
 	public void getLoginValues(int id){
