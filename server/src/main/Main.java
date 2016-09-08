@@ -100,6 +100,9 @@ public class Main  {
 	        });
 	        btnStopServer.addActionListener(new ActionListener()
 	        {
+	        	/**
+	        	 * o
+	        	 */
 	          public void actionPerformed(ActionEvent e)
 	          {
 	        	  //http://www.vogella.com/tutorials/JavaConcurrency/article.html#threads-in-java
@@ -107,11 +110,14 @@ public class Main  {
 	        	  try{
 	        		 // sThread.interrupt();
 	        		  if(!(sThread == null)){
-	        			 
-	        			  server.stopServer();
-	        			  sThread.join();
+	        			 if(sThread.isAlive()){
+	        				 server.stopServer();
+		        			  sThread.join();
+		        			  JOptionPane.showMessageDialog(null, "Server sucessfully stopped by User","Server Stopped", JOptionPane.WARNING_MESSAGE);
+	        			 }else{
+	        				 JOptionPane.showMessageDialog(null, "Server has already been stopped","Server Stopped", JOptionPane.WARNING_MESSAGE);
+	        			 }
 	        		 
-	        		  JOptionPane.showMessageDialog(null, "Server sucessfully stopped by User","Server Stopped", JOptionPane.WARNING_MESSAGE);
 	        		  
 	        		  }else{
 	        			  JOptionPane.showMessageDialog(null, "Server has already been stopped","Server Stopped", JOptionPane.WARNING_MESSAGE);

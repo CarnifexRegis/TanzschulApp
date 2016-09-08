@@ -37,19 +37,7 @@ public class TServer {
 		 	 */
 		    server.setHandler(new THandler());
 		    System.out.println(server.getURI());
- 
-//		    try {
-//		    	/**
-//		    	 * Starten des Webservers
-//		    	 * This starts the Server
-//		    	 */
-//				server.start();;
-//				server.join();;	
-//					
-//			} catch (Exception e) {
-// 
-//				e.printStackTrace();
-//			}
+	    
 	}
 	
 	public boolean stopServer(){
