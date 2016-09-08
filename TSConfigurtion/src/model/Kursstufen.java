@@ -1,4 +1,6 @@
-package enums;
+package model;
+
+
 
 public enum Kursstufen {
 	GK1("Grundkurs 1" ,1),GK2("Grundkurs 2", 2),B("Bronze", 3),S("Silber", 4),G("Gold",5),

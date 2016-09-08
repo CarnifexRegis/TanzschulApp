@@ -8,24 +8,28 @@
         android:id="@+id/Profil"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="0.20"
         android:text="Mein Profil" />
 
     <Button
         android:id="@+id/mMyKurs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="0.20"
         android:text="Meine Kurse" />
 
     <Button
         android:id="@+id/Konv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="0.20"
         android:text="Koversationen" />
 
     <Button
         android:id="@+id/TpFinden"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="0.20"
         android:text="Tanzpartner/in finden" />
 
     <LinearLayout

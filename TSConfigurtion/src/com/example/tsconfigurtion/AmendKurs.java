@@ -1,22 +1,7 @@
-package activitys;
+package com.example.tsconfigurtion;
 
 import java.util.ArrayList;
-
-import task.GetKursTask;
-import model.Adapter;
-import model.Kurs;
-import model.ProfileChart;
-import model.aAdapter;
-
-
-
-
-import com.example.Tanzpartnervermittlung.R;
-
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.net.ConnectivityManager;
+import tasks.aGetKursTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -25,42 +10,31 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.AdapterView.OnItemSelectedListener;
+import model.AmendAdapter;
+import model.ConnectedActivity;
 
-public class AssignToKurs extends ConnectedActivity{
-	int id = -1;
-	boolean gender;
-	AssignToKurs atk = this;
-	int kursstufe = 1;
-	ArrayList<Kurs> k = new ArrayList <Kurs>();
-	aAdapter Adapter;
-	
+import model.aKurs;
+
+public class AmendKurs  extends ConnectedActivity {
+	int id;
+	ArrayList <aKurs> kl;
+	int kursstufe;
+	AmendAdapter Adapter;
 	ListView kView;
 	Button refresh;
-//http://stackoverflow.com/questions/5195321/remove-an-onclick-listener	
-	
-	@Override
+	AmendKurs amk = this;
+
 	protected void onCreate(Bundle savedInstanceState) {
-		// ascribing the Layout to the activity
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.assign_to_kurs);
-		// getting the extras from the Intent
-		Bundle extras = getIntent().getExtras();
+		
+		
+		 Bundle extras = getIntent().getExtras();
 		if(extras != null){
-			System.out.println(extras);
-		id = extras.getInt("ID", -1);
-		gender = extras.getBoolean("gender");
+		id = extras.getInt("id");
 		}
-		// instanciating and configuring Spinner
-		 refresh = (Button) findViewById(R.id.aRefreshButton);
-		final TextView header = (TextView)findViewById(R.id.aKursHeader);
-		if (gender){
-			header.setText(getResources().getString(R.string.kurs_header_f));
-		}else{
-			header.setText(getResources().getString(R.string.kurs_header_m));
-		}
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_amend_kurs);
 		Spinner kSpinner = (Spinner) findViewById(R.id.aKurseSpinner);
 		ArrayAdapter<CharSequence> adapterSimple = ArrayAdapter.createFromResource(this, R.array.kurs_array, android.R.layout.simple_spinner_item); // Specify the layout to use when the list of choices appears
 		adapterSimple.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // Apply the adapter to the spinner
@@ -106,7 +80,7 @@ public class AssignToKurs extends ConnectedActivity{
 		    	  break;
 		      } 
 		      refresh.setEnabled(false);
-				GetKursTask gkt = new GetKursTask(atk,atk.id, kursstufe);
+				aGetKursTask gkt = new aGetKursTask(amk,amk.id, kursstufe);
 				gkt.execute();
 		    }
 
@@ -119,7 +93,7 @@ public class AssignToKurs extends ConnectedActivity{
 			
 	});
 		kView  = (ListView) findViewById(R.id.aKursList);
-		Adapter = new aAdapter(this, k, id,atk) ;
+		Adapter = new AmendAdapter(this, kl, id,amk) ;
 		kView.setAdapter(Adapter);
 		refresh.setOnClickListener(new OnClickListener() {
 			
@@ -127,36 +101,32 @@ public class AssignToKurs extends ConnectedActivity{
 			public void onClick(View v){
 				
 				refresh.setEnabled(false);
-				GetKursTask gkt = new GetKursTask(atk,id, kursstufe);
+				aGetKursTask gkt = new aGetKursTask(amk,id, kursstufe);
 				gkt.execute();
+				
 			}
 		});
-}	
-	public void recieveData(ArrayList<Kurs> k){
-		if (k.isEmpty()){
+	
+		
+	}
+
+	public void recieveData(ArrayList<aKurs> kl) {
+		if (kl.isEmpty()){
 			Toast.makeText(this,getResources().getString(R.string.empty_result), Toast.LENGTH_LONG).show();
 		}
-		Adapter = new aAdapter(this, k, id,atk) ;
+		Adapter = new AmendAdapter(this, kl, id,amk) ;
 		kView.setAdapter(Adapter);
 		refresh.setEnabled(true);
 	}
-	public void added(int position) {
-		Kurs k = Adapter.getItem(position);
-		k.setEnlisted(true);
-		Toast.makeText(this,"Eingetragen", Toast.LENGTH_SHORT).show();
-			//Adapter.getItem(position);
-			
-		}
-	public void deleted(int position) {
-		Kurs k = Adapter.getItem(position);
-		k.setEnlisted(false);
-		Toast.makeText(this,"Ausgetragen", Toast.LENGTH_SHORT).show();
-		//Adapter.getItem(position);
 		
-	}
+		
 	public void enableRefresh(){
 		refresh.setEnabled(true);
 	}
+	public void deleteItem(int position){
+		Adapter.remove(Adapter.getItem(position));
+		Adapter.notifyDataSetChanged();
+		
+	}
 	
-	
-	}	
+}

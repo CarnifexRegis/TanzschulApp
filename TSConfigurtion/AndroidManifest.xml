@@ -3,7 +3,9 @@
     package="com.example.tsconfigurtion"
     android:versionCode="1"
     android:versionName="1.0" >
-
+ 	
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-sdk
         android:minSdkVersion="20"
         android:targetSdkVersion="23" />
@@ -21,6 +23,18 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="activitys.AddKurs"
+            android:label="@string/activity_add" >
+        </activity>
+        <activity
+            android:name="activitys.ManageKurs"
+            android:label="@string/activity_manage" >
+        </activity>
+        <activity
+            android:name="activitys.AmendKurs"
+            android:label="@string/activity_amend" >
         </activity>
     </application>
 

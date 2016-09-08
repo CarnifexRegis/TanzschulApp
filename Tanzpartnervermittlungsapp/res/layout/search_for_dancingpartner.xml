@@ -10,7 +10,7 @@
 
         <Spinner
             android:id="@+id/KurseSpinner"
-            android:layout_width="84dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.10" />
 
@@ -25,7 +25,7 @@
         android:id="@+id/searchButton"
         android:layout_width="match_parent"
         android:layout_height="62dp"
-        android:text="Suche Starten!" />
+        android:text="@string/refresh" />
 
     <ListView
         android:id="@+id/userListView"

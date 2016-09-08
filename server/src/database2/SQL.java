@@ -84,13 +84,48 @@ int i = 0;
 							" UHRZEIT   TEXT NOT NULL)";
 		
 					stmt.executeUpdate(sql);
+
+					if(stmt != null){
+						stmt.close();}
+					c.commit();
+					System.out.println("New KURS Instance");
+				}catch(Exception e1){
+					System.err.println( e1.getClass().getName() + ": " + e1.getMessage() );
+			        System.exit(0);
+				}
+			
+			}
+			try{
+				//TODO buggy
+				String sql2 = "SELECT COUNT(*) AS I FROM ADMIN ;";
+				//String sql = "SELECT COUNT(*) AS PS FROM USER WHERE EMAIL = 'hallo' AND PASSWORD = 'geheim' ;";
+				stmt = c.createStatement();
+				ResultSet rs = stmt.executeQuery(sql2);
+				int i = rs.getInt("I");
+				if (rs!= null){
+					rs.close();
+					}
+				if (stmt != null){
+					stmt.close();
+					}
+			}catch(Exception e){
+				try{
+					Class.forName("org.sqlite.JDBC");
+					stmt = c.createStatement();
+					String sql = "CREATE TABLE ADMIN "+
+							"(ID INTEGER PRIMARY KEY , " +
+							" NAME TEXT NOT NULL, " +
+							" KEY    TEXT NOT NULL)";
+							
+		
+					stmt.executeUpdate(sql);
 					
 					
 					
 					if(stmt != null){
 						stmt.close();}
 					c.commit();
-					System.out.println("New KURS Instance");
+					System.out.println("New ADMIN Instance");
 				}catch(Exception e1){
 					System.err.println( e1.getClass().getName() + ": " + e1.getMessage() );
 			        System.exit(0);
@@ -265,6 +300,7 @@ int i = 0;
 			addLink(10,8);
 			addLink(10,9);
 			addLink(10,10);
+			addAdmin("d","d");
 //			
 			
 //			
@@ -322,6 +358,7 @@ int i = 0;
 	 * @param age
 	 * @return
 	 */
+	
 	public boolean aviableID(int id){
 		Statement stmt = null;
 		try{
@@ -349,6 +386,109 @@ int i = 0;
 		    System.exit(0);
 			}
 		return false;
+		}
+	
+	
+	
+	public void addAdmin(String n,String k){
+		Statement stmt;
+		try{
+			stmt = c.createStatement();
+			String sql2 = " SELECT COUNT(*) AS COUNT FROM ADMIN WHERE NAME = '" + n + "';";
+			ResultSet rs = stmt.executeQuery(sql2);
+			if(rs.next()){
+				int count = rs.getInt("count");
+				if (rs != null)rs.close();
+				if(stmt!= null)stmt.close();
+				if(count == 0){
+					int id;
+					try{	
+						 stmt = c.createStatement();
+						//http://docs.oracle.com/javase/7/docs/api/java/security/SecureRandom.html
+						//http://www.javapractices.com/topic/TopicAction.do?Id=62
+						 id = random.nextInt(10000000); // taking the chanches for duplicate id  ^^
+						String sql = "INSERT INTO ADMIN (ID, NAME,KEY)"+ 
+								  	 "VALUES(?,?,?);";						// new Version similar to the dedicated source
+						PreparedStatement p = c.prepareStatement (sql);
+
+						p.setInt(1,id);
+						p.setString(2,n);
+						p.setString(3, k);
+						p.executeUpdate();
+						System.out.println("added Admin ");
+						if(p!=null)p.close();
+						c.commit();
+					}
+					catch(Exception e){
+						System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+				        System.exit(0);
+				       
+				        
+						}
+					}
+				else
+					{
+					
+					System.out.println("The requested admin already exists in our database");
+					
+					}
+			}}catch(Exception e){
+				e.printStackTrace();
+			}}
+	public 	int aLogIn(String n, String k){ // id check
+		Statement stmt;
+		
+		int i;
+		try{
+			//TODO buggy
+			String sql = "SELECT COUNT(ID) AS I FROM ADMIN"
+						+ " WHERE NAME =? AND KEY = ? ;";
+			//String sql = "SELECT COUNT(*) AS PS FROM USER WHERE EMAIL = 'hallo' AND PASSWORD = 'geheim' ;";
+			PreparedStatement p = c.prepareStatement(sql);
+			p.setString(1,n);
+			p.setString(2,k);
+			ResultSet rs = p.executeQuery();
+			
+			 i = rs.getInt("I");
+			if(rs!=null)rs.close();
+			if(p!=null)p.close();
+			if( i == 1){
+				int id;
+				try{
+					
+					String sql2 = "SELECT ID FROM USER WHERE NAME = ? ;";
+					p = c.prepareStatement(sql2);
+					p.setString(1, n);
+					ResultSet rs2 = p.executeQuery();
+					id = rs2.getInt("ID");
+					
+					System.out.println(id);
+					
+					if(rs!=null)rs.close();
+					if(p!=null)p.close();
+					return id;
+				}catch(Exception e){
+					
+					System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+			        System.exit(0);
+					e.printStackTrace();
+					return -2;
+				}
+			}else{
+				if(i<1){
+					System.out.println("Wrong Password");
+				}else{
+					System.out.println("Some Error occured loging in");
+				}
+			}
+			}
+		catch(Exception e){
+			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	        System.exit(0);
+			e.printStackTrace();
+			return -2;
+			}
+				return -1;
 		}
 	
 	public boolean aviableIDP(String idp)
@@ -735,31 +875,36 @@ int i = 0;
 	 * @return 		returns the User ID according to the Login E-Mail
 	 */
 		public 	int LogIn(String em, String ps){ // id check
-			Statement stmt;
+			PreparedStatement p;
 			
 			int i;
 			try{
 				//TODO buggy
 				String sql = "SELECT COUNT(ID) AS I FROM USER"
-							+ " WHERE USER.EMAIL='"+ em + "' AND PASSWORD = '"+ps+"' ;";
+							+ " WHERE USER.EMAIL=? AND PASSWORD = ? ;";
 				//String sql = "SELECT COUNT(*) AS PS FROM USER WHERE EMAIL = 'hallo' AND PASSWORD = 'geheim' ;";
-				stmt = c.createStatement();
-				ResultSet rs = stmt.executeQuery(sql);
+				p = c.prepareStatement(sql);
+				p.setString(1, em);
+				p.setString(2, ps);
+				ResultSet rs = p.executeQuery();
 				
 				 i = rs.getInt("I");
 				if(rs!=null)rs.close();
+				if(p!=null)p.close();
 				if( i == 1){
 					int id;
 					try{
-						 stmt = c.createStatement();
-						String sql2 = "SELECT ID FROM USER WHERE EMAIL = '" + em + "' ;";
-						ResultSet rs2 = stmt.executeQuery(sql2);
+						
+						String sql2 = "SELECT ID FROM USER WHERE EMAIL = ? ;";
+						p = c.prepareStatement(sql2);
+						p.setString(1, em);
+						ResultSet rs2 = p.executeQuery();
 						id = rs2.getInt("ID");
 						
 						System.out.println(id);
 						
 						if(rs!=null)rs.close();
-						if(stmt!=null)stmt.close();
+						if(p!=null)p.close();
 						return id;
 					}catch(Exception e){
 						
@@ -796,6 +941,35 @@ int i = 0;
 			try{
 				
 				String sql ="SELECT COUNT (ID) AS COUNT FROM USER WHERE ID = '"+ id+ "';";
+				stmt = c.createStatement();
+				ResultSet rs = stmt.executeQuery(sql);
+				i = rs.getInt("COUNT");
+				if(stmt != null)stmt.close();
+				if(rs!= null)rs.close();
+				if(i== 1){
+					return true;
+				}else{
+					if(i == 0){
+						System.out.println("Wrong ID");
+						return false;
+					}
+				}
+			}catch(Exception e ){
+				System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+		        System.exit(0);
+				e.printStackTrace();
+				System.out.println("Something went wrong at checkID(id)");
+			
+			}
+			return false;
+		}
+		public  boolean acheckID(int id){ // Login returns the user id
+			Statement stmt;
+			int i;
+			
+			try{
+				
+				String sql ="SELECT COUNT (ID) AS COUNT FROM ADMIN WHERE ID = '"+ id+ "';";
 				stmt = c.createStatement();
 				ResultSet rs = stmt.executeQuery(sql);
 				i = rs.getInt("COUNT");

@@ -2,7 +2,56 @@
 <resources>
 
     <string name="app_name">TS Configurtion</string>
+    <string name="activity_manage">Menü</string>
+    <string name="activity_amend">Kurse anpassen</string>
+    <string name="activity_add">Kurse hinzufügen</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-
+    <string name ="session_expired">Die Sitzung ist abgelaufen.</string>
+	<string name ="unknown_error">Es ist ein unbekannter Fehler aufgetreten, bei wiederholtem Auftreten kontaktieren sie bitte unseren Support.</string>
+	<string name ="empty_result">Für die vorgegebene Konfiguration konnten keine Ergebnisse ermittelt werden.</string>
+	<string name ="check_connection">Bitte überprüfen sie ihre Internet Verbindung.</string>
+	<string name ="connection_failed">Wir konnten den Server nicht erreichen bitte versuchen sie es später erneut.</string>
+	<string name ="read_me">Wilkommen zur "TSAdmin" App mit ihr können sich auch unterwegs neue Kurse hinzufügen und veraltete Kurse löschen. </string>
+	<string name="anmelden">Anmelden</string>
+	<string name="admin">Adminpseudonym</string>
+	<string name="kennwort">Kennwort</string>
+	<string name="missing_key">Es wurde kein Kennwort eingetragen.</string>
+	<string name="missing_admin">Es wurde kein Adminpseudonym eingetragen.</string>
+	<string name="missing_login_data">Es wurden weder E-Mail noch Kennwort eingetragen.</string>
+	<string name="wrong_login">Falsches Adminpseudonym  oder Passwort, versuchen Sie es bitte erneut.</string>
+	<string name="safe_login">Angemeldet bleiben?</string>
+	<string name="manage_all_courses">Bestehende Kurse verwalten</string>
+	<string name="manage_pupil_courses">Schülerkurse</string>
+	<string name="manage_adult_courses">Erwachsenenkurse</string>
+	<string name="add_new_cours">Neuen Kurs hinzufügen.</string>
+	<string name="amend_cours">Bestehende Kurse anpassen.</string>
+	<string name="time">Uhrzeit:</string>
+	<string name="date">Startdatum:</string>
+	<string name="day">Wochentag:</string>
+	<string name="level">Kursstufe:</string>
+	<string name="interested_costumers">Anzahl der Interessenten:</string>
+	<string name="delete_kurs">Kurs löschen.</string>
+	
+	
+	<string-array name="kurs_array">
+   
+    <item>Grundkurs 1</item>
+        <item>Grundkurs 2</item>
+        <item>Bronze</item>
+        <item>Silber</item>
+         <item>Gold</item>
+        <item>Goldstar Teil A</item>
+        <item>Goldstar Teil B</item>
+        <item>Jugendkreis 1</item>
+        <item>Jugendkreis 2</item>  
+  </string-array>
+  <string-array name="day_array">
+      	<item>Alle</item>
+   		 <item>Mittwoch</item>
+    	<item>Donnerstag</item>
+    	<item>Freitag</item>
+    	 <item>Samstag</item>
+  </string-array>
+	
 </resources>

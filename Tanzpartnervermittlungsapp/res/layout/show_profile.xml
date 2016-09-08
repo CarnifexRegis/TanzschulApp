@@ -33,19 +33,19 @@
 
                 <TextView
                     android:id="@+id/spAgeText"
-                    android:layout_width="wrap_content"
+                    android:layout_width="75dp"
                     android:layout_height="40dp"
                     android:gravity="bottom"
-                    android:text="Alter: "
+                    android:text="@string/text_age"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <TextView
                     android:id="@+id/spAgeView"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="4.90"
                     android:gravity="bottom"
-                    android:text="00"
+                    android:text=""
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
             </LinearLayout>
@@ -56,25 +56,25 @@
 
                 <TextView
                     android:id="@+id/spHeightText"
-                    android:layout_width="wrap_content"
+                    android:layout_width="75dp"
                     android:layout_height="wrap_content"
-                    android:text="Größe: "
+                    android:text="@string/text_height"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <TextView
                     android:id="@+id/spHeightView"
-                    android:layout_width="78dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1.20"
-                    android:text="180"
+                    android:text=""
                     android:textAppearance="?android:attr/textAppearanceMedium" />
             </LinearLayout>
 
             <TextView
                 android:id="@+id/spPhoneText"
-                android:layout_width="wrap_content"
+                android:layout_width="75dp"
                 android:layout_height="wrap_content"
-                android:text="Telefon: "
+                android:text="@string/text_pn"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
@@ -106,7 +106,7 @@
                 android:id="@+id/spAboutMeText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Über mich:"
+                android:text="@string/text_about_me"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <TextView
@@ -121,7 +121,7 @@
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nummer in Zwischenablage." />
+                android:text="@string/button_clipboard" />
 
         </LinearLayout>
 
@@ -132,18 +132,18 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Zu Telefonkontakten hinzufügen." />
+        android:text="@string/button_add_phone_book" />
 
     <Button
         android:id="@+id/spAddFriendButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Freundschaftsanfrage senden" />
+        android:text="@string/button_add_contact" />
 
     <Button
         android:id="@+id/spMenueButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Zurück zum Menü." />
+        android:text="@string/button_back_to_menue" />
 
 </LinearLayout>

@@ -20,6 +20,7 @@ import database2.ProfileData;
 import database2.SQL;
 
 public class Model {
+	final private static AdminArray[] adminArray = new AdminArray [3];
 	private static Model instance;
 	private SQL sql;
 /**
@@ -47,6 +48,11 @@ public class Model {
 	 * @param age		the age of the User
 	 * @return returns an Profile Chart Array<List>
 	 */
+	public boolean checkAdmin (String un ,String  k){
+		
+		return false;
+		
+	}
 	public ArrayList<ProfileChart> getCharts(boolean gender,int kstu, int age,int day) {
 		int g;
 		String sDay;

@@ -40,7 +40,7 @@
                     android:id="@+id/ViewOfAge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Large Text"
+                    android:text=""
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
             </TableRow>
@@ -54,14 +54,14 @@
                     android:id="@+id/kursstartView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Kursstart:"
+                    android:text="@string/text_date"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <TextView
                     android:id="@+id/ViewOfKursstart"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="25.2.2016"
+                    android:text=""
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
             </TableRow>
@@ -75,14 +75,14 @@
                     android:id="@+id/kurszeitView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Kurszeit:"
+                    android:text="@string/text_time"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <TextView
                     android:id="@+id/ViewOfKurszeit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="15:30 Uhr"
+                    android:text=""
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
             </TableRow>
