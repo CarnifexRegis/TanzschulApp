@@ -159,9 +159,14 @@ private ClipboardManager myClipboard;
 	public void rechieveData(ProfileData pd) {
 		this.pd = pd;
 		if(pd.isPa()){
+		ageView.setVisibility(View.VISIBLE);
+		ageText.setVisibility(View.VISIBLE);
 		 ageView.setText(pd.getAge()+"");
 		 }else{
-			ageView.setText(R.string.missing_value);
+			//ageView.setText(R.string.missing_value);
+			ageView.setVisibility(View.INVISIBLE);
+			ageText.setVisibility(View.INVISIBLE);
+			Toast.makeText(this, "Der Nutzer hat sich dazu entschieden sein Alter privat zu halten",Toast.LENGTH_LONG).show();
 		 }
 		 heightView.setText(pd.getHeight()+"");
 		 aboutMeView.setText(pd.getpText());

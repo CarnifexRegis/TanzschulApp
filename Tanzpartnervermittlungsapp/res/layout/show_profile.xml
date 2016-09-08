@@ -33,20 +33,21 @@
 
                 <TextView
                     android:id="@+id/spAgeText"
-                    android:layout_width="72dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:gravity="bottom"
-                    android:text="Alter:"
+                    android:text="Alter: "
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <TextView
                     android:id="@+id/spAgeView"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_weight="4.33"
-                    android:text="00"
+                    android:layout_weight="4.90"
                     android:gravity="bottom"
+                    android:text="00"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -57,13 +58,14 @@
                     android:id="@+id/spHeightText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Größe:  "
+                    android:text="Größe: "
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <TextView
                     android:id="@+id/spHeightView"
                     android:layout_width="78dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1.20"
                     android:text="180"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
             </LinearLayout>
