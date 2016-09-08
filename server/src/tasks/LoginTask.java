@@ -3,11 +3,12 @@ package tasks;
 import java.util.ArrayList;
 
 import protocol.AbstractHandler;
+import protocol.ErrorCode;
 import model.Model;
 import request.LoginRequest;
 import response.LoginResponse;
 import database2.ProfileChart;
-
+//sec update
 public class LoginTask extends AbstractHandler {
 	// TODO add errorCode
 	public String handle(String httpBody){
@@ -16,15 +17,35 @@ public class LoginTask extends AbstractHandler {
 		String key = request.getKey();
 		String eMail = request.geteMail();
 		Model m = Model.getInstance();
+		String ec;
 		int  id = m.Login(eMail, key);
-		int gender = 0;
-		if (id != -1){gender = m.getGender(id);}
-		if(id >= 0 && gender == 1 || gender == 0 ){
-			System.out.println("recieved Data UpdateProfilechart Task");
+		int gender ;
+		if (id >= 0){
+			gender = m.getGender(id);
+			try{
+				if( gender == 1 || gender == 0 ){
+					ec = ErrorCode.ja.getError();
+				}else{
+					ec = ErrorCode.nf.getError();
+				}
+			}catch(Exception ex){
+				gender = 0;
+				ec = ErrorCode.nf.getError();
+				ex.printStackTrace();
+			}
+		}else{
+			if(id == -1){
+				gender = 0;
+				ec = ErrorCode.wl.getError();
+			}else{
+				gender = 0;
+				ec = ErrorCode.nf.getError();
+			}
 		}
-		else{System.out.println("did not rechieve any data");}
 		
-		LoginResponse response = new LoginResponse(id, gender);
+		
+		
+		LoginResponse response = new LoginResponse(id, gender,ec);
 		return buildXML(response);
 	}
 }

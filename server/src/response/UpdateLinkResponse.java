@@ -5,7 +5,7 @@ import org.simpleframework.xml.Root;
 
 @Root (name  ="updatelinkresponse")
 public class UpdateLinkResponse {
-	@Element (name = "error")
+	@Element (name = "ec")
 	String ec;
 
 	public UpdateLinkResponse(){

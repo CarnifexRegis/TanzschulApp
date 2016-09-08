@@ -11,7 +11,7 @@ import org.eclipse.jetty.server.handler.AbstractHandler;
 
 import protocol.Command;
 import tasks.ForeignProfileTask;
-import tasks.GetAllTask;
+import oldExampels.GetAllTask;
 import tasks.GetKursTask;
 import tasks.LoginTask;
 import tasks.ProfiledataTask;

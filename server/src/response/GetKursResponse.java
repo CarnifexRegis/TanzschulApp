@@ -11,7 +11,7 @@ import database2.Kurs;
 public class GetKursResponse {
 	@Element (name = "error")
 	String ec;
-	@ElementList(name = "kurslist")
+	@ElementList(name = "kurslist",required = false)
 	ArrayList<Kurs> kl;
 	
 	public GetKursResponse(){

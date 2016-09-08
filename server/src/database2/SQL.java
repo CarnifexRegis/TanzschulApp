@@ -595,6 +595,7 @@ int i = 0;
 			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 	        System.exit(0);
 			e.printStackTrace();
+			return false;
 		}
 		if(i<1){
 		try{
@@ -761,9 +762,11 @@ int i = 0;
 						if(stmt!=null)stmt.close();
 						return id;
 					}catch(Exception e){
+						
 						System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 				        System.exit(0);
 						e.printStackTrace();
+						return -2;
 					}
 				}else{
 					if(i<1){
@@ -777,6 +780,7 @@ int i = 0;
 				System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 		        System.exit(0);
 				e.printStackTrace();
+				return -2;
 				}
 					return -1;
 			}
@@ -842,10 +846,11 @@ int i = 0;
 			}catch(Exception e){
 				System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 		        System.exit(0);
-				e.printStackTrace();		
+				e.printStackTrace();
+				return -1;	
 			}
 			// in case of an Error it returns -1
-				return -1;	
+				
 		}
 		public ProfileData getProfileData(int id){
 			
@@ -926,8 +931,6 @@ int i = 0;
 		public ArrayList<Kurs> getKurs(int kstu, int uid){
 			Statement stmt;
 
-			
-			
 			ArrayList<Kurs> kurs = new ArrayList<Kurs>();
 			//SELECT KURS.ID,KURS.DATUM,KURS.KURSSTUFE,KURS.UHRZEIT,KURS.WOCHENTAG ,COUNT (USER.ID)AS C FROM KURS LEFT JOIN LINK ON KURS.ID = LINK.KID LEFT JOIN USER ON LINK.UID = USER.ID AND USER.ID = '"+uid+"' WHERE KURSSTUFE = '"+ks+"' GROUP BY KURS.ID ORDER BY KURSSTUFE ASC,DATUM DESC 
 			try{

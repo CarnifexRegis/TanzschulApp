@@ -15,7 +15,6 @@ public class UpdateChartRequest {
 	int day;
 	public UpdateChartRequest(){
 		super();
-		
 	}
 	public UpdateChartRequest(int id, int kursstufe, boolean gender, int day) {
 		super();

@@ -1,6 +1,7 @@
 package task;
 
 import protocol.Command;
+import protocol.ErrorCode;
 import request.LoginRequest;
 import response.LoginResponse;
 import activitys.LogIn;
@@ -24,9 +25,8 @@ public class LoginTask extends BaseHttpRequestTask{
 			String xml = buildXML(request);
 			super.execute(Command.login, xml);
 		} catch (Exception e) {
-			((LogIn) activity).connectionError();
-			// FIXME Errorhandling
-			System.out.println("An error occured bulding the xml/exceuting command");
+			((LogIn) activity).onConnectionError();
+			Log.e("Error in  LoginTask", e.toString());
 		}
 	}
 	/**
@@ -37,30 +37,31 @@ public class LoginTask extends BaseHttpRequestTask{
 		try {
 			LoginResponse response = (LoginResponse) parseXML(result,
 					LoginResponse.class);
+			String ec = response.getEc();
+			 if(!(ec.equals(ErrorCode.ja.getError())))
+			 {
+				 ((LogIn) activity).onError(ec);
+			 }
+			 else
+			 {
+				 int intGender = response.getGender();
+				 boolean gender; 
+					if (intGender==1){
+						gender = true;
+					}else
+						if(intGender==0){
+							gender = false;
+						}
+						else{
+							gender = false;
+						// TODO error handling
+						}
+					((LogIn) activity).getLoginValues(response.getId(),gender);
+			 }
 			
-			// if(!(response.getEc() == ErrorCode.ok))
-			// {
-			//
-			// }
-			// else
-			// {
-			// Antwort erfolgreich erhalten
-			int intGender = response.getGender();
-			boolean gender; 
-			if (intGender==1){
-				gender = true;
-			}else
-				if(intGender== 0){
-					gender = false;
-				}else{
-					gender = false;
-					System.out.println("Your Gender was not properly recieved from the server and set male as default");
-				}
-			((LogIn) activity).getLoginValues(response.getId(),gender);
-
-			// }
+			
 		} catch (Exception e) {
-			((LogIn) activity).connectionError();
+			((LogIn) activity).onConnectionError();
 			Log.e("Error in  LoginTask", e.toString());
 			
 		}

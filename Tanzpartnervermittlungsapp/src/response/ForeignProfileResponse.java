@@ -4,10 +4,12 @@ import model.ProfileData;
 
 import org.simpleframework.xml.Element;
 
+
+
 public class ForeignProfileResponse {
-	@Element(name = "profiledata")
+	@Element(name = "profiledata",required = false)
 	ProfileData pd;
-	@Element(name = "errorcode") 
+	@Element(name = "ec") 
 	String ec;
 	public ForeignProfileResponse(){
 		super();

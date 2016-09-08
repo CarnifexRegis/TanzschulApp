@@ -8,12 +8,15 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
+
+
 @Root (name = "getkursresponse")
 public class GetKursResponse {
 	@Element (name = "error")
 	String ec;
-	@ElementList(name = "kurslist")
+	@ElementList(name = "kurslist",required = false)
 	ArrayList<Kurs> kl;
+	
 	public GetKursResponse(){
 		super();}
 	public GetKursResponse(String ec, ArrayList<Kurs> kl) {

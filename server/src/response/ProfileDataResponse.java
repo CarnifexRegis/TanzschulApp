@@ -7,23 +7,23 @@ import database2.ProfileData;
 
 @Root(name =  "profiledataresponse")
 public class ProfileDataResponse {
-	@Element(name = "profiledata")
+	@Element(name = "profiledata",required = false)
 	ProfileData pd;
-	@Element(name = "errorcode") 
-	String errorCode;
+	@Element(name = "ec") 
+	String ec;
 	public ProfileDataResponse(){
 		super();
 	}
-	public ProfileDataResponse(ProfileData pd, String errorCode) {
+	public ProfileDataResponse(ProfileData pd, String ec) {
 		super();
 		this.pd = pd;
-		this.errorCode = errorCode;
+		this.ec = ec;
 	}
 	public ProfileData getPd() {
 		return pd;
 	}
 	public String getErrorCode() {
-		return errorCode;
+		return ec;
 	}
 	
 //	String fn;

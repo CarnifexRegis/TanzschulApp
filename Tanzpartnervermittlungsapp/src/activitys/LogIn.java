@@ -2,6 +2,7 @@ package activitys;
 
 
 
+import protocol.ErrorCode;
 import task.LoginTask;
 
 import com.example.Tanzpartnervermittlung.R;
@@ -30,9 +31,10 @@ public class LogIn extends Activity{
 	private String eMail = null;
 	private String password = null;
 	private boolean c = false;
+	String errorCode = null;
 	//Special thanks to Leander for this Tip
 	//https://developer.android.com/training/basics/activity-lifecycle/recreating.html
-	String errorCode = null;
+	
 	//static final String STATE_EMAIL = "logineMail";
 	//static final String STATE_PASSWORD = "loginPassword";
 	//static final String STATE_CHECK = "check";
@@ -151,43 +153,19 @@ public class LogIn extends Activity{
 	}
 	public void getLoginValues(int id, boolean gender){
 		//Switch (calledBy.getAct)
-		if(id > -1){
+		
 		Intent intent = new Intent(getApplicationContext(),Menue.class);
 		intent.putExtra("ID", id);
 		intent.putExtra("gender", gender);
 		startActivity(new Intent(intent));
-		}
-		else{
-			final TextView errorView = (TextView)findViewById(R.id.errorView);
-			errorView.setVisibility(View.VISIBLE);
-			errorView.setText(getResources().getString(R.string.wrong_login));
-		}
+		
+		
+
+
 		
 	}
-//	@Override
-//	public void onSaveInstanceState(Bundle savedInstanceState) {
-//	    // Save the user's current game state
-//	    savedInstanceState.putString(STATE_EMAIL, eMailInsert.getText().toString());
-//	    
-//	    
-//	    if(safelogin.isChecked()){
-//    		savedInstanceState.putString(STATE_PASSWORD,keyInsert.getText().toString() );
-//    		savedInstanceState.putBoolean(STATE_CHECK, true);
-//    	}
 
-//	    // Always call the superclass so it can save the view hierarchy state
-//	    super.onSaveInstanceState(savedInstanceState);
-//	}
-//	public void onRestoreInstanceState(Bundle savedInstanceState) {
-//	    // Always call the superclass so it can restore the view hierarchy
-//	    super.onRestoreInstanceState(savedInstanceState);
-//
-//	    // Restore state members from saved instance
-//	    eMail = savedInstanceState.getString(STATE_EMAIL);
-//	    password = savedInstanceState.getString(STATE_PASSWORD);
-//	  checked =   savedInstanceState.getBoolean(STATE_CHECK);
-//	}
-	public void connectionError(){
+	public void onConnectionError(){
 		errorView.setVisibility(View.VISIBLE);
 		if(!isOnline(this)){
 			errorView.setText(getResources().getString(R.string.check_connection));
@@ -221,5 +199,19 @@ public class LogIn extends Activity{
 	      }
 	      editor.putString("eMail",eMailInsert.getText().toString() );
 	      editor.commit();
+	     
+	}
+	public void onError(String ec) {
+		switch (ec){
+		case  "wrongLogin":
+			errorView.setVisibility(View.VISIBLE);
+			errorView.setText(getResources().getString(R.string.wrong_login));
+			break;
+		case "notFound" :
+			errorView.setVisibility(View.VISIBLE);
+			errorView.setText(getResources().getString(R.string.unknown_error));
+			break;
+		}
+		
 	}		
 	}

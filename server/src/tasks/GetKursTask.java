@@ -8,7 +8,7 @@ import protocol.AbstractHandler;
 import protocol.ErrorCode;
 import request.GetKursRequest;
 import response.GetKursResponse;
-
+// sec update 
 public class GetKursTask extends AbstractHandler {
 	public String handle(String httpBody){
 		//gets the information from the request
@@ -16,13 +16,21 @@ public class GetKursTask extends AbstractHandler {
 		int id = request.getId();
 		int ks = request.getKursStufe();
 		Model m = Model.getInstance();
-		ArrayList<Kurs> kl= m.getKurs(id,ks);
-		String	ec = ErrorCode.ja.getError();
-		if (kl == null){
+		String	ec;
+		ArrayList<Kurs> kl;
+		if(m.checkId(id)){
+			kl= m.getKurs(id,ks);
+			
+			if (kl == null){
+				kl = new ArrayList<Kurs>();
+				ec = ErrorCode.nf.getError();
+				}else{
+					ec = ErrorCode.ja.getError();
+				}
+		}else{
+			ec  = ErrorCode.wl.getError();
 			kl = new ArrayList<Kurs>();
-			 ec = ErrorCode.wl.getError();
 		}
-		
 		GetKursResponse response = new GetKursResponse(ec , kl);
 		return buildXML(response);
 	}

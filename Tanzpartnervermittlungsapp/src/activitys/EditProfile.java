@@ -114,22 +114,31 @@ boolean gender;
 		heightInsert.setText(pd.getHeight()+"");
 				}
 	
-	public void onError() {
-		// there is just one possible error code		
-		Intent intent = new Intent(getApplicationContext(),LogIn.class);
-		intent.putExtra("error", "Sitzung abgelaufen");
-		startActivity(new Intent(intent));
-	}
+	
 	public void updateSucessful() {
 		Intent intent = new Intent(getApplicationContext(),Menue.class);
 		intent.putExtra("ID", id);
 		intent.putExtra("gender", gender);
 		startActivity(new Intent(intent));
 	}
-	public void onError(String error) {
-		Intent intent = new Intent(getApplicationContext(),LogIn.class);
-		intent.putExtra("error", "Fatal error: " + error);
+	public void onError(String ec) {
+		Intent intent ;
+		switch (ec){
+	case  "wrongLogin":
+		intent = new Intent(getApplicationContext(),LogIn.class);
+		intent.putExtra("error", getResources().getString(R.string.session_expired));
 		startActivity(new Intent(intent));
+		break;
+	case "notFound" :
+		Toast.makeText(getApplicationContext(),getResources().getString(R.string.unknown_error), 
+                Toast.LENGTH_LONG).show(); 
+		break;
+		default:
+			intent = new Intent(getApplicationContext(),LogIn.class);
+			intent.putExtra("error", "Fatal error: " + ec);
+			startActivity(new Intent(intent));
+			break;
+	}
 		
 	}
 	public boolean isOnline(Context context) {
@@ -142,8 +151,10 @@ boolean gender;
 	
 	public void ConnectionError() {
 		
-			
+			//TODO Error Handling 
+			//this activity has to switch back to the activity that called it
 			if(!isOnline(this)){
+				
 				Toast.makeText(getApplicationContext(), getResources().getString(R.string.check_connection), 
 		                Toast.LENGTH_SHORT).show(); 
 			

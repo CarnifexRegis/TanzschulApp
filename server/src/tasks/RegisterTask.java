@@ -4,7 +4,7 @@ import protocol.AbstractHandler;
 import protocol.ErrorCode;
 import request.RegisterRequest;
 import response.RegisterResponse;
-
+//sc update n ot required
 public class RegisterTask extends AbstractHandler {
 	public String handle(String httpBody){
 		//gets the information from the request
@@ -21,31 +21,31 @@ public class RegisterTask extends AbstractHandler {
 		if(pAge){
 			pa = 1;
 		}else{
-			 pa = 0;
+			pa = 0;
 		}
 		if(gender){
 			 g = 1;
 		}else{
 			 g = 0;
 		}
-		String error = null;
+		String ec = null;
 		int id = Model.getInstance().register(eMail, password, ln, fn, g, age, pa);
 		if (id>0 ){
-			error = ErrorCode.ja.getError();
+			ec = ErrorCode.ja.getError();
 		}else{
 			switch (id){
 			case -1:
-				error = ErrorCode.ae.getError();
+				ec = ErrorCode.ae.getError();
 			break;
 			case -2:
-				error = ErrorCode.nf.getError();
+				ec = ErrorCode.nf.getError();
 			break;
 			
 			
 			}
 		}
 		
-		RegisterResponse response = new RegisterResponse(error,id);
+		RegisterResponse response = new RegisterResponse(ec,id);
 		return buildXML(response);
 
 		}

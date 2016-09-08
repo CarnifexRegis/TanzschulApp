@@ -12,7 +12,7 @@ public class GetAllResponse {
 	private String message;
 
 	public GetAllResponse() {
-		
+		super ();
 	}
 
 	public GetAllResponse(String message) {

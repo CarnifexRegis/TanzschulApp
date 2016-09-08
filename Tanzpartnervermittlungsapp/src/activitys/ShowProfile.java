@@ -99,12 +99,12 @@ private ClipboardManager myClipboard;
 	                Toast.LENGTH_SHORT).show(); 
 	            	}}
 	        });	  
-	   ForeignProfileTask fpt =new ForeignProfileTask(sp, idp);
+	   ForeignProfileTask fpt =new ForeignProfileTask(sp, idp, id);
 			fpt.execute();
 			}
 
 	
-		public void connectionError(){
+		public void onConnectionError(){
 			
 			String error;
 			if(!isOnline(this)){
@@ -137,8 +137,22 @@ private ClipboardManager myClipboard;
 	    }
 	    return false;}
 
-	public void onError(String error) {
-
+	public void onError(String ec) {
+		Intent intent;
+		switch (ec){
+		case  "wrongLogin":
+			intent = new Intent(getApplicationContext(),LogIn.class);
+			intent.putExtra("error", getResources().getString(R.string.session_expired));
+			startActivity(new Intent(intent));
+			break;
+		case "notFound" :
+			intent = new Intent(getApplicationContext(),SearchForDancingpartner.class);
+			intent.putExtra("ID", id);
+			intent.putExtra("gender", gender);
+			intent.putExtra("error", "Fatal error: "+ec);
+			startActivity(new Intent(intent));
+			break;
+		}
 //		errorView.setVisibility(View.VISIBLE);
 //		errorView.setText("Das gesuchte Benutzerkonto konnte nicht gefunden werden.");
 //		Toast.makeText(getApplicationContext(), "Das gesuchte Benutzerkonto konnte nicht gefunden werden.", Toast.LENGTH_LONG).show(); 
@@ -148,11 +162,6 @@ private ClipboardManager myClipboard;
 //			// TODO Auto-generated catch bloc
 //			e.printStackTrace();
 //		}
-		Intent intent = new Intent(getApplicationContext(),SearchForDancingpartner.class);
-		intent.putExtra("ID", id);
-		intent.putExtra("gender", gender);
-		intent.putExtra("error", "Fatal error: "+error);
-		startActivity(new Intent(intent));
 	}
 
 

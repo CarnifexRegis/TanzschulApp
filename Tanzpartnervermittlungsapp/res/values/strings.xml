@@ -60,5 +60,8 @@
 	<string name ="about_me">Hier kannst du einen netten Spruch oder Wissenswertes über dich einragen!</string>
 	<string name="kurs_header_m">Wenn sie sich hier für einen Kurs eintragen, können weibliche Nutzer sehen, dass sie für diesen Kurs eine Tanzpartnerin suchen.</string>
 	<string name="kurs_header_f">Wenn sie sich hier für einen Kurs eintragen, können männliche Nutzer sehen, dass sie für diesen Kurs einen Tanzpartner suchen.</string>
+	<string name ="session_expired">Die Sitzung ist abgelaufen.</string>
+	<string name ="unknown_error">Es ist ein unbekannter Fehler aufgetreten, bei wiederholtem Auftreten kontaktieren sie bitte unseren Support.</string>
+	<string name ="empty_result">Für die vorgegebene Konfiguration konnten keine Ergebnisse ermittelt werden.</string>
 </resources>
 

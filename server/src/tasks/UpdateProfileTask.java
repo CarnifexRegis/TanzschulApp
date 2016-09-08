@@ -4,6 +4,7 @@ import protocol.AbstractHandler;
 import protocol.ErrorCode;
 import request.UpdateProfileRequest;
 import response.UpdateProfileResponse;
+// ec update
 public class UpdateProfileTask extends AbstractHandler {
 	
 		public String handle(String httpBody){
@@ -18,14 +19,19 @@ public class UpdateProfileTask extends AbstractHandler {
 			
 			boolean succes;
 			String ec;
-			succes= Model.getInstance().UpdateProfile(id, pn, height, age, pText, pa);
+			Model m = Model.getInstance();
+			if (m.checkId(id)){
+				succes= m.UpdateProfile(id, pn, height, age, pText, pa);
 		
-			if(succes){
-			ec = ErrorCode.ja.getError();
-			System.out.println("Updated Profiledata");
+				if(succes){
+					ec = ErrorCode.ja.getError();
+					System.out.println("Updated Profiledata");
+				}else{
+					ec = ErrorCode.nf.getError();
+					System.out.println("Update failed");}
 			}else{
-				ec = ErrorCode.nf.getError();
-				System.out.println("Update failed");}
+				ec = ErrorCode.wl.getError();
+			}
 			
 			UpdateProfileResponse response = new UpdateProfileResponse(ec);
 			return buildXML(response);

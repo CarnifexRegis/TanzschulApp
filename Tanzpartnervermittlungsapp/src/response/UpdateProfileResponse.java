@@ -4,19 +4,19 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 @Root (name = "updateprofileresponse")
 public class UpdateProfileResponse {
-@Element (name = "errorcode")
-String errorCode;
+@Element (name = "ec")
+String ec;
 
 public UpdateProfileResponse(){
 	super ();
 }
-public UpdateProfileResponse(String errorCode) {
+public UpdateProfileResponse(String ec) {
 	super();
-	this.errorCode = errorCode;
+	this.ec = ec;
 }
 
 public String getErrorCode() {
-	return errorCode;
+	return ec;
 }
 
 }

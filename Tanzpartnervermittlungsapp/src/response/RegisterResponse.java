@@ -5,19 +5,21 @@ import org.simpleframework.xml.Root;
 
 @Root(name = "registerresponse")
 public class RegisterResponse {
-@Element
-String error;
-@Element
+@Element(name = "ec")
+String ec;
+@Element(name = "id",required = false)
 int id;
 
-public RegisterResponse(){}
-public RegisterResponse(String error, int id) {
+public RegisterResponse(){
+	super ();
+}
+public RegisterResponse(String ec, int id) {
 	super();
-	this.error = error;
+	this.ec = ec;
 	this.id = id;
 }
 public String getError() {
-	return error;
+	return ec;
 }
 public int getId() {
 	return id;

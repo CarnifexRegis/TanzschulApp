@@ -59,9 +59,7 @@ public class RegisterTask  extends BaseHttpRequestTask{
 			 }
 			 else
 			 {
-			
-			int id = response.getId();
-			((Registration) activity).getLoginValues(response.getId());
+				 ((Registration) activity).getLoginValues(response.getId());
 			 }
 			
 		} catch (Exception e) {

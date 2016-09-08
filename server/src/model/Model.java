@@ -38,6 +38,7 @@ public class Model {
 		System.out.println("got an Instance of the Model");
 		return instance;
 	}
+	
 	/**
 	 * 
 	 * @param id		the id of the user
@@ -46,7 +47,7 @@ public class Model {
 	 * @param age		the age of the User
 	 * @return returns an Profile Chart Array<List>
 	 */
-	public ArrayList<ProfileChart> getCharts(int id,boolean gender,int kstu, int age,int day) {
+	public ArrayList<ProfileChart> getCharts(boolean gender,int kstu, int age,int day) {
 		int g;
 		String sDay;
 		switch(day){
@@ -81,14 +82,12 @@ public class Model {
 			g = 0;
 		}
 		
-		if (sql.checkID(id)) {
+		
 			
 			return sql.getProfilecharts(g, kstu, 0,sDay);
 		}
-		else {
-			return null ;
-			}
-	}
+		
+	
 	/**
 	 * @attribute This method recieves your E-Mail and password and passes it on to SQL.LogIn
 	 * E-Mail and password and returns your id if it´s correct
@@ -107,10 +106,10 @@ public class Model {
 	 * @return		Returns the Gender of the User as int three Values are possible : 1 for female, 0 for male and -1 in case of an Error
 	 */
 	public ProfileData getProfileData(int id){
-		if(sql.checkID(id)){
+		
 		return sql.getProfileData(id);
-		}
-		return null;
+		
+		
 	}
 	public boolean UpdateProfile(int id, String pn, int height,int age,String pText, boolean pa){
 		int intPa;
@@ -123,24 +122,24 @@ public class Model {
 	
 		
 	}
+	public boolean checkId (int id){
+		return sql.checkID(id);
+	}
 	public ArrayList<Kurs> getKurs(int id,int ks){
-		if(sql.checkID(id)){
 		return sql.getKurs(ks,id);
-		}
-		return null;
 	}
 	public Boolean addLink(int uid, int kid){
-		if(sql.checkID(uid)){
+		
 			return sql.addLink(uid, kid);
-		}
-		return false;
+		
+	
 		
 	}
 	public Boolean deleteLink(int uid, int kid){
-		if(sql.checkID(uid)){
+		
 			return sql.deleteLink(uid, kid);
-		}
-		return false;
+		
+	
 		
 	}
 	public int getGender(int id){
@@ -150,6 +149,9 @@ public class Model {
 		return sql.addUser(em, ps, ln, fn, g, age, pa);
 	}
 	public ProfileData getfProfile(String idp) {
+		
 	return sql.getProfileData(sql.getUserIDByIDP(idp));
 	}
+		
+	
 }

@@ -64,6 +64,7 @@ import android.widget.Toast;
 		/**
 		 * @Sources: http://stackoverflow.com/questions/2091465/how-do-i-pass-data-between-activities-on-android
 		 */
+		
 		protected void onCreate(Bundle savedInstanceState) {
 			//gets the passed on data from mainActivity
 			Bundle extras = getIntent().getExtras();
@@ -213,13 +214,20 @@ kSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 	            		sB.setEnabled(false);
 	        			if(isOnline(sfdp)){
 	        			UpdateChartTask updateChartTask = new UpdateChartTask (sfdp,ID, kursstufe, gender,day );
-	        			updateChartTask.execute();}else{
+	        			updateChartTask.execute();}
+	        			else{
 	        				Toast.makeText(getApplicationContext(), getResources().getString(R.string.check_connection), 
 	        		                Toast.LENGTH_SHORT).show(); 
 	        			}
 	            	
 	            }
 	        });
+	        if(isOnline(sfdp)){
+    			UpdateChartTask updateChartTask = new UpdateChartTask (sfdp,ID, kursstufe, gender,day );
+    			updateChartTask.execute();}
+	        else{
+    				Toast.makeText(getApplicationContext(), getResources().getString(R.string.check_connection), 
+    		                Toast.LENGTH_SHORT).show(); }
 		    }
 		//http://stackoverflow.com/questions/2789612/how-can-i-check-whether-an-android-device-is-connected-to-the-web
 		public boolean isOnline(Context context) {
@@ -246,6 +254,9 @@ kSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 		}
 		public void chartsUpdate(ArrayList<ProfileChart> pc){
 			sB.setEnabled(true);
+			if (pc.isEmpty()){
+				Toast.makeText(this,getResources().getString(R.string.empty_result), Toast.LENGTH_LONG).show();
+			}
 			newKursbuchungen( pc);
 				
 			}
@@ -262,19 +273,12 @@ kSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 		public boolean onOptionsItemSelected(MenuItem item) {
 		    switch(item.getItemId())
 		    {
-//		    case R.id.logIn:
-//		    	Intent intent = new Intent(getApplicationContext(),LogIn.class);
-//				if(ID >= 0){
-//				intent.putExtra("intentID", ID);}
-//				intent.putExtra("intentGender", gender);
-//				
-//				 startActivity(new Intent(intent));
-//		        break;
+
 		    case R.id.options:
 		    	break;
 		    case R.id.logOut:
 		    	//http://stacktips.com/tutorials/android/android-custom-dialog-example
-		    	if(ID >= 0){
+		    	
 		    		final Dialog dialog = new Dialog(SearchForDancingpartner.this);
 		    		//setting custom layout to dialog
 		    		dialog.setContentView(R.layout.log_out_dialog);
@@ -293,8 +297,8 @@ kSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 //						intent.putExtra("intentGender", false);
 						
 						 startActivity(new Intent(intent));
-					}
-					});
+					
+					}});
 					
 					nButton. setOnClickListener(new OnClickListener() {
 						
@@ -303,7 +307,7 @@ kSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 							dialog.dismiss();
 						}
 				});
-				dialog.show();}
+				dialog.show();
 		        
 		    	break;
 	    	}

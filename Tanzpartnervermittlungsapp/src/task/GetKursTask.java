@@ -26,9 +26,9 @@ public class GetKursTask extends BaseHttpRequestTask{
 			String xml = buildXML(request);
 			super.execute(Command.getkurs, xml);
 		} catch (Exception e) {
-		((AssignToKurs) activity).onConnectionError();
-		Log.e("Request", e.toString());
-		e.printStackTrace();
+			((AssignToKurs) activity).onConnectionError();
+			Log.e("Request", e.toString());
+			e.printStackTrace();
 		
 	}
 	}
@@ -38,13 +38,14 @@ public class GetKursTask extends BaseHttpRequestTask{
 		try {
 			GetKursResponse response = (GetKursResponse) parseXML(result,
 					GetKursResponse.class);
-		 if(!(response.getEc().equals( ErrorCode.ja.getError())))
+			String ec = response.getEc();
+		 if(!(ec.equals( ErrorCode.ja.getError())))
 			 {
-			 ((AssignToKurs) activity).onError(response.getEc());
+			 	((AssignToKurs) activity).onError(ec);
 			 }
 			 else
 			 {
-			((AssignToKurs) activity).recieveData(response.getKl());
+				 ((AssignToKurs) activity).recieveData(response.getKl());
 			 }
 		} catch (Exception e) {
 			((AssignToKurs) activity).onConnectionError();

@@ -1,30 +1,29 @@
 package task;
 
-import model.ProfileData;
 import protocol.Command;
 import protocol.ErrorCode;
 import request.ForeignProfileRequest;
-import request.ProfileDataRequest;
 import response.ProfileDataResponse;
-import activitys.EditProfile;
 import activitys.ShowProfile;
 import android.util.Log;
 
 public class ForeignProfileTask extends BaseHttpRequestTask {
 	String eMail;
-	public ForeignProfileTask (ShowProfile sp,String eMail) {
+	int id;
+	public ForeignProfileTask (ShowProfile sp,String eMail, int id) {
 		super(sp);
 		this.eMail = eMail;
+		this.id = id;
 	}
 	
 	public void execute() {
-		ForeignProfileRequest request = new ForeignProfileRequest(eMail);
+		ForeignProfileRequest request = new ForeignProfileRequest(eMail, id);
 
 		try {
 			String xml = buildXML(request);
 			super.execute(Command.foreignprofile, xml);
 		} catch (Exception e) {
-			((ShowProfile) activity).connectionError();
+			((ShowProfile) activity).onConnectionError();
 			// FIXME Errorhandling
 			System.out.println("An error occured bulding the xml/exceuting command");
 		}
@@ -37,19 +36,16 @@ public class ForeignProfileTask extends BaseHttpRequestTask {
 			String error = response.getErrorCode();
 			 if(!(error.equals( ErrorCode.ja.getError())))
 			 {
-					((ShowProfile) activity).onError(error);
+				((ShowProfile) activity).onError(error);
 			 }
 			 else
-			 {
-			
-			  ProfileData pd = response.getPd();
-			
-			((ShowProfile) activity).rechieveData(pd);
+			 {	 
+				 ((ShowProfile) activity).rechieveData(response.getPd());
 			 }
 			
 		} catch (Exception e) {
 			Log.e("Error in  LoginTask", e.toString());
-			((ShowProfile) activity).connectionError();	
+			((ShowProfile) activity).onConnectionError();	
 		}
 	}
 

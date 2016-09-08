@@ -10,7 +10,7 @@ import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
 /**
  * 
- * @author Simon Stolz
+ * @author Simon Stolz, Martin Pabst
  * Source: http://www.pabst-software.de/doku.php?id=programmieren:java:android:httpclient:start
  *
  */

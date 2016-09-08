@@ -246,7 +246,7 @@ public class Registration extends Activity {
 			rErrorView.setText("Es existiert bereits ein Account mit dieser E-Mail!");
 		break;
 		case "notFound" : 
-			rErrorView.setText("Es ist ein Fehler aufgetreten!");
+			rErrorView.setText(getResources().getString(R.string.unknown_error));
 		break;
 		}
 		}

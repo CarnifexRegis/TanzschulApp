@@ -47,12 +47,8 @@ public class ProfileDataTask  extends BaseHttpRequestTask{
 			 }
 			 else
 			 {
-			
-			ProfileData pd = response.getPd();
-			
-			
-			
-			((EditProfile) activity).rechieveData(pd);
+				 ProfileData pd = response.getPd();
+				 ((EditProfile) activity).rechieveData(pd);
 			 }
 			
 		} catch (Exception e) {

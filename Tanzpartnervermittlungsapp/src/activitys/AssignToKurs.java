@@ -9,10 +9,13 @@ import model.ProfileChart;
 import model.aAdapter;
 
 
+
+
 import com.example.Tanzpartnervermittlung.R;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.View;
@@ -140,6 +143,9 @@ public class AssignToKurs extends Activity{
 //			Adapter.notifyDataSetInvalidated();
 //			Adapter.addAll(k);
 //			Adapter.notifyDataSetChanged();
+		if (k.isEmpty()){
+			Toast.makeText(this,getResources().getString(R.string.empty_result), Toast.LENGTH_LONG).show();
+		}
 		Adapter = new aAdapter(this, k, id,atk) ;
 		kView.setAdapter(Adapter);
 		refresh.setEnabled(true);
@@ -158,19 +164,35 @@ public class AssignToKurs extends Activity{
 		//Adapter.getItem(position);
 		
 	}
-	public void onError(String error){
-		Toast.makeText(this,"Fehler: "+ error, Toast.LENGTH_SHORT).show();
+	public void onError(String ec){
+		Intent intent;
+		switch (ec){
+		case  "wrongLogin":
+			intent = new Intent(getApplicationContext(),LogIn.class);
+			intent.putExtra("error", getResources().getString(R.string.session_expired));
+			startActivity(new Intent(intent));
+			break;
+		case "notFound" :
+			Toast.makeText(getApplicationContext(),getResources().getString(R.string.unknown_error), 
+	                Toast.LENGTH_LONG).show(); 
+			break;
+		default:
+			intent = new Intent(getApplicationContext(),LogIn.class);
+			intent.putExtra("error", "Fatal error: " + ec);
+			startActivity(new Intent(intent));
+			break;
+		}
 		refresh.setEnabled(true);
 	}
 	public void onConnectionError(){
 		refresh.setEnabled(true);
 		if(!isOnline(this)){
 			Toast.makeText(getApplicationContext(), getResources().getString(R.string.check_connection), 
-	                Toast.LENGTH_SHORT).show(); 
+	                Toast.LENGTH_LONG).show(); 
 		
 		}else{
 			Toast.makeText(getApplicationContext(), getResources().getString(R.string.connection_failed), 
-	                Toast.LENGTH_SHORT).show(); 
+	                Toast.LENGTH_LONG).show(); 
 			
 		}
 	}
