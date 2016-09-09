@@ -14,15 +14,15 @@ import org.simpleframework.xml.Root;
 
 
 @Root (name = "getkursresponse")
-public class aGetKursResponse {
+public class AGetKursResponse {
 	@Element (name = "error")
 	String ec;
 	@ElementList(name = "kurslist",required = false)
 	ArrayList<aKurs> kl;
 	
-	public aGetKursResponse(){
+	public AGetKursResponse(){
 		super();}
-	public aGetKursResponse(String ec, ArrayList<aKurs> kl) {
+	public AGetKursResponse(String ec, ArrayList<aKurs> kl) {
 		super();
 		this.ec = ec;
 		this.kl = kl;

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 
 
-import tasks.aDeleteTask;
+import tasks.ADeleteTask;
 
 import com.example.tsconfigurtion.AmendKurs;
 import com.example.tsconfigurtion.R;
@@ -76,7 +76,7 @@ public class AmendAdapter extends ArrayAdapter<aKurs>{
 			level.setText(Kursstufen.fromInt(k.getKursstufe()).getKuNa());
 			date.setText(k.getDatum());
 			interested.setText(k.getEnlisted()+"");
-			Button delete = (ToggleButton) row.findViewById(R.id.KursDeleteButton);
+			Button delete = (Button) row.findViewById(R.id.KursDeleteButton);
 			
 			//http://developer.android.com/resources/samples/ApiDemos/src/com/example/android/apis/view/List14.html
 			delete.setTag(position);
@@ -85,15 +85,9 @@ public class AmendAdapter extends ArrayAdapter<aKurs>{
 				
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					int position =  (int) v.getTag();
 					aKurs k = getItem(position);
-					
-					aDeleteTask adt = new aDeleteTask(atk, id,k.getKursId(),position,v);
-					v.setClickable(false);
-		        	
-		        	adt.execute();
-		        	
+					atk.requestDelete(position, k.getKursId());
 				}
 			});	return row;
 		}

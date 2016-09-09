@@ -3,16 +3,14 @@ package response;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
-@Root (name = "adeleteresponse")
-public class aDeleteResponse {
+@Root (name = "addkursresponse")
+public class AAddKursResponse {
 	@Element (name = "ec")
-	String ec ;
-	
-	aDeleteResponse(){
+	private String ec;
+	public AAddKursResponse(){
 		super();
-		}
-
-	public aDeleteResponse(String ec) {
+	}
+	public AAddKursResponse(String ec) {
 		super();
 		this.ec = ec;
 	}
@@ -21,6 +19,5 @@ public class aDeleteResponse {
 		return ec;
 	}
 	
-		
-	
+
 }

@@ -15,7 +15,7 @@ public class TServer {
 	 * 
 	 */
 	 Server server;
-	
+	 ServerConnector http;
 	 private volatile boolean running = true;
 	public TServer(){
 			
@@ -24,19 +24,17 @@ public class TServer {
 		 * Instanziert einen Jetty-Webserver, der später auf Port 8080 horchen soll
 		 */
 		  server = new Server();
-	        // HTTP connector
-	        ServerConnector http = new ServerConnector(server);
-	         http.setHost("192.168.1.104");
-	       // http.setHost("localhost");
+//	        // HTTP connector
+	        http = new ServerConnector(server);
+
 	        http.setPort(8080);
 	        http.setIdleTimeout(30000);
-	        server.addConnector(http);
-		 	/**
-		 	 * Bei jedem Request wird vom Webserver die handle-Methode der Handler-Klasse MyHandler aufgerufen. 
-		 	 * For every incoming Request the handle-method of the THandler Class gets called.
-		 	 */
-		    server.setHandler(new THandler());
-		    System.out.println(server.getURI());
+	        
+//		 	/**
+//		 	 * Bei jedem Request wird vom Webserver die handle-Methode der Handler-Klasse MyHandler aufgerufen. 
+//		 	 * For every incoming Request the handle-method of the THandler Class gets called.
+//		 	 */
+		    
 	    
 	}
 	
@@ -55,18 +53,25 @@ public class TServer {
 			
 		}
 	}
-	public void startServer(){
+	public String startServer(String host){
 		 try {
 		    	/**
 		    	 * Starten des Webservers
 		    	 * This starts the Server
 		    	 */
+			
+			 http.setHost(host);
+			 server.setHandler(new THandler());
+			 server.addConnector(http);
+			 System.out.println(server.getURI());
 				server.start();
-				server.join();	
+				server.join();
+				 return null;
+			        
 					
 			} catch (Exception e) {
-
 				e.printStackTrace();
+				return e.getMessage().toString();
 			}
 	}
 	

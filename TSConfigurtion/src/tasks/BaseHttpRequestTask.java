@@ -1,6 +1,7 @@
 package tasks;
 /**
  * @author Simon Stolz, Martin Pabst
+
  * Soruces: http://www.pabst-software.de/doku.php?id=programmieren:java:android:httpclient:start
  * 			Abi Quiz-App by Tim Möschel
  */
@@ -26,7 +27,10 @@ import protocol.Properties;
 
 public class BaseHttpRequestTask extends AsyncTask<String, Void, String> {
 	protected Activity activity;
-
+	/**
+	 * 
+	 * @param activity This is the activity that called th Task
+	 */
 	protected BaseHttpRequestTask(Activity activity) {
 		super();
 		this.activity = activity;

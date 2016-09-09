@@ -1,9 +1,7 @@
 package database2;
-import java.awt.List;
-import java.io.StringWriter;
 import java.security.SecureRandom;
 import java.sql.Connection;
-import java.sql.DatabaseMetaData;
+
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,12 +12,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-
-import org.simpleframework.xml.Serializer;
-import org.simpleframework.xml.core.Persister;
-import org.simpleframework.xml.stream.Format;
-import org.simpleframework.xml.stream.HyphenStyle;
-import org.simpleframework.xml.stream.Style;
 /**
  * 
  * @author Simon
@@ -65,7 +57,7 @@ int i = 0;
 				//String sql = "SELECT COUNT(*) AS PS FROM USER WHERE EMAIL = 'hallo' AND PASSWORD = 'geheim' ;";
 				stmt = c.createStatement();
 				ResultSet rs = stmt.executeQuery(sql2);
-				int i = rs.getInt("I");
+				rs.getInt("I");
 				if (rs!= null){
 					rs.close();
 					}
@@ -101,7 +93,7 @@ int i = 0;
 				//String sql = "SELECT COUNT(*) AS PS FROM USER WHERE EMAIL = 'hallo' AND PASSWORD = 'geheim' ;";
 				stmt = c.createStatement();
 				ResultSet rs = stmt.executeQuery(sql2);
-				int i = rs.getInt("I");
+				rs.getInt("I");
 				if (rs!= null){
 					rs.close();
 					}
@@ -141,7 +133,7 @@ int i = 0;
 				//String sql = "SELECT COUNT(*) AS PS FROM USER WHERE EMAIL = 'hallo' AND PASSWORD = 'geheim' ;";
 				stmt = c.createStatement();
 				ResultSet rs = stmt.executeQuery(sql2);
-				int i = rs.getInt("I");
+				rs.getInt("I");
 				if (rs!= null){rs.close();}
 				if (stmt != null){stmt.close();}
 			}catch(Exception e){	
@@ -185,7 +177,7 @@ int i = 0;
 				//String sql = "SELECT COUNT(*) AS PS FROM USER WHERE EMAIL = 'hallo' AND PASSWORD = 'geheim' ;";
 				stmt = c.createStatement();
 				ResultSet rs = stmt.executeQuery(sql2);
-				int i = rs.getInt("I");
+				rs.getInt("I");
 				if (rs!= null){
 					rs.close();
 					}
@@ -390,7 +382,7 @@ int i = 0;
 	
 	
 	
-	public void addAdmin(String n,String k){
+	public boolean addAdmin(String n,String k){
 		Statement stmt;
 		try{
 			stmt = c.createStatement();
@@ -402,47 +394,82 @@ int i = 0;
 				if(stmt!= null)stmt.close();
 				if(count == 0){
 					int id;
+					PreparedStatement p;
 					try{	
-						 stmt = c.createStatement();
 						//http://docs.oracle.com/javase/7/docs/api/java/security/SecureRandom.html
 						//http://www.javapractices.com/topic/TopicAction.do?Id=62
 						 id = random.nextInt(10000000); // taking the chanches for duplicate id  ^^
 						String sql = "INSERT INTO ADMIN (ID, NAME,KEY)"+ 
 								  	 "VALUES(?,?,?);";						// new Version similar to the dedicated source
-						PreparedStatement p = c.prepareStatement (sql);
+						p = c.prepareStatement (sql);
 
 						p.setInt(1,id);
 						p.setString(2,n);
 						p.setString(3, k);
 						p.executeUpdate();
+						c.commit();
 						System.out.println("added Admin ");
 						if(p!=null)p.close();
-						c.commit();
+						return true;
 					}
 					catch(Exception e){
 						System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 				        System.exit(0);
-				       
+				       return false;
 				        
 						}
 					}
 				else
 					{
-					
 					System.out.println("The requested admin already exists in our database");
 					
+					
+					
 					}
-			}}catch(Exception e){
+			}
+			}catch(Exception e){
 				e.printStackTrace();
-			}}
-	public 	int aLogIn(String n, String k){ // id check
+				return false;
+			}
+		return false;
+		}
+	public ArrayList<aKurs> getaKurs(int kstu){
 		Statement stmt;
 		
+		ArrayList<aKurs> kurs = new ArrayList<aKurs>();
+		//SELECT KURS.ID,KURS.DATUM,KURS.KURSSTUFE,KURS.UHRZEIT,KURS.WOCHENTAG ,COUNT (USER.ID)AS C FROM KURS LEFT JOIN LINK ON KURS.ID = LINK.KID LEFT JOIN USER ON LINK.UID = USER.ID AND USER.ID = '"+uid+"' WHERE KURSSTUFE = '"+ks+"' GROUP BY KURS.ID ORDER BY KURSSTUFE ASC,DATUM DESC 
+		try{
+			stmt=c.createStatement();
+			String sql = " SELECT KURS.ID,KURS.DATUM,KURS.KURSSTUFE,KURS.UHRZEIT,KURS.WOCHENTAG ,COUNT (USER.ID)AS C FROM KURS"
+					+ " LEFT JOIN LINK ON KURS.ID = LINK.KID "
+					+ "LEFT JOIN USER ON LINK.UID = USER.ID WHERE KURSSTUFE = '"+kstu+"' GROUP BY KURS.ID ORDER BY KURSSTUFE ASC,DATUM DESC   ;";
+			ResultSet rs = stmt.executeQuery(sql);
+			while(rs.next()){
+				int  kid = rs.getInt("ID");
+				int cl  =rs.getInt("kursstufe");
+				String uhr = rs.getString("UHRZEIT");
+				String date = "" +rs.getDate("DATUM");
+				String day = rs.getString("WOCHENTAG");
+				int enlisted =rs.getInt("C");
+				System.out.println(kid + "");
+				kurs.add(new aKurs(kid, cl, date, day, uhr,enlisted));
+			}
+			if(stmt!=null)stmt.close();
+			if(rs!=null)rs.close();
+			return kurs;
+		}catch(Exception e){
+			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	        System.exit(0);
+			e.printStackTrace();
+			return null;
+		}
+		
+	}
+	public 	int aLogIn(String n, String k){ // id check
 		int i;
 		try{
 			//TODO buggy
-			String sql = "SELECT COUNT(ID) AS I FROM ADMIN"
-						+ " WHERE NAME =? AND KEY = ? ;";
+			String sql = "SELECT COUNT(ID) AS I FROM ADMIN WHERE NAME = ? AND KEY = ? ;";
 			//String sql = "SELECT COUNT(*) AS PS FROM USER WHERE EMAIL = 'hallo' AND PASSWORD = 'geheim' ;";
 			PreparedStatement p = c.prepareStatement(sql);
 			p.setString(1,n);
@@ -456,7 +483,7 @@ int i = 0;
 				int id;
 				try{
 					
-					String sql2 = "SELECT ID FROM USER WHERE NAME = ? ;";
+					String sql2 = "SELECT ID FROM ADMIN WHERE NAME = ? ;";
 					p = c.prepareStatement(sql2);
 					p.setString(1, n);
 					ResultSet rs2 = p.executeQuery();
@@ -522,18 +549,18 @@ int i = 0;
 	
 	public int addUser(String eMail, String ps,String ln,  String fn, int g,int age,int pa){
 		
-		Statement stmt;
+		
 		String idp;
-		int id;
+		//int id;
 
 	     if(!eMailExists(eMail)){
 		try{	
-			 stmt = c.createStatement();
+			 
 		
 			//http://docs.oracle.com/javase/7/docs/api/java/security/SecureRandom.html
 			//http://www.javapractices.com/topic/TopicAction.do?Id=62
 			 idp =random.nextInt(10000000)+"";
-			 id = random.nextInt(10000000);
+			// id = random.nextInt(10000000);
 		     
 		      while(!aviableIDP(idp)){
 		    	  idp =random.nextInt(10000000)+"";
@@ -676,6 +703,9 @@ int i = 0;
 			stmt = c.createStatement();
 			stmt.executeUpdate(sql);
 			c.commit();
+			if(stmt != null){
+				stmt.close();
+			}
 		}
 		catch(Exception e){
 			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
@@ -683,18 +713,29 @@ int i = 0;
 			e.printStackTrace();}	
 	}
 
-	public void deleteAllKurs(){
-		Statement stmt;
+	public boolean deleteKurs(int kid){
+		PreparedStatement p;
 		try{
-			String sql = "DELETE FROM Kurs;";
-			stmt = c.createStatement();
-			stmt.executeUpdate(sql);
+			String sql = "DELETE FROM Kurs WHERE ID =  ?;";
+			p = c.prepareStatement(sql);
+			p.setInt(1, kid);
+			p.executeUpdate();
 			c.commit();
+			if(p != null){
+				p.close();
+			}
+			String sql2 = "DELETE FROM LINK WHERE KID = ?;";
+			p= c.prepareStatement(sql2);
+			p.setInt(1, kid);
+			p.executeUpdate();
+			return true;
+			
 		}
 		catch(Exception e){
 			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 	        System.exit(0);
-			e.printStackTrace();}	
+			e.printStackTrace();
+			return false;}	
 	}
 	
 	public boolean deleteLink (int uid, int kid){
@@ -706,7 +747,11 @@ int i = 0;
 			p.setInt(2, kid);
 			p.executeUpdate();
 			c.commit();
+			if(p != null){
+				p.close();
+			}
 			return true;
+			
 		}
 		catch(Exception e){
 			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
@@ -1104,7 +1149,7 @@ int i = 0;
 		
 		public ArrayList<Kurs> getKurs(int kstu, int uid){
 			Statement stmt;
-
+			
 			ArrayList<Kurs> kurs = new ArrayList<Kurs>();
 			//SELECT KURS.ID,KURS.DATUM,KURS.KURSSTUFE,KURS.UHRZEIT,KURS.WOCHENTAG ,COUNT (USER.ID)AS C FROM KURS LEFT JOIN LINK ON KURS.ID = LINK.KID LEFT JOIN USER ON LINK.UID = USER.ID AND USER.ID = '"+uid+"' WHERE KURSSTUFE = '"+ks+"' GROUP BY KURS.ID ORDER BY KURSSTUFE ASC,DATUM DESC 
 			try{

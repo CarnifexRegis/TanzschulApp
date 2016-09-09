@@ -5,18 +5,30 @@ import org.simpleframework.xml.Root;
 
 @Root (name = "getkursrequest")
 
-public class aGetKursRequest {
+public class AGetKursRequest {
 	@Element (name = "id")
 	int id;
 	@Element (name = "kursstufe")
 	int ks;
-	public  aGetKursRequest(){
+//	@Element (name = "mature")
+//	boolean mature;
+	
+	public  AGetKursRequest(){
 		super();
 	}
-	public aGetKursRequest(int id, int ks) {
+	public AGetKursRequest(int id, int ks) {
 		super();
 		this.id = id;
 		this.ks = ks;
+//		this.mature = mature;
+		
+	}
+	public AGetKursRequest(int id, int ks, boolean mature) {
+		super();
+		this.id = id;
+		this.ks = ks;
+//		this.mature = mature;
+		
 	}
 
 	public int getId() {
@@ -25,4 +37,5 @@ public class aGetKursRequest {
 	public int getKursStufe(){
 		return ks;
 	}
+	
 }

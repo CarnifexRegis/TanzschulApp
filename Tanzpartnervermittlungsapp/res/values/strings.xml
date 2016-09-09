@@ -67,7 +67,7 @@
 	<string name ="text_age">Alter:</string>
 	<string name ="text_height">Größe:</string>
 	<string name ="text_pn">Telefonnummer:</string>
-	<string name ="text_about_me">Telefonnummer:</string>
+	<string name ="text_about_me">Über mich:</string>
 	<string name ="text_time">Uhrzeit:</string>
 	<string name ="text_day">Wochentag:</string>
 	<string name ="text_date">Startdatum:</string>
@@ -76,7 +76,7 @@
 	<string name ="button_clipboard">Nummer in Zwischenablage.</string>
 	<string name ="button_add_phone_book">Zu Telefonbuch hinzufügen.</string>
 	<string name ="button_add_contact">Freundschaftsanfrage senden</string>
-	<string name ="button_back_to_menue">Freundschaftsanfrage senden</string>
+	<string name ="button_back_to_menue">Zurück zum Menü.</string>
 	
 	
 	

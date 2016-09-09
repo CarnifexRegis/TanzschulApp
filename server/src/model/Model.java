@@ -14,18 +14,23 @@ import java.util.ArrayList;
 
 
 
+
+
+import main.Main;
 import database2.Kurs;
 import database2.ProfileChart;
 import database2.ProfileData;
 import database2.SQL;
+import database2.aKurs;
 
 public class Model {
-	final private static AdminArray[] adminArray = new AdminArray [3];
+	
 	private static Model instance;
 	private SQL sql;
 /**
  * The constructor gets an instance of the SQL class, which uses JDBC to access the Server sDatabase
  */
+	
 	private Model() {
 		sql = new SQL();
 		System.out.println("Constructor of the Model was called");
@@ -48,10 +53,17 @@ public class Model {
 	 * @param age		the age of the User
 	 * @return returns an Profile Chart Array<List>
 	 */
-	public boolean checkAdmin (String un ,String  k){
-		
-		return false;
-		
+	public boolean addAdmin(String n, String k,Main main){
+		return sql.addAdmin(n, k);
+	}
+	public int aLogin(String n, String k){
+		return sql.aLogIn(n, k);
+	}
+	public boolean checkAdmin(int id){
+		return sql.acheckID(id);
+	}
+	public boolean deleteKurs( int kid){
+		return sql.deleteKurs(kid);
 	}
 	public ArrayList<ProfileChart> getCharts(boolean gender,int kstu, int age,int day) {
 		int g;
@@ -130,6 +142,9 @@ public class Model {
 	}
 	public boolean checkId (int id){
 		return sql.checkID(id);
+	}
+	public ArrayList<aKurs> getaKurs(int ks){
+		return sql.getaKurs(ks);
 	}
 	public ArrayList<Kurs> getKurs(int id,int ks){
 		return sql.getKurs(ks,id);

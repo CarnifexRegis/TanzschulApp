@@ -5,6 +5,7 @@
     android:versionName="1.0" >
  	
     <uses-permission android:name="android.permission.INTERNET" />
+   
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-sdk
         android:minSdkVersion="20"
@@ -25,15 +26,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="activitys.AddKurs"
+            android:name=".AddKurs"
             android:label="@string/activity_add" >
         </activity>
         <activity
-            android:name="activitys.ManageKurs"
+            android:name=".ManageKurs"
             android:label="@string/activity_manage" >
         </activity>
         <activity
-            android:name="activitys.AmendKurs"
+            android:name=".AmendKurs"
             android:label="@string/activity_amend" >
         </activity>
     </application>

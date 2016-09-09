@@ -1,13 +1,10 @@
 package tasks;
 
-import java.util.ArrayList;
-
 import protocol.AbstractHandler;
 import protocol.ErrorCode;
 import model.Model;
 import request.LoginRequest;
 import response.LoginResponse;
-import database2.ProfileChart;
 //sec update
 public class LoginTask extends AbstractHandler {
 	// TODO add errorCode

@@ -1,7 +1,7 @@
 package protocol;
 
 public enum Command {
-	 alogin("alogin"),agetkurs("agetkurs"),addkurs("addKurs");
+	 alogin("alogin"),agetkurs("agetkurs"),addkurs("addKurs"),adeletekurs("adeletekurs");
 
 	private String text;
 

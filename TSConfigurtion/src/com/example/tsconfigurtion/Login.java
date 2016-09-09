@@ -1,7 +1,7 @@
 package com.example.tsconfigurtion;
 
 import model.ConnectedActivity;
-import tasks.LoginTask;
+import tasks.ALoginTask;
 
 
 
@@ -120,7 +120,7 @@ public class Login extends ConnectedActivity {
             		String  key =keyInsert.getText().toString();
             	System.out.println(eMail + key + "Values");
               if(key.length()> 0 && eMail.length() > 0){
-            	LoginTask loginTask = new LoginTask(login, eMail, key);
+            	ALoginTask loginTask = new ALoginTask(login, eMail, key);
             	errorView.setVisibility(View.GONE);
             	
             	loginTask.execute();

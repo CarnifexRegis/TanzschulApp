@@ -55,11 +55,12 @@ import android.widget.Toast;
 		int ID = -1;
 		boolean gender;
 		int kursstufe = 1;
-		int day;
+		int day = 3;
 		String idp;
 		String error = null;
 		final SearchForDancingpartner sfdp = this;
-		private Button sB;
+		boolean ready;
+		
 		@Override
 		/**
 		 * @Sources: http://stackoverflow.com/questions/2091465/how-do-i-pass-data-between-activities-on-android
@@ -77,15 +78,16 @@ import android.widget.Toast;
 				Toast.makeText(getApplicationContext(), error, Toast.LENGTH_LONG).show(); 
 			}
 			}
-			
+			ready  = false;
 			super.onCreate(savedInstanceState);
 			setContentView(R.layout.search_for_dancingpartner); //instanziieren des Spinners, http://developer.android.com/guide/topics/ui/controls/spinner.html
+			// instancing Listview
 			
 			Spinner kSpinner = (Spinner) findViewById(R.id.KurseSpinner);
 			ArrayAdapter<CharSequence> adapterSimple1 = ArrayAdapter.createFromResource(this, R.array.kurs_array, android.R.layout.simple_spinner_item); // Specify the layout to use when the list of choices appears
 			adapterSimple1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // Apply the adapter to the spinner
 			kSpinner.setAdapter(adapterSimple1);
-			 sB = (Button) findViewById(R.id.searchButton);
+			 
 kSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -121,11 +123,15 @@ kSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
     	  kursstufe = 9;
     	  break;
       } 
-      sB.setEnabled(true);
-		
-	//	UpdateChartTask updateChartTask = new UpdateChartTask (sfdp,ID, kursstufe, gender );
-		//updateChartTask.execute();}else{System.out.println("not connected");
-		
+      if(ready){
+    	  if(isOnline(sfdp)){
+    		  UpdateChartTask updateChartTask = new UpdateChartTask (sfdp,ID, kursstufe, gender,day );
+    		  updateChartTask.execute();}
+			else{
+				Toast.makeText(getApplicationContext(), getResources().getString(R.string.check_connection), 
+		                Toast.LENGTH_SHORT).show(); 
+			}
+      }
     } 
 
 	@Override
@@ -133,6 +139,26 @@ kSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 		// TODO Auto-generated method stub
 	}
 });		
+			
+			pc =  new ArrayList<ProfileChart>();
+			adapterCustom = new Adapter(this,pc );
+			final ListView ProfileChartView = (ListView) findViewById(R.id.userListView);
+			ProfileChartView.setAdapter(adapterCustom);	
+			ProfileChartView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+	            @Override
+	            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+	                //the .getName() is accessed from the School POJO class.
+	              //  String eMail = adapterCustom.getItem(position).geteMail();
+	                //http://stackoverflow.com/questions/9208827/how-to-extract-the-text-from-the-selected-item-on-the-listview
+	                Intent intent = new Intent(getApplicationContext(),ShowProfile.class);
+					intent.putExtra("ID", ID);
+					intent.putExtra("gender", gender);
+			//		eMail = adapterCustom.getItem(position).getAge();
+					idp= adapterCustom.getItem(position).getIdp();
+					intent.putExtra("idp", idp);
+					 startActivity(new Intent(intent));
+	            }
+	        });
 			Spinner dSpinner = (Spinner) findViewById(R.id.daySpinner);
 			ArrayAdapter<CharSequence> adapterSimple2 = ArrayAdapter.createFromResource(this, R.array.day_array, android.R.layout.simple_spinner_item); // Specify the layout to use when the list of choices appears
 			adapterSimple2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // Apply the adapter to the spinner
@@ -169,10 +195,19 @@ kSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 			    	  day = 6;
 			    	  break;
 			    	  default: 
-			    		  day = 1;
-			    		  break;
+			    		  day = 3;
+			    		  
+			    		 
 			      } 
-			     sB.setEnabled(true);
+			     
+			     ready = true;
+			     if(isOnline(sfdp)){
+	        			UpdateChartTask updateChartTask = new UpdateChartTask (sfdp,ID, kursstufe, gender,day );
+	        			updateChartTask.execute();}
+	        			else{
+	        				Toast.makeText(getApplicationContext(), getResources().getString(R.string.check_connection), 
+	        		                Toast.LENGTH_SHORT).show(); 
+	        			}
 			    }
 				@Override
 				public void onNothingSelected(AdapterView<?> parent) {
@@ -180,55 +215,12 @@ kSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 					
 				}
 			});
-			
-			pc =  new ArrayList<ProfileChart>();
-			adapterCustom = new Adapter(this,pc );
-		final ListView ProfileChartView = (ListView) findViewById(R.id.userListView);
-		ProfileChartView.setAdapter(adapterCustom);
-		ProfileChartView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-	            @Override
-	            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-	                //the .getName() is accessed from the School POJO class.
-	              //  String eMail = adapterCustom.getItem(position).geteMail();
-	                //http://stackoverflow.com/questions/9208827/how-to-extract-the-text-from-the-selected-item-on-the-listview
-	                Intent intent = new Intent(getApplicationContext(),ShowProfile.class);
-					intent.putExtra("ID", ID);
-					intent.putExtra("gender", gender);
-			//		eMail = adapterCustom.getItem(position).getAge();
-					idp= adapterCustom.getItem(position).getIdp();
-					intent.putExtra("idp", idp);
-					 startActivity(new Intent(intent));
-	            }
-	        });
+		}
 			
 			
 		 
-	        sB.setOnClickListener(new View.OnClickListener() {
-	            public void onClick(View v) {
-//	            	adapterCustom.clear();
-//	            	adapterCustom.notifyDataSetChanged();
-	            	
-	        		//	kursstufe = 3;
-//	        			ID = 1;
-//	        			gender = true;
-	            		sB.setEnabled(false);
-	        			if(isOnline(sfdp)){
-	        			UpdateChartTask updateChartTask = new UpdateChartTask (sfdp,ID, kursstufe, gender,day );
-	        			updateChartTask.execute();}
-	        			else{
-	        				Toast.makeText(getApplicationContext(), getResources().getString(R.string.check_connection), 
-	        		                Toast.LENGTH_SHORT).show(); 
-	        			}
-	            	
-	            }
-	        });
-	        if(isOnline(sfdp)){
-    			UpdateChartTask updateChartTask = new UpdateChartTask (sfdp,ID, kursstufe, gender,day );
-    			updateChartTask.execute();}
-	        else{
-    				Toast.makeText(getApplicationContext(), getResources().getString(R.string.check_connection), 
-    		                Toast.LENGTH_SHORT).show(); }
-		    }
+	       
+	        
 		//http://stackoverflow.com/questions/2789612/how-can-i-check-whether-an-android-device-is-connected-to-the-web
 		
 		/**
@@ -240,13 +232,12 @@ kSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 		 */
 		public void newKursbuchungen(ArrayList<ProfileChart> pc){
 			adapterCustom.clear();
-		
-		adapterCustom.addAll(pc);
-		adapterCustom.notifyDataSetChanged();
+			adapterCustom.addAll(pc);
+			adapterCustom.notifyDataSetChanged();
 		
 		}
 		public void chartsUpdate(ArrayList<ProfileChart> pc){
-			sB.setEnabled(true);
+			
 			if (pc.isEmpty()){
 				Toast.makeText(this,getResources().getString(R.string.empty_result), Toast.LENGTH_LONG).show();
 			}
@@ -368,40 +359,8 @@ kSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 //		    	}
 //		    return true;
 //		}
-		@Override
-		public void onError(String ec){
-			Intent intent;
-			
-			switch (ec){
-			case  "wrongLogin":
-				intent = new Intent(getApplicationContext(),LogIn.class);
-				intent.putExtra("error", getResources().getString(R.string.session_expired));
-				startActivity(new Intent(intent));
-				break;
-			case "notFound" :
-				Toast.makeText(getApplicationContext(),getResources().getString(R.string.unknown_error), 
-		                Toast.LENGTH_LONG).show(); 
-				break;
-			default:
-				intent = new Intent(getApplicationContext(),LogIn.class);
-				intent.putExtra("error", "Fatal error: " + ec);
-				startActivity(new Intent(intent));
-				break;
-			}
-			sB.setEnabled(true);
-		}
-		@Override
-		public void onConnectionError(){
-			sB.setEnabled(true);
-			if(!isOnline(this)){
-				Toast.makeText(getApplicationContext(), getResources().getString(R.string.check_connection), 
-		                Toast.LENGTH_SHORT).show(); 
-			
-			}else{
-				Toast.makeText(getApplicationContext(), getResources().getString(R.string.connection_failed), 
-		                Toast.LENGTH_SHORT).show();} 
-				
-			}
+		
+		
 
 		@Override
 		public void onBackPressed(){

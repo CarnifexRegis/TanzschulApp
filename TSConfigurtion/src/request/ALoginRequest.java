@@ -8,15 +8,15 @@ import org.simpleframework.xml.Root;
  *
  */
 @Root(name = "aloginrequest")
-public class aLoginRequest {
+public class ALoginRequest {
 	@Element (name = "name")
 	String name;
 	@Element (name = "key")
 	String key;
-	public aLoginRequest(){
+	public ALoginRequest(){
 		super();
 	}
-	public aLoginRequest(String name, String key) {
+	public ALoginRequest(String name, String key) {
 		super();
 		this.name = name;
 		this.key = key;

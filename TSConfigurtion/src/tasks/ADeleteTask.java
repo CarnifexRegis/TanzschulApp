@@ -2,19 +2,19 @@ package tasks;
 
 import protocol.Command;
 import protocol.ErrorCode;
-import request.aDeleteRequest;
-import response.aDeleteResponse;
+import request.ADeleteRequest;
+import response.ADeleteResponse;
 import android.util.Log;
 import android.view.View;
 
 import com.example.tsconfigurtion.AmendKurs;
 
-public class aDeleteTask extends BaseHttpRequestTask{
+public class ADeleteTask extends BaseHttpRequestTask{
 int kid;
 int uid;
 int position;
 View v;
-	public aDeleteTask(AmendKurs amk,int kid, int uid,int position,View v) {
+	public ADeleteTask(AmendKurs amk,int kid, int uid,int position,View v) {
 		super(amk);
 		this.kid = kid;
 		this.uid = uid;
@@ -23,11 +23,11 @@ View v;
 	}
 
 	public void execute() {
-		aDeleteRequest request = new aDeleteRequest(uid, kid);
+		ADeleteRequest request = new ADeleteRequest(uid, kid);
 
 		try {
 			String xml = buildXML(request);
-			super.execute(Command.agetkurs, xml);
+			super.execute(Command.adeletekurs, xml);
 		} catch (Exception e) {
 			v.setClickable(true);
 			((AmendKurs) activity).onConnectionError();
@@ -41,12 +41,14 @@ View v;
 	@Override
 	public void onPostExecute(String result) {
 		try {
-			aDeleteResponse response = (aDeleteResponse) parseXML(result,
-					aDeleteResponse.class);
+			ADeleteResponse response = (ADeleteResponse) parseXML(result,
+					ADeleteResponse.class);
 			String ec = response.getEc();
 		 if(!(ec.equals( ErrorCode.ja.getError())))
 			 {
+			 	v.setClickable(true);
 			 	((AmendKurs) activity).onError(ec);
+			 	
 			 }
 			 else
 			 {

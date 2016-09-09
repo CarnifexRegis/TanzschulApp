@@ -6,21 +6,24 @@ import com.example.tsconfigurtion.AmendKurs;
 import protocol.Command;
 import protocol.ErrorCode;
 import android.util.Log;
-import request.aGetKursRequest;
-import response.aGetKursResponse;
+import request.AGetKursRequest;
+import response.AGetKursResponse;
 
-public class aGetKursTask extends BaseHttpRequestTask{
+public class AGetKursTask extends BaseHttpRequestTask{
 	int id;
 	int ks;
-	public aGetKursTask(AmendKurs amk, int id, int ks) {
+	boolean mature;
+	public AGetKursTask(AmendKurs amk, int id, int ks, boolean mature) {
 		super(amk);
 		this.id=id;
 		this.ks =ks;
+		this.mature = mature;
+		
 		
 	}
 
 	public void execute() {
-		aGetKursRequest request = new aGetKursRequest(id,ks);
+		AGetKursRequest request = new AGetKursRequest(id,ks,mature);
 
 		try {
 			String xml = buildXML(request);
@@ -36,8 +39,8 @@ public class aGetKursTask extends BaseHttpRequestTask{
 	@Override
 	public void onPostExecute(String result) {
 		try {
-			aGetKursResponse response = (aGetKursResponse) parseXML(result,
-					aGetKursResponse.class);
+			AGetKursResponse response = (AGetKursResponse) parseXML(result,
+					AGetKursResponse.class);
 			String ec = response.getEc();
 		 if(!(ec.equals( ErrorCode.ja.getError())))
 			 {

@@ -32,6 +32,7 @@
 	<string name="level">Kursstufe:</string>
 	<string name="interested_costumers">Anzahl der Interessenten:</string>
 	<string name="delete_kurs">Kurs löschen.</string>
+	<string name="toast_delete_kurs">Wollen sie den Kurs und alle Verweise auf ihn unwiderruflich löschen?</string>
 	
 	
 	<string-array name="kurs_array">
@@ -46,6 +47,12 @@
         <item>Jugendkreis 1</item>
         <item>Jugendkreis 2</item>  
   </string-array>
+  <string-array name="year_array">
+   
+    <item>2016</item>
+       <item>2017</item>
+        
+  </string-array>
   <string-array name="day_array">
       	<item>Alle</item>
    		 <item>Mittwoch</item>
@@ -53,5 +60,70 @@
     	<item>Freitag</item>
     	 <item>Samstag</item>
   </string-array>
+ 
+  <string-array name="date_day_array">
+      	<item>1</item>
+   		 <item>2</item>
+    	 <item>3</item>
+    	 <item>4</item>
+    	 <item>5</item>
+    	 <item>6</item>
+    	 <item>7</item>
+    	 <item>8</item>
+    	 <item>9</item>
+    	 <item>10</item>
+    	 <item>11</item>
+    	 <item>12</item>
+    	 <item>13</item>
+    	 <item>14</item>
+    	 <item>15</item>
+    	 <item>15</item>
+    	 <item>16</item>
+    	 <item>17</item>
+    	 <item>18</item>
+    	 <item>19</item>
+    	 <item>20</item>
+    	 <item>15</item>
+    	 <item>16</item>
+		 <item>17</item>
+    	 <item>18</item>
+    	 <item>19</item>
+    	 <item>20</item>
+    	 <item>21</item>
+    	 <item>22</item>
+    	 <item>23</item>
+    	 <item>24</item>
+    	 <item>25</item>
+    	 <item>26</item>
+    	 <item>27</item>
+    	 <item>28</item>
+    	 <item>29</item>
+    	 <item>30</item>
+    	 <item>31</item>
+    	        
+  </string-array>
+  
+    <string-array name="date_month_array">
+      	
+    	 <item>Januar</item>
+    	 <item>Februar</item>
+    	 <item>März</item>
+    	 <item>April</item>
+    	 <item>Mai</item>
+    	 <item>Juni</item>
+    	 <item>Juli</item>
+    	 <item>August</item>
+    	 <item>September</item>
+    	 <item>Oktober</item>
+    	 <item>November</item>
+    	 <item>Dezember</item>
+  	</string-array>
+  	<string-array name="mature_array">
+      	
+    	 <item>Schülerkurs</item>
+    	 <item>Erwachsenenkurs</item>
+    	 
+  	</string-array>
+  
 	
 </resources>

@@ -3,20 +3,13 @@ package activitys;
 import java.util.ArrayList;
 
 import task.GetKursTask;
-import model.Adapter;
 import model.Kurs;
-import model.ProfileChart;
 import model.aAdapter;
 
 
 
 
 import com.example.Tanzpartnervermittlung.R;
-
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -38,7 +31,7 @@ public class AssignToKurs extends ConnectedActivity{
 	aAdapter Adapter;
 	
 	ListView kView;
-	Button refresh;
+	
 //http://stackoverflow.com/questions/5195321/remove-an-onclick-listener	
 	
 	@Override
@@ -54,7 +47,7 @@ public class AssignToKurs extends ConnectedActivity{
 		gender = extras.getBoolean("gender");
 		}
 		// instanciating and configuring Spinner
-		 refresh = (Button) findViewById(R.id.aRefreshButton);
+		
 		final TextView header = (TextView)findViewById(R.id.aKursHeader);
 		if (gender){
 			header.setText(getResources().getString(R.string.kurs_header_f));
@@ -105,7 +98,7 @@ public class AssignToKurs extends ConnectedActivity{
 		    	  kursstufe = 9;
 		    	  break;
 		      } 
-		      refresh.setEnabled(false);
+		    
 				GetKursTask gkt = new GetKursTask(atk,atk.id, kursstufe);
 				gkt.execute();
 		    }
@@ -121,16 +114,10 @@ public class AssignToKurs extends ConnectedActivity{
 		kView  = (ListView) findViewById(R.id.aKursList);
 		Adapter = new aAdapter(this, k, id,atk) ;
 		kView.setAdapter(Adapter);
-		refresh.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v){
-				
-				refresh.setEnabled(false);
-				GetKursTask gkt = new GetKursTask(atk,id, kursstufe);
-				gkt.execute();
-			}
-		});
+		
+		
+			GetKursTask gkt = new GetKursTask(atk,atk.id, kursstufe);
+			gkt.execute();
 }	
 	public void recieveData(ArrayList<Kurs> k){
 		if (k.isEmpty()){
@@ -138,7 +125,7 @@ public class AssignToKurs extends ConnectedActivity{
 		}
 		Adapter = new aAdapter(this, k, id,atk) ;
 		kView.setAdapter(Adapter);
-		refresh.setEnabled(true);
+		
 	}
 	public void added(int position) {
 		Kurs k = Adapter.getItem(position);
@@ -154,9 +141,7 @@ public class AssignToKurs extends ConnectedActivity{
 		//Adapter.getItem(position);
 		
 	}
-	public void enableRefresh(){
-		refresh.setEnabled(true);
-	}
+	
 	
 	
 	}	

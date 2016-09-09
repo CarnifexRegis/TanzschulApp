@@ -4,15 +4,15 @@ import com.example.tsconfigurtion.Login;
 
 import protocol.Command;
 import protocol.ErrorCode;
-import request.aLoginRequest;
-import response.aLoginResponse;
+import request.ALoginRequest;
+import response.ALoginResponse;
 import android.util.Log;
 
-public class LoginTask extends BaseHttpRequestTask{
+public class ALoginTask extends BaseHttpRequestTask{
 
 	private String name;
 	private String key ;
-	public LoginTask(Login login,String name, String key) {
+	public ALoginTask(Login login,String name, String key) {
 		super(login);
 		this.name = name;
 		this.key = key;
@@ -20,7 +20,7 @@ public class LoginTask extends BaseHttpRequestTask{
 		
 	}
 	public void execute() {
-		aLoginRequest request = new aLoginRequest(name, key);
+		ALoginRequest request = new ALoginRequest(name, key);
 
 		try {
 			String xml = buildXML(request);
@@ -36,8 +36,8 @@ public class LoginTask extends BaseHttpRequestTask{
 	@Override
 	public void onPostExecute(String result) {
 		try {
-			aLoginResponse response = (aLoginResponse) parseXML(result,
-					aLoginResponse.class);
+			ALoginResponse response = (ALoginResponse) parseXML(result,
+					ALoginResponse.class);
 			String ec = response.getEc();
 			 if(!(ec.equals(ErrorCode.ja.getError())))
 			 {

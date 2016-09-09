@@ -12,6 +12,9 @@ import org.eclipse.jetty.server.handler.AbstractHandler;
 import protocol.Command;
 import tasks.ForeignProfileTask;
 import oldExampels.GetAllTask;
+import tasks.ADeleteTask;
+import tasks.AGetKursTask;
+import tasks.ALoginTask;
 import tasks.GetKursTask;
 import tasks.LoginTask;
 import tasks.ProfiledataTask;
@@ -100,7 +103,21 @@ public class THandler extends AbstractHandler {
 				antwort = gkt.handle(body);
 				baseRequest.setHandled(true);
 				break;
-			
+			case agetkurs:
+				AGetKursTask agkt = new AGetKursTask();
+				antwort = agkt.handle(body);
+				baseRequest.setHandled(true);
+				break;
+			case alogin:
+				ALoginTask alt = new ALoginTask();
+				antwort = alt.handle(body);
+				baseRequest.setHandled(true);
+				break;
+			case adeletekurs:
+				ADeleteTask adt  = new ADeleteTask();
+				antwort = adt.handle(body);
+				baseRequest.setHandled(true);
+				break;
 			default:
 
 				

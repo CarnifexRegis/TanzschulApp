@@ -29,7 +29,7 @@ public class ManageKurs  extends Activity {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(getApplicationContext(),AmendKurs.class);
-				
+				intent.putExtra("id", id);
 				startActivity(new Intent(intent));
 				
 			}
@@ -39,7 +39,7 @@ public class ManageKurs  extends Activity {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(getApplicationContext(),AddKurs.class);
-				
+				intent.putExtra("id", id);
 				startActivity(new Intent(intent));
 				
 			}

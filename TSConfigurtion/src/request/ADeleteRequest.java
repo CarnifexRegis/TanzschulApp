@@ -4,16 +4,16 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
 @Root(name = "adeleterequest")
-public class aDeleteRequest {
+public class ADeleteRequest {
 	@Element(name = "uid")
 	int uid;
 	@Element (name = "kid")
 	int kid;
-	 aDeleteRequest(){
+	 ADeleteRequest(){
 		 super();
 	 }
 	 
-	public aDeleteRequest(int uid, int kid) {
+	public ADeleteRequest(int uid, int kid) {
 		super();
 		this.uid = uid;
 		this.kid = kid;
