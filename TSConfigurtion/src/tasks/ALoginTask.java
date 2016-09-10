@@ -14,10 +14,7 @@ import android.util.Log;
  */
 public class ALoginTask extends BaseHttpRequestTask{
 
-	/** The name. */
 	private String name;
-	
-	/** The key. */
 	private String key ;
 	
 	/**

@@ -6,30 +6,16 @@ import java.util.ArrayList;
 
 
 
-
-
-
-
-
-import tasks.ADeleteTask;
-
 import com.example.tsconfigurtion.AmendKurs;
 import com.example.tsconfigurtion.R;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.Spinner;
-import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.TextView;
-import android.widget.ToggleButton;
 // TODO: Auto-generated Javadoc
 
 /**

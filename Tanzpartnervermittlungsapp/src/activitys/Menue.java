@@ -26,18 +26,11 @@ import com.example.Tanzpartnervermittlung.R;
  */
 
 public class Menue extends ConnectedActivity {
-	
-	/** The Constant prefName. */
+
 	//https://developer.android.com/guide/topics/data/data-storage.html#pref
 	 public static final String prefName = "MyPrefsFile";
-	
-	/** The id. */
 	int ID ;
-	
-	/** The gender. */
 	boolean gender;
-	
-	/** The menue. */
 	final Menue menue = this;
 	
 	/* (non-Javadoc)

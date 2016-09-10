@@ -11,14 +11,10 @@ import response.GetKursResponse;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class GetKursTask.
+ * @author Simon Stolz
  */
 public class GetKursTask extends BaseHttpRequestTask{
-	
-	/** The id. */
 	int id;
-	
-	/** The ks. */
 	int ks;
 	
 	/**

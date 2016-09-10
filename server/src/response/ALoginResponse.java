@@ -11,18 +11,13 @@ import org.simpleframework.xml.Root;
  */
 @Root (name = "aloginresponse")
 public class ALoginResponse {
-	
-	/** The id. */
+
 	@Element(name = "id",required = false)
 	int id;
-	
-	/** The ec. */
+
 	@Element (name = "ec")
 	String ec;
-	
-	/**
-	 * Instantiates a new a login response.
-	 */
+
 	public ALoginResponse(){
 		super ();
 	}
@@ -39,21 +34,11 @@ public class ALoginResponse {
 		
 		this.ec = ec;
 	}
-	
-	/**
-	 * Gets the id.
-	 *
-	 * @return the id
-	 */
+
 	public int getId() {
 		return id;
 	}
-	
-	/**
-	 * Gets the ec.
-	 *
-	 * @return the ec
-	 */
+
 	public String getEc() {
 		return ec;
 	}

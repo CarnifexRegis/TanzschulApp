@@ -31,7 +31,6 @@ import protocol.Properties;
  */
 public class BaseHttpRequestTask extends AsyncTask<String, Void, String> {
 	
-	/** The activity. */
 	protected Activity activity;
 	
 	/**

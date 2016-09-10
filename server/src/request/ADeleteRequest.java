@@ -9,18 +9,13 @@ import org.simpleframework.xml.Root;
  */
 @Root(name = "adeleterequest")
 public class ADeleteRequest {
-	
-	/** The aid. */
+
 	@Element(name = "aid")
 	int aid;
-	
-	/** The kid. */
+
 	@Element (name = "kid")
 	int kid;
-	 
- 	/**
- 	 * Instantiates a new a delete request.
- 	 */
+
  	ADeleteRequest(){
 		 super();
 	 }
@@ -37,20 +32,10 @@ public class ADeleteRequest {
 		this.kid = kid;
 	}
 
-	/**
-	 * Gets the aid.
-	 *
-	 * @return the aid
-	 */
 	public int getAid() {
 		return aid;
 	}
 	
-	/**
-	 * Gets the kid.
-	 *
-	 * @return the kid
-	 */
 	public int getKid() {
 		return kid;
 	}

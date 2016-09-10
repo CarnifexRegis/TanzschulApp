@@ -11,18 +11,13 @@ import org.simpleframework.xml.Root;
  */
 @Root(name = "aloginrequest")
 public class ALoginRequest {
-	
-	/** The name. */
+
 	@Element (name = "name")
 	String name;
-	
-	/** The key. */
+
 	@Element (name = "key")
 	String key;
-	
-	/**
-	 * Instantiates a new a login request.
-	 */
+
 	public ALoginRequest(){
 		super();
 	}
@@ -39,20 +34,10 @@ public class ALoginRequest {
 		this.key = key;
 	}
 
-	/**
-	 * Gets the name.
-	 *
-	 * @return the name
-	 */
 	public String getname() {
 		return name;
 	}
-	
-	/**
-	 * Gets the key.
-	 *
-	 * @return the key
-	 */
+
 	public String getKey() {
 		return key;
 	}

@@ -22,48 +22,28 @@ import android.widget.TextView;
 // TODO: Auto-generated Javadoc
 
 /**
- * The Class LogIn.
+ * @author
  */
 // maby change to popup that runs in an seperate thread
 public class LogIn extends ConnectedActivity{
-	
-	/** The called by. */
 	Activity calledBy ;
-	
-	/** The login. */
 	final LogIn login = this;
-	
-	/** The safelogin. */
 	//http://stacktips.com/tutorials/android/android-checkbox-example
 	private CheckBox safelogin;
-	
-	/** The e mail. */
 	private String eMail = null;
-	
-	/** The password. */
 	private String password = null;
-	
-	/** The c. */
 	private boolean c = false;
-	
-	/** The error code. */
 	String errorCode = null;
 	//Special thanks to Leander for this Tip
 	//https://developer.android.com/training/basics/activity-lifecycle/recreating.html
 	
 	//static final String STATE_EMAIL = "logineMail";
 	//static final String STATE_PASSWORD = "loginPassword";
-	/** The error view. */
 	//static final String STATE_CHECK = "check";
 	private TextView errorView;
-	
-	/** The key insert. */
 	private EditText keyInsert;
-	
-	/** The e mail insert. */
 	private EditText eMailInsert;
-	
-	/** The prefs. */
+
 	//http://stackoverflow.com/questions/18341269/save-the-data-and-using-it-after-restarting-the-app-android
 	private SharedPreferences prefs;
 //	 public static final String prefName = "MyPrefsFile";

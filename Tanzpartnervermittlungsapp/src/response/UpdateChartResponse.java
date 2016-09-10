@@ -8,10 +8,6 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
-
-
-
-
 // TODO: Auto-generated Javadoc
 /**
  * The Class UpdateChartResponse.
@@ -28,9 +24,6 @@ ArrayList<ProfileChart> pc;
 @Element (name = "ec")
 String ec;
 
-	/**
-	 * Instantiates a new update chart response.
-	 */
 	public UpdateChartResponse(){
 		super();
 	}
@@ -38,29 +31,19 @@ String ec;
 	/**
 	 * Instantiates a new update chart response.
 	 *
-	 * @param pc the pc
-	 * @param ec the ec
+	 * @param pc ProfileChart extracted from USER table
+	 * @param ec ErrorCode know  by the client that tells him what to do next
 	 */
 	public UpdateChartResponse(ArrayList<ProfileChart> pc,String ec ) {
 		super();
 		this.pc = pc;
 		this.ec = ec;
 	}
-	
-	/**
-	 * Gets the pc.
-	 *
-	 * @return the pc
-	 */
+
 	public ArrayList<ProfileChart> getPc() {
 		return pc;
 	}
-	
-	/**
-	 * Gets the ec.
-	 *
-	 * @return the ec
-	 */
+
 	public String getEc() {
 		return ec;
 	}	

@@ -27,13 +27,10 @@ import java.util.ArrayList;
  */
 public class SQL {
 
-/** The random. */
 SecureRandom random = new SecureRandom();
 
-/** The c. */
 private Connection c;
 
-/** The i. */
 // TODO DEBUGGING
 int i = 0;
 //https://coderanch.com/t/300886/JDBC/databases/Proper-close-Connection-Statement-ResultSet

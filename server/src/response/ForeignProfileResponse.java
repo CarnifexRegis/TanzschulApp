@@ -11,18 +11,13 @@ import database2.ProfileData;
  * @author Simon Stolz
  */
 public class ForeignProfileResponse {
-	
-	/** The pd. */
+
 	@Element(name = "profiledata",required = false)
 	ProfileData pd;
-	
-	/** The ec. */
+
 	@Element(name = "ec") 
 	String ec;
-	
-	/**
-	 * Instantiates a new foreign profile response.
-	 */
+
 	public ForeignProfileResponse(){
 		super();
 	}
@@ -39,20 +34,10 @@ public class ForeignProfileResponse {
 		this.ec = ec;
 	}
 	
-	/**
-	 * Gets the pd.
-	 *
-	 * @return the pd
-	 */
 	public ProfileData getPd() {
 		return pd;
 	}
-	
-	/**
-	 * Gets the error code.
-	 *
-	 * @return the error code
-	 */
+
 	public String getErrorCode() {
 		return ec;
 	}

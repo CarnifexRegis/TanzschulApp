@@ -12,17 +12,13 @@ import org.simpleframework.xml.Root;
 @Root(name = "foreignprofilerequest")
 public class ForeignProfileRequest {
 	
-	/** The idp. */
+
 	@Element(name = "idp" )
 	String idp;
-	
-	/** The id. */
+
 	@Element (name = "id")
 	int id;
 	
-	/**
-	 * Instantiates a new foreign profile request.
-	 */
 	public ForeignProfileRequest(){
 		super();
 	}
@@ -39,20 +35,10 @@ public class ForeignProfileRequest {
 		this.id = id;
 	}
 
-	/**
-	 * Gets the idp.
-	 *
-	 * @return the idp
-	 */
 	public String getIdp() {
 		return idp;
 	}
 	
-	/**
-	 * Gets the id.
-	 *
-	 * @return the id
-	 */
 	public int getId() {
 		return id;
 	}

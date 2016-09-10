@@ -11,17 +11,12 @@ import response.AGetKursResponse;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class AGetKursTask.
+ * @author Simon Stolz
  */
 public class AGetKursTask extends BaseHttpRequestTask{
-	
-	/** The id. */
+
 	int id;
-	
-	/** The ks. */
 	int ks;
-	
-	/** The mature. */
 	boolean mature;
 	
 	/**
@@ -41,11 +36,8 @@ public class AGetKursTask extends BaseHttpRequestTask{
 		
 	}
 
-	/**
-	 * Execute.
-	 */
 	public void execute() {
-		AGetKursRequest request = new AGetKursRequest(id,ks,mature);
+		AGetKursRequest request = new AGetKursRequest(id,ks);
 
 		try {
 			String xml = buildXML(request);

@@ -6,16 +6,11 @@ package protocol;
  */
 public enum Command {
 	 
- 	/** The alogin. */
- 	alogin("alogin"),
-/** The agetkurs. */
+ alogin("alogin"),
 agetkurs("agetkurs"),
-/** The addkurs. */
 addkurs("addKurs"),
-/** The adeletekurs. */
 adeletekurs("adeletekurs");
 
-	/** The text. */
 	private String text;
 
 	/**

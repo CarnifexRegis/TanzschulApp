@@ -11,54 +11,25 @@ package model;
  */
 public enum Week {
 	
-	/** The monday. */
 	//TODO test and debug
 	  MONDAY("'Montag'",1),
-	  
-  	/** The tuesday. */
   	TUESDAY("'Dienstag'",2),
-	  
-  	/** The wednessday. */
   	WEDNESSDAY("'Mittwoch'",3),
-	  
-  	/** The thursday. */
   	THURSDAY("'Donnerstag'",4),
-	  
-  	/** The friday. */
   	FRIDAY("'Freitag'",5),
-	  
-  	/** The saturday. */
   	SATURDAY("'Samstag'",6),
-	  
-  	/** The sunday. */
   	SUNDAY("'Sonntag'",7),
-	  
-  	/** The none. */
   	NONE("WOCHENTAG",8);
 		
-		
-		/**
-		 * Gets the d na.
-		 *
-		 * @return the d na
-		 */
 		public String getdNa() {
 		return dNa;
 	}
-	
-	/**
-	 * Gets the d nu.
-	 *
-	 * @return the d nu
-	 */
+
 	public int getdNu() {
 		return dNu;
 	}
-		
-		/** The d na. */
+
 		String dNa; // DayName
-		
-		/** The d nu. */
 		int dNu; // DayNumber
 	 
  	/**

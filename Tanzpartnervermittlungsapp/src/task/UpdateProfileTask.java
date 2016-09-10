@@ -18,23 +18,12 @@ import response.UpdateProfileResponse;
  * The Class UpdateProfileTask.
  */
 public class UpdateProfileTask extends  BaseHttpRequestTask {
-	
-	/** The id. */
+
 	private int id;
-	
-	/** The pn. */
 	private String pn;
-	
-	/** The height. */
 	private int height;
-	
-	/** The age. */
 	private int age ;
-	
-	/** The p text. */
 	private String pText;
-	
-	/** The pa. */
 	private boolean pa;
 	
 	/**

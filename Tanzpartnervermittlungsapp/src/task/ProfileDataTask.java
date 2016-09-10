@@ -16,11 +16,9 @@ import android.util.Log;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class ProfileDataTask.
+ * @author Simon Stolz
  */
 public class ProfileDataTask  extends BaseHttpRequestTask{
-
-	/** The id. */
 	int id;
 	
 	/**
@@ -33,10 +31,7 @@ public class ProfileDataTask  extends BaseHttpRequestTask{
 		super(ep);
 		this.id = id;
 	}
-	
-	/**
-	 * Execute.
-	 */
+
 	public void execute() {
 		ProfileDataRequest request = new ProfileDataRequest(id);
 

@@ -12,11 +12,9 @@ import android.util.Log;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class GetAllTask.
+ * @author Simon Stolz
  */
 public class GetAllTask extends BaseHttpRequestTask {
-	
-	/** The user ID. */
 	private int userID;
 
 	/**
@@ -34,10 +32,10 @@ public class GetAllTask extends BaseHttpRequestTask {
 	 * Execute.
 	 */
 	public void execute() {
-		GetAllRequest request = new GetAllRequest(userID);
+	//	GetAllRequest request = new GetAllRequest(userID);
 
 		try {
-			String xml = buildXML(request);
+			String xml = null;
 			super.execute(Command.getall, xml);
 		} catch (Exception e) {
 		Log.e("Request", e.toString());

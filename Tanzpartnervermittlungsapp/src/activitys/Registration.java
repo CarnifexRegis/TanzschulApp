@@ -29,74 +29,30 @@ import android.widget.TextView;
  * 				http://www.tutorialspoint.com/android/android_radiogroup_control.htm
  */
 public class Registration extends ConnectedActivity {
-	
-	/** The error views. */
+
 	TextView[] errorViews = new TextView[7];
-	
-	/** The r error view. */
 	TextView rErrorView;
-	
-	/** The r FN error view. */
 	TextView rFNErrorView;
-	
-	/** The r LN error view. */
 	TextView rLNErrorView;
-	
-	/** The r age error view. */
 	TextView rAgeErrorView;
-	
-	/** The r email error view. */
 	TextView rEmailErrorView;
-	
-	/** The r key error view. */
 	TextView rKeyErrorView;
-	
-	/** The r F name insert. */
 	EditText rFNameInsert;
-	
-	/** The r L name insert. */
 	EditText rLNameInsert;
-	
-	/** The r age insert. */
 	EditText rAgeInsert;
-	
-	/** The r email insert 1. */
 	EditText rEmailInsert1;
-	
-	/** The r email insert 2. */
 	EditText rEmailInsert2;
-	
-	/** The r key insert 1. */
 	EditText rKeyInsert1;
-	
-	/** The r key insert 2. */
 	EditText rKeyInsert2;
 	
-	/** The correct. */
 	Boolean[] correct = new Boolean[6];
-	
-	/** The r. */
 	Registration r = this;
-	
-	/** The fn. */
 	String fn;
-	
-	/** The ln. */
 	String ln;
-	
-	/** The age. */
 	int age;
-	
-	/** The e mail. */
 	String eMail;
-	
-	/** The key. */
 	String key;
-	
-	/** The gender. */
 	boolean gender;
-	
-	/** The a visible. */
 	boolean aVisible;
 	
 //	 private RadioGroup radioSexGroup;

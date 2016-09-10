@@ -5,20 +5,15 @@ import org.simpleframework.xml.Root;
 // TODO: Auto-generated Javadoc
 
 /**
- * The Class AAddKursResponse.
  *
  * @author Simon Stolz
  */
 @Root (name = "addkursresponse")
 public class AAddKursResponse {
-	
-	/** The error . */
+
 	@Element (name = "ec")
 	private String ec;
-	
-	/**
-	 * Instantiates a new a add kurs response.
-	 */
+
 	public AAddKursResponse(){
 		super();
 	}
@@ -33,11 +28,6 @@ public class AAddKursResponse {
 		this.ec = ec;
 	}
 
-	/**
-	 * Gets the ec.
-	 *
-	 * @return the ec
-	 */
 	public String getEc() {
 		return ec;
 	}

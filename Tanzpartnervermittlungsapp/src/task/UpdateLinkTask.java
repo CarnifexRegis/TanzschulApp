@@ -19,19 +19,11 @@ import android.widget.ToggleButton;
  */
 public class UpdateLinkTask extends BaseHttpRequestTask{
 
-/** The uid. */
 int uid;
-
-/** The kid. */
 int kid;
-
-/** The position. */
 int position ;
-
-/** The tb. */
 View tb;
 
-/** The command. */
 boolean command;// trur for add fals for delete
 	
 	/**

@@ -18,25 +18,12 @@ import android.util.Log;
  */
 public class RegisterTask  extends BaseHttpRequestTask{
 	
-	/** The e mail. */
 	String eMail;
-	
-	/** The password. */
 	String password;
-	
-	/** The age. */
 	int age;
-	
-	/** The gender. */
 	boolean gender;
-	
-	/** The age visible. */
 	boolean ageVisible;
-	
-	/** The fn. */
 	String fn;
-	
-	/** The ln. */
 	String ln;
 	
 	/**

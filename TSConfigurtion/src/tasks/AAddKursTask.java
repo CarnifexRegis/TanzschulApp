@@ -18,11 +18,8 @@ import com.example.tsconfigurtion.AddKurs;
  * 				if it reaches the server it recieves  an error String response
  */
 public class AAddKursTask extends BaseHttpRequestTask {
-	
-	/** The id. */
+
 	private int id;
-	
-	/** The kurs. */
 	private SQLKurs kurs;
 	
 	
@@ -39,10 +36,7 @@ public class AAddKursTask extends BaseHttpRequestTask {
 		this.kurs = kurs;
 	}
 	
-	/**
-	 * Execute.
-	 */
-	public void execute() {
+		public void execute() {
 		AAddKursRequest request = new AAddKursRequest(kurs, id);
 
 		try {

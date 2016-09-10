@@ -9,7 +9,7 @@ import android.util.Log;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class LoginTask.
+ * @author Simon Stolz
  */
 public class LoginTask extends BaseHttpRequestTask{
 

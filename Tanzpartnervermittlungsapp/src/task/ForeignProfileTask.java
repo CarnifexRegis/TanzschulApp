@@ -12,11 +12,7 @@ import android.util.Log;
  * The Class ForeignProfileTask.
  */
 public class ForeignProfileTask extends BaseHttpRequestTask {
-	
-	/** The e mail. */
 	String eMail;
-	
-	/** The id. */
 	int id;
 	
 	/**
@@ -32,9 +28,6 @@ public class ForeignProfileTask extends BaseHttpRequestTask {
 		this.id = id;
 	}
 	
-	/**
-	 * Execute.
-	 */
 	public void execute() {
 		ForeignProfileRequest request = new ForeignProfileRequest(eMail, id);
 

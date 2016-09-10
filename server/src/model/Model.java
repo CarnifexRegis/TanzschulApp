@@ -35,10 +35,7 @@ import database2.aKurs;
  */
 public class Model {
 	
-	/** The instance. */
 	private static Model instance;
-	
-	/** The sql. */
 	private SQL sql;
 
 /**

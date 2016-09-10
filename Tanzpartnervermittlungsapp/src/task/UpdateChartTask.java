@@ -8,20 +8,12 @@ import android.util.Log;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class UpdateChartTask.
+ * @author Simon Stolz
  */
 public class UpdateChartTask extends BaseHttpRequestTask{
-
-/** The id. */
 private int id;
-
-/** The kursstufe. */
 private int kursstufe ;
-
-/** The gender. */
 public boolean gender;
-
-/** The day. */
 int day;
 
 /**

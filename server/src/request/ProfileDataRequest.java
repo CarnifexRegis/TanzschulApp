@@ -5,14 +5,12 @@ import org.simpleframework.xml.Root;
 // TODO: Auto-generated Javadoc
 
 /**
- * The Class ProfileDataRequest.
- *
+ * 
  * @author Simon Stolz
  */
 @Root (name= "profiledatarequest")
 public class ProfileDataRequest {
-	
-	/** The id. */
+
 	@Element (name = "id")
 	int id;
 	
@@ -35,12 +33,6 @@ public class ProfileDataRequest {
 		this.id = id;
 	}
 
-
-	/**
-	 * Gets the id.
-	 *
-	 * @return the id
-	 */
 	public int getId() {
 		return id;
 	}

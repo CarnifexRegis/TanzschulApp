@@ -12,13 +12,9 @@ import org.simpleframework.xml.Root;
 @Root (name = "adeleteresponse")
 public class ADeleteResponse {
 	
-	/** The ec. */
 	@Element (name = "ec")
 	String ec ;
 	
-	/**
-	 * Instantiates a new a delete response.
-	 */
 	ADeleteResponse(){
 		super();
 		}
@@ -33,11 +29,6 @@ public class ADeleteResponse {
 		this.ec = ec;
 	}
 
-	/**
-	 * Gets the ec.
-	 *
-	 * @return the ec
-	 */
 	public String getEc() {
 		return ec;
 	}

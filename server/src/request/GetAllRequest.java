@@ -14,7 +14,6 @@ import org.simpleframework.xml.Root;
 @Root(name="getallrequest")
 public class GetAllRequest {
 
-	/** The id. */
 	@Element(name="id")
 	int id;
 
@@ -23,11 +22,6 @@ public class GetAllRequest {
 //		this.id= id;
 //	}
 
-	/**
- * Gets the id.
- *
- * @return the id
- */
 public int getId() {
 		return id;
 	}

@@ -12,18 +12,13 @@ import org.simpleframework.xml.Root;
 @Root (name = "getkursrequest")
 
 public class GetKursRequest {
-	
-	/** The id. */
+
 	@Element (name = "id")
 	int id;
-	
-	/** The ks. */
+
 	@Element (name = "kursstufe")
 	int ks;
-	
-	/**
-	 * Instantiates a new gets the kurs request.
-	 */
+
 	public  GetKursRequest(){
 		super();
 	}
@@ -40,20 +35,10 @@ public class GetKursRequest {
 		this.ks = ks;
 	}
 
-	/**
-	 * Gets the id.
-	 *
-	 * @return the id
-	 */
 	public int getId() {
 		return id;
 	}
-	
-	/**
-	 * Gets the kurs stufe.
-	 *
-	 * @return the kurs stufe
-	 */
+
 	public int getKursStufe(){
 		return ks;
 	}

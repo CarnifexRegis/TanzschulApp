@@ -50,35 +50,15 @@ import android.widget.Toast;
 	 * low.com/questions/9208827/how-to-extract-the-text-from-the-selected-item-on-the-listview
 	 */
 	public class SearchForDancingpartner extends ConnectedActivity {
-		
-		/** The adapter custom. */
 		Adapter adapterCustom;
-		
-		/** The pc. */
 		ArrayList<ProfileChart> pc;
-		
-		/** The id. */
 		int ID = -1;
-		
-		/** The gender. */
 		boolean gender;
-		
-		/** The kursstufe. */
 		int kursstufe = 1;
-		
-		/** The day. */
 		int day = 3;
-		
-		/** The idp. */
 		String idp;
-		
-		/** The error. */
 		String error = null;
-		
-		/** The sfdp. */
 		final SearchForDancingpartner sfdp = this;
-		
-		/** The ready. */
 		boolean ready;
 		
 		/* (non-Javadoc)

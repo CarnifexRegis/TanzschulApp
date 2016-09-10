@@ -5,27 +5,17 @@ package protocol;
  * The Enum Command.
  */
 public enum Command {
-	
-	/** The getall. */
+
 	getall("getall"), 
- /** The register. */
  register("register"), 
- /** The login. */
  login("login"), 
- /** The updatechart. */
  updatechart("updatechart"), 
- /** The updateprofile. */
  updateprofile("updateprofile"),
-/** The getprofile. */
 getprofile("getprofile"), 
- /** The foreignprofile. */
  foreignprofile("foreignprofile"),
-/** The getkurs. */
 getkurs("getkurs"),
-/** The updatelink. */
 updatelink("updatelink");
 
-	/** The text. */
 	private String text;
 
 	/**

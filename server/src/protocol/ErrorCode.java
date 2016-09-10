@@ -8,13 +8,12 @@ package protocol;
  */
 public enum ErrorCode {
 	
-/** The ja. */
-ja("ja"),/** The wl. */
-wl("wrongLogin"),/** The ae. */
-ae("alreadyExists"),/** The nf. */
+
+ja("ja"),
+wl("wrongLogin"),
+ae("alreadyExists"),
 nf("notFound");
 
-/** The error. */
 String error;
 
 /**
@@ -27,11 +26,6 @@ private ErrorCode(String error) {
 	
 }
 
-/**
- * Gets the error.
- *
- * @return the error
- */
 public String getError() {
 	return error;
 }

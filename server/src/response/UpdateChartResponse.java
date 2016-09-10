@@ -26,9 +26,6 @@ ArrayList<ProfileChart> pc;
 @Element (name = "ec")
 String ec;
 
-	/**
-	 * Instantiates a new update chart response.
-	 */
 	public UpdateChartResponse(){
 		super();
 	}
@@ -44,21 +41,11 @@ String ec;
 		this.pc = pc;
 		this.ec = ec;
 	}
-	
-	/**
-	 * Gets the pc.
-	 *
-	 * @return the pc
-	 */
+
 	public ArrayList<ProfileChart> getPc() {
 		return pc;
 	}
-	
-	/**
-	 * Gets the ec.
-	 *
-	 * @return the ec
-	 */
+
 	public String getEc() {
 		return ec;
 	}	

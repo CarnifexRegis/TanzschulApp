@@ -24,17 +24,10 @@ public class LoginResponse {
 	
 	/**
 	 * Instantiates a new login response.
-	 */
-	public LoginResponse(){
-		super ();
-	}
-	
-	/**
-	 * Instantiates a new login response.
 	 *
-	 * @param id the id
-	 * @param gender the gender
-	 * @param ec the ec
+	 * @param id the users id
+	 * @param gender the users gender
+	 * @param ec the ErrorCode know  by the client that tells him what to do next
 	 */
 	public LoginResponse(int id, int gender,String ec) {
 		super();
@@ -43,29 +36,14 @@ public class LoginResponse {
 		this.ec = ec;
 	}
 	
-	/**
-	 * Gets the id.
-	 *
-	 * @return the id
-	 */
 	public int getId() {
 		return id;
 	}
 	
-	/**
-	 * Gets the gender.
-	 *
-	 * @return the gender
-	 */
 	public int getGender() {
 		return gender;
 	}
-	
-	/**
-	 * Gets the ec.
-	 *
-	 * @return the ec
-	 */
+
 	public String getEc() {
 		return ec;
 	}

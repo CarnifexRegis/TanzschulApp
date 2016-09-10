@@ -9,34 +9,20 @@ package protocol;
  */
 public enum Command {
 	
-	/** The getall. */
 	getall("getall"), 
- /** The register. */
- register("register"), 
- /** The login. */
- login("login"), 
- /** The updatechart. */
- updatechart("updatechart"), 
- /** The updateprofile. */
- updateprofile("updateprofile"),
-/** The getprofile. */
+register("register"), 
+login("login"), 
+updatechart("updatechart"), 
+updateprofile("updateprofile"),
 getprofile("getprofile"), 
- /** The foreignprofile. */
- foreignprofile("foreignprofile"),
-/** The getkurs. */
+foreignprofile("foreignprofile"),
 getkurs("getkurs"),
-/** The updatelink. */
 updatelink("updatelink"), 
- /** The alogin. */
- alogin("alogin"),
-/** The agetkurs. */
+alogin("alogin"),
 agetkurs("agetkurs"),
-/** The addkurs. */
 addkurs("addKurs"),
-/** The adeletekurs. */
 adeletekurs("adeletekurs");
 
-	/** The text. */
 	private String text;
 
 	/**

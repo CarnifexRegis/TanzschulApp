@@ -11,18 +11,13 @@ import org.simpleframework.xml.Root;
  */
 @Root(name = "loginrequest")
 public class LoginRequest {
-	
-	/** The e mail. */
+
 	@Element (name = "email")
 	String eMail;
-	
-	/** The key. */
+
 	@Element (name = "key")
 	String key;
-	
-	/**
-	 * Instantiates a new login request.
-	 */
+
 	public LoginRequest(){
 		super();
 	}
@@ -30,8 +25,8 @@ public class LoginRequest {
 	/**
 	 * Instantiates a new login request.
 	 *
-	 * @param eMail the e mail
-	 * @param key the key
+	 * @param eMail the eMail of the requesting user
+	 * @param key the key to access his private id
 	 */
 	public LoginRequest(String eMail, String key) {
 		super();
@@ -39,20 +34,10 @@ public class LoginRequest {
 		this.key = key;
 	}
 
-	/**
-	 * Gets the e mail.
-	 *
-	 * @return the e mail
-	 */
 	public String geteMail() {
 		return eMail;
 	}
-	
-	/**
-	 * Gets the key.
-	 *
-	 * @return the key
-	 */
+
 	public String getKey() {
 		return key;
 	}

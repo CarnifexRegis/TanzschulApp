@@ -23,18 +23,13 @@ import database2.aKurs;
 
 @Root (name = "getkursresponse")
 public class AGetKursResponse {
-	
-	/** The ec. */
+
 	@Element (name = "error")
 	String ec;
 	
-	/** The kl. */
 	@ElementList(name = "kurslist",required = false)
 	ArrayList<aKurs> kl;
-	
-	/**
-	 * Instantiates a new a get kurs response.
-	 */
+
 	public AGetKursResponse(){
 		super();}
 	
@@ -49,21 +44,11 @@ public class AGetKursResponse {
 		this.ec = ec;
 		this.kl = kl;
 	}
-	
-	/**
-	 * Gets the ec.
-	 *
-	 * @return the ec
-	 */
+
 	public String getEc() {
 		return ec;
 	}
-	
-	/**
-	 * Gets the kl.
-	 *
-	 * @return the kl
-	 */
+
 	public ArrayList<aKurs> getKl() {
 		return kl;
 	}

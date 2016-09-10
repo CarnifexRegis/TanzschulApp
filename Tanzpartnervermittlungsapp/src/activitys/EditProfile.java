@@ -30,48 +30,22 @@ import android.widget.Toast;
 // Add Listeners for 2 Radio Groups and one Button Mabe do the first request
 public class EditProfile extends ConnectedActivity {
 
-/** The pn insert. */
 //	ProfileDataForServer data;
 	EditText pnInsert;
-	
-	/** The p text insert. */
 	EditText pTextInsert;
-	
-	/** The age insert. */
 	EditText ageInsert;
-	
-	/** The height insert. */
 	EditText heightInsert;
-	
-	/** The n view. */
 	TextView nView;
-	
-	
-	/** The pa check. */
 	CheckBox paCheck;
-
-/** The edp. */
+	
 EditProfile edp = this;
 
-/** The id. */
 int id;
-
-/** The pn. */
 String pn;
-
-/** The height. */
 int height;
-
-/** The age. */
 int age;
-
-/** The p text. */
 String pText;
-
-/** The pa. */
 boolean pa;
-
-/** The gender. */
 boolean gender;
 
 

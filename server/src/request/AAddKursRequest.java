@@ -14,18 +14,13 @@ import database2.SQLKurs;
  */
 @Root (name = "addkursrequest" )
 public class AAddKursRequest {
-	
-	/** The kurs. */
+
 	@Element(name = "kurs")
 	private SQLKurs kurs;
-	
-	/** The id. */
+
 	@Element(name = "id")
 	int id;
 	
-	/**
-	 * Instantiates a new a add kurs request.
-	 */
 	AAddKursRequest(){
 		super();
 		}
@@ -42,20 +37,10 @@ public class AAddKursRequest {
 		this.id = id;
 	}
 
-	/**
-	 * Gets the kurs.
-	 *
-	 * @return the kurs
-	 */
 	public SQLKurs getKurs() {
 		return kurs;
 	}
-	
-	/**
-	 * Gets the id.
-	 *
-	 * @return the id
-	 */
+
 	public int getId() {
 		return id;
 	}

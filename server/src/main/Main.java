@@ -38,50 +38,22 @@ public class Main  {
 	
 	/** Declaration of the Objects that are needed for  the JFrame. */
 		private static JFrame frame = new JFrame("Server Control");
-		
-		/** The my panel. */
+
 		private JPanel myPanel ;
-		
-		/** The btn start server. */
 		private JButton btnStartServer ;
-		
-		/** The btn stop server. */
 		private JButton btnStopServer ;
-		
-		/** The btn add admin. */
 		private JButton btnAddAdmin ;
-		
-		/** The s thread. */
 		private Thread sThread = null;
-		
-		/** The server. */
+
 		private TServer server ;
-		
-		/** The host text. */
 		private final JTextField hostText;
-		
-		/** The a N text. */
 		private final JTextField aNText;
-		
-		/** The a K text. */
 		private final JTextField aKText;
-		
-		/** The error text. */
 		private final JTextField errorText;
-		
-		/** The admin name. */
 		private final JTextField adminName;
-		
-		/** The admin key 1. */
 		private final JTextField adminKey1;
-		
-		/** The admin key 2. */
 		private final JTextField adminKey2;
-		
-		/** The main. */
 		private Main main = this;
-		
-		/** The Constant host. */
 		static final  String host = "192.168.1.10X";
 		
 		

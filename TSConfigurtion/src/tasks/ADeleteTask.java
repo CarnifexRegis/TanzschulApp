@@ -14,17 +14,9 @@ import com.example.tsconfigurtion.AmendKurs;
  * The Class ADeleteTask.
  */
 public class ADeleteTask extends BaseHttpRequestTask{
-
-/** The kid. */
 int kid;
-
-/** The uid. */
 int uid;
-
-/** The position. */
 int position;
-
-/** The v. */
 View v;
 	
 	/**
