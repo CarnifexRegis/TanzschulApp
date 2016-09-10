@@ -6,11 +6,33 @@ import response.UpdateChartResponse;
 import activitys.SearchForDancingpartner;
 import android.util.Log;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class UpdateChartTask.
+ */
 public class UpdateChartTask extends BaseHttpRequestTask{
+
+/** The id. */
 private int id;
+
+/** The kursstufe. */
 private int kursstufe ;
+
+/** The gender. */
 public boolean gender;
+
+/** The day. */
 int day;
+
+/**
+ * Instantiates a new update chart task.
+ *
+ * @param sfdp the sfdp
+ * @param id the id
+ * @param kursstufe the kursstufe
+ * @param gender the gender
+ * @param day the day
+ */
 public UpdateChartTask(SearchForDancingpartner sfdp,int id, int kursstufe, boolean gender,int day) {
 	super(sfdp);
 	this.id = id;
@@ -19,6 +41,10 @@ public UpdateChartTask(SearchForDancingpartner sfdp,int id, int kursstufe, boole
 	this.day =day;
 	
 }
+
+/**
+ * Execute.
+ */
 public void execute() {
 	UpdateChartRequest request = new UpdateChartRequest( id, kursstufe, gender,day);
 
@@ -30,6 +56,10 @@ public void execute() {
 		Log.e("Task couldn´t call execute() from SuperClass",e.toString());
 	}
 }
+
+/* (non-Javadoc)
+ * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
+ */
 @Override
 public void onPostExecute(String result) {
 	try {

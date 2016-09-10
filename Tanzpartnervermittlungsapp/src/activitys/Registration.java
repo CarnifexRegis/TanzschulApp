@@ -19,45 +19,93 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+// TODO: Auto-generated Javadoc
+
 /**
- * 
- * @author Simon Stolz
- * @Sources: http://stackoverflow.com/questions/5308200/clear-text-in-edittext-when-entered
- * 				http://www.tutorialspoint.com/android/android_radiogroup_control.htm
- * 
+ * The Class Registration.
  *
+ * @author Simon Stolz
+ * Sources http://stackoverflow.com/questions/5308200/clear-text-in-edittext-when-entered
+ * 				http://www.tutorialspoint.com/android/android_radiogroup_control.htm
  */
 public class Registration extends ConnectedActivity {
+	
+	/** The error views. */
 	TextView[] errorViews = new TextView[7];
+	
+	/** The r error view. */
 	TextView rErrorView;
+	
+	/** The r FN error view. */
 	TextView rFNErrorView;
+	
+	/** The r LN error view. */
 	TextView rLNErrorView;
+	
+	/** The r age error view. */
 	TextView rAgeErrorView;
+	
+	/** The r email error view. */
 	TextView rEmailErrorView;
+	
+	/** The r key error view. */
 	TextView rKeyErrorView;
 	
+	/** The r F name insert. */
 	EditText rFNameInsert;
+	
+	/** The r L name insert. */
 	EditText rLNameInsert;
+	
+	/** The r age insert. */
 	EditText rAgeInsert;
+	
+	/** The r email insert 1. */
 	EditText rEmailInsert1;
+	
+	/** The r email insert 2. */
 	EditText rEmailInsert2;
+	
+	/** The r key insert 1. */
 	EditText rKeyInsert1;
+	
+	/** The r key insert 2. */
 	EditText rKeyInsert2;
 	
+	/** The correct. */
 	Boolean[] correct = new Boolean[6];
+	
+	/** The r. */
 	Registration r = this;
+	
+	/** The fn. */
 	String fn;
+	
+	/** The ln. */
 	String ln;
+	
+	/** The age. */
 	int age;
+	
+	/** The e mail. */
 	String eMail;
+	
+	/** The key. */
 	String key;
+	
+	/** The gender. */
 	boolean gender;
+	
+	/** The a visible. */
 	boolean aVisible;
 	
 //	 private RadioGroup radioSexGroup;
 //	 private RadioButton radioSexButton;
 	
-	protected void onCreate(Bundle savedInstanceState) {
+	/* (non-Javadoc)
+ * @see android.app.Activity#onCreate(android.os.Bundle)
+ */
+protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.registration);
 		
@@ -213,6 +261,12 @@ public class Registration extends ConnectedActivity {
 		}});
 	
 	}
+	
+	/**
+	 * Checks if is correct.
+	 *
+	 * @return true, if is correct
+	 */
 	public boolean isCorrect(){
 		for(int i=0;i< correct.length;i++ ){
 			if (!correct[i]){
@@ -220,6 +274,10 @@ public class Registration extends ConnectedActivity {
 		}
 		return true;
 	}
+	
+	/* (non-Javadoc)
+	 * @see activitys.ConnectedActivity#onConnectionError()
+	 */
 	@Override // i kept it the  "View way" because the user has much other data he has to pay atention  so that he might not recognize a Toast
 	public void onConnectionError(){
 		rErrorView.setVisibility(View.VISIBLE);
@@ -231,6 +289,9 @@ public class Registration extends ConnectedActivity {
 		}
 	
 	
+	/* (non-Javadoc)
+	 * @see activitys.ConnectedActivity#onError(java.lang.String)
+	 */
 	@Override
 	public void onError(String error){
 		rErrorView.setVisibility(View.VISIBLE);
@@ -246,6 +307,13 @@ public class Registration extends ConnectedActivity {
 			break;
 		}
 		}
+	
+	/**
+	 * Gets the login values.
+	 *
+	 * @param id the id
+	 * @return the login values
+	 */
 	public void getLoginValues(int id){
 		if(id > -1){
 			Intent intent = new Intent(getApplicationContext(),EditProfile.class);
@@ -254,6 +322,10 @@ public class Registration extends ConnectedActivity {
 			startActivity(new Intent(intent));
 			}
 	}
+	
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onBackPressed()
+	 */
 	@Override
 	public void onBackPressed(){
 		super.onBackPressed();

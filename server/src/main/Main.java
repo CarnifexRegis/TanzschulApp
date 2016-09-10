@@ -9,15 +9,19 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
-import android.content.SharedPreferences.Editor;
 import model.Model;
 import server.TServer;
+// TODO: Auto-generated Javadoc
 /**
+ * This is the Main calls it contain a JFrame by which the server can be controlled and configurated. 
+ * Functions : 
+ * Starting the Server 
+ * Stopping the Server
+ * Adding an Entry to Admin table 
+ * displaying errors in an ErrorView
+ * @author Simon Stolz
  * 
- * @author Simon
- * @attribute The Java Application "Server get´s started from this Class wich contains an instance of TServer"
- * @Source: 
+ * @Source  
  *			https://www.eclipse.org/jetty/documentation/9.3.x/jetty-config-guide.html
  *			http://www.pabst-software.de/doku.php?id=programmieren:java:android:httpclient:start
  *			http://stackoverflow.com/questions/14981435/how-do-i-stop-jetty
@@ -31,33 +35,68 @@ import server.TServer;
  */
 
 public class Main  {
+	
+	/** Declaration of the Objects that are needed for  the JFrame. */
 		private static JFrame frame = new JFrame("Server Control");
+		
+		/** The my panel. */
 		private JPanel myPanel ;
+		
+		/** The btn start server. */
 		private JButton btnStartServer ;
+		
+		/** The btn stop server. */
 		private JButton btnStopServer ;
+		
+		/** The btn add admin. */
 		private JButton btnAddAdmin ;
+		
+		/** The s thread. */
 		private Thread sThread = null;
+		
+		/** The server. */
 		private TServer server ;
-		static final  String host = "192.168.1.10X";
+		
+		/** The host text. */
 		private final JTextField hostText;
+		
+		/** The a N text. */
 		private final JTextField aNText;
+		
+		/** The a K text. */
 		private final JTextField aKText;
+		
+		/** The error text. */
 		private final JTextField errorText;
 		
+		/** The admin name. */
 		private final JTextField adminName;
+		
+		/** The admin key 1. */
 		private final JTextField adminKey1;
+		
+		/** The admin key 2. */
 		private final JTextField adminKey2;
+		
+		/** The main. */
 		private Main main = this;
 		
+		/** The Constant host. */
+		static final  String host = "192.168.1.10X";
 		
 		
-		/** @attribute The constructor of the main class creates a Jlabel 
-		 * which can be used to start and stop the server and also add new admin logins
-		 * 
-		 */
-	  public Main() {
-			//Model.getInstance(); 
+		
+	  /**
+  	 * Instantiates a new main.
+  	 */
+  	public Main() {
+			/**
+			 *  Instantiation of a new JPanel
+			 */
 			 myPanel = new JPanel();
+			/**
+			 *  Button Instantiation
+			 */
 			 btnStartServer = new JButton("Start Server");
 			 btnStopServer = new JButton("Stop Server");
 			 btnAddAdmin = new JButton("Admin hinzufügen");
@@ -71,7 +110,11 @@ public class Main  {
 			myPanel.setBounds(800, 800, 200, 100);
 
 	        
-			//http://stackoverflow.com/questions/9612096/i-want-to-make-a-text-field-editable-only-when-a-check-box-is-selected-in-netbea
+			
+			/**
+			 * //http://stackoverflow.com/questions/9612096/i-want-to-make-a-text-field-editable-only-when-a-check-box-is-selected-in-netbea
+			 * Instantiation and configuration of the TexFields
+			 */
 			hostText = new JTextField(10);
 			hostText.setEnabled(true);
 			hostText.setText(host);
@@ -90,11 +133,18 @@ public class Main  {
 			errorText =   new JTextField(30);
 			errorText.setEnabled(false);
 			errorText.setText("Fehlerausgabe");
-			// Adding to JFrame 
+			
+			/**
+			 *Addition of the Buttons to the JPanel
+			 */
 			myPanel.add(errorText);
 	       myPanel.add(btnStartServer);
 	       myPanel.add(btnStopServer);
-	      
+	     
+			 
+			/** 
+			 * Addition of the TextFields to the JPanel
+			 */
 	       myPanel.add(hostText);
 	       myPanel.add(aNText);
 	       myPanel.add(adminName);
@@ -104,13 +154,16 @@ public class Main  {
 	        myPanel.add(btnAddAdmin);
 	       
 	       
-	      
+	      /**
+	       * Addition of the JPanel to the JFrame
+	       */
 	        frame.add(myPanel);
 	        
 	        
 	        //http://alvinalexander.com/java/jbutton-listener-pressed-actionlistener
 	        /**
-	         * on action performed this class starts the server
+	         * When this action Listerner is triggered the Main class tries to start the server 
+	         * if it fails an error will be displayed in the errorView 
 	         */
 	        btnStartServer.addActionListener(new ActionListener()
 	        {
@@ -123,6 +176,10 @@ public class Main  {
 	        		 
 					@Override
 					public void run() {
+						/**
+						 * When this method throws an exception the error View displays it 
+						 * an possible Bug would be  that the server would stops without throwing an exception wich should jsut occur if the . stop() method is caled on  teh server
+						 */
 						errorText.setText(server.startServer(hostText.getText()));
 						
 					}
@@ -147,6 +204,10 @@ public class Main  {
 
 	          }
 	        });
+	        /**
+	         * When this action Listerner is triggered the Main class tries to stop the server 
+	         * if it fails the error will be displayed in the errorView 
+	         */
 	        btnStopServer.addActionListener(new ActionListener()
 	        {
 	        	/**
@@ -180,6 +241,10 @@ public class Main  {
     
 	          }
 	        });
+	        /**
+	         * When this action Listerner is triggered the Main class tries to stop the server 
+	         * if it fails the error will be displayed in the errorView 
+	         */
 	        btnAddAdmin.addActionListener(new ActionListener() {
 	        	 
 				@Override
@@ -214,7 +279,12 @@ public class Main  {
 	  //http://stackoverflow.com/questions/10161149/android-like-toast-in-swing
 	 
 
-	public static void main(String[] args) {
+	/**
+  	 * The main method.
+  	 *
+  	 * @param args the arguments
+  	 */
+  	public static void main(String[] args) {
 		new Main();
 		Model.getInstance(); 	 
 }

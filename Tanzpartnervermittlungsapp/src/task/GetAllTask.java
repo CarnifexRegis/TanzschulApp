@@ -10,13 +10,29 @@ import response.GetAllResponse;
 import activitys.Menue;
 import android.util.Log;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class GetAllTask.
+ */
 public class GetAllTask extends BaseHttpRequestTask {
+	
+	/** The user ID. */
 	private int userID;
 
+	/**
+	 * Instantiates a new gets the all task.
+	 *
+	 * @param menue the menue
+	 * @param userID the user ID
+	 */
 	public GetAllTask(Menue menue, int userID) {
 		super(menue);
 		this.userID = userID;
 	}
+	
+	/**
+	 * Execute.
+	 */
 	public void execute() {
 		GetAllRequest request = new GetAllRequest(userID);
 
@@ -29,6 +45,9 @@ public class GetAllTask extends BaseHttpRequestTask {
 	}
 	}
 
+	/* (non-Javadoc)
+	 * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
+	 */
 	@Override
 	public void onPostExecute(String result) {
 		try {

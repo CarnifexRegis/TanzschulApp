@@ -33,34 +33,57 @@ import android.widget.Toast;
 
 
 	
-	//Geschlechts bezogenen Menubar fehlt 
+	// TODO: Auto-generated Javadoc
+//Geschlechts bezogenen Menubar fehlt 
 	//TODO add add() Method and listener for Start Search Button"
 	//Geschlechts bezogenen Menubar fehlt 
 	//TODO add add() Method and listener for Start Search Button"
 /**
- * 
- * @author Simon
- * @attribute This Activity is used to fulfill the core funktion of the app: finding people who intend to participate in the same course
- * Source: 
- * 			http://stackoverflow.com/questions/2789612/how-can-i-check-whether-an-android-device-is-connected-to-the-web
- * 			http://stackoverf
- * 
- * low.com/questions/9208827/how-to-extract-the-text-from-the-selected-item-on-the-listview
- * 
- * 
- */
+	 * The Class SearchForDancingpartner.
+	 *
+	 * @author Simon
+	 * @attribute This Activity is used to fulfill the core funktion of the app: finding people who intend to participate in the same course
+	 * Source: 
+	 * 			http://stackoverflow.com/questions/2789612/how-can-i-check-whether-an-android-device-is-connected-to-the-web
+	 * 			http://stackoverf
+	 * 
+	 * low.com/questions/9208827/how-to-extract-the-text-from-the-selected-item-on-the-listview
+	 */
 	public class SearchForDancingpartner extends ConnectedActivity {
+		
+		/** The adapter custom. */
 		Adapter adapterCustom;
+		
+		/** The pc. */
 		ArrayList<ProfileChart> pc;
+		
+		/** The id. */
 		int ID = -1;
+		
+		/** The gender. */
 		boolean gender;
+		
+		/** The kursstufe. */
 		int kursstufe = 1;
+		
+		/** The day. */
 		int day = 3;
+		
+		/** The idp. */
 		String idp;
+		
+		/** The error. */
 		String error = null;
+		
+		/** The sfdp. */
 		final SearchForDancingpartner sfdp = this;
+		
+		/** The ready. */
 		boolean ready;
 		
+		/* (non-Javadoc)
+		 * @see android.app.Activity#onCreate(android.os.Bundle)
+		 */
 		@Override
 		/**
 		 * @Sources: http://stackoverflow.com/questions/2091465/how-do-i-pass-data-between-activities-on-android
@@ -176,12 +199,12 @@ kSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 				    	  break;
 				    	  // i took my dancing scool as pattern wich didn`t feature dancing lessons on mondays tuesdays and sundays
 				    	  //  The server keeps the other days (except Sunday) because that might chhange some day. In that cas you would just have to update your client
-//			      case "Montag" :
-//			    	day = 1;
-//			    	  break;
-//			      case "Dienstag":
-//			    	  day = 2;
-//			    	  break;
+			      case "Montag" :
+			    	day = 1;
+			    	  break;
+			      case "Dienstag":
+			    	  day = 2;
+		    	  break;
 			      case "Mittwoch":
 			    	  day = 3;
 			    	  break;
@@ -195,7 +218,7 @@ kSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 			    	  day = 6;
 			    	  break;
 			    	  default: 
-			    		  day = 3;
+			    		  day = 1;
 			    		  
 			    		 
 			      } 
@@ -224,11 +247,12 @@ kSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 		//http://stackoverflow.com/questions/2789612/how-can-i-check-whether-an-android-device-is-connected-to-the-web
 		
 		/**
-		 * 
-		 * @param pc	An Array List of Profilecharts recieved from the Server
+		 * New kursbuchungen.
+		 *
+		 * @param pc An Array List of Profilecharts recieved from the Server
 		 * 
 		 *  This method recieves data in Form of an ArrayList<ProfileChart>
-		 *	(most likely from the server) and passes it on to the Adapter for the listview
+		 * 	(most likely from the server) and passes it on to the Adapter for the listview
 		 */
 		public void newKursbuchungen(ArrayList<ProfileChart> pc){
 			adapterCustom.clear();
@@ -236,6 +260,12 @@ kSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 			adapterCustom.notifyDataSetChanged();
 		
 		}
+		
+		/**
+		 * Charts update.
+		 *
+		 * @param pc the pc
+		 */
 		public void chartsUpdate(ArrayList<ProfileChart> pc){
 			
 			if (pc.isEmpty()){
@@ -244,7 +274,12 @@ kSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 			newKursbuchungen( pc);
 				
 			}
+		
 		/**
+		 * On create options menu.
+		 *
+		 * @param menu the menu
+		 * @return true, if successful
 		 * @ Source http://stackoverflow.com/questions/6439085/android-how-to-create-option-menu
 		 */
 		@Override
@@ -253,6 +288,10 @@ kSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 		    inflater.inflate(R.layout.new_main_menue, menu);
 		    return super.onCreateOptionsMenu(menu);
 		}
+		
+		/* (non-Javadoc)
+		 * @see android.app.Activity#onOptionsItemSelected(android.view.MenuItem)
+		 */
 		@Override
 		public boolean onOptionsItemSelected(MenuItem item) {
 		    switch(item.getItemId())
@@ -362,7 +401,10 @@ kSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 		
 		
 
-		@Override
+		/* (non-Javadoc)
+ * @see android.app.Activity#onBackPressed()
+ */
+@Override
 		public void onBackPressed(){
 			super.onBackPressed();
 			Intent intent = new Intent(getApplicationContext(),Menue.class);

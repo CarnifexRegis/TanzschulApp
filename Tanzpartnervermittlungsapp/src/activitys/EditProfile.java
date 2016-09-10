@@ -21,31 +21,64 @@ import android.widget.Toast;
 
 
 
+// TODO: Auto-generated Javadoc
 // Added: 13.06.2016
 //Last Modofied:14.6.2016 
+/**
+ * The Class EditProfile.
+ */
 // Add Listeners for 2 Radio Groups and one Button Mabe do the first request
 public class EditProfile extends ConnectedActivity {
+
+/** The pn insert. */
 //	ProfileDataForServer data;
 	EditText pnInsert;
+	
+	/** The p text insert. */
 	EditText pTextInsert;
+	
+	/** The age insert. */
 	EditText ageInsert;
+	
+	/** The height insert. */
 	EditText heightInsert;
+	
+	/** The n view. */
 	TextView nView;
 	
 	
+	/** The pa check. */
 	CheckBox paCheck;
+
+/** The edp. */
 EditProfile edp = this;
+
+/** The id. */
 int id;
+
+/** The pn. */
 String pn;
+
+/** The height. */
 int height;
+
+/** The age. */
 int age;
+
+/** The p text. */
 String pText;
+
+/** The pa. */
 boolean pa;
 
+/** The gender. */
 boolean gender;
 
 
 
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onCreate(android.os.Bundle)
+	 */
 	protected void onCreate(Bundle savedInstanceState) {
 		 Bundle extras = getIntent().getExtras();
 			if(extras != null){
@@ -98,6 +131,12 @@ boolean gender;
         });
 		
 	    }
+	
+	/**
+	 * Rechieve data.
+	 *
+	 * @param pd the pd
+	 */
 	public void rechieveData(ProfileData pd) {
 		
 		if(pd.getPhoneNumber().length()>0){
@@ -115,6 +154,9 @@ boolean gender;
 				}
 	
 	
+	/**
+	 * Update sucessful.
+	 */
 	public void updateSucessful() {
 		Intent intent = new Intent(getApplicationContext(),Menue.class);
 		intent.putExtra("ID", id);
@@ -122,6 +164,9 @@ boolean gender;
 		startActivity(new Intent(intent));
 	}
 	
+	/* (non-Javadoc)
+	 * @see activitys.ConnectedActivity#onConnectionError()
+	 */
 	@Override // must be overrided see TODO
 	public void onConnectionError() {
 		

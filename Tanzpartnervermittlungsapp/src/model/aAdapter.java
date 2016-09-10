@@ -18,17 +18,35 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.TextView;
 import android.widget.ToggleButton;
+// TODO: Auto-generated Javadoc
+
 /**
- * 
+ * The Class aAdapter.
+ *
  * @author Simon
- *@Sources: http://stackoverflow.com/questions/21053979/listview-duplicates-android
- *			model.adapter
- *			http://developer.android.com/resources/samples/ApiDemos/src/com/example/android/apis/view/List14.html
+ * @Sources: http://stackoverflow.com/questions/21053979/listview-duplicates-android
+ * 			model.adapter
+ * 			http://developer.android.com/resources/samples/ApiDemos/src/com/example/android/apis/view/List14.html
  */
 public class aAdapter extends ArrayAdapter<Kurs>{
+	
+	/** The id. */
 	int id;
+	
+	/** The context. */
 	Context context;
+	
+	/** The atk. */
 	AssignToKurs atk;
+	
+	/**
+	 * Instantiates a new a adapter.
+	 *
+	 * @param context the context
+	 * @param arrayList the array list
+	 * @param id the id
+	 * @param atk the atk
+	 */
 	public aAdapter(Context context, ArrayList<Kurs> arrayList,int id, AssignToKurs atk) {
 		super(context, R.layout.yet_searching_listitem, arrayList);
 		this.id= id;
@@ -36,6 +54,9 @@ public class aAdapter extends ArrayAdapter<Kurs>{
 		this.context= context;
 		}
 	
+	/* (non-Javadoc)
+	 * @see android.widget.ArrayAdapter#getView(int, android.view.View, android.view.ViewGroup)
+	 */
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		//http://stackoverflow.com/questions/21053979/listview-duplicates-android

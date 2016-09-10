@@ -10,23 +10,39 @@ import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ToggleButton;
+// TODO: Auto-generated Javadoc
+
 /**
- * 
- * @author Simon
+ * The Class UpdateLinkTask.
  *
+ * @author Simon
  */
 public class UpdateLinkTask extends BaseHttpRequestTask{
+
+/** The uid. */
 int uid;
+
+/** The kid. */
 int kid;
+
+/** The position. */
 int position ;
+
+/** The tb. */
 View tb;
+
+/** The command. */
 boolean command;// trur for add fals for delete
+	
 	/**
-	 * 
-	 * @param atk		The executing activity
-	 * @param uid		The User id of the Link object
-	 * @param kid		The Kurs id fo the Link object
-	 * @param command	True for adding dedicated Link false for deleting it
+	 * Instantiates a new update link task.
+	 *
+	 * @param atk 	The executing activity
+	 * @param uid 	The User id of the Link object
+	 * @param kid 	The Kurs id fo the Link object
+	 * @param command True for adding dedicated Link false for deleting it
+	 * @param position the position
+	 * @param tb the tb
 	 */
 	public UpdateLinkTask(AssignToKurs atk ,int uid,int  kid, boolean command, int position,View tb) {
 		super(atk);
@@ -38,6 +54,10 @@ boolean command;// trur for add fals for delete
 		
 		// TODO Auto-generated constructor stub
 	}
+	
+	/**
+	 * Execute.
+	 */
 	public void execute() {
 		UpdateLinkRequest request = new UpdateLinkRequest(uid ,kid,command);
 		try {
@@ -52,6 +72,10 @@ boolean command;// trur for add fals for delete
 			System.out.println("An error occured bulding the xml/connection error");
 		}
 	}
+	
+	/* (non-Javadoc)
+	 * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
+	 */
 	@Override
 	public void onPostExecute(String result) {
 		try {

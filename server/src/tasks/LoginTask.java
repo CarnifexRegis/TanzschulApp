@@ -5,8 +5,17 @@ import protocol.ErrorCode;
 import model.Model;
 import request.LoginRequest;
 import response.LoginResponse;
+// TODO: Auto-generated Javadoc
+
+/**
+ * The Class LoginTask.
+ */
 //sec update
 public class LoginTask extends AbstractHandler {
+	
+	/* (non-Javadoc)
+	 * @see protocol.AbstractHandler#handle(java.lang.String)
+	 */
 	// TODO add errorCode
 	public String handle(String httpBody){
 		//gets the information from the request

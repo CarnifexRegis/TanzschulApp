@@ -1,22 +1,29 @@
 package server;
 
-import java.util.logging.Logger;
+
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
+// TODO: Auto-generated Javadoc
+
 /**
- * 
+ * The Class TServer.
+ *
  * @author Simon Stolz
  * Sources: http://www.pabst-software.de/doku.php?id=programmieren:java:android:httpclient:start
  * @attribute This is my Server Class it contains Jetty server that is hosted on  192.168.1.104
  */
 public class TServer {
-	/**
-	 * 
-	 */
+	
+	/** The server. */
 	 Server server;
-	 ServerConnector http;
-	 private volatile boolean running = true;
+	 
+ 	/** The http. */
+ 	ServerConnector http;
+
+	/**
+	 * Instantiates a new t server.
+	 */
 	public TServer(){
 			
 		 
@@ -38,6 +45,11 @@ public class TServer {
 	    
 	}
 	
+	/**
+	 * Stop server.
+	 *
+	 * @return true, if successful
+	 */
 	public boolean stopServer(){
 		try {
 	    	/**
@@ -53,6 +65,13 @@ public class TServer {
 			
 		}
 	}
+	
+	/**
+	 * Start server.
+	 *
+	 * @param host the host
+	 * @return the string
+	 */
 	public String startServer(String host){
 		 try {
 		    	/**

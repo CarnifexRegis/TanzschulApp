@@ -14,14 +14,29 @@ import activitys.Registration;
 import activitys.ShowProfile;
 import android.util.Log;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ProfileDataTask.
+ */
 public class ProfileDataTask  extends BaseHttpRequestTask{
 
+	/** The id. */
 	int id;
+	
+	/**
+	 * Instantiates a new profile data task.
+	 *
+	 * @param ep the ep
+	 * @param id the id
+	 */
 	public ProfileDataTask(EditProfile ep,int id) {
 		super(ep);
 		this.id = id;
 	}
 	
+	/**
+	 * Execute.
+	 */
 	public void execute() {
 		ProfileDataRequest request = new ProfileDataRequest(id);
 
@@ -34,6 +49,10 @@ public class ProfileDataTask  extends BaseHttpRequestTask{
 			System.out.println("An error occured bulding the xml/exceuting command");
 		}
 	}
+	
+	/* (non-Javadoc)
+	 * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
+	 */
 	@Override
 	public void onPostExecute(String result) {
 		try {

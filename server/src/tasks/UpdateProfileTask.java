@@ -4,9 +4,17 @@ import protocol.AbstractHandler;
 import protocol.ErrorCode;
 import request.UpdateProfileRequest;
 import response.UpdateProfileResponse;
+// TODO: Auto-generated Javadoc
+
+/**
+ * The Class UpdateProfileTask.
+ */
 // ec update
 public class UpdateProfileTask extends AbstractHandler {
 	
+		/* (non-Javadoc)
+		 * @see protocol.AbstractHandler#handle(java.lang.String)
+		 */
 		public String handle(String httpBody){
 			//gets the information from the request
 			UpdateProfileRequest request = (UpdateProfileRequest)parseXML(httpBody,UpdateProfileRequest.class);

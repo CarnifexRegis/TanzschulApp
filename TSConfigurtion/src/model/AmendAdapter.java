@@ -30,18 +30,35 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.TextView;
 import android.widget.ToggleButton;
+// TODO: Auto-generated Javadoc
+
 /**
- * 
+ * The Class AmendAdapter.
+ *
  * @author Simon
- *@Sources: http://stackoverflow.com/questions/21053979/listview-duplicates-android
- *			model.adapter
- *			http://developer.android.com/resources/samples/ApiDemos/src/com/example/android/apis/view/List14.html
+ * @Sources: http://stackoverflow.com/questions/21053979/listview-duplicates-android
+ * 			model.adapter
+ * 			http://developer.android.com/resources/samples/ApiDemos/src/com/example/android/apis/view/List14.html
  */
 public class AmendAdapter extends ArrayAdapter<aKurs>{
+	
+	/** The id. */
 	int id;
+	
+	/** The context. */
 	Context context;
+	
+	/** The atk. */
 	AmendKurs atk;
 	
+	/**
+	 * Instantiates a new amend adapter.
+	 *
+	 * @param context the context
+	 * @param arrayList the array list
+	 * @param id the id
+	 * @param atk the atk
+	 */
 	public AmendAdapter(Context context, ArrayList<aKurs> arrayList,int id, AmendKurs atk) {
 		super(context, R.layout.kurs_item, arrayList);
 		this.id= id;
@@ -49,6 +66,9 @@ public class AmendAdapter extends ArrayAdapter<aKurs>{
 		this.context= context;
 		}
 	
+	/* (non-Javadoc)
+	 * @see android.widget.ArrayAdapter#getView(int, android.view.View, android.view.ViewGroup)
+	 */
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		//http://stackoverflow.com/questions/21053979/listview-duplicates-android
@@ -75,7 +95,7 @@ public class AmendAdapter extends ArrayAdapter<aKurs>{
 			
 			level.setText(Kursstufen.fromInt(k.getKursstufe()).getKuNa());
 			date.setText(k.getDatum());
-			interested.setText(k.getEnlisted()+"");
+			interested.setText(k.getEnlisted()+" User");
 			Button delete = (Button) row.findViewById(R.id.KursDeleteButton);
 			
 			//http://developer.android.com/resources/samples/ApiDemos/src/com/example/android/apis/view/List14.html

@@ -4,8 +4,17 @@ import protocol.AbstractHandler;
 import protocol.ErrorCode;
 import request.RegisterRequest;
 import response.RegisterResponse;
+// TODO: Auto-generated Javadoc
+
+/**
+ * The Class RegisterTask.
+ */
 //sc update n ot required
 public class RegisterTask extends AbstractHandler {
+	
+	/* (non-Javadoc)
+	 * @see protocol.AbstractHandler#handle(java.lang.String)
+	 */
 	public String handle(String httpBody){
 		//gets the information from the request
 		RegisterRequest request = (RegisterRequest)parseXML(httpBody,RegisterRequest.class);

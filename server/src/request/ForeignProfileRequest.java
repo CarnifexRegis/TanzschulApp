@@ -2,25 +2,57 @@ package request;
 
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
+// TODO: Auto-generated Javadoc
 
+/**
+ * The Class ForeignProfileRequest.
+ *
+ * @author Simon Stolz
+ */
 @Root(name = "foreignprofilerequest")
 public class ForeignProfileRequest {
-	@Element(name = "email" )
-	String eMail;
+	
+	/** The idp. */
+	@Element(name = "idp" )
+	String idp;
+	
+	/** The id. */
 	@Element (name = "id")
 	int id;
+	
+	/**
+	 * Instantiates a new foreign profile request.
+	 */
 	public ForeignProfileRequest(){
 		super();
 	}
-	public ForeignProfileRequest(String eMail, int id) {
+	
+	/**
+	 * Instantiates a new foreign profile request.
+	 *
+	 * @param idp the public id of the requested users data
+	 * @param id the private id of the requesting User
+	 */
+	public ForeignProfileRequest(String idp, int id) {
 		super();
-		this.eMail = eMail;
+		this.idp = idp;
 		this.id = id;
 	}
 
-	public String geteMail() {
-		return eMail;
+	/**
+	 * Gets the idp.
+	 *
+	 * @return the idp
+	 */
+	public String getIdp() {
+		return idp;
 	}
+	
+	/**
+	 * Gets the id.
+	 *
+	 * @return the id
+	 */
 	public int getId() {
 		return id;
 	}

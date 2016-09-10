@@ -8,8 +8,17 @@ import protocol.AbstractHandler;
 import protocol.ErrorCode;
 import request.GetKursRequest;
 import response.GetKursResponse;
+// TODO: Auto-generated Javadoc
+
+/**
+ * The Class GetKursTask.
+ */
 // sec update 
 public class GetKursTask extends AbstractHandler {
+	
+	/* (non-Javadoc)
+	 * @see protocol.AbstractHandler#handle(java.lang.String)
+	 */
 	public String handle(String httpBody){
 		//gets the information from the request
 		GetKursRequest request = (GetKursRequest)parseXML(httpBody,GetKursRequest.class);

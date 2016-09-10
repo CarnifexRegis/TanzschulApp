@@ -15,10 +15,24 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Adapter.
+ */
 public class Adapter extends ArrayAdapter<ProfileChart> {
 	
+	/**
+	 * Instantiates a new adapter.
+	 *
+	 * @param context the context
+	 * @param arrayList the array list
+	 */
 	public Adapter(Context context, ArrayList<ProfileChart> arrayList) {
 		super(context, R.layout.list_item_chart, arrayList);}
+	
+	/* (non-Javadoc)
+	 * @see android.widget.ArrayAdapter#getView(int, android.view.View, android.view.ViewGroup)
+	 */
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View ProfileChartView = convertView;

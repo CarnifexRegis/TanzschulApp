@@ -15,19 +15,34 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import activitys.SearchForDancingpartner;
+// TODO: Auto-generated Javadoc
+
 /**
- * 
+ * The Class Adapter.
+ *
  * @author Simon Stolz, MartinPabst
- * @Sources:http://stackoverflow.com/questions/8486511/how-to-set-on-click-listener-on-the-custom-list-view-in-android
- *				http://stackoverflow.com/questions/10726519/how-to-get-the-source-of-imageview-in-order-to-change-it 
- *				http://stackoverflow.com/questions/21053979/listview-duplicates-android
+ * @Sources:http://stackoverflow.com/questions/8486511/how-to-set-on-click-listener-on-the-custom-list-view-in-android 				http://stackoverflow.com/questions/10726519/how-to-get-the-source-of-imageview-in-order-to-change-it 
+ * 				http://stackoverflow.com/questions/21053979/listview-duplicates-android
  */
 public class Adapter extends ArrayAdapter<ProfileChart> {
+	
+	/** The context. */
 	Context context;
+	
+	/**
+	 * Instantiates a new adapter.
+	 *
+	 * @param context the context
+	 * @param arrayList the array list
+	 */
 	public Adapter(Context context, ArrayList<ProfileChart> arrayList) {
 		super(context, R.layout.list_item_chart, arrayList);
 	this.context= context;	
 	}
+	
+	/* (non-Javadoc)
+	 * @see android.widget.ArrayAdapter#getView(int, android.view.View, android.view.ViewGroup)
+	 */
 	// http://stackoverflow.com/questions/21053979/listview-duplicates-android
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {

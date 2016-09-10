@@ -7,12 +7,25 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ManageKurs.
+ */
 public class ManageKurs  extends Activity {
+	
+	/** The id. */
 	private int id;
+	
+	/** The add B. */
 	private Button addB;
+	
+	/** The amend B. */
 	private Button amendB;
 
 
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onCreate(android.os.Bundle)
+	 */
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_manage_kurs);
@@ -47,6 +60,10 @@ public class ManageKurs  extends Activity {
 		 
 		
 	}
+	
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onBackPressed()
+	 */
 	@Override
 	public void onBackPressed() {
 	}

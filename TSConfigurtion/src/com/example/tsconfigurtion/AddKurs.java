@@ -8,11 +8,11 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-
 import request.AAddKursRequest;
 import tasks.AAddKursTask;
 import model.ConnectedActivity;
 import model.SQLKurs;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -24,31 +24,73 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemSelectedListener;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AddKurs.
+ */
+@SuppressLint("SimpleDateFormat")
 public class AddKurs extends ConnectedActivity {
+
+/** The kursstufe. */
 // values
 private int kursstufe;
+
+/** The id. */
 private int id;
+
+/** The day. */
 private int day;
+
+/** The mature. */
 private boolean mature;
+
+/** The ak. */
 AddKurs ak = this;
 //date values
+/** The date day E. */
 //private String dateDay;
 private EditText dateDayE;
+
+/** The date month. */
 private String dateMonth;
+
+/** The date year. */
 private String dateYear;
+
+/** The string day. */
 private String stringDay;
 
+/** The insert time 1. */
 private EditText insertTime1;
+
+/** The insert time 2. */
 private EditText insertTime2;
+
+/** The date month S. */
 private Spinner dateMonthS;
+
+/** The date year S. */
 private Spinner dateYearS;
+
+/** The add kurs B. */
 Button addKursB;
 
+/** The string day S. */
 private Spinner stringDayS;
+
+/** The kustu S. */
 private Spinner kustuS;
+
+/** The mature S. */
 private Spinner matureS;
+
+/** The calendar. */
 Calendar calendar;
+
 /**
+ * On create.
+ *
+ * @param savedInstanceState the saved instance state
  * @author: Simon Stolz;
  * 	This class is used to add new courses to the Server datbase.
  * 	The majority of data required for a Kurs object  is collected from sinners.
@@ -291,7 +333,8 @@ Calendar calendar;
 				java.util.Date jDate = new SimpleDateFormat("yyyy-MM-dd").parse(oldstring);
 				
 			    java.sql.Date sqlDate = new java.sql.Date(jDate.getTime());
-			    AAddKursTask akt =  new AAddKursTask(ak, id,new SQLKurs(id, kursstufe,insertTime1.getText().toString()+":"+insertTime2.getText().toString(),sqlDate, stringDay) );
+		
+			    AAddKursTask akt =  new AAddKursTask(ak, id,new SQLKurs( kursstufe,insertTime1.getText().toString()+":"+insertTime2.getText().toString(),sqlDate, stringDay) );
 			    addKursB.setEnabled(false);
 			    akt.execute();
 			    }catch(Exception e){
@@ -322,33 +365,19 @@ Calendar calendar;
 		});
 		
 		
-	
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		}
+	
+	/**
+	 * Enable add button.
+	 */
 	public void enableAddButton()	
 	{
 		addKursB.setEnabled(true);
 	}
 		
+/**
+ * On add succes.
+ */
 public void onAddSucces() {
 	Toast.makeText(this, "Successfully added Kurs", Toast.LENGTH_LONG).show();
 	addKursB.setEnabled(true);

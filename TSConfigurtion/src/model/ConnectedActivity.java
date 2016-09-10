@@ -12,9 +12,18 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.widget.Toast;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ConnectedActivity.
+ */
 public abstract class ConnectedActivity extends Activity {
 	
 	
+	/**
+	 * On error.
+	 *
+	 * @param ec the ec
+	 */
 	public void onError(String ec){
 		Intent intent;
 		switch (ec){
@@ -35,6 +44,9 @@ public abstract class ConnectedActivity extends Activity {
 		}
 	}
 	
+	/**
+	 * On connection error.
+	 */
 	public void  onConnectionError() {
 		if(!isOnline(this)){
 			Toast.makeText(getApplicationContext(), getResources().getString(R.string.check_connection), 
@@ -45,6 +57,13 @@ public abstract class ConnectedActivity extends Activity {
 	                Toast.LENGTH_LONG).show(); 	
 		}
 	}
+	
+	/**
+	 * Checks if is online.
+	 *
+	 * @param context the context
+	 * @return true, if is online
+	 */
 	public boolean isOnline(Context context) {
 	    ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 	    android.net.NetworkInfo networkinfo = cm.getActiveNetworkInfo();

@@ -24,28 +24,52 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+// TODO: Auto-generated Javadoc
+
 /**
- * 
+ * The Class Login.
+ *
  * @author Simon
- *	Activity icon source: http://findicons.com/files/icons/1580/devine_icons_part_2/128/control_panel.png
- *@ Source : //http://stackoverflow.com/questions/18341269/save-the-data-and-using-it-after-restarting-the-app-android
+ * 	Activity icon source: http://findicons.com/files/icons/1580/devine_icons_part_2/128/control_panel.png
+ * @ Source : //http://stackoverflow.com/questions/18341269/save-the-data-and-using-it-after-restarting-the-app-android
  */ 
 public class Login extends ConnectedActivity {
+	
+	/** The login. */
 	//Source 
 	final Login login = this;
+	
+	/** The safelogin. */
 	//http://stacktips.com/tutorials/android/android-checkbox-example
 	private CheckBox safelogin;
+	
+	/** The name. */
 	private String name = null;
+	
+	/** The password. */
 	private String password = null;
+	
+	/** The c. */
 	private boolean c = false;
+	
+	/** The error code. */
 	String errorCode = null;
 	
+	/** The error view. */
 	private TextView errorView;
+	
+	/** The key insert. */
 	private EditText keyInsert;
+	
+	/** The name insert. */
 	private EditText nameInsert;
 	
+	/** The prefs. */
 	private SharedPreferences prefs;
 	
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onCreate(android.os.Bundle)
+	 */
 	protected void onCreate(Bundle savedInstanceState) {
 		
 		
@@ -143,6 +167,12 @@ public class Login extends ConnectedActivity {
         });
 	}
 	
+	/**
+	 * Gets the login values.
+	 *
+	 * @param id the id
+	 * @return the login values
+	 */
 	public void getLoginValues(int id){
 		//Switch (calledBy.getAct)
 		
@@ -156,6 +186,10 @@ public class Login extends ConnectedActivity {
 
 		
 	}
+	
+	/* (non-Javadoc)
+	 * @see model.ConnectedActivity#onConnectionError()
+	 */
 	@Override
 	public void onConnectionError(){
 		errorView.setVisibility(View.VISIBLE);
@@ -166,6 +200,9 @@ public class Login extends ConnectedActivity {
 		}
 		}
 	
+	/* (non-Javadoc)
+	 * @see model.ConnectedActivity#isOnline(android.content.Context)
+	 */
 	public boolean isOnline(Context context) {
 	    ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 	    android.net.NetworkInfo networkinfo = cm.getActiveNetworkInfo();
@@ -175,6 +212,9 @@ public class Login extends ConnectedActivity {
 	    return false;}
 
 	
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onPause()
+	 */
 	@Override
 	public void onPause(){
 		super.onPause();
@@ -192,6 +232,10 @@ public class Login extends ConnectedActivity {
 	      editor.commit();
 	     
 	}
+	
+	/* (non-Javadoc)
+	 * @see model.ConnectedActivity#onError(java.lang.String)
+	 */
 	@Override
 	public void onError(String ec) {
 		switch (ec){

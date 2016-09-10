@@ -19,29 +19,58 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+// TODO: Auto-generated Javadoc
 /**
- * 
+ * The Class ShowProfile.
+ *
  * @author Simon
- *@ Source: http://stackoverflow.com/questions/19253786/how-to-copy-text-to-clip-board-in-android
+ * @ Source: http://stackoverflow.com/questions/19253786/how-to-copy-text-to-clip-board-in-android
  */
 public class ShowProfile extends ConnectedActivity {
+
+/** The id. */
 int id;
+
+/** The gender. */
 boolean gender;
+
+/** The idp. */
 String idp;
+
+/** The sp. */
 ShowProfile sp = this;
+
+/** The name view. */
 TextView nameView;
 
 
+/** The age text. */
 TextView ageText;
+
+/** The age view. */
 TextView ageView;
+
+/** The height view. */
 TextView heightView;
+
+/** The about me view. */
 TextView aboutMeView;
+
+/** The pn view. */
 TextView pnView;
 
+/** The my clip. */
 private ClipData myClip;
+
+/** The my clipboard. */
 private ClipboardManager myClipboard;
+ 
+ /** The pd. */
  private ProfileData pd = new ProfileData();
 	
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onCreate(android.os.Bundle)
+	 */
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 	       setContentView(R.layout.show_profile);
@@ -103,6 +132,9 @@ private ClipboardManager myClipboard;
 			fpt.execute();
 			}
 
+	/* (non-Javadoc)
+	 * @see activitys.ConnectedActivity#onConnectionError()
+	 */
 	@Override
 		public void onConnectionError(){
 			
@@ -120,6 +152,10 @@ private ClipboardManager myClipboard;
 			intent.putExtra("error", error);
 			startActivity(new Intent(intent));
 			}
+	
+	/* (non-Javadoc)
+	 * @see activitys.ConnectedActivity#onError(java.lang.String)
+	 */
 	@Override
 	public void onError(String ec) {
 		Intent intent;
@@ -145,6 +181,11 @@ private ClipboardManager myClipboard;
 	}
 
 
+	/**
+	 * Rechieve data.
+	 *
+	 * @param pd the pd
+	 */
 	public void rechieveData(ProfileData pd) {
 		this.pd = pd;
 		if(pd.isPa()){
@@ -162,6 +203,10 @@ private ClipboardManager myClipboard;
 		 pnView.setText(pd.getPhoneNumber()+"");
 		 nameView.setText(pd.getFn()+" "+pd.getLn());
 	}
+	
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onBackPressed()
+	 */
 	@Override
 	public void onBackPressed(){
 		super.onBackPressed();
@@ -172,6 +217,13 @@ private ClipboardManager myClipboard;
 		intent.putExtra("error", e);
 		startActivity(new Intent(intent));
 	}
+	
+	/**
+	 * Adds the as contact confirmed.
+	 *
+	 * @param context the context
+	 * @param pd the pd
+	 */
 	//http://stackoverflow.com/questions/14278587/insert-a-new-contact-intent
 	public static void addAsContactConfirmed(final Context context, final ProfileData pd) {
 

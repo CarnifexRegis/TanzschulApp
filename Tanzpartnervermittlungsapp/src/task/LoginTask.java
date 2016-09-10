@@ -7,10 +7,25 @@ import response.LoginResponse;
 import activitys.LogIn;
 import android.util.Log;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class LoginTask.
+ */
 public class LoginTask extends BaseHttpRequestTask{
 
+	/** The e mail. */
 	private String eMail;
+	
+	/** The key. */
 	private String key ;
+	
+	/**
+	 * Instantiates a new login task.
+	 *
+	 * @param login the login
+	 * @param eMail the e mail
+	 * @param key the key
+	 */
 	public LoginTask(LogIn login,String eMail, String key) {
 		super(login);
 		this.eMail = eMail;
@@ -18,6 +33,10 @@ public class LoginTask extends BaseHttpRequestTask{
 		
 		
 	}
+	
+	/**
+	 * Execute.
+	 */
 	public void execute() {
 		LoginRequest request = new LoginRequest(eMail, key);
 
@@ -29,8 +48,11 @@ public class LoginTask extends BaseHttpRequestTask{
 			Log.e("Error in  LoginTask", e.toString());
 		}
 	}
+	
 	/**
-	 * After recieving the gender and the id from the server they get  passed to the login Activity
+	 * After recieving the gender and the id from the server they get  passed to the login Activity.
+	 *
+	 * @param result the result
 	 */
 	@Override
 	public void onPostExecute(String result) {

@@ -8,10 +8,25 @@ import request.ALoginRequest;
 import response.ALoginResponse;
 import android.util.Log;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ALoginTask.
+ */
 public class ALoginTask extends BaseHttpRequestTask{
 
+	/** The name. */
 	private String name;
+	
+	/** The key. */
 	private String key ;
+	
+	/**
+	 * Instantiates a new a login task.
+	 *
+	 * @param login the login
+	 * @param name the name
+	 * @param key the key
+	 */
 	public ALoginTask(Login login,String name, String key) {
 		super(login);
 		this.name = name;
@@ -19,6 +34,10 @@ public class ALoginTask extends BaseHttpRequestTask{
 		
 		
 	}
+	
+	/**
+	 * Execute.
+	 */
 	public void execute() {
 		ALoginRequest request = new ALoginRequest(name, key);
 
@@ -30,8 +49,11 @@ public class ALoginTask extends BaseHttpRequestTask{
 			Log.e("Error in  LoginTask", e.toString());
 		}
 	}
+	
 	/**
-	 * After recieving the gender and the id from the server they get  passed to the login Activity
+	 * After recieving the gender and the id from the server they get  passed to the login Activity.
+	 *
+	 * @param result the result
 	 */
 	@Override
 	public void onPostExecute(String result) {

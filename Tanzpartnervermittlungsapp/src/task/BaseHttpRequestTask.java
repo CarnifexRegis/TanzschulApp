@@ -29,14 +29,28 @@ import android.util.Log;
 import protocol.Command;
 import protocol.Properties;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class BaseHttpRequestTask.
+ */
 public class BaseHttpRequestTask extends AsyncTask<String, Void, String> {
+	
+	/** The activity. */
 	protected Activity activity;
 
+	/**
+	 * Instantiates a new base http request task.
+	 *
+	 * @param activity the activity
+	 */
 	protected BaseHttpRequestTask(Activity activity) {
 		super();
 		this.activity = activity;
 	}
 
+	/* (non-Javadoc)
+	 * @see android.os.AsyncTask#doInBackground(java.lang.Object[])
+	 */
 	@Override
 	protected String doInBackground(String... params) {
 		String result = "Error";
@@ -76,6 +90,13 @@ public class BaseHttpRequestTask extends AsyncTask<String, Void, String> {
 		return result;
 	}
 
+	/**
+	 * Builds the XML.
+	 *
+	 * @param object the object
+	 * @return the string
+	 * @throws Exception the exception
+	 */
 	protected String buildXML(Object object) throws Exception {
 		Style style = new HyphenStyle();
 		Format format = new Format(style);
@@ -85,6 +106,14 @@ public class BaseHttpRequestTask extends AsyncTask<String, Void, String> {
 		return writer.getBuffer().toString();
 	}
 
+	/**
+	 * Parses the XML.
+	 *
+	 * @param xml the xml
+	 * @param myClass the my class
+	 * @return the object
+	 * @throws Exception the exception
+	 */
 	protected Object parseXML(String xml, Class myClass) throws Exception {
 		Serializer serializer = new Persister();
 
@@ -97,6 +126,12 @@ public class BaseHttpRequestTask extends AsyncTask<String, Void, String> {
 		return null; // TODO: Error-Handling
 	}
 
+	/**
+	 * Execute.
+	 *
+	 * @param command the command
+	 * @param postBody the post body
+	 */
 	protected void execute(Command command, String postBody) {
 		super.execute(command.toString(), postBody);
 	}

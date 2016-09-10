@@ -7,11 +7,19 @@ import request.ADeleteRequest;
 import response.ADeleteResponse;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ADeleteTask.
+ */
 public class ADeleteTask extends AbstractHandler{
+	
+	/* (non-Javadoc)
+	 * @see protocol.AbstractHandler#handle(java.lang.String)
+	 */
 	public String handle(String httpBody){
 		//gets the information from the request
 		ADeleteRequest request = (ADeleteRequest)parseXML(httpBody,ADeleteRequest.class);
-		int uid = request.getUid();
+		int uid = request.getAid();
 		int kid = request.getKid();
 		Model m = Model.getInstance();
 		String	ec;

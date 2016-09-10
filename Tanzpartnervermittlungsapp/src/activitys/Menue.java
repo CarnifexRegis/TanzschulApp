@@ -16,20 +16,33 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.Tanzpartnervermittlung.R;
+// TODO: Auto-generated Javadoc
 //SQL für Fortgeschritttene join..on group by Roman Create Table, insert,update 
 //Php my table
 /**
- * 
- * @author Simon
+ * The Class Menue.
  *
+ * @author Simon
  */
 
 public class Menue extends ConnectedActivity {
+	
+	/** The Constant prefName. */
 	//https://developer.android.com/guide/topics/data/data-storage.html#pref
 	 public static final String prefName = "MyPrefsFile";
+	
+	/** The id. */
 	int ID ;
+	
+	/** The gender. */
 	boolean gender;
+	
+	/** The menue. */
 	final Menue menue = this;
+	
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onCreate(android.os.Bundle)
+	 */
 	@Override
 	/**
 	 * 
@@ -90,20 +103,36 @@ Intent intent = new Intent(getApplicationContext(),EditProfile.class);
 	});
 }
 
+	/**
+	 * Test ausgabe.
+	 *
+	 * @param text the text
+	 */
 	public void testAusgabe(String text) {
 	//	TextView testView = (TextView) findViewById(R.id.test1);
 		//testView.setText(text);
 	}
 
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onBackPressed()
+	 */
 	@Override
 	public void onBackPressed() {
 	}
+	
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
+	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 	    MenuInflater inflater=getMenuInflater();
 	    inflater.inflate(R.layout.new_main_menue, menu);
 	    return super.onCreateOptionsMenu(menu);
 	}
+	
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onOptionsItemSelected(android.view.MenuItem)
+	 */
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    switch(item.getItemId())

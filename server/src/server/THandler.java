@@ -12,6 +12,7 @@ import org.eclipse.jetty.server.handler.AbstractHandler;
 import protocol.Command;
 import tasks.ForeignProfileTask;
 import oldExampels.GetAllTask;
+import tasks.AAddKursTask;
 import tasks.ADeleteTask;
 import tasks.AGetKursTask;
 import tasks.ALoginTask;
@@ -22,18 +23,23 @@ import tasks.RegisterTask;
 import tasks.UpdateChartTask;
 import tasks.UpdateLinkTask;
 import tasks.UpdateProfileTask;
+// TODO: Auto-generated Javadoc
+
 /**
- * 
+ * The Class THandler.
+ *
  * @author Simon Stolz
  * Source:  http://www.pabst-software.de/doku.php?id=programmieren:java:android:httpclient:start
  * 			
- *
  */
 
 
 
 public class THandler extends AbstractHandler {
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.jetty.server.Handler#handle(java.lang.String, org.eclipse.jetty.server.Request, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 */
 	@Override
 	public void handle(String target, Request baseRequest,
 			HttpServletRequest request, HttpServletResponse response)
@@ -118,6 +124,11 @@ public class THandler extends AbstractHandler {
 				antwort = adt.handle(body);
 				baseRequest.setHandled(true);
 				break;
+			case addkurs:
+				AAddKursTask akt  = new AAddKursTask();
+				antwort = akt.handle(body);
+				baseRequest.setHandled(true);
+				break;
 			default:
 
 				
@@ -129,6 +140,12 @@ public class THandler extends AbstractHandler {
 
 	}
 
+	/**
+	 * Gets the http body.
+	 *
+	 * @param request the recieved request
+	 * @return the http body of the request
+	 */
 	private String getHttpBody(HttpServletRequest request) {
 
 		StringBuffer sb = new StringBuffer();

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">TS Configurtion</string>
+    <string name="app_name">TS Configuration</string>
     <string name="activity_manage">Menü</string>
     <string name="activity_amend">Kurse anpassen</string>
     <string name="activity_add">Kurse hinzufügen</string>
@@ -54,7 +54,9 @@
         
   </string-array>
   <string-array name="day_array">
-      	<item>Alle</item>
+      	
+      	<item>Montag</item>
+      	<item>Dienstag</item>
    		 <item>Mittwoch</item>
     	<item>Donnerstag</item>
     	<item>Freitag</item>

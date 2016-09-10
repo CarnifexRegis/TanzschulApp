@@ -9,11 +9,33 @@ import android.view.View;
 
 import com.example.tsconfigurtion.AmendKurs;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ADeleteTask.
+ */
 public class ADeleteTask extends BaseHttpRequestTask{
+
+/** The kid. */
 int kid;
+
+/** The uid. */
 int uid;
+
+/** The position. */
 int position;
+
+/** The v. */
 View v;
+	
+	/**
+	 * Instantiates a new a delete task.
+	 *
+	 * @param amk the amk
+	 * @param kid the kid
+	 * @param uid the uid
+	 * @param position the position
+	 * @param v the v
+	 */
 	public ADeleteTask(AmendKurs amk,int kid, int uid,int position,View v) {
 		super(amk);
 		this.kid = kid;
@@ -22,6 +44,9 @@ View v;
 		this.v = v;
 	}
 
+	/**
+	 * Execute.
+	 */
 	public void execute() {
 		ADeleteRequest request = new ADeleteRequest(uid, kid);
 
@@ -38,6 +63,9 @@ View v;
 }
 	
 
+	/* (non-Javadoc)
+	 * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
+	 */
 	@Override
 	public void onPostExecute(String result) {
 		try {

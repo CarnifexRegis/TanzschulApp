@@ -2,27 +2,58 @@ package response;
 
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
+// TODO: Auto-generated Javadoc
 
+/**
+ * The Class ALoginResponse.
+ *
+ * @author Simon Stolz
+ */
 @Root (name = "aloginresponse")
 public class ALoginResponse {
+	
+	/** The id. */
 	@Element(name = "id",required = false)
 	int id;
 	
+	/** The ec. */
 	@Element (name = "ec")
 	String ec;
+	
+	/**
+	 * Instantiates a new a login response.
+	 */
 	public ALoginResponse(){
 		super ();
 	}
+	
+	/**
+	 * Instantiates a new a login response.
+	 *
+	 * @param id id of the requesting user
+	 * @param ec ErrorCode know  by the client that tells him what to do next
+	 */
 	public ALoginResponse(int id,String ec) {
 		super();
 		this.id = id;
 		
 		this.ec = ec;
 	}
+	
+	/**
+	 * Gets the id.
+	 *
+	 * @return the id
+	 */
 	public int getId() {
 		return id;
 	}
 	
+	/**
+	 * Gets the ec.
+	 *
+	 * @return the ec
+	 */
 	public String getEc() {
 		return ec;
 	}

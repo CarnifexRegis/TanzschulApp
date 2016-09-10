@@ -8,14 +8,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
+// TODO: Auto-generated Javadoc
+
 /**
- * 
+ * The Class DefaultTask.
+ *
  * @author Simon Stolz, Martin Pabst
  * Source: http://www.pabst-software.de/doku.php?id=programmieren:java:android:httpclient:start
- *
  */
 public class DefaultTask extends AbstractHandler
 {
+    
+    /* (non-Javadoc)
+     * @see org.eclipse.jetty.server.Handler#handle(java.lang.String, org.eclipse.jetty.server.Request, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+     */
     public void handle(String target,Request baseRequest,HttpServletRequest request,HttpServletResponse response) 
         throws IOException, ServletException
     {

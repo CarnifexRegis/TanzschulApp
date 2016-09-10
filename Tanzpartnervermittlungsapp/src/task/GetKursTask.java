@@ -9,9 +9,25 @@ import android.util.Log;
 import request.GetKursRequest;
 import response.GetKursResponse;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class GetKursTask.
+ */
 public class GetKursTask extends BaseHttpRequestTask{
+	
+	/** The id. */
 	int id;
+	
+	/** The ks. */
 	int ks;
+	
+	/**
+	 * Instantiates a new gets the kurs task.
+	 *
+	 * @param atk the atk
+	 * @param id the id
+	 * @param ks the ks
+	 */
 	public GetKursTask(AssignToKurs atk, int id, int ks) {
 		super(atk);
 		this.id=id;
@@ -19,6 +35,9 @@ public class GetKursTask extends BaseHttpRequestTask{
 		
 	}
 
+	/**
+	 * Execute.
+	 */
 	public void execute() {
 		GetKursRequest request = new GetKursRequest(id,ks);
 
@@ -34,6 +53,9 @@ public class GetKursTask extends BaseHttpRequestTask{
 	}
 	}
 
+	/* (non-Javadoc)
+	 * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
+	 */
 	@Override
 	public void onPostExecute(String result) {
 		try {

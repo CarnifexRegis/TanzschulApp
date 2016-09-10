@@ -8,31 +8,38 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
-import java.text.ParseException;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+
+// TODO: Auto-generated Javadoc
 /**
- * 
+ * The Class SQL.
+ *
  * @author Simon
- *Sources: 
- *			Abi Quiz-App by Tim Möschel
- *			http://stackoverflow.com/questions/23851158/check-if-some-string-is-in-sqlite-database
- *			http://stackoverflow.com/questions/7886462/how-to-get-row-count-using-resultset-in-java
- *			http://www.tutorialspoint.com/jdbc/jdbc-select-records.htm
- *			http://www.w3schools.com/sql/sql_update.asp		
- *			http://docs.oracle.com/javase/7/docs/api/java/security/SecureRandom.html
- *			http://www.javapractices.com/topic/TopicAction.do?Id=62
+ * @sources: 			Abi Quiz-App by Tim Möschel
+ * 			http://stackoverflow.com/questions/23851158/check-if-some-string-is-in-sqlite-database
+ * 			http://stackoverflow.com/questions/7886462/how-to-get-row-count-using-resultset-in-java
+ * 			http://www.tutorialspoint.com/jdbc/jdbc-select-records.htm
+ * 			http://www.w3schools.com/sql/sql_update.asp		
+ * 			http://docs.oracle.com/javase/7/docs/api/java/security/SecureRandom.html
+ * 			http://www.javapractices.com/topic/TopicAction.do?Id=62
  */
 public class SQL {
+
+/** The random. */
 SecureRandom random = new SecureRandom();
+
+/** The c. */
 private Connection c;
+
+/** The i. */
 // TODO DEBUGGING
 int i = 0;
 //https://coderanch.com/t/300886/JDBC/databases/Proper-close-Connection-Statement-ResultSet
 // TODO try out that fancy shit if you have leaft over time
 /**
- * 
+ * Instantiates a new sql.
  */
 
 	public SQL(){
@@ -308,9 +315,10 @@ int i = 0;
 	//methods
 	// sources: http://stackoverflow.com/questions/23851158/check-if-some-string-is-in-sqlite-database
 	/**
-	 * 
-	 * @param em
-	 * @return
+	 * E mail exists.
+	 *
+	 * @param em the em
+	 * @return true, if successful
 	 */
 	public boolean eMailExists(String em){
 		Statement stmt = null;
@@ -340,15 +348,12 @@ int i = 0;
 			}
 		return true;
 		}
+	
 	/**
-	 * 
-	 * @param em
-	 * @param ps
-	 * @param ln
-	 * @param fn
-	 * @param g
-	 * @param age
-	 * @return
+	 * Aviable ID.
+	 *
+	 * @param id the id
+	 * @return true, if successful
 	 */
 	
 	public boolean aviableID(int id){
@@ -381,15 +386,21 @@ int i = 0;
 		}
 	
 	
-	
+	/**
+	 * Adds the admin.
+	 *
+	 * @param n the admins "name"
+	 * @param k the key to access the addmin permissions
+	 * @return returns the id of the created Admin
+	 * @attribute This mehtod adds a new user and returns the generated if from his column
+	 */
 	public boolean addAdmin(String n,String k){
 		Statement stmt;
 		try{
 			stmt = c.createStatement();
 			String sql2 = " SELECT COUNT(*) AS COUNT FROM ADMIN WHERE NAME = '" + n + "';";
 			ResultSet rs = stmt.executeQuery(sql2);
-			if(rs.next()){
-				int count = rs.getInt("count");
+				int count = rs.getInt("COUNT");
 				if (rs != null)rs.close();
 				if(stmt!= null)stmt.close();
 				if(count == 0){
@@ -407,9 +418,10 @@ int i = 0;
 						p.setString(2,n);
 						p.setString(3, k);
 						p.executeUpdate();
+						if(p!=null)p.close();
 						c.commit();
 						System.out.println("added Admin ");
-						if(p!=null)p.close();
+						
 						return true;
 					}
 					catch(Exception e){
@@ -426,13 +438,21 @@ int i = 0;
 					
 					
 					}
-			}
+			
 			}catch(Exception e){
 				e.printStackTrace();
 				return false;
 			}
 		return false;
 		}
+	
+	/**
+	 * Gets the a kurs.
+	 *
+	 * @param kstu the level of the dancing lesson
+	 * @return returns a List of Kurs objects
+	 * @attribute This method exutes a SELECT statement  getting
+	 */
 	public ArrayList<aKurs> getaKurs(int kstu){
 		Statement stmt;
 		
@@ -465,6 +485,14 @@ int i = 0;
 		}
 		
 	}
+	
+	/**
+	 * A log in.
+	 *
+	 * @param n the n
+	 * @param k the k
+	 * @return the int
+	 */
 	public 	int aLogIn(String n, String k){ // id check
 		int i;
 		try{
@@ -518,6 +546,12 @@ int i = 0;
 				return -1;
 		}
 	
+	/**
+	 * Aviable IDP.
+	 *
+	 * @param idp the idp
+	 * @return true, if successful
+	 */
 	public boolean aviableIDP(String idp)
 	{Statement stmt = null;
 	try{
@@ -547,6 +581,18 @@ int i = 0;
 	return false;
 	}
 	
+	/**
+	 * Adds the user.
+	 *
+	 * @param eMail the e mail
+	 * @param ps the ps
+	 * @param ln the ln
+	 * @param fn the fn
+	 * @param g the g
+	 * @param age the age
+	 * @param pa the pa
+	 * @return the int
+	 */
 	public int addUser(String eMail, String ps,String ln,  String fn, int g,int age,int pa){
 		
 		
@@ -620,6 +666,13 @@ int i = 0;
 	    	 return -1;
 	     }
 	}
+	
+	/**
+	 * Gets the user ID by IDP.
+	 *
+	 * @param idp the idp
+	 * @return the user ID by IDP
+	 */
 	public int getUserIDByIDP(String idp){
 		Statement stmt = null;
 		try{
@@ -646,29 +699,36 @@ int i = 0;
 			}
 		return -1;
 		}
+	
 	/**
-	 * 
-	 * @return
+	 * Adds the kurs.
+	 *
+	 * @param kursstufe the kursstufe
+	 * @param datum the datum
+	 * @param wochentag the wochentag
+	 * @param uhrzeit the uhrzeit
+	 * @return true, if successful
 	 */
 	
 	/**
-	 * 
-	 * @param kursstufe		
-	 * @param datum			
-	 * @param wochentag		
-	 * @param uhrzeit		
+	 * Adds a new column to the Kurs table .
+	 * @param kursstufe		level of the dancing lessons see {@link [<enums>.]<Kursstufen>}
+	 * @param datum		 	java.sql.Date("yyyy-MM-dd")
+	 * @param wochentag		String for the Day {@link <Week>}
+	 * @param uhrzeit		the time the lesson takes place
+	 * @return  Returns true if no exception is thrown otherwise returns false
 	 */
-	public void addKurs(int kursstufe, String datum, String wochentag,String uhrzeit)  {
+	public boolean addKurs(int kursstufe, java.sql.Date datum, String wochentag,String uhrzeit)  {
 
 		PreparedStatement p;
 		try {
 			p = c.prepareStatement("INSERT INTO KURS (KURSSTUFE, DATUM, WOCHENTAG, UHRZEIT)"
 									+ "  VALUES (?, ?, ?, ?);");
 			p.setInt(1, kursstufe);
-			SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
-			Date parsed = format.parse(datum);
-            java.sql.Date sqldate = new java.sql.Date(parsed.getTime());
-            p.setDate(2, sqldate);
+			//SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+			//Date parsed = format.parse(datum);
+            //java.sql.Date sqldate = new java.sql.Date(parsed.getTime());
+            p.setDate(2, datum);
             p.setString(3, wochentag);
             p.setString(4, uhrzeit);
             p.executeUpdate();
@@ -685,16 +745,18 @@ int i = 0;
           
            if(p!=null) p.close();
            c.commit();
-		} catch (SQLException | ParseException e) {
+           return true;
+           //ParseException e
+		} catch (SQLException e) {
 			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 	        System.exit(0);
 			e.printStackTrace();
+			return false;
 				}
 	}
+	
 	/**
-	 * Creates a Connection between the KURS and USER table
-	 * @param uid	ID of The User	that shall be connected
-	 * @param kid	ID of the Kurs	that shall be connected
+	 * Creates a Connection between the KURS and USER table.
 	 */
 	public void deleteAllLink(){
 		Statement stmt;
@@ -713,6 +775,12 @@ int i = 0;
 			e.printStackTrace();}	
 	}
 
+	/**
+	 * Delete kurs.
+	 *
+	 * @param kid the kid
+	 * @return true, if successful
+	 */
 	public boolean deleteKurs(int kid){
 		PreparedStatement p;
 		try{
@@ -738,6 +806,13 @@ int i = 0;
 			return false;}	
 	}
 	
+	/**
+	 * Delete link.
+	 *
+	 * @param uid the uid
+	 * @param kid the kid
+	 * @return true, if successful
+	 */
 	public boolean deleteLink (int uid, int kid){
 		PreparedStatement p;
 		try{
@@ -761,21 +836,30 @@ int i = 0;
 		}
 		
 	}
+	
+	/**
+	 * Adds the link.
+	 *
+	 * @param uid the uid
+	 * @param kid the kid
+	 * @return true, if successful
+	 */
 	public boolean addLink(int uid, int kid){
 		//TODO NOT READY check debug 
-		int i =1;
+		int i =0;
 		ResultSet rs;
-		PreparedStatement p2 ;
+		
 		PreparedStatement p ;
 		try{
 			String sql2 = "SELECT COUNT (*) AS I FROM LINK WHERE UID = ? AND KID =  ?;";
-			p2= c.prepareStatement(sql2); 
-			p2.setInt(1, uid);
-			p2.setInt(2, kid);
-			rs = p2.executeQuery();
+			p= c.prepareStatement(sql2); 
+			p.setInt(1, uid);
+			p.setInt(2, kid);
+			rs = p.executeQuery();
 			i =  rs.getInt("I");
-			if (p2 != null) p2.close();
 			if(rs != null) rs.close();
+			if (p != null) p.close();
+			
 		}catch(Exception e){
 			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 	        System.exit(0);
@@ -802,10 +886,12 @@ int i = 0;
 		}	}
 		return false;
 	}
+	
 	/**
-	 * 
-	 * @param uid		
-	 * @return
+	 * My kurs.
+	 *
+	 * @param uid the uid
+	 * @return the array list
 	 */
 	public ArrayList<Integer> myKurs(int uid){
 		Statement stmt;
@@ -837,14 +923,24 @@ int i = 0;
 		return kursList;
 	}
 	
-	public void restorePassword (){}
-	public void fullProfiledata(){}
 	/**
-	 * 
-	 * @param gender	The gender of the requesting User
-	 * @param kstu		The required dancing lesson "level"
-	 * @param myage		The age of the requesting user (not used but may be in the Future)
-	 * @return
+	 * Restore password.
+	 */
+	public void restorePassword (){}
+	
+	/**
+	 * Full profiledata.
+	 */
+	public void fullProfiledata(){}
+	
+	/**
+	 * Gets the profilecharts.
+	 *
+	 * @param gender The gender of the requesting User
+	 * @param kstu 	The required dancing lesson "level"
+	 * @param myage 	The age of the requesting user (not used but may be in the Future)
+	 * @param day the day
+	 * @return the profilecharts
 	 */
 	public ArrayList<ProfileChart> getProfilecharts(int gender, int kstu,int myage,String day){
 		//TODO age,day
@@ -878,13 +974,17 @@ int i = 0;
 		}
 		return pc;
 	}
+	
 	/**
 	 * With this Method the User can modify the saved Data about himself.
-	 * @param ptext		Some Text the user writes about himself
-	 * @param pnumber	The users Phone Number
-	 * @param pa		This parameter indicates if the users Age shall be public
-	 * @param height		The users height
-	 * @param id		The id of the users account used to verify himself
+	 *
+	 * @param id 	The id of the users account used to verify himself
+	 * @param pn the pn
+	 * @param height 	The users height
+	 * @param age the age
+	 * @param pText the text
+	 * @param pa 	This parameter indicates if the users Age shall be public
+	 * @return true, if successful
 	 */
 	//int id, int pn, int height,int age,String pText, boolean pa
 	//String ptext, int pnumber, int pa, int height, int id, int age
@@ -914,11 +1014,12 @@ int i = 0;
 	}
 //	public Login logIn(){}
 	/**
-	 * 
-	 * @param em	the email you want to log in with
-	 * @param ps	the fitting password
-	 * @return 		returns the User ID according to the Login E-Mail
-	 */
+ * Log in.
+ *
+ * @param em the email you want to log in with
+ * @param ps the fitting password
+ * @return 		returns the User ID according to the Login E-Mail
+ */
 		public 	int LogIn(String em, String ps){ // id check
 			PreparedStatement p;
 			
@@ -974,10 +1075,13 @@ int i = 0;
 				}
 					return -1;
 			}
+
 /**
+ * Check ID.
+ *
+ * @param id the id
+ * @return 	returns true if it exists.
  * @attribute 	Checks if an User with this ID exists
- * @param  		The Users ID
- * @return		returns true if it exists.
  */
 		public  boolean checkID(int id){ // Login returns the user id
 			Statement stmt;
@@ -1008,6 +1112,13 @@ int i = 0;
 			}
 			return false;
 		}
+		
+		/**
+		 * Acheck ID.
+		 *
+		 * @param id the id
+		 * @return true, if successful
+		 */
 		public  boolean acheckID(int id){ // Login returns the user id
 			Statement stmt;
 			int i;
@@ -1071,6 +1182,13 @@ int i = 0;
 			// in case of an Error it returns -1
 				
 		}
+		
+		/**
+		 * Gets the profile data.
+		 *
+		 * @param id the id
+		 * @return the profile data
+		 */
 		public ProfileData getProfileData(int id){
 			
 			Statement stmt;
@@ -1125,6 +1243,9 @@ int i = 0;
 			return pd;
 		}
 
+		/**
+		 * Read links.
+		 */
 		public void readLinks(){
 			Statement stmt ;
 			try{
@@ -1147,6 +1268,13 @@ int i = 0;
 			
 			
 		
+		/**
+		 * Gets the kurs.
+		 *
+		 * @param kstu the kstu
+		 * @param uid the uid
+		 * @return the kurs
+		 */
 		public ArrayList<Kurs> getKurs(int kstu, int uid){
 			Statement stmt;
 			
@@ -1184,4 +1312,23 @@ int i = 0;
 			}
 			
 		}
+//		public boolean aAddKurs(SQLKurs kurs) {
+//			PreparedStatement p;
+//			try{
+//				String sql = String sql = "INSERT INTO K (ID, NAME,KEY)"+ 
+//					  	 "VALUES(?,?,?);";		
+//				p = c.prepareStatement(sql);
+//				p.executeUpdate();
+//				c.commit();
+//				if(p != null){
+//					p.close();
+//				}
+//				return true;
+//			}
+//			catch(Exception e){
+//				System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+//		        System.exit(0);
+//				e.printStackTrace();}
+//			return false;
+//		}
 }

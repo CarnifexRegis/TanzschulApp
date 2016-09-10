@@ -7,15 +7,34 @@ import response.ProfileDataResponse;
 import activitys.ShowProfile;
 import android.util.Log;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ForeignProfileTask.
+ */
 public class ForeignProfileTask extends BaseHttpRequestTask {
+	
+	/** The e mail. */
 	String eMail;
+	
+	/** The id. */
 	int id;
+	
+	/**
+	 * Instantiates a new foreign profile task.
+	 *
+	 * @param sp the sp
+	 * @param eMail the e mail
+	 * @param id the id
+	 */
 	public ForeignProfileTask (ShowProfile sp,String eMail, int id) {
 		super(sp);
 		this.eMail = eMail;
 		this.id = id;
 	}
 	
+	/**
+	 * Execute.
+	 */
 	public void execute() {
 		ForeignProfileRequest request = new ForeignProfileRequest(eMail, id);
 
@@ -28,6 +47,10 @@ public class ForeignProfileTask extends BaseHttpRequestTask {
 			System.out.println("An error occured bulding the xml/exceuting command");
 		}
 	}
+	
+	/* (non-Javadoc)
+	 * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
+	 */
 	@Override
 	public void onPostExecute(String result) {
 		try {

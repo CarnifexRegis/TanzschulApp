@@ -21,6 +21,8 @@
   </string-array>
   <string-array name="day_array">
       <item>Alle</item>
+       <item>Montag</item>
+        <item>Dienstag</item>
     <item>Mittwoch</item>
     <item>Donnerstag</item>
     <item>Freitag</item>

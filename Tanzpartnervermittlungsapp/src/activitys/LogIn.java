@@ -19,25 +19,51 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+// TODO: Auto-generated Javadoc
+
+/**
+ * The Class LogIn.
+ */
 // maby change to popup that runs in an seperate thread
 public class LogIn extends ConnectedActivity{
+	
+	/** The called by. */
 	Activity calledBy ;
+	
+	/** The login. */
 	final LogIn login = this;
+	
+	/** The safelogin. */
 	//http://stacktips.com/tutorials/android/android-checkbox-example
 	private CheckBox safelogin;
+	
+	/** The e mail. */
 	private String eMail = null;
+	
+	/** The password. */
 	private String password = null;
+	
+	/** The c. */
 	private boolean c = false;
+	
+	/** The error code. */
 	String errorCode = null;
 	//Special thanks to Leander for this Tip
 	//https://developer.android.com/training/basics/activity-lifecycle/recreating.html
 	
 	//static final String STATE_EMAIL = "logineMail";
 	//static final String STATE_PASSWORD = "loginPassword";
+	/** The error view. */
 	//static final String STATE_CHECK = "check";
 	private TextView errorView;
+	
+	/** The key insert. */
 	private EditText keyInsert;
+	
+	/** The e mail insert. */
 	private EditText eMailInsert;
+	
+	/** The prefs. */
 	//http://stackoverflow.com/questions/18341269/save-the-data-and-using-it-after-restarting-the-app-android
 	private SharedPreferences prefs;
 //	 public static final String prefName = "MyPrefsFile";
@@ -45,7 +71,10 @@ public class LogIn extends ConnectedActivity{
 	
 	//https://www.youtube.com/watch?v=iW71-sVyMzM
 	
-	protected void onCreate(Bundle savedInstanceState) {
+	/* (non-Javadoc)
+ * @see android.app.Activity#onCreate(android.os.Bundle)
+ */
+protected void onCreate(Bundle savedInstanceState) {
 		
 		
 		 Bundle extras = getIntent().getExtras();
@@ -148,6 +177,14 @@ public class LogIn extends ConnectedActivity{
             }
         });
 	}
+	
+	/**
+	 * Gets the login values.
+	 *
+	 * @param id the id
+	 * @param gender the gender
+	 * @return the login values
+	 */
 	public void getLoginValues(int id, boolean gender){
 		//Switch (calledBy.getAct)
 		
@@ -161,6 +198,10 @@ public class LogIn extends ConnectedActivity{
 
 		
 	}
+	
+	/* (non-Javadoc)
+	 * @see activitys.ConnectedActivity#onConnectionError()
+	 */
 	@Override
 	public void onConnectionError(){
 		errorView.setVisibility(View.VISIBLE);
@@ -171,6 +212,9 @@ public class LogIn extends ConnectedActivity{
 		}
 		}
 	
+	/* (non-Javadoc)
+	 * @see activitys.ConnectedActivity#isOnline(android.content.Context)
+	 */
 	public boolean isOnline(Context context) {
 	    ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 	    android.net.NetworkInfo networkinfo = cm.getActiveNetworkInfo();
@@ -180,6 +224,9 @@ public class LogIn extends ConnectedActivity{
 	    return false;}
 
 	
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onPause()
+	 */
 	@Override
 	public void onPause(){
 		super.onPause();
@@ -197,6 +244,10 @@ public class LogIn extends ConnectedActivity{
 	      editor.commit();
 	     
 	}
+	
+	/* (non-Javadoc)
+	 * @see activitys.ConnectedActivity#onError(java.lang.String)
+	 */
 	@Override
 	public void onError(String ec) {
 		switch (ec){

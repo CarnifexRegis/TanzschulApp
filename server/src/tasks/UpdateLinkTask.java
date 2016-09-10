@@ -6,9 +6,20 @@ import protocol.ErrorCode;
 
 import request.UpdateLinkRequest;
 import response.UpdateLinkResponse;
+// TODO: Auto-generated Javadoc
+
+/**
+ * The Class UpdateLinkTask.
+ */
 //ec Update
 public class UpdateLinkTask extends AbstractHandler {
+	
+	/** The ec. */
 	String ec;
+	
+	/* (non-Javadoc)
+	 * @see protocol.AbstractHandler#handle(java.lang.String)
+	 */
 	public String handle(String httpBody){
 		//gets the information from the request
 		UpdateLinkRequest request = (UpdateLinkRequest)parseXML(httpBody,UpdateLinkRequest.class);

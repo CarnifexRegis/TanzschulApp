@@ -4,8 +4,15 @@ import protocol.AbstractHandler;
 import request.GetAllRequest;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class GetAllTask.
+ */
 public class GetAllTask extends AbstractHandler  {
 	
+	/* (non-Javadoc)
+	 * @see protocol.AbstractHandler#handle(java.lang.String)
+	 */
 	public String handle(String httpBody)
 	{
 		GetAllRequest request = (GetAllRequest)parseXML(httpBody, GetAllRequest.class);

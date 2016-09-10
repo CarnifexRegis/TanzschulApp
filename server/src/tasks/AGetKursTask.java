@@ -9,8 +9,15 @@ import protocol.ErrorCode;
 import request.AGetKursRequest;
 import response.AGetKursResponse;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AGetKursTask.
+ */
 public class AGetKursTask extends AbstractHandler{
 
+	/* (non-Javadoc)
+	 * @see protocol.AbstractHandler#handle(java.lang.String)
+	 */
 	public String handle(String httpBody){
 		//gets the information from the request
 		AGetKursRequest request = (AGetKursRequest)parseXML(httpBody,AGetKursRequest.class);

@@ -33,20 +33,49 @@ import model.AmendAdapter;
 import model.ConnectedActivity;
 import model.aKurs;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AmendKurs.
+ */
 public class AmendKurs  extends ConnectedActivity {
+	
+	/** The id. */
 	private int id;
+	
+	/** The kl. */
 	private ArrayList <aKurs> kl = new ArrayList<aKurs>();
+	
+	/** The kursstufe. */
 	protected int kursstufe;
+	
+	/** The Adapter. */
 	private AmendAdapter Adapter;
+	
+	/** The k view. */
 	private ListView kView;
+	
+	/** The kid. */
 	int kid = 0;
+	
+	/** The amk. */
 	protected AmendKurs amk = this;
+	
+	/** The m. */
 	protected boolean m = false;
+
+/** The not mature. */
 //	RadioButton mature;
 	RadioButton notMature;
+	
+	/** The position. */
 	protected int position;
+	
+	/** The dialog. */
 	private Dialog dialog ;
 
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onCreate(android.os.Bundle)
+	 */
 	protected void onCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.activity_amend_kurs);
 		
@@ -128,6 +157,11 @@ public class AmendKurs  extends ConnectedActivity {
 		
 	}
 
+	/**
+	 * Recieve data.
+	 *
+	 * @param kl the kl
+	 */
 	public void recieveData(ArrayList<aKurs> kl) {
 		if (kl.isEmpty()){
 			Toast.makeText(this,getResources().getString(R.string.empty_result), Toast.LENGTH_LONG).show();
@@ -139,6 +173,12 @@ public class AmendKurs  extends ConnectedActivity {
 		
 		
 	
+	/**
+	 * Request delete.
+	 *
+	 * @param position the position
+	 * @param kid the kid
+	 */
 	public void requestDelete(int position , int kid){
 		this.kid = kid;
 		dialog = new Dialog(AmendKurs.this);
@@ -168,6 +208,12 @@ public class AmendKurs  extends ConnectedActivity {
 	dialog.show();
     
 	}
+	
+	/**
+	 * Delete item.
+	 *
+	 * @param position the position
+	 */
 	public void deleteItem(int position){
 		Adapter.remove(Adapter.getItem(position));
 		Adapter.notifyDataSetChanged();

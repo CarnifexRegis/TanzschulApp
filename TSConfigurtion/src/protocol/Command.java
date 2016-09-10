@@ -1,19 +1,46 @@
 package protocol;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Enum Command.
+ */
 public enum Command {
-	 alogin("alogin"),agetkurs("agetkurs"),addkurs("addKurs"),adeletekurs("adeletekurs");
+	 
+ 	/** The alogin. */
+ 	alogin("alogin"),
+/** The agetkurs. */
+agetkurs("agetkurs"),
+/** The addkurs. */
+addkurs("addKurs"),
+/** The adeletekurs. */
+adeletekurs("adeletekurs");
 
+	/** The text. */
 	private String text;
 
+	/**
+	 * Instantiates a new command.
+	 *
+	 * @param text the text
+	 */
 	private Command(String text) {
 		this.text = text;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Enum#toString()
+	 */
 	@Override
 	public String toString() {
 		return text;
 	}
 
+	/**
+	 * From string.
+	 *
+	 * @param text the text
+	 * @return the command
+	 */
 	public static Command fromString(String text) {
 
 		if (text == null) {

@@ -22,19 +22,39 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AssignToKurs.
+ */
 public class AssignToKurs extends ConnectedActivity{
+	
+	/** The id. */
 	int id = -1;
+	
+	/** The gender. */
 	boolean gender;
+	
+	/** The atk. */
 	AssignToKurs atk = this;
+	
+	/** The kursstufe. */
 	int kursstufe = 1;
+	
+	/** The k. */
 	ArrayList<Kurs> k = new ArrayList <Kurs>();
+	
+	/** The Adapter. */
 	aAdapter Adapter;
 	
+	/** The k view. */
 	ListView kView;
 	
 //http://stackoverflow.com/questions/5195321/remove-an-onclick-listener	
 	
-	@Override
+	/* (non-Javadoc)
+ * @see android.app.Activity#onCreate(android.os.Bundle)
+ */
+@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// ascribing the Layout to the activity
 		super.onCreate(savedInstanceState);
@@ -119,6 +139,12 @@ public class AssignToKurs extends ConnectedActivity{
 			GetKursTask gkt = new GetKursTask(atk,atk.id, kursstufe);
 			gkt.execute();
 }	
+	
+	/**
+	 * Recieve data.
+	 *
+	 * @param k the k
+	 */
 	public void recieveData(ArrayList<Kurs> k){
 		if (k.isEmpty()){
 			Toast.makeText(this,getResources().getString(R.string.empty_result), Toast.LENGTH_LONG).show();
@@ -127,6 +153,12 @@ public class AssignToKurs extends ConnectedActivity{
 		kView.setAdapter(Adapter);
 		
 	}
+	
+	/**
+	 * Added.
+	 *
+	 * @param position the position
+	 */
 	public void added(int position) {
 		Kurs k = Adapter.getItem(position);
 		k.setEnlisted(true);
@@ -134,6 +166,12 @@ public class AssignToKurs extends ConnectedActivity{
 			//Adapter.getItem(position);
 			
 		}
+	
+	/**
+	 * Deleted.
+	 *
+	 * @param position the position
+	 */
 	public void deleted(int position) {
 		Kurs k = Adapter.getItem(position);
 		k.setEnlisted(false);

@@ -8,8 +8,17 @@ import protocol.AbstractHandler;
 import protocol.ErrorCode;
 import request.UpdateChartRequest;
 import response.UpdateChartResponse;
+// TODO: Auto-generated Javadoc
+
+/**
+ * The Class UpdateChartTask.
+ */
 // sc update 
 public class UpdateChartTask extends AbstractHandler {
+	
+	/* (non-Javadoc)
+	 * @see protocol.AbstractHandler#handle(java.lang.String)
+	 */
 	public String handle(String httpBody){
 		//gets the information from the request
 		UpdateChartRequest request = (UpdateChartRequest)parseXML(httpBody,UpdateChartRequest.class);
