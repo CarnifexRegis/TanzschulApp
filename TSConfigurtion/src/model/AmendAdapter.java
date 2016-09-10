@@ -19,22 +19,14 @@ import android.widget.TextView;
 // TODO: Auto-generated Javadoc
 
 /**
- * The Class AmendAdapter.
- *
- * @author Simon
+ * @author Simon Stolz
  * @Sources: http://stackoverflow.com/questions/21053979/listview-duplicates-android
  * 			model.adapter
  * 			http://developer.android.com/resources/samples/ApiDemos/src/com/example/android/apis/view/List14.html
  */
 public class AmendAdapter extends ArrayAdapter<aKurs>{
-	
-	/** The id. */
 	int id;
-	
-	/** The context. */
 	Context context;
-	
-	/** The atk. */
 	AmendKurs atk;
 	
 	/**

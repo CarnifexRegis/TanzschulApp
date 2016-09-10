@@ -5,7 +5,7 @@ import org.simpleframework.xml.Root;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class ADeleteRequest.
+ * @author Simon Stolz
  */
 @Root(name = "adeleterequest")
 public class ADeleteRequest {

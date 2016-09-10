@@ -35,42 +35,20 @@ import model.aKurs;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class AmendKurs.
+ * @author Simon Stolz
  */
 public class AmendKurs  extends ConnectedActivity {
-	
-	/** The id. */
 	private int id;
-	
-	/** The kl. */
 	private ArrayList <aKurs> kl = new ArrayList<aKurs>();
-	
-	/** The kursstufe. */
 	protected int kursstufe;
-	
-	/** The Adapter. */
 	private AmendAdapter Adapter;
-	
-	/** The k view. */
 	private ListView kView;
-	
-	/** The kid. */
 	int kid = 0;
-	
-	/** The amk. */
 	protected AmendKurs amk = this;
-	
-	/** The m. */
 	protected boolean m = false;
-
-/** The not mature. */
 //	RadioButton mature;
 	RadioButton notMature;
-	
-	/** The position. */
 	protected int position;
-	
-	/** The dialog. */
 	private Dialog dialog ;
 
 	/* (non-Javadoc)

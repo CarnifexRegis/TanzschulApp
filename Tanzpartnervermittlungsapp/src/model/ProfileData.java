@@ -5,7 +5,7 @@ import org.simpleframework.xml.Root;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class ProfileData.
+ * @author Simon Stolz
  */
 @ Root (name = "profiledata")
 public class ProfileData {

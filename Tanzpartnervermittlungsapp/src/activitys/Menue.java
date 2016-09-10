@@ -22,7 +22,7 @@ import com.example.Tanzpartnervermittlung.R;
 /**
  * The Class Menue.
  *
- * @author Simon
+ * @author Simon Stolz
  */
 
 public class Menue extends ConnectedActivity {

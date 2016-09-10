@@ -10,7 +10,7 @@ import android.util.Log;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class ALoginTask.
+ * @author Simon Stolz
  */
 public class ALoginTask extends BaseHttpRequestTask{
 
@@ -31,10 +31,7 @@ public class ALoginTask extends BaseHttpRequestTask{
 		
 		
 	}
-	
-	/**
-	 * Execute.
-	 */
+
 	public void execute() {
 		ALoginRequest request = new ALoginRequest(name, key);
 

@@ -28,9 +28,6 @@ public class GetAllTask extends BaseHttpRequestTask {
 		this.userID = userID;
 	}
 	
-	/**
-	 * Execute.
-	 */
 	public void execute() {
 	//	GetAllRequest request = new GetAllRequest(userID);
 

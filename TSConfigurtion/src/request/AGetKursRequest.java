@@ -4,7 +4,11 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
 // TODO: Auto-generated Javadoc
-
+/**
+ * 
+ * @author Simon Stolz
+ *
+ */
 @Root (name = "getkursrequest")
 
 public class AGetKursRequest {

@@ -5,7 +5,7 @@ import org.simpleframework.xml.Root;
 // TODO: Auto-generated Javadoc
 
 /**
- * The Class UpdateProfileResponse.
+ * @author Simon Stolz
  */
 @Root (name = "updateprofileresponse")
 public class UpdateProfileResponse {

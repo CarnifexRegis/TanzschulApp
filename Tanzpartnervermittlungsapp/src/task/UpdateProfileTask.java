@@ -50,9 +50,6 @@ public class UpdateProfileTask extends  BaseHttpRequestTask {
 		this.pa = pa;
 	}
 	
-	/**
-	 * Execute.
-	 */
 	public void execute() {
 		UpdateProfileRequest request = new UpdateProfileRequest(id,pn,height,age,pText,pa);
 		try {

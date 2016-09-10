@@ -30,61 +30,26 @@ import android.widget.AdapterView.OnItemSelectedListener;
  */
 @SuppressLint("SimpleDateFormat")
 public class AddKurs extends ConnectedActivity {
-
-/** The kursstufe. */
 // values
 private int kursstufe;
-
-/** The id. */
 private int id;
-
-/** The day. */
 private int day;
-
-/** The mature. */
 private boolean mature;
-
-/** The ak. */
 AddKurs ak = this;
 //date values
-/** The date day E. */
 //private String dateDay;
 private EditText dateDayE;
-
-/** The date month. */
 private String dateMonth;
-
-/** The date year. */
 private String dateYear;
-
-/** The string day. */
 private String stringDay;
-
-/** The insert time 1. */
 private EditText insertTime1;
-
-/** The insert time 2. */
 private EditText insertTime2;
-
-/** The date month S. */
 private Spinner dateMonthS;
-
-/** The date year S. */
 private Spinner dateYearS;
-
-/** The add kurs B. */
 Button addKursB;
-
-/** The string day S. */
 private Spinner stringDayS;
-
-/** The kustu S. */
 private Spinner kustuS;
-
-/** The mature S. */
 private Spinner matureS;
-
-/** The calendar. */
 Calendar calendar;
 
 /**

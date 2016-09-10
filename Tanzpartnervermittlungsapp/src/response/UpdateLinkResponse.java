@@ -5,7 +5,7 @@ import org.simpleframework.xml.Root;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class UpdateLinkResponse.
+ * @author Simon Stolz
  */
 @Root (name  ="updatelinkresponse")
 public class UpdateLinkResponse {

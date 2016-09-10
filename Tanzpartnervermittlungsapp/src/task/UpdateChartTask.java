@@ -34,9 +34,6 @@ public UpdateChartTask(SearchForDancingpartner sfdp,int id, int kursstufe, boole
 	
 }
 
-/**
- * Execute.
- */
 public void execute() {
 	UpdateChartRequest request = new UpdateChartRequest( id, kursstufe, gender,day);
 

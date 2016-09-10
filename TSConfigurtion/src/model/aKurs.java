@@ -6,12 +6,11 @@ import org.simpleframework.xml.Root;
 
 // TODO: Auto-generated Javadoc
 /**
- * 
+ * @author Simon Stolz
  */
 @Root (name  = "kurs")
 public class aKurs {
-	
-	
+
 	@Element(name  = "id")
 	private int id;
 	

@@ -29,14 +29,8 @@ import android.widget.ToggleButton;
  * 			http://developer.android.com/resources/samples/ApiDemos/src/com/example/android/apis/view/List14.html
  */
 public class aAdapter extends ArrayAdapter<Kurs>{
-	
-	/** The id. */
 	int id;
-	
-	/** The context. */
 	Context context;
-	
-	/** The atk. */
 	AssignToKurs atk;
 	
 	/**

@@ -7,8 +7,6 @@ import org.simpleframework.xml.Root;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class SQLKurs.
- *
  * @author Simon Stolz
  * This class represents an Obect that is contained in the KURS table.
  * When the Hander revieves  an AAddKursRequest he revieves an Object of this class(without the id )

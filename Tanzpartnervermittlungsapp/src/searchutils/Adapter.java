@@ -17,7 +17,7 @@ import android.widget.TextView;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class Adapter.
+ * @author Simon Stolz
  */
 public class Adapter extends ArrayAdapter<ProfileChart> {
 	

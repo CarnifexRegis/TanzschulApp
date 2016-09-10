@@ -10,17 +10,15 @@ import org.simpleframework.xml.Root;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class UpdateChartResponse.
+ * @author Simon Stolz
  */
 @Root(name = "updatechartresponse")
 public class UpdateChartResponse {
 	//http://www.java-examples.com/get-size-java-arraylist-and-loop-through-elements-example
-	/** The pc. */
 	//http://stackoverflow.com/questions/762400/how-to-display-all-elements-in-an-arraylist
 @ElementList (name= "pc", required = false )
 ArrayList<ProfileChart> pc;
 
-/** The ec. */
 @Element (name = "ec")
 String ec;
 

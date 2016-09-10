@@ -7,12 +7,12 @@ import org.simpleframework.xml.Root;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class GetAllResponse.
+ * @author Simon Stolz
  */
 @Root(name="getallresponse")
 public class GetAllResponse {
 	
-	/** The message. */
+
 	@Element(name = "message")
 	private String message;
 

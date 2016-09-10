@@ -2,7 +2,7 @@ package protocol;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Enum Command.
+ * @author Simon Stolz
  */
 public enum Command {
 	 

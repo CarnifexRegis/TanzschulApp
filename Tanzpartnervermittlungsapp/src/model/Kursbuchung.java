@@ -4,7 +4,7 @@ package model;
 //an attribute for an image has to be added
 
 /**
- * The Class Kursbuchung.
+ *@author Simon Stolz
  */
 public class Kursbuchung {
 

@@ -11,7 +11,7 @@ import com.example.tsconfigurtion.AmendKurs;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class ADeleteTask.
+ * @author Simon Stolz
  */
 public class ADeleteTask extends BaseHttpRequestTask{
 int kid;
@@ -36,9 +36,6 @@ View v;
 		this.v = v;
 	}
 
-	/**
-	 * Execute.
-	 */
 	public void execute() {
 		ADeleteRequest request = new ADeleteRequest(uid, kid);
 

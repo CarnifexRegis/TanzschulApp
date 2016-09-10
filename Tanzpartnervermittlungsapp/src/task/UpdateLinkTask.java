@@ -47,9 +47,6 @@ boolean command;// trur for add fals for delete
 		// TODO Auto-generated constructor stub
 	}
 	
-	/**
-	 * Execute.
-	 */
 	public void execute() {
 		UpdateLinkRequest request = new UpdateLinkRequest(uid ,kid,command);
 		try {

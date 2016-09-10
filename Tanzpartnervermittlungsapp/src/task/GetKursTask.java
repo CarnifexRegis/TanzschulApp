@@ -31,9 +31,6 @@ public class GetKursTask extends BaseHttpRequestTask{
 		
 	}
 
-	/**
-	 * Execute.
-	 */
 	public void execute() {
 		GetKursRequest request = new GetKursRequest(id,ks);
 

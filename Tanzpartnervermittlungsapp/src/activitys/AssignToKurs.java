@@ -24,29 +24,15 @@ import android.widget.Toast;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class AssignToKurs.
+ *@author Simon Stolz
  */
 public class AssignToKurs extends ConnectedActivity{
-	
-	/** The id. */
 	int id = -1;
-	
-	/** The gender. */
 	boolean gender;
-	
-	/** The atk. */
 	AssignToKurs atk = this;
-	
-	/** The kursstufe. */
 	int kursstufe = 1;
-	
-	/** The k. */
 	ArrayList<Kurs> k = new ArrayList <Kurs>();
-	
-	/** The Adapter. */
 	aAdapter Adapter;
-	
-	/** The k view. */
 	ListView kView;
 	
 //http://stackoverflow.com/questions/5195321/remove-an-onclick-listener	

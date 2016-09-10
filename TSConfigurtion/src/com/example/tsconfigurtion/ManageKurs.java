@@ -9,17 +9,11 @@ import android.widget.Button;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class ManageKurs.
+ * @author Simon Stolz
  */
 public class ManageKurs  extends Activity {
-	
-	/** The id. */
 	private int id;
-	
-	/** The add B. */
 	private Button addB;
-	
-	/** The amend B. */
 	private Button amendB;
 
 

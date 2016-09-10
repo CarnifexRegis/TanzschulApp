@@ -11,7 +11,7 @@ import org.simpleframework.xml.Root;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class GetKursResponse.
+ * @author Simon Stolz
  */
 @Root (name = "getkursresponse")
 public class GetKursResponse {

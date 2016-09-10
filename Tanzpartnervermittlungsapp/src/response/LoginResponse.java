@@ -5,20 +5,15 @@ import org.simpleframework.xml.Root;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class LoginResponse.
+ * @author Simon Stolz
  */
 @Root (name = "loginresponse")
 public class LoginResponse {
-	
-	/** The id. */
+
 	@Element(name = "id",required = false)
 	int id;
-	
-	/** The gender. */
 	@Element (name = "gender",required = false)
 	int gender;
-	
-	/** The ec. */
 	@Element (name = "ec",required = false)
 	String ec;
 	

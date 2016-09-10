@@ -12,11 +12,7 @@ import android.util.Log;
  * @author Simon Stolz
  */
 public class LoginTask extends BaseHttpRequestTask{
-
-	/** The e mail. */
 	private String eMail;
-	
-	/** The key. */
 	private String key ;
 	
 	/**
@@ -34,9 +30,6 @@ public class LoginTask extends BaseHttpRequestTask{
 		
 	}
 	
-	/**
-	 * Execute.
-	 */
 	public void execute() {
 		LoginRequest request = new LoginRequest(eMail, key);
 

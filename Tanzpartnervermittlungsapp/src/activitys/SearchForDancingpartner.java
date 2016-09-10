@@ -41,7 +41,7 @@ import android.widget.Toast;
 /**
 	 * The Class SearchForDancingpartner.
 	 *
-	 * @author Simon
+	 * @author Simon Stolz
 	 * @attribute This Activity is used to fulfill the core funktion of the app: finding people who intend to participate in the same course
 	 * Source: 
 	 * 			http://stackoverflow.com/questions/2789612/how-can-i-check-whether-an-android-device-is-connected-to-the-web

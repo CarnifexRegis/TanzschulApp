@@ -2,17 +2,13 @@ package enums;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Enum Gender.
+ * @author Simon Stolz
  */
 public enum Gender {
 
-/** The n. */
 n("none"),
-/** The m. */
 m("male"),
-/** The fm. */
 fm("female");
-
 /**
  * Gets the gender.
  *
@@ -22,7 +18,6 @@ public String getGender() {
 	return gender;
 }
 
-/** The gender. */
 String gender;
 
 /**

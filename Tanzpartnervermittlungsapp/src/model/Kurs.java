@@ -10,29 +10,17 @@ import org.simpleframework.xml.Root;
  */
 @Root (name  = "kurs")
 public class Kurs {
-	
-	/** The id. */
 	@Element(name  = "id")
 	private int id;
-	
-	/** The kursstufe. */
 	@Element (name  = "kursstufe")
 	private int kursstufe;
-	
-	/** The uhrzeit. */
 	@Element (name = "uhrzeit")
 	private String uhrzeit;
-	
-	/** The datum. */
 	//private Date datum; // User Kurs DAO needs a String datum has to put in like : Day(int).Month(int).Year(int)
 	@Element (name = "datum")
 	private String datum;
-	
-	/** The wochentag. */
 	@Element (name  = "wochentag")
 	private String wochentag;
-	
-	/** The enlisted. */
 	@Element (name = "enlisted")
 	private boolean enlisted;
 	//Boolean "SingUpAviable" must be added later 
@@ -64,11 +52,6 @@ public class Kurs {
 		this.enlisted = enlisted;
 	}
 	
-	/**
-	 * Gets the kurs id.
-	 *
-	 * @return the kurs id
-	 */
 	public int getKursId() {
 		return id;
 	}

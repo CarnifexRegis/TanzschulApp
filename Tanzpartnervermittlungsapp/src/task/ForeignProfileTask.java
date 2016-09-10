@@ -9,7 +9,7 @@ import android.util.Log;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class ForeignProfileTask.
+ * @author Simon Stolz
  */
 public class ForeignProfileTask extends BaseHttpRequestTask {
 	String eMail;

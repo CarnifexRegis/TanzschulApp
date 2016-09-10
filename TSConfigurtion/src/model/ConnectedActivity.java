@@ -14,14 +14,14 @@ import android.widget.Toast;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class ConnectedActivity.
+ * This class is implemented by all Activitys that have access to any task class
+ * @author Simon Stolz
  */
 public abstract class ConnectedActivity extends Activity {
 	
 	
 	/**
 	 * On error.
-	 *
 	 * @param ec the ec
 	 */
 	public void onError(String ec){
@@ -44,9 +44,6 @@ public abstract class ConnectedActivity extends Activity {
 		}
 	}
 	
-	/**
-	 * On connection error.
-	 */
 	public void  onConnectionError() {
 		if(!isOnline(this)){
 			Toast.makeText(getApplicationContext(), getResources().getString(R.string.check_connection), 

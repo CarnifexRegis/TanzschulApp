@@ -27,7 +27,7 @@ import protocol.Properties;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class BaseHttpRequestTask.
+ * @author Simon Stolz
  */
 public class BaseHttpRequestTask extends AsyncTask<String, Void, String> {
 	

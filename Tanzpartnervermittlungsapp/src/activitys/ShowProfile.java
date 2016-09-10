@@ -23,7 +23,7 @@ import android.widget.Toast;
 /**
  * The Class ShowProfile.
  *
- * @author Simon
+ * @author Simon Stolz
  * @ Source: http://stackoverflow.com/questions/19253786/how-to-copy-text-to-clip-board-in-android
  */
 public class ShowProfile extends ConnectedActivity {

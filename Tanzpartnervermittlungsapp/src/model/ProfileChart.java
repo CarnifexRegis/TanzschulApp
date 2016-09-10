@@ -6,7 +6,7 @@ import org.simpleframework.xml.Root;
 // TODO: Auto-generated Javadoc
 
 /**
- * The Class ProfileChart.
+ * @author Simon Stolz
  */
 @Root(name = "profilechart")
 public class ProfileChart {

@@ -9,7 +9,6 @@ package model;
 public class Properties
 {
 	
-	/** The Constant SERVERURL. */
 	public static final String SERVERURL = "http://192.168.1.105:8080";
 											
 			 									//10.189.78.95:8080";

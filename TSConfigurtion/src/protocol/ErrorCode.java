@@ -2,7 +2,7 @@ package protocol;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Enum ErrorCode.
+ * @author Simon Stolz
  */
 public enum ErrorCode {
 	

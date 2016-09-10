@@ -25,7 +25,7 @@ import android.widget.Toast;
 // Added: 13.06.2016
 //Last Modofied:14.6.2016 
 /**
- * The Class EditProfile.
+ * @author Simon Stolz
  */
 // Add Listeners for 2 Radio Groups and one Button Mabe do the first request
 public class EditProfile extends ConnectedActivity {

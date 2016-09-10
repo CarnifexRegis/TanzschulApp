@@ -15,7 +15,7 @@ import android.widget.Toast;
 public abstract class ConnectedActivity extends Activity {
 	
 	/**
-	 * Instantiates a new connected activity.
+	 * @author Simon Stolz
 	 */
 	ConnectedActivity(){
 		super();

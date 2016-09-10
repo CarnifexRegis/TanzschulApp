@@ -18,15 +18,13 @@ import activitys.SearchForDancingpartner;
 // TODO: Auto-generated Javadoc
 
 /**
- * The Class Adapter.
+ *@author Simon Stolz
  *
  * @author Simon Stolz, MartinPabst
  * @Sources:http://stackoverflow.com/questions/8486511/how-to-set-on-click-listener-on-the-custom-list-view-in-android 				http://stackoverflow.com/questions/10726519/how-to-get-the-source-of-imageview-in-order-to-change-it 
  * 				http://stackoverflow.com/questions/21053979/listview-duplicates-android
  */
 public class Adapter extends ArrayAdapter<ProfileChart> {
-	
-	/** The context. */
 	Context context;
 	
 	/**
