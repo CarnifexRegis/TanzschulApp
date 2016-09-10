@@ -17,9 +17,9 @@ public enum Kursstufen {
 	JC1("Jugendclub 1", 8),
 	JC2("Jugendclub 2", 9);
 
-	String KuNa;
+	private String KuNa;
 
-	int KuNu;
+	private int KuNu;
 	
 	/**
 	 * Instantiates a new kursstufen.

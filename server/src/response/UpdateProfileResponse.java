@@ -11,7 +11,7 @@ import org.simpleframework.xml.Root;
 public class UpdateProfileResponse {
 
 @Element (name = "ec")
-String ec;
+private String ec;
 
 public UpdateProfileResponse(){
 	super ();

@@ -25,21 +25,18 @@ import android.widget.TextView;
  * 			http://developer.android.com/resources/samples/ApiDemos/src/com/example/android/apis/view/List14.html
  */
 public class AmendAdapter extends ArrayAdapter<aKurs>{
-	int id;
-	Context context;
-	AmendKurs atk;
+	private Context context;
+	private AmendKurs atk;
 	
 	/**
 	 * Instantiates a new amend adapter.
 	 *
 	 * @param context the context
 	 * @param arrayList the array list
-	 * @param id the id
 	 * @param atk the atk
 	 */
-	public AmendAdapter(Context context, ArrayList<aKurs> arrayList,int id, AmendKurs atk) {
+	public AmendAdapter(Context context, ArrayList<aKurs> arrayList, AmendKurs atk) {
 		super(context, R.layout.kurs_item, arrayList);
-		this.id= id;
 		this.atk = atk;
 		this.context= context;
 		}

@@ -1,14 +1,12 @@
 package database2;
 import java.security.SecureRandom;
 import java.sql.Connection;
-
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
@@ -32,7 +30,7 @@ SecureRandom random = new SecureRandom();
 private Connection c;
 
 // TODO DEBUGGING
-int i = 0;
+private int i = 0;
 //https://coderanch.com/t/300886/JDBC/databases/Proper-close-Connection-Statement-ResultSet
 // TODO try out that fancy shit if you have leaft over time
 /**

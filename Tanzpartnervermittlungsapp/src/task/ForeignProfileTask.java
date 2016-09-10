@@ -12,8 +12,8 @@ import android.util.Log;
  * @author Simon Stolz
  */
 public class ForeignProfileTask extends BaseHttpRequestTask {
-	String eMail;
-	int id;
+	private String eMail;
+	private int id;
 	
 	/**
 	 * Instantiates a new foreign profile task.

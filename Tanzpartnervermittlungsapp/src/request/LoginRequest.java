@@ -13,10 +13,10 @@ import org.simpleframework.xml.Root;
 public class LoginRequest {
 
 	@Element (name = "email")
-	String eMail;
+	private String eMail;
 
 	@Element (name = "key")
-	String key;
+	private String key;
 
 	public LoginRequest(){
 		super();

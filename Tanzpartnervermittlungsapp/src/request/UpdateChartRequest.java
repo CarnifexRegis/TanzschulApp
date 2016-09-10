@@ -11,16 +11,16 @@ import org.simpleframework.xml.Root;
 public class UpdateChartRequest {
 
 	@Element(name = "id")
-	int id;
+	private int id;
 
 	@Element(name ="kursstufe")
-	int kursstufe;
+	private int kursstufe;
 
 	@Element(name = "gender")
-	boolean gender;
+	private boolean gender;
 
 	@Element (name = "day")
-	int day;
+	private int day;
 
 	public UpdateChartRequest(){
 		super();

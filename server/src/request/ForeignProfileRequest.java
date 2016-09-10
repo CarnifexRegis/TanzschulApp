@@ -4,6 +4,7 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 // TODO: Auto-generated Javadoc
 
+
 /**
  * The Class ForeignProfileRequest.
  *
@@ -14,10 +15,10 @@ public class ForeignProfileRequest {
 	
 
 	@Element(name = "idp" )
-	String idp;
+	private String idp;
 
 	@Element (name = "id")
-	int id;
+	private int id;
 	
 	public ForeignProfileRequest(){
 		super();

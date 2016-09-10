@@ -8,15 +8,16 @@ import database2.ProfileData;
 // TODO: Auto-generated Javadoc
 /**
  * The Class ProfileDataResponse.
+ * @author Simon Stolz
  */
 @Root(name =  "profiledataresponse")
 public class ProfileDataResponse {
 
 	@Element(name = "profiledata",required = false)
-	ProfileData pd;
+	 private ProfileData pd;
 
 	@Element(name = "ec") 
-	String ec;
+	 private String ec;
 	
 	/**
 	 * Instantiates a new profile data response.

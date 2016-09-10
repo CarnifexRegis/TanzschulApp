@@ -8,6 +8,7 @@ import response.LoginResponse;
 // TODO: Auto-generated Javadoc
 
 /**
+ * @author Simon Stolz
  * The Class LoginTask.
  */
 //sec update

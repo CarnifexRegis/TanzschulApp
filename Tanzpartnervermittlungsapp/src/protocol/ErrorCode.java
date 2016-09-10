@@ -2,6 +2,7 @@ package protocol;
 
 // TODO: Auto-generated Javadoc
 /**
+ * sources : Abiquiz App by Tim Möschel
  * @author Simon Stolz
  */
 public enum ErrorCode {
@@ -12,7 +13,7 @@ wl("wrongLogin"),
 ae("alreadyExists"),
 nf("notFound");
 
-String error;
+private  String error;
 
 /**
  * Instantiates a new error code.

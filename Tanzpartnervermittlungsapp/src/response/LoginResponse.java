@@ -11,9 +11,9 @@ import org.simpleframework.xml.Root;
 public class LoginResponse {
 
 	@Element(name = "id",required = false)
-	int id;
+	private int id;
 	@Element (name = "gender",required = false)
-	int gender;
+	private int gender;
 	@Element (name = "ec",required = false)
 	String ec;
 	

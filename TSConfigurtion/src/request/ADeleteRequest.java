@@ -11,10 +11,10 @@ import org.simpleframework.xml.Root;
 public class ADeleteRequest {
 
 	@Element(name = "aid")
-	int aid;
+	private int aid;
 
 	@Element (name = "kid")
-	int kid;
+	private int kid;
 
  	ADeleteRequest(){
 		 super();

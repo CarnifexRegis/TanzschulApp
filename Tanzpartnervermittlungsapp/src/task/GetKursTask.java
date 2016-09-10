@@ -14,8 +14,8 @@ import response.GetKursResponse;
  * @author Simon Stolz
  */
 public class GetKursTask extends BaseHttpRequestTask{
-	int id;
-	int ks;
+	private int id;
+	private int ks;
 	
 	/**
 	 * Instantiates a new gets the kurs task.

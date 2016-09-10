@@ -1,23 +1,14 @@
 package activitys;
 
-import protocol.ErrorCode;
-import task.LoginTask;
 import task.RegisterTask;
-
 import com.example.Tanzpartnervermittlung.R;
-
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
 import android.os.Bundle;
-import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 // TODO: Auto-generated Javadoc
 
@@ -30,30 +21,30 @@ import android.widget.TextView;
  */
 public class Registration extends ConnectedActivity {
 
-	TextView[] errorViews = new TextView[7];
-	TextView rErrorView;
-	TextView rFNErrorView;
-	TextView rLNErrorView;
-	TextView rAgeErrorView;
-	TextView rEmailErrorView;
-	TextView rKeyErrorView;
-	EditText rFNameInsert;
-	EditText rLNameInsert;
-	EditText rAgeInsert;
-	EditText rEmailInsert1;
-	EditText rEmailInsert2;
-	EditText rKeyInsert1;
-	EditText rKeyInsert2;
+
+	private TextView rErrorView;
+	private  TextView rFNErrorView;
+	private TextView rLNErrorView;
+	private TextView rAgeErrorView;
+	private TextView rEmailErrorView;
+	private TextView rKeyErrorView;
+	private EditText rFNameInsert;
+	private EditText rLNameInsert;
+	private EditText rAgeInsert;
+	private EditText rEmailInsert1;
+	private EditText rEmailInsert2;
+	private EditText rKeyInsert1;
+	private EditText rKeyInsert2;
 	
-	Boolean[] correct = new Boolean[6];
-	Registration r = this;
-	String fn;
-	String ln;
-	int age;
-	String eMail;
-	String key;
-	boolean gender;
-	boolean aVisible;
+	private Boolean[] correct = new Boolean[6];
+	private Registration r = this;
+	private String fn;
+	private String ln;
+	private int age;
+	private String eMail;
+	private String key;
+	private boolean gender;
+	private boolean aVisible;
 	
 //	 private RadioGroup radioSexGroup;
 //	 private RadioButton radioSexButton;

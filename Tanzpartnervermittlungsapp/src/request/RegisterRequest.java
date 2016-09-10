@@ -9,25 +9,25 @@ import org.simpleframework.xml.Root;
 public class RegisterRequest {
 
 @Element (name = "firstname")
-String fn;
+private String fn;
 
 @Element (name = "lastname")
-String ln;
+private String ln;
 
 @Element(name = "email")
-String eMail;
+private String eMail;
 
 @Element(name = "password")
-String password;
+private String password;
 
 @Element(name = "age")
-int age;
+private int age;
 
 @Element(name ="gender" )
-boolean gender;
+private boolean gender;
 
 @Element (name ="agevisible" )
-boolean ageVisible;
+private boolean ageVisible;
 
 
 public RegisterRequest(){

@@ -3,6 +3,8 @@ package request;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
+
+
 // TODO: Auto-generated Javadoc
 
 @Root (name = "getkursrequest")
@@ -10,10 +12,10 @@ import org.simpleframework.xml.Root;
 public class AGetKursRequest {
 
 	@Element (name = "id")
-	int id;
+	private int id;
 
 	@Element (name = "kursstufe")
-	int ks;
+	private int ks;
 	
 	public  AGetKursRequest(){
 		super();

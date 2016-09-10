@@ -9,6 +9,7 @@ import response.ForeignProfileResponse;
 // TODO: Auto-generated Javadoc
 
 /**
+ * @author Simon Stolz
  * The Class ForeignProfileTask.
  */
 // sec update

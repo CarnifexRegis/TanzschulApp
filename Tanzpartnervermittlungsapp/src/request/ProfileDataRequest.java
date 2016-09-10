@@ -12,7 +12,7 @@ import org.simpleframework.xml.Root;
 public class ProfileDataRequest {
 
 	@Element (name = "id")
-	int id;
+	private int id;
 	
 	
 	

@@ -9,6 +9,7 @@ import response.AAddKursResponse;
 
 // TODO: Auto-generated Javadoc
 /**
+ * @author Simon Stolz
  * The Class AAddKursTask.
  */
 public class AAddKursTask extends AbstractHandler {

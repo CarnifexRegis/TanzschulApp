@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 // TODO: Auto-generated Javadoc
 /**
+ * @author Simon Stolz
  * The Class ConnectedActivity.
  */
 public abstract class ConnectedActivity extends Activity {

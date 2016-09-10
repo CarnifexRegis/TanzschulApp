@@ -15,7 +15,7 @@ import org.simpleframework.xml.Root;
 public class GetAllRequest {
 
 	@Element(name="id")
-	int id;
+	private int id;
 
 //	public GetAllRequest(int id) {
 //		super();

@@ -15,10 +15,10 @@ import org.simpleframework.xml.Element;
 public class ForeignProfileResponse {
 
 	@Element(name = "profiledata",required = false)
-	ProfileData pd;
+	private ProfileData pd;
 
 	@Element(name = "ec") 
-	String ec;
+	private String ec;
 
 	public ForeignProfileResponse(){
 		super();

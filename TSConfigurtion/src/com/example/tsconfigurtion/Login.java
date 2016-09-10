@@ -41,7 +41,7 @@ public class Login extends ConnectedActivity {
 	private String name = null;
 	private String password = null;
 	private boolean c = false;
-	String errorCode = null;
+	private String errorCode = null;
 	private TextView errorView;
 	private EditText keyInsert;
 	private EditText nameInsert;

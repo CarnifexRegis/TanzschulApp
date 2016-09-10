@@ -25,10 +25,10 @@ import database2.aKurs;
 public class AGetKursResponse {
 
 	@Element (name = "error")
-	String ec;
+	private String ec;
 	
 	@ElementList(name = "kurslist",required = false)
-	ArrayList<aKurs> kl;
+	private ArrayList<aKurs> kl;
 
 	public AGetKursResponse(){
 		super();}

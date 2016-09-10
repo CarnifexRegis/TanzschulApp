@@ -13,7 +13,7 @@ import org.simpleframework.xml.Root;
 public class ADeleteResponse {
 	
 	@Element (name = "ec")
-	String ec ;
+	private String ec ;
 	
 	ADeleteResponse(){
 		super();

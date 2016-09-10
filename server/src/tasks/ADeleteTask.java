@@ -9,6 +9,7 @@ import response.ADeleteResponse;
 
 // TODO: Auto-generated Javadoc
 /**
+ * @author Simon Stolz
  * The Class ADeleteTask.
  */
 public class ADeleteTask extends AbstractHandler{

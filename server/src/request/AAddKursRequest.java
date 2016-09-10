@@ -19,7 +19,7 @@ public class AAddKursRequest {
 	private SQLKurs kurs;
 
 	@Element(name = "id")
-	int id;
+	private int id;
 	
 	AAddKursRequest(){
 		super();

@@ -1,11 +1,7 @@
 package activitys;
 
-import task.GetAllTask;
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -13,7 +9,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.example.Tanzpartnervermittlung.R;
 // TODO: Auto-generated Javadoc
@@ -29,9 +24,9 @@ public class Menue extends ConnectedActivity {
 
 	//https://developer.android.com/guide/topics/data/data-storage.html#pref
 	 public static final String prefName = "MyPrefsFile";
-	int ID ;
-	boolean gender;
-	final Menue menue = this;
+	private int ID ;
+	private boolean gender;
+	private final Menue menue = this;
 	
 	/* (non-Javadoc)
 	 * @see android.app.Activity#onCreate(android.os.Bundle)

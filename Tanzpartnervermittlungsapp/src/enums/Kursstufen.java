@@ -2,6 +2,7 @@ package enums;
 
 // TODO: Auto-generated Javadoc
 /**
+ * @author Simon Stolz
  * The Enum Kursstufen.
  */
 public enum Kursstufen {
@@ -16,9 +17,9 @@ public enum Kursstufen {
 	JC1("Jugendclub 1", 8),
 	JC2("Jugendclub 2", 9);
 
-	String KuNa;
+private String KuNa;
 
-	int KuNu;
+private int KuNu;
 	
 	/**
 	 * Instantiates a new kursstufen.

@@ -1,5 +1,7 @@
 package model;
 
+
+
 // TODO: Auto-generated Javadoc
 /**
  * The Enum Week.
@@ -29,8 +31,8 @@ public enum Week {
 		return dNu;
 	}
 
-		String dNa; // DayName
-		int dNu; // DayNumber
+	private String dNa; // DayName
+	private int dNu; // DayNumber
 	 
  	/**
  	 * Instantiates a new week.

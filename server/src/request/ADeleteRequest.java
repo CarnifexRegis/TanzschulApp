@@ -3,6 +3,8 @@ package request;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
+
+
 // TODO: Auto-generated Javadoc
 /**
  * The Class ADeleteRequest.
@@ -11,10 +13,10 @@ import org.simpleframework.xml.Root;
 public class ADeleteRequest {
 
 	@Element(name = "aid")
-	int aid;
+	private int aid;
 
 	@Element (name = "kid")
-	int kid;
+	private int kid;
 
  	ADeleteRequest(){
 		 super();

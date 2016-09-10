@@ -15,9 +15,9 @@ import response.AGetKursResponse;
  */
 public class AGetKursTask extends BaseHttpRequestTask{
 
-	int id;
-	int ks;
-	boolean mature;
+	private int id;
+	private int ks;
+	private boolean mature;
 	
 	/**
 	 * Instantiates a new a get kurs task.

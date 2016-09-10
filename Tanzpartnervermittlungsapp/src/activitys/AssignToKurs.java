@@ -27,13 +27,13 @@ import android.widget.Toast;
  *@author Simon Stolz
  */
 public class AssignToKurs extends ConnectedActivity{
-	int id = -1;
-	boolean gender;
-	AssignToKurs atk = this;
-	int kursstufe = 1;
-	ArrayList<Kurs> k = new ArrayList <Kurs>();
-	aAdapter Adapter;
-	ListView kView;
+	private int id = -1;
+	private boolean gender;
+	private AssignToKurs atk = this;
+	private int kursstufe = 1;
+	private ArrayList<Kurs> k = new ArrayList <Kurs>();
+	private aAdapter Adapter;
+	private ListView kView;
 	
 //http://stackoverflow.com/questions/5195321/remove-an-onclick-listener	
 	

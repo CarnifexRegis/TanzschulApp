@@ -13,10 +13,10 @@ import org.simpleframework.xml.Root;
 public class ALoginResponse {
 
 	@Element(name = "id",required = false)
-	int id;
+	private int id;
 
 	@Element (name = "ec")
-	String ec;
+	private String ec;
 
 	public ALoginResponse(){
 		super ();

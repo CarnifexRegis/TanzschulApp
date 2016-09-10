@@ -25,7 +25,7 @@ import activitys.SearchForDancingpartner;
  * 				http://stackoverflow.com/questions/21053979/listview-duplicates-android
  */
 public class Adapter extends ArrayAdapter<ProfileChart> {
-	Context context;
+	private Context context;
 	
 	/**
 	 * Instantiates a new adapter.

@@ -27,19 +27,18 @@ import android.widget.Toast;
  * @ Source: http://stackoverflow.com/questions/19253786/how-to-copy-text-to-clip-board-in-android
  */
 public class ShowProfile extends ConnectedActivity {
-int id;
-boolean gender;
-String idp;
-ShowProfile sp = this;
-TextView nameView;
-TextView ageText;
-TextView ageView;
-TextView heightView;
-TextView aboutMeView;
-TextView pnView;
-private ClipData myClip;
-private ClipboardManager myClipboard;
- private ProfileData pd = new ProfileData();
+	private int id;
+	private boolean gender;
+	private String idp;
+	private ShowProfile sp = this;
+	private TextView nameView;
+	private TextView ageText;
+	private TextView ageView;
+	private TextView heightView;
+	private TextView aboutMeView;
+	private TextView pnView;
+	 private ClipData myClip;
+	 private ProfileData pd = new ProfileData();
 	
 	/* (non-Javadoc)
 	 * @see android.app.Activity#onCreate(android.os.Bundle)

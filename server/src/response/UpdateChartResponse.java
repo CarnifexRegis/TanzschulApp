@@ -24,7 +24,7 @@ ArrayList<ProfileChart> pc;
 
 /** The ec. */
 @Element (name = "ec")
-String ec;
+private String ec;
 
 	public UpdateChartResponse(){
 		super();

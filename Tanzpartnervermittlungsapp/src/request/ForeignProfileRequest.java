@@ -14,10 +14,10 @@ public class ForeignProfileRequest {
 	
 
 	@Element(name = "idp" )
-	String idp;
+	private String idp;
 
 	@Element (name = "id")
-	int id;
+	private int id;
 	
 	public ForeignProfileRequest(){
 		super();

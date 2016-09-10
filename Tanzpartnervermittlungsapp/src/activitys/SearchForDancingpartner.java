@@ -7,10 +7,7 @@ package activitys;
 import model.Adapter;
 import model.Kursbuchung;
 import model.ProfileChart;
-
 import com.example.Tanzpartnervermittlung.R;
-
-import enums.Gender;
 import task.UpdateChartTask;
 import android.app.Activity;
 import android.app.Dialog;
@@ -50,16 +47,16 @@ import android.widget.Toast;
 	 * low.com/questions/9208827/how-to-extract-the-text-from-the-selected-item-on-the-listview
 	 */
 	public class SearchForDancingpartner extends ConnectedActivity {
-		Adapter adapterCustom;
-		ArrayList<ProfileChart> pc;
-		int ID = -1;
-		boolean gender;
-		int kursstufe = 1;
-		int day = 3;
-		String idp;
-		String error = null;
-		final SearchForDancingpartner sfdp = this;
-		boolean ready;
+		private Adapter adapterCustom;
+		private ArrayList<ProfileChart> pc;
+		private int ID = -1;
+		private boolean gender;
+		private int kursstufe = 1;
+		private int day = 3;
+		private String idp;
+		private String error = null;
+		private final SearchForDancingpartner sfdp = this;
+		private boolean ready;
 		
 		/* (non-Javadoc)
 		 * @see android.app.Activity#onCreate(android.os.Bundle)

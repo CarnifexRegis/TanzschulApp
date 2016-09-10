@@ -14,7 +14,7 @@ public class UpdateChartTask extends BaseHttpRequestTask{
 private int id;
 private int kursstufe ;
 public boolean gender;
-int day;
+private int day;
 
 /**
  * Instantiates a new update chart task.

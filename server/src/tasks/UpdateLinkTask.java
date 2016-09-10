@@ -9,12 +9,13 @@ import response.UpdateLinkResponse;
 // TODO: Auto-generated Javadoc
 
 /**
+ * @author Simon Stolz
  * The Class UpdateLinkTask.
  */
 //ec Update
 public class UpdateLinkTask extends AbstractHandler {
 	
-	/** The ec. */
+
 	String ec;
 	
 	/* (non-Javadoc)

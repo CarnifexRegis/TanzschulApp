@@ -1,7 +1,7 @@
 package protocol;
 // TODO: Auto-generated Javadoc
 /**
- *  
+ *  sources : Abiquiz App by Tim Möschel
  * @author Simon Stolz
  *Sources: Abi Quiz-App by Tim Möschel
  */

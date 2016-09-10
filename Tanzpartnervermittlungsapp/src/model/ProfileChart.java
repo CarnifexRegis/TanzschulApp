@@ -12,22 +12,22 @@ import org.simpleframework.xml.Root;
 public class ProfileChart {
 
 	@Element (name= "fn" )
-String fn;
+	private String fn;
 
 	@Element (name= "ln" )
-String ln;
+	private String ln;
 
 	@Element(name= "age" )
-String age; 
+	private String age; 
 
 	@Element(name= "uhr" )
-String uhr; 
+	private String uhr; 
 
 	@Element(name= "date" )
-String date;
+	private String date;
 
 	@Element(name= "idp" )
-String idp;
+	private String idp;
 
 	public ProfileChart(){
 		super();

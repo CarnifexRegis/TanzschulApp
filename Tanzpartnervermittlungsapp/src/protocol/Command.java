@@ -2,6 +2,8 @@ package protocol;
 
 // TODO: Auto-generated Javadoc
 /**
+ * sources : Abiquiz App by Tim Möschel
+ * @author Simon Stolz
  * The Enum Command.
  */
 public enum Command {

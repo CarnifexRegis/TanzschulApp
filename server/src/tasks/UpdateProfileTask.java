@@ -7,6 +7,7 @@ import response.UpdateProfileResponse;
 // TODO: Auto-generated Javadoc
 
 /**
+ * @author Simon Stolz
  * The Class UpdateProfileTask.
  */
 // ec update

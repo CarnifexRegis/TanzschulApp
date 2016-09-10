@@ -11,6 +11,7 @@ import response.AGetKursResponse;
 
 // TODO: Auto-generated Javadoc
 /**
+ * @author Simon Stolz
  * The Class AGetKursTask.
  */
 public class AGetKursTask extends AbstractHandler{

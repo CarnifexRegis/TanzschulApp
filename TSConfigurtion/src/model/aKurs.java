@@ -13,21 +13,15 @@ public class aKurs {
 
 	@Element(name  = "id")
 	private int id;
-	
 	@Element (name  = "kursstufe")
 	private int kursstufe;
-	
 	@Element (name = "uhrzeit")
 	private String uhrzeit;
-	
-	
 	//private Date datum; // User Kurs DAO needs a String datum has to put in like : Day(int).Month(int).Year(int)
 	@Element (name = "datum")
 	private String datum;
-	
 	@Element (name  = "wochentag")
 	private String wochentag;
-	
 	@Element (name = "enlisted")
 	private int enlisted;
 	//Boolean "SingUpAviable" must be added later 

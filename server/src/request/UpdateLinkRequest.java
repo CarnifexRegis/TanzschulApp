@@ -11,13 +11,13 @@ import org.simpleframework.xml.Root;
 public class UpdateLinkRequest {
 
 @Element (name = "uid")
-int uid;
+private int uid;
 
 @Element (name= "kid" )
-int kid;
+private int kid;
 
 @Element (name = "command")
-boolean command;
+private boolean command;
 
 public UpdateLinkRequest (){
 	super();

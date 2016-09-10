@@ -14,10 +14,10 @@ import com.example.tsconfigurtion.AmendKurs;
  * @author Simon Stolz
  */
 public class ADeleteTask extends BaseHttpRequestTask{
-int kid;
-int uid;
-int position;
-View v;
+	private int kid;
+	private int uid;
+	private int position;
+	private View v;
 	
 	/**
 	 * Instantiates a new a delete task.

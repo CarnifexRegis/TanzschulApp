@@ -11,6 +11,7 @@ import response.UpdateChartResponse;
 // TODO: Auto-generated Javadoc
 
 /**
+ * @author Simon Stolz
  * The Class UpdateChartTask.
  */
 // sc update 

@@ -23,15 +23,15 @@ import android.widget.ToggleButton;
 /**
  * The Class aAdapter.
  *
- * @author Simon
+ * @author Simon Stolz
  * @Sources: http://stackoverflow.com/questions/21053979/listview-duplicates-android
  * 			model.adapter
  * 			http://developer.android.com/resources/samples/ApiDemos/src/com/example/android/apis/view/List14.html
  */
 public class aAdapter extends ArrayAdapter<Kurs>{
-	int id;
-	Context context;
-	AssignToKurs atk;
+	private int id;
+	private Context context;
+	private AssignToKurs atk;
 	
 	/**
 	 * Instantiates a new a adapter.

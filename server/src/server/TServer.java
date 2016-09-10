@@ -6,6 +6,8 @@ import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
 // TODO: Auto-generated Javadoc
 
+
+
 /**
  * The Class TServer.
  *
@@ -16,10 +18,10 @@ import org.eclipse.jetty.server.ServerConnector;
 public class TServer {
 	
 	/** The server. */
-	 Server server;
+	 private  Server server;
 	 
  	/** The http. */
- 	ServerConnector http;
+	 private ServerConnector http;
 
 	/**
 	 * Instantiates a new t server.

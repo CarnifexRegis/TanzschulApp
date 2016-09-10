@@ -5,7 +5,6 @@ package activitys;
 
 import task.LoginTask;
 import com.example.Tanzpartnervermittlung.R;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -22,18 +21,17 @@ import android.widget.TextView;
 // TODO: Auto-generated Javadoc
 
 /**
- * @author
+ * @author Simon Stolz
  */
 // maby change to popup that runs in an seperate thread
 public class LogIn extends ConnectedActivity{
-	Activity calledBy ;
 	final LogIn login = this;
 	//http://stacktips.com/tutorials/android/android-checkbox-example
 	private CheckBox safelogin;
 	private String eMail = null;
 	private String password = null;
 	private boolean c = false;
-	String errorCode = null;
+	private String errorCode = null;
 	//Special thanks to Leander for this Tip
 	//https://developer.android.com/training/basics/activity-lifecycle/recreating.html
 	

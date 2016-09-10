@@ -3,7 +3,7 @@ package enums;
 
 // TODO: Auto-generated Javadoc
 /**
- *@author Simon sTOLZ
+ *@author Simon Stolz
  */
 public enum Week {
   	MONDAY("Montag",1),
@@ -26,8 +26,8 @@ public enum Week {
 	public void setdNu(int dNu) {
 		this.dNu = dNu;
 	}
-		String dNa; // DayName
-		int dNu; // DayNumber
+		private String dNa; // DayName
+		private int dNu; // DayNumber
 	 
  	/**
  	 * Instantiates a new week.

@@ -31,22 +31,22 @@ import android.widget.Toast;
 public class EditProfile extends ConnectedActivity {
 
 //	ProfileDataForServer data;
-	EditText pnInsert;
-	EditText pTextInsert;
-	EditText ageInsert;
-	EditText heightInsert;
-	TextView nView;
-	CheckBox paCheck;
+	private EditText pnInsert;
+	private EditText pTextInsert;
+	private EditText ageInsert;
+	private EditText heightInsert;
+	private TextView nView;
+	private CheckBox paCheck;
 	
-EditProfile edp = this;
+	private EditProfile edp = this;
 
-int id;
-String pn;
-int height;
-int age;
-String pText;
-boolean pa;
-boolean gender;
+	private int id;
+	private String pn;
+	private int height;
+	private int age;
+	private String pText;
+	private boolean pa;
+	private boolean gender;
 
 
 

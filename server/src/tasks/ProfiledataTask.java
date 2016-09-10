@@ -8,6 +8,7 @@ import response.ProfileDataResponse;
 // TODO: Auto-generated Javadoc
 
 /**
+ * @author Simon Stolz
  * The Class ProfiledataTask.
  */
 // sc update

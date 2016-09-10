@@ -8,13 +8,10 @@ package model;
  */
 public class Kursbuchung {
 
-	String name;
-
-	int age;
-
-	String kursstart; // Kursstart is a date like: day.month.year
-
-	String kurszeit;  // Kurszeit is a point of time like: hours(in 24 h):minutes
+	private String name;
+	private int age;
+	private String kursstart; // Kursstart is a date like: day.month.year
+	private String kurszeit;  // Kurszeit is a point of time like: hours(in 24 h):minutes
 
 	/**
 	 * Instantiates a new kursbuchung.

@@ -10,6 +10,7 @@ import response.ALoginResponse;
 
 // TODO: Auto-generated Javadoc
 /**
+ * @author Simon Stolz
  * The Class ALoginTask.
  */
 public class ALoginTask extends AbstractHandler{

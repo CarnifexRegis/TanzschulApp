@@ -11,6 +11,7 @@ import response.GetKursResponse;
 // TODO: Auto-generated Javadoc
 
 /**
+ * @author Simon Stolz
  * The Class GetKursTask.
  */
 // sec update 

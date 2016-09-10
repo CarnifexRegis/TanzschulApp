@@ -4,6 +4,7 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 // TODO: Auto-generated Javadoc
 
+
 /**
  * The Class ALoginRequest.
  *
@@ -13,10 +14,10 @@ import org.simpleframework.xml.Root;
 public class ALoginRequest {
 
 	@Element (name = "name")
-	String name;
+	private String name;
 
 	@Element (name = "key")
-	String key;
+	private String key;
 
 	public ALoginRequest(){
 		super();

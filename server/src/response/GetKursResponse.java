@@ -15,10 +15,10 @@ import database2.Kurs;
 public class GetKursResponse {
 
 	@Element (name = "error")
-	String ec;
+	private String ec;
 	
 	@ElementList(name = "kurslist",required = false)
-	ArrayList<Kurs> kl;
+	private ArrayList<Kurs> kl;
 
 	public GetKursResponse(){
 		super();}

@@ -1,14 +1,7 @@
 package com.example.tsconfigurtion;
-
-
-
-
-
-import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import request.AAddKursRequest;
 import tasks.AAddKursTask;
 import model.ConnectedActivity;
 import model.SQLKurs;
@@ -26,6 +19,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 
 // TODO: Auto-generated Javadoc
 /**
+ * @author Simon Stolz
  * The Class AddKurs.
  */
 @SuppressLint("SimpleDateFormat")
@@ -35,7 +29,7 @@ private int kursstufe;
 private int id;
 private int day;
 private boolean mature;
-AddKurs ak = this;
+private AddKurs ak = this;
 //date values
 //private String dateDay;
 private EditText dateDayE;
@@ -46,11 +40,11 @@ private EditText insertTime1;
 private EditText insertTime2;
 private Spinner dateMonthS;
 private Spinner dateYearS;
-Button addKursB;
+private Button addKursB;
 private Spinner stringDayS;
 private Spinner kustuS;
 private Spinner matureS;
-Calendar calendar;
+private Calendar calendar;
 
 /**
  * On create.

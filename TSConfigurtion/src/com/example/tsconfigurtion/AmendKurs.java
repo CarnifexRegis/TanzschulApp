@@ -40,15 +40,15 @@ import model.aKurs;
 public class AmendKurs  extends ConnectedActivity {
 	private int id;
 	private ArrayList <aKurs> kl = new ArrayList<aKurs>();
-	protected int kursstufe;
+	private  int kursstufe;
 	private AmendAdapter Adapter;
 	private ListView kView;
-	int kid = 0;
-	protected AmendKurs amk = this;
-	protected boolean m = false;
+	private int kid = 0;
+	private  AmendKurs amk = this;
+	private  boolean m = false;
 //	RadioButton mature;
-	RadioButton notMature;
-	protected int position;
+	private RadioButton notMature;
+	private  int position;
 	private Dialog dialog ;
 
 	/* (non-Javadoc)
@@ -129,7 +129,7 @@ public class AmendKurs  extends ConnectedActivity {
 	});
 		
 		kView  = (ListView) findViewById(R.id.aKursList);
-		Adapter = new AmendAdapter(this, kl, id,amk) ;
+		Adapter = new AmendAdapter(this, kl, amk) ;
 		kView.setAdapter(Adapter);
 	
 		
@@ -144,7 +144,7 @@ public class AmendKurs  extends ConnectedActivity {
 		if (kl.isEmpty()){
 			Toast.makeText(this,getResources().getString(R.string.empty_result), Toast.LENGTH_LONG).show();
 		}
-		Adapter = new AmendAdapter(this, kl, id,amk) ;
+		Adapter = new AmendAdapter(this, kl,amk) ;
 		kView.setAdapter(Adapter);
 		
 	}

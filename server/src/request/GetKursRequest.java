@@ -14,10 +14,10 @@ import org.simpleframework.xml.Root;
 public class GetKursRequest {
 
 	@Element (name = "id")
-	int id;
+	private int id;
 
 	@Element (name = "kursstufe")
-	int ks;
+	private int ks;
 
 	public  GetKursRequest(){
 		super();

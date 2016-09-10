@@ -17,10 +17,10 @@ public class UpdateChartResponse {
 	//http://www.java-examples.com/get-size-java-arraylist-and-loop-through-elements-example
 	//http://stackoverflow.com/questions/762400/how-to-display-all-elements-in-an-arraylist
 @ElementList (name= "pc", required = false )
-ArrayList<ProfileChart> pc;
+private ArrayList<ProfileChart> pc;
 
 @Element (name = "ec")
-String ec;
+private String ec;
 
 	public UpdateChartResponse(){
 		super();

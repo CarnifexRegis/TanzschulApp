@@ -7,6 +7,7 @@ import response.RegisterResponse;
 // TODO: Auto-generated Javadoc
 
 /**
+ * @author Simon Stolz
  * The Class RegisterTask.
  */
 //sc update n ot required

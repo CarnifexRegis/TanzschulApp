@@ -10,7 +10,7 @@ public enum CalledBy {
 EditProfile("ep"),
 Menue("m");
 
-	String activity;
+	private  String activity;
 	
 	/**
 	 * Instantiates a new called by.

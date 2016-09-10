@@ -15,13 +15,13 @@ import org.simpleframework.xml.Root;
 public class ProfileData {
 	
 	@Element (name = "fn")
-	String fn;
+	private String fn;
 	
 	@Element (name = "ln")
-	String ln;
+	private String ln;
 
 	@Element (name = "ptext")
-	String pText;
+	private String pText;
 
 	@Element (name = "age")
 	int age;
@@ -30,13 +30,13 @@ public class ProfileData {
 	int height;
 
 	@Element (name = "phonenumber")
-	String phoneNumber;
+	private String phoneNumber;
 
 	@Element (name = "gender")
-	boolean gender;
+	private boolean gender;
 
 	@Element (name = "pa")
-	boolean pa;
+	private boolean pa;
 	
 	/**
 	 * This constructor is used for serializing.

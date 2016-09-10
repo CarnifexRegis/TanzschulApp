@@ -11,7 +11,7 @@ wl("wrongLogin"),
 ae("alreadyExists"),
 nf("notFound");
 
-String error;
+private String error;
 
 /**
  * Instantiates a new error code.

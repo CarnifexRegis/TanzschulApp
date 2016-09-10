@@ -19,7 +19,7 @@ import android.util.Log;
  * @author Simon Stolz
  */
 public class ProfileDataTask  extends BaseHttpRequestTask{
-	int id;
+	private int id;
 	
 	/**
 	 * Instantiates a new profile data task.
