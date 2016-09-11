@@ -7,6 +7,7 @@ import org.simpleframework.xml.Root;
 
 /**
  * The Class ProfileChart.
+ * @author Simon Stolz
  */
 @Root(name = "profilechart")
 /**

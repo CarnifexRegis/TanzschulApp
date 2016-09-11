@@ -7,6 +7,7 @@ import org.simpleframework.xml.Root;
 // TODO: Auto-generated Javadoc
 /**
  * The Class Kurs.
+ * @author Simon Stolz
  */
 @Root (name  = "kurs")
 /**

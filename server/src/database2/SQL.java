@@ -14,7 +14,7 @@ import java.util.ArrayList;
 /**
  * The Class SQL.
  *
- * @author Simon
+ * @author Simon Stolz
  * @sources: 			Abi Quiz-App by Tim Möschel
  * 			http://stackoverflow.com/questions/23851158/check-if-some-string-is-in-sqlite-database
  * 			http://stackoverflow.com/questions/7886462/how-to-get-row-count-using-resultset-in-java
@@ -34,6 +34,7 @@ private Connection c;
 //https://coderanch.com/t/300886/JDBC/databases/Proper-close-Connection-Statement-ResultSet
 // TODO try out that fancy shit if you have leaft over time
 /**
+ * If the one of the tables KURS , USER , LINK, ADMIN doesnt´t exist the constructor tells the connection to create them
  * Instantiates a new sql.
  */
 
@@ -312,8 +313,8 @@ private Connection c;
 	/**
 	 * E mail exists.
 	 *
-	 * @param em the em
-	 * @return true, if successful
+	 * @param em  the users e- mail
+	 * @return true, if thsi e-mail exists in the dtabase
 	 */
 	public boolean eMailExists(String em){
 		Statement stmt = null;
@@ -665,8 +666,8 @@ private Connection c;
 	/**
 	 * Gets the user ID by IDP.
 	 *
-	 * @param idp the idp
-	 * @return the user ID by IDP
+	 * @param idp The public identifer of the user that is searched for
+	 * @return returns the private User id  having the suplied idp
 	 */
 	public int getUserIDByIDP(String idp){
 		Statement stmt = null;
@@ -771,7 +772,7 @@ private Connection c;
 	}
 
 	/**
-	 * Delete kurs.
+	 * Deletes an Kurs object and all references on it
 	 *
 	 * @param kid the kid
 	 * @return true, if successful
@@ -802,10 +803,10 @@ private Connection c;
 	}
 	
 	/**
-	 * Delete link.
+	 * deletes an specific link
 	 *
-	 * @param uid the uid
-	 * @param kid the kid
+	 * @param uid the UID
+	 * @param kid the KID
 	 * @return true, if successful
 	 */
 	public boolean deleteLink (int uid, int kid){
@@ -1009,7 +1010,7 @@ private Connection c;
 	}
 //	public Login logIn(){}
 	/**
- * Log in.
+ * Thsi method is called by the client  to log in
  *
  * @param em the email you want to log in with
  * @param ps the fitting password
@@ -1072,7 +1073,7 @@ private Connection c;
 			}
 
 /**
- * Check ID.
+ * Checks if this id exists in the Database
  *
  * @param id the id
  * @return 	returns true if it exists.

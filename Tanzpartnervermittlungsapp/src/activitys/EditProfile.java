@@ -9,9 +9,11 @@ import com.example.Tanzpartnervermittlung.R;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +24,7 @@ import android.widget.Toast;
 //Last Modofied:14.6.2016 
 /**
  * @author Simon Stolz
+ * Source : http://codetheory.in/android-pick-select-image-from-gallery-with-intents/
  */
 // Add Listeners for 2 Radio Groups and one Button Mabe do the first request
 public class EditProfile extends ConnectedActivity {
@@ -43,7 +46,8 @@ public class EditProfile extends ConnectedActivity {
 	private String pText;
 	private boolean pa;
 	private boolean gender;
-
+	private ImageView pic;
+	private int PICK_IMAGE_REQUEST = 1;
 
 
 	/* (non-Javadoc)
@@ -61,7 +65,7 @@ public class EditProfile extends ConnectedActivity {
 		 ageInsert = (EditText) findViewById(R.id.ageInsert);
 		 heightInsert = (EditText) findViewById(R.id.heightInsert);
 		 nView = (TextView) findViewById(R.id.epNameView);
-		
+		 pic = (ImageView) findViewById(R.id.editProfileImage);
 		
 		 paCheck = (CheckBox) findViewById(R.id.checkBox1);
 		 
@@ -99,7 +103,21 @@ public class EditProfile extends ConnectedActivity {
             	upTask.execute();
             }
         });
-		
+		pic.setOnClickListener(new OnClickListener() {
+			/**
+			 *  http://codetheory.in/android-pick-select-image-from-gallery-with-intents/
+			 */
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent();
+				// Show only images, no videos or anything else
+				intent.setType("image/*");
+				intent.setAction(Intent.ACTION_GET_CONTENT);
+				// Always show the chooser (if there are multiple options available)
+				startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+				
+			}
+		});
 	    }
 	
 	/**
