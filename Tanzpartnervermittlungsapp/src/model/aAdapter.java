@@ -3,20 +3,19 @@ package model;
 import java.util.ArrayList;
 
 import task.UpdateLinkTask;
-
-import com.example.Tanzpartnervermittlung.R;
-
 import activitys.AssignToKurs;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 // TODO: Auto-generated Javadoc
+
+import com.example.Tanzpartnervermittlung.R;
 
 /**
  * The Class aAdapter.

@@ -1,13 +1,19 @@
 package activitys;
 
+import java.io.IOException;
+
 import model.ProfileData;
 import task.ProfileDataTask;
 import task.UpdateProfileTask;
-
-import com.example.Tanzpartnervermittlung.R;
-
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.DatabaseUtils;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -17,6 +23,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.Tanzpartnervermittlung.R;
+
 
 
 // TODO: Auto-generated Javadoc
@@ -25,6 +33,7 @@ import android.widget.Toast;
 /**
  * @author Simon Stolz
  * Source : http://codetheory.in/android-pick-select-image-from-gallery-with-intents/
+ * http://stackoverflow.com/questions/25490928/androidselect-image-from-gallery-then-crop-that-and-show-in-an-imageview
  */
 // Add Listeners for 2 Radio Groups and one Button Mabe do the first request
 public class EditProfile extends ConnectedActivity {
@@ -47,12 +56,13 @@ public class EditProfile extends ConnectedActivity {
 	private boolean pa;
 	private boolean gender;
 	private ImageView pic;
-	private int PICK_IMAGE_REQUEST = 1;
-
+	private static final int PICK_FROM_GALLERY = 2;
+	
 
 	/* (non-Javadoc)
 	 * @see android.app.Activity#onCreate(android.os.Bundle)
 	 */
+	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		 Bundle extras = getIntent().getExtras();
 			if(extras != null){
@@ -76,7 +86,8 @@ public class EditProfile extends ConnectedActivity {
 		// This Button reads the Users inserted information and saves it in a ProfileDataForServer Object 
 		final Button ready = (Button) findViewById(R.id.fertigButton);
         ready.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
+            @Override
+			public void onClick(View v) {
             // TODO nach dem ersten Request das für alle übernehmen
             	if(pnInsert.getText().toString().length()>0){
             	pn = pnInsert.getText().toString();
@@ -114,7 +125,15 @@ public class EditProfile extends ConnectedActivity {
 				intent.setType("image/*");
 				intent.setAction(Intent.ACTION_GET_CONTENT);
 				// Always show the chooser (if there are multiple options available)
-				startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+				 intent.putExtra("crop", "true");
+		            intent.putExtra("aspectX", 300);
+		            intent.putExtra("aspectY", 300);
+		            try {
+		            	intent.putExtra("return-data", true);
+		            	startActivityForResult(Intent.createChooser(intent,"Complete action using"),     PICK_FROM_GALLERY);
+
+		            	            } catch (ActivityNotFoundException e) {
+		            	            }
 				
 			}
 		});
@@ -155,6 +174,23 @@ public class EditProfile extends ConnectedActivity {
 	/* (non-Javadoc)
 	 * @see activitys.ConnectedActivity#onConnectionError()
 	 */
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+	    super.onActivityResult(requestCode, resultCode, data);
+	    
+	  //  http://stackoverflow.com/questions/25490928/androidselect-image-from-gallery-then-crop-that-and-show-in-an-imageview
+	    if (requestCode == PICK_FROM_GALLERY) {
+	    	if(data != null){
+	        Bundle extras2 = data.getExtras();
+	        if (extras2 != null) {
+	            Bitmap photo = extras2.getParcelable("data");
+	            pic.setImageBitmap(photo);
+
+	        }}
+	    }
+	}
+	
+	
 	@Override // must be overrided see TODO
 	public void onConnectionError() {
 		

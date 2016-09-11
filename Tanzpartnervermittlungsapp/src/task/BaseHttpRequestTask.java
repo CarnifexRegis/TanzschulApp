@@ -13,7 +13,6 @@ import java.io.OutputStream;
 import java.io.StringWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.logging.LogManager;
 
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
@@ -21,13 +20,11 @@ import org.simpleframework.xml.stream.Format;
 import org.simpleframework.xml.stream.HyphenStyle;
 import org.simpleframework.xml.stream.Style;
 
-import android.app.Activity;
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.os.AsyncTask;
-import android.util.Log;
 import protocol.Command;
 import protocol.Properties;
+import android.app.Activity;
+import android.os.AsyncTask;
+import android.util.Log;
 
 // TODO: Auto-generated Javadoc
 /**

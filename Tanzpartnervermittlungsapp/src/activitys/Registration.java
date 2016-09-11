@@ -1,7 +1,6 @@
 package activitys;
 
 import task.RegisterTask;
-import com.example.Tanzpartnervermittlung.R;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +10,8 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
 // TODO: Auto-generated Javadoc
+
+import com.example.Tanzpartnervermittlung.R;
 
 /**
  * The Class Registration.
@@ -47,6 +48,7 @@ public class Registration extends ConnectedActivity {
 	/* (non-Javadoc)
  * @see android.app.Activity#onCreate(android.os.Bundle)
  */
+@Override
 protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.registration);
@@ -101,6 +103,7 @@ protected void onCreate(Bundle savedInstanceState) {
 //	final TextView rKeyErrorView = errorViews [6] ;
 	final Button registerButton=  (Button) findViewById(R.id.registerButton);
 	registerButton.setOnClickListener(new View.OnClickListener() {
+		@Override
 		public void onClick(View v) {
 		ln = rLNameInsert.getText().toString();
 		fn = rFNameInsert.getText().toString();

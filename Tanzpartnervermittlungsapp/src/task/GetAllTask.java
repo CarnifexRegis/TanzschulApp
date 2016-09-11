@@ -5,7 +5,6 @@ package task;
  *			Abi Quiz-App by Tim Möschel
  */
 import protocol.Command;
-import request.GetAllRequest;
 import response.GetAllResponse;
 import activitys.Menue;
 import android.util.Log;

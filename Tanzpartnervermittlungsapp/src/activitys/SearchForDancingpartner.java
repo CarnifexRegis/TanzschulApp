@@ -6,7 +6,6 @@ package activitys;
 
 import model.Adapter;
 import model.ProfileChart;
-import com.example.Tanzpartnervermittlung.R;
 import task.UpdateChartTask;
 import android.app.Dialog;
 import android.content.Intent;
@@ -23,6 +22,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.example.Tanzpartnervermittlung.R;
 
 
 	

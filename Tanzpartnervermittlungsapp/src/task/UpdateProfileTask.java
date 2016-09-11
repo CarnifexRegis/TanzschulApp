@@ -2,10 +2,10 @@ package task;
 
 import protocol.Command;
 import protocol.ErrorCode;
-import activitys.EditProfile;
-import android.util.Log;
 import request.UpdateProfileRequest;
 import response.UpdateProfileResponse;
+import activitys.EditProfile;
+import android.util.Log;
 
 
 // TODO: Auto-generated Javadoc

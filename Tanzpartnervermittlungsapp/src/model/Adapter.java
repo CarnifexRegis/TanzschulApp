@@ -4,8 +4,8 @@ package model;
  */
 import java.util.ArrayList;
 
-import com.example.Tanzpartnervermittlung.R;
-
+import activitys.SearchForDancingpartner;
+// TODO: Auto-generated Javadoc
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,8 +14,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import activitys.SearchForDancingpartner;
-// TODO: Auto-generated Javadoc
+
+import com.example.Tanzpartnervermittlung.R;
 
 /**
  *@author Simon Stolz

@@ -2,23 +2,20 @@ package activitys;
 
 import java.util.ArrayList;
 
-import task.GetKursTask;
 import model.Kurs;
 import model.aAdapter;
-
-
-
-
-import com.example.Tanzpartnervermittlung.R;
+import task.GetKursTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.Tanzpartnervermittlung.R;
 
 // TODO: Auto-generated Javadoc
 /**

@@ -24,6 +24,7 @@ public class LoginResponse {
 	 * @param gender the users gender
 	 * @param ec the ErrorCode know  by the client that tells him what to do next
 	 */
+	public LoginResponse(){super ();}
 	public LoginResponse(int id, int gender,String ec) {
 		super();
 		this.id = id;

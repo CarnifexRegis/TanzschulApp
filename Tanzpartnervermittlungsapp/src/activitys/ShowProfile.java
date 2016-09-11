@@ -2,8 +2,6 @@ package activitys;
 
 import model.ProfileData;
 import task.ForeignProfileTask;
-
-import com.example.Tanzpartnervermittlung.R;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -14,6 +12,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.Tanzpartnervermittlung.R;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -39,6 +39,7 @@ public class ShowProfile extends ConnectedActivity {
 	/* (non-Javadoc)
 	 * @see android.app.Activity#onCreate(android.os.Bundle)
 	 */
+	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 	       setContentView(R.layout.show_profile);
@@ -60,7 +61,8 @@ public class ShowProfile extends ConnectedActivity {
 			
 	       final Button menueButton = (Button) findViewById(R.id.spMenueButton);
 	       menueButton.setOnClickListener(new View.OnClickListener() {
-	            public void onClick(View v) {
+	            @Override
+				public void onClick(View v) {
 	            	Intent intent = new Intent(getApplicationContext(),Menue.class);
 	        		intent.putExtra("ID", id);
 	        		intent.putExtra("gender", gender);
@@ -69,20 +71,23 @@ public class ShowProfile extends ConnectedActivity {
 	        });	
 	       final Button addToContactsButton = (Button) findViewById(R.id.spAddToContactsButton);
 	       addToContactsButton.setOnClickListener(new View.OnClickListener() {
-	            public void onClick(View v) {
+	            @Override
+				public void onClick(View v) {
 	            	addAsContactConfirmed(sp,pd);
 	            }
 	        });	
 	       final Button FriendRequestButton = (Button) findViewById(R.id.spAddFriendButton);
 	       FriendRequestButton.setOnClickListener(new View.OnClickListener() {
-	            public void onClick(View v) {
+	            @Override
+				public void onClick(View v) {
 	            	
 	            }
 	        });	
 	   
 	       final Button ZwischenablageButton = (Button) findViewById(R.id.spZwischenablageButton);
 	    		   ZwischenablageButton.setOnClickListener(new View.OnClickListener() {
-	            public void onClick(View v) {
+	            @Override
+				public void onClick(View v) {
 	            	if(pnView.getText().toString().equals(getString(R.string.missing_value))){
 	            		Toast.makeText(getApplicationContext(),getString(R.string.missing_value), 
 	        	                Toast.LENGTH_SHORT).show(); 

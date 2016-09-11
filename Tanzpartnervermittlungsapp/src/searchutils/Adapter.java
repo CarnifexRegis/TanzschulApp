@@ -3,9 +3,6 @@ package searchutils;
 import java.util.ArrayList;
 
 import model.ProfileChart;
-
-import com.example.Tanzpartnervermittlung.R;
-
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.Tanzpartnervermittlung.R;
 
 // TODO: Auto-generated Javadoc
 /**

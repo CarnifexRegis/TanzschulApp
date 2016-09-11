@@ -2,10 +2,10 @@ package task;
 
 import protocol.Command;
 import protocol.ErrorCode;
-import activitys.AssignToKurs;
-import android.util.Log;
 import request.GetKursRequest;
 import response.GetKursResponse;
+import activitys.AssignToKurs;
+import android.util.Log;
 
 // TODO: Auto-generated Javadoc
 /**

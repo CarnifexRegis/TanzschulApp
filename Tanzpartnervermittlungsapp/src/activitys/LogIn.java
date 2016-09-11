@@ -4,7 +4,6 @@ package activitys;
 
 
 import task.LoginTask;
-import com.example.Tanzpartnervermittlung.R;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -19,6 +18,8 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 // TODO: Auto-generated Javadoc
+
+import com.example.Tanzpartnervermittlung.R;
 
 /**
  * @author Simon Stolz
@@ -52,6 +53,7 @@ public class LogIn extends ConnectedActivity{
 	/* (non-Javadoc)
  * @see android.app.Activity#onCreate(android.os.Bundle)
  */
+@Override
 protected void onCreate(Bundle savedInstanceState) {
 		
 		
@@ -113,7 +115,8 @@ protected void onCreate(Bundle savedInstanceState) {
        
         final Button register = (Button) findViewById(R.id.rButton);
         register.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
+            @Override
+			public void onClick(View v) {
             	if(true){
               startActivity(new Intent(getApplicationContext(),Registration.class));
             	}
@@ -126,7 +129,8 @@ protected void onCreate(Bundle savedInstanceState) {
         final Button signIn = (Button) findViewById(R.id.sButton);
         signIn.setOnClickListener(new View.OnClickListener() {
         	//http://stackoverflow.com/questions/21668632/android-check-length-of-a-string
-            public void onClick(View v) {
+            @Override
+			public void onClick(View v) {
             	
             		String  eMail =eMailInsert.getText().toString();
             	
@@ -193,6 +197,7 @@ protected void onCreate(Bundle savedInstanceState) {
 	/* (non-Javadoc)
 	 * @see activitys.ConnectedActivity#isOnline(android.content.Context)
 	 */
+	@Override
 	public boolean isOnline(Context context) {
 	    ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 	    android.net.NetworkInfo networkinfo = cm.getActiveNetworkInfo();

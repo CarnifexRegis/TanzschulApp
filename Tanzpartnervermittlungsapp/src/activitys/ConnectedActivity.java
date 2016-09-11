@@ -1,12 +1,12 @@
 package activitys;
 
-import com.example.Tanzpartnervermittlung.R;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.widget.Toast;
+
+import com.example.Tanzpartnervermittlung.R;
 
 // TODO: Auto-generated Javadoc
 /**

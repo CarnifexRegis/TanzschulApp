@@ -57,6 +57,7 @@ public class Menue extends ConnectedActivity {
 		//button to open SearchDancingPartner Activity and pass on i and gender
 		final Button tpFinden = (Button) findViewById(R.id.TpFinden);
 		tpFinden.setOnClickListener(new View.OnClickListener() {
+			@Override
 			public void onClick(View v) {
 		
 				Intent intent = new Intent(getApplicationContext(),SearchForDancingpartner.class);
@@ -71,6 +72,7 @@ public class Menue extends ConnectedActivity {
 		
 		final Button myProfile = (Button) findViewById(R.id.Profil);
 		myProfile.setOnClickListener(new View.OnClickListener() {
+			@Override
 			public void onClick(View v) {
 Intent intent = new Intent(getApplicationContext(),EditProfile.class);
 				intent.putExtra("ID", ID);
@@ -81,6 +83,7 @@ Intent intent = new Intent(getApplicationContext(),EditProfile.class);
 	
 	final Button myKurs = (Button) findViewById(R.id.mMyKurs);
 	myKurs.setOnClickListener(new View.OnClickListener() {
+		@Override
 		public void onClick(View v) {
 			Intent intent = new Intent(getApplicationContext(),AssignToKurs.class);
 			intent.putExtra("ID", ID);
