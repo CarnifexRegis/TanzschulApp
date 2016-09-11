@@ -4,14 +4,10 @@ import model.ProfileData;
 import task.ForeignProfileTask;
 
 import com.example.Tanzpartnervermittlung.R;
-
-import android.app.Activity;
-import android.app.Application;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.View;

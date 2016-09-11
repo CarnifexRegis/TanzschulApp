@@ -26,7 +26,6 @@ public class Menue extends ConnectedActivity {
 	 public static final String prefName = "MyPrefsFile";
 	private int ID ;
 	private boolean gender;
-	private final Menue menue = this;
 	
 	/* (non-Javadoc)
 	 * @see android.app.Activity#onCreate(android.os.Bundle)

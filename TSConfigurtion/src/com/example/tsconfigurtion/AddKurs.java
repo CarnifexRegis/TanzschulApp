@@ -44,7 +44,6 @@ private Button addKursB;
 private Spinner stringDayS;
 private Spinner kustuS;
 private Spinner matureS;
-private Calendar calendar;
 
 /**
  * On create.
@@ -176,7 +175,6 @@ private Calendar calendar;
 			}
 		});
 		dateYearS = (Spinner) findViewById(R.id.addYearSpinner);
-		ArrayList<String> itemList = new ArrayList<String>();
 		/**
 		 * @source http://stackoverflow.com/questions/2215069/inserting-the-current-year-into-a-textview
 		 */

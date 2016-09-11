@@ -3,8 +3,6 @@ package task;
 import protocol.Command;
 import protocol.ErrorCode;
 import activitys.AssignToKurs;
-import activitys.Menue;
-import android.app.Activity;
 import android.util.Log;
 import request.GetKursRequest;
 import response.GetKursResponse;

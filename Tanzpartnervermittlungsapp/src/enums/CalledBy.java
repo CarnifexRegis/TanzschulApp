@@ -1,7 +1,5 @@
 package enums;
 
-import android.app.Activity;
-
 // TODO: Auto-generated Javadoc
 /**
  * @author Simon Stolz

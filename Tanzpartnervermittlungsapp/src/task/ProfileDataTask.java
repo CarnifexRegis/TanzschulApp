@@ -3,15 +3,9 @@ package task;
 import model.ProfileData;
 import protocol.Command;
 import protocol.ErrorCode;
-import request.LoginRequest;
 import request.ProfileDataRequest;
-import response.LoginResponse;
 import response.ProfileDataResponse;
-import response.RegisterResponse;
 import activitys.EditProfile;
-import activitys.LogIn;
-import activitys.Registration;
-import activitys.ShowProfile;
 import android.util.Log;
 
 // TODO: Auto-generated Javadoc

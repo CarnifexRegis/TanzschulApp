@@ -5,11 +5,9 @@ import protocol.ErrorCode;
 import request.UpdateLinkRequest;
 import response.UpdateLinkResponse;
 import activitys.AssignToKurs;
-import activitys.EditProfile;
 import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
-import android.widget.ToggleButton;
 // TODO: Auto-generated Javadoc
 
 /**

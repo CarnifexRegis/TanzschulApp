@@ -3,13 +3,8 @@ package task;
 import protocol.Command;
 import protocol.ErrorCode;
 import activitys.EditProfile;
-import activitys.Menue;
-import activitys.Registration;
-import android.app.Activity;
 import android.util.Log;
-import request.RegisterRequest;
 import request.UpdateProfileRequest;
-import response.RegisterResponse;
 import response.UpdateProfileResponse;
 
 

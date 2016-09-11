@@ -44,11 +44,8 @@ public class Adapter extends ArrayAdapter<ProfileChart> {
 	 * */
 		ImageView ivProfilePic = (ImageView) ProfileChartView.findViewById(R.id.pictureView);	
 		TextView tvname = (TextView) ProfileChartView.findViewById(R.id.nameView);
-		TextView tvAge = (TextView) ProfileChartView.findViewById(R.id.ageView);
 	    TextView tvViewOfAge = (TextView) ProfileChartView.findViewById(R.id.ViewOfAge);
-	    TextView Tvkursstart = (TextView) ProfileChartView.findViewById(R.id.kursstartView);
         TextView tvViewOfKursstart = (TextView) ProfileChartView.findViewById(R.id.ViewOfKursstart);
-        TextView tvKurszeit = (TextView) ProfileChartView.findViewById(R.id.kurszeitView);
         TextView tvViewOfKurszeit = (TextView) ProfileChartView.findViewById(R.id.ViewOfKurszeit);
        
         Log.d("derp", "tvname = " + tvname);

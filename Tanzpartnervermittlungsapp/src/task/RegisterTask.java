@@ -5,9 +5,7 @@ package task;
 import protocol.Command;
 import protocol.ErrorCode;
 import request.RegisterRequest;
-import response.LoginResponse;
 import response.RegisterResponse;
-import activitys.LogIn;
 import activitys.Registration;
 import android.util.Log;
 

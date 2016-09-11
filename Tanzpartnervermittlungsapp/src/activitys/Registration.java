@@ -23,11 +23,6 @@ public class Registration extends ConnectedActivity {
 
 
 	private TextView rErrorView;
-	private  TextView rFNErrorView;
-	private TextView rLNErrorView;
-	private TextView rAgeErrorView;
-	private TextView rEmailErrorView;
-	private TextView rKeyErrorView;
 	private EditText rFNameInsert;
 	private EditText rLNameInsert;
 	private EditText rAgeInsert;

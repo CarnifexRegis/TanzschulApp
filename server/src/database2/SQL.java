@@ -30,7 +30,7 @@ SecureRandom random = new SecureRandom();
 private Connection c;
 
 // TODO DEBUGGING
-private int i = 0;
+
 //https://coderanch.com/t/300886/JDBC/databases/Proper-close-Connection-Statement-ResultSet
 // TODO try out that fancy shit if you have leaft over time
 /**

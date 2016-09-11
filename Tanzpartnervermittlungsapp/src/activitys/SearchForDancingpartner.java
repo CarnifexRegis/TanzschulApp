@@ -5,15 +5,11 @@ package activitys;
 	import java.util.ArrayList;
 
 import model.Adapter;
-import model.Kursbuchung;
 import model.ProfileChart;
 import com.example.Tanzpartnervermittlung.R;
 import task.UpdateChartTask;
-import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;

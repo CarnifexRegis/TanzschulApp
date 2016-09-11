@@ -4,7 +4,6 @@ package model;
 
 import com.example.tsconfigurtion.Login;
 import com.example.tsconfigurtion.R;
-import com.example.tsconfigurtion.R.string;
 
 import android.app.Activity;
 import android.content.Context;
