@@ -4,44 +4,56 @@ package database;
  * TODO
  */
 public class Picture {
-	private String source;
-	private String name;
-	private int called;
-	private int gotright;
-	private int inarow;
-	private String showAs;
-
-	public Picture() {}
-
-	public String getSource() {
-		return source;
+	String clientSource;
+	String serverSource;
+	int idp;
+	long id;
+	boolean me;
+	public Picture(String clientSource, String serverSource, int idp,long id) {
+		super();
+		this.clientSource = clientSource;
+		this.serverSource = serverSource;
+		this.idp = idp;
+		this.id = id;
+		if(idp == -1){
+			me =  true ;
+		}
+		
+		
 	}
-
-	public String getName() {
-		return name;
+	public Picture(){
+		super();
+		clientSource = null;	
+		}	
+	public String getClientSource() {
+		return clientSource;
 	}
-
-	public void setSource(String source) {
-		this.source = source;
+	public void setClientSource(String clientSource) {
+		this.clientSource = clientSource;
 	}
-
-	public void setName(String name) {
-		this.name = name;
+	public String getServerSource() {
+		return serverSource;
 	}
-
-
-	public void setShowAs(String showAs) {
-		this.showAs = showAs;
+	public void setServerSource(String serverSource) {
+		this.serverSource = serverSource;
 	}
-
-	/**
-	 *
-	 * @param o The Picture to be compared
-	 * @return  if the two Pictures match in all their attributes
-	 */
-	@Override
-	public boolean equals(Object o) {
-		Picture p = (Picture) o;
-		return (p.source.equals(source) && p.name.equals(name) && p.called == called && p.gotright == gotright && p.inarow == inarow);
+	public int getIdp() {
+		return idp;
 	}
+	public void setIdp(int idp) {
+		this.idp = idp;
+	}
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
+	public boolean isMe() {
+		return me;
+	}
+	public void setMe(boolean me) {
+		this.me = me;
+	}
+	
 }

@@ -1,22 +1,37 @@
 package activitys;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.List;
+import java.util.Random;
+
 import model.ProfileData;
 import task.ProfileDataTask;
 import task.UpdateProfileTask;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.graphics.Bitmap;
+import android.media.MediaScannerConnection;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.Tanzpartnervermittlung.R;
 
+import database.Picture;
 import database.TsDataSource;
 
 
@@ -40,7 +55,7 @@ public class EditProfile extends ConnectedActivity {
 	private EditText heightInsert;
 	private TextView nView;
 	private CheckBox paCheck;
-	
+	private static final String LOG_TAG = "EditProfile";
 	private EditProfile edp = this;
 	private int id;
 	private String pn;
@@ -51,6 +66,9 @@ public class EditProfile extends ConnectedActivity {
 	private boolean gender;
 	private ImageView pic;
 	private static final int PICK_FROM_GALLERY = 2;
+	//private static final  Random generator = new Random();
+	private SharedPreferences prefs;
+	int count;
 	
 
 	/* (non-Javadoc)
@@ -64,6 +82,8 @@ public class EditProfile extends ConnectedActivity {
 			}
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.edit_profile);
+		 prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+		 count = prefs.getInt("count", 0);
 		 pnInsert = (EditText) findViewById(R.id.pNumberInsert);
 		 pTextInsert = (EditText) findViewById(R.id.aboutMeInsert);
 		 ageInsert = (EditText) findViewById(R.id.ageInsert);
@@ -75,8 +95,14 @@ public class EditProfile extends ConnectedActivity {
 		 
 	ProfileDataTask pdTask = new ProfileDataTask(edp,id);
     	pdTask.execute();
-    	
-		
+    	dataSource = new TsDataSource(this);
+        Log.d(LOG_TAG, "Die Datenquelle wird geöffnet.");
+        dataSource.open();
+        Picture picture = dataSource.createPicture("bla", "bla", 1000);
+   
+     
+
+       
 		// This Button reads the Users inserted information and saves it in a ProfileDataForServer Object 
 		final Button ready = (Button) findViewById(R.id.fertigButton);
         ready.setOnClickListener(new View.OnClickListener() {
@@ -122,6 +148,7 @@ public class EditProfile extends ConnectedActivity {
 				 intent.putExtra("crop", "true");
 		            intent.putExtra("aspectX", 300);
 		            intent.putExtra("aspectY", 300);
+		        
 		            try {
 		            	intent.putExtra("return-data", true);
 		            	startActivityForResult(Intent.createChooser(intent,"Complete action using"),     PICK_FROM_GALLERY);
@@ -179,7 +206,10 @@ public class EditProfile extends ConnectedActivity {
 	        if (extras2 != null) {
 	            Bitmap photo = extras2.getParcelable("data");
 	            pic.setImageBitmap(photo);
-	            dataSource = new TsDataSource(this);
+	            dataSource.	amendPic(saveImage(photo),null, -1);
+	            Log.d(LOG_TAG, "Die Datenquelle wird geschlossen.");
+	            dataSource.close();
+
 
 	        }}
 	    }
@@ -202,5 +232,70 @@ public class EditProfile extends ConnectedActivity {
 				
 			}	
 	}
-	
-	}
+	  
+	  //http://www.geeks.gallery/saving-image/
+	  private String saveImage(Bitmap finalBitmap) {
+          
+	        String root = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString();
+	        System.out.println(root +" Root value in saveImage Function");
+	        File myDir = new File(root + "/contact_images"); 
+	        if (!myDir.exists()) {
+	            myDir.mkdirs();
+	        }
+
+	        Random generator = new Random();
+	        int n = 10000;
+	        n = generator.nextInt(n);
+	       
+	       String  iname = "Image-" + count + ".jpg";
+	       count = count++;
+	        File file = new File(myDir, iname);
+
+	        if (file.exists())
+
+	            file.delete();
+
+	        try {
+
+	            FileOutputStream out = new FileOutputStream(file);
+	            finalBitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
+	            out.flush();
+	            out.close();
+	        }
+	        catch (Exception e) {
+	            e.printStackTrace();
+	        }
+
+	 
+
+	        // Tell the media scanner about the new file so that it is
+
+	        // immediately available to the user.
+
+	        MediaScannerConnection.scanFile(this, new String[] { file.toString() }, null,
+
+	                new MediaScannerConnection.OnScanCompletedListener() {
+	        	@Override
+	                    public void onScanCompleted(String path, Uri uri) {
+
+	                        Log.i("ExternalStorage", "Scanned " + path + ":");
+
+	                        Log.i("ExternalStorage", "-> uri=" + uri);
+
+	                    }
+	        });
+	        File[] files = myDir.listFiles();
+	        int numberOfImages=files.length;
+	        System.out.println("Total images in Folder "+numberOfImages);
+	        return  Environment.getExternalStorageDirectory()+ "/Pictures/contact_images/"+iname;
+	  }
+	  @Override
+	  public void onPause(){
+		  super.onPause();
+		  Editor editor = prefs.edit();
+	      editor.putInt("count",count);
+	      editor.commit();
+		  dataSource.close();
+	  }
+	 }
+

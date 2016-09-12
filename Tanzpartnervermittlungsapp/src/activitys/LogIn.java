@@ -86,7 +86,6 @@ protected void onCreate(Bundle savedInstanceState) {
 
             @Override
             public void onClick(View v) {
-                Editor editor = prefs.edit();
                 if(safelogin.isChecked()){
                 	c = true;
                 	//editor.putBoolean("c ", true);  
@@ -94,7 +93,6 @@ protected void onCreate(Bundle savedInstanceState) {
                 	c = false;
             	     // editor.putBoolean("c ", false);
                 }
-                editor.commit();
             }
         });
 	   String p = prefs.getString("password", null);
