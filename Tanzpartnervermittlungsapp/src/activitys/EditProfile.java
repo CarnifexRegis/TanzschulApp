@@ -1,19 +1,11 @@
 package activitys;
-
-import java.io.IOException;
-
 import model.ProfileData;
 import task.ProfileDataTask;
 import task.UpdateProfileTask;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.DatabaseUtils;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -24,6 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.Tanzpartnervermittlung.R;
+
+import database.TsDataSource;
 
 
 
@@ -37,6 +31,7 @@ import com.example.Tanzpartnervermittlung.R;
  */
 // Add Listeners for 2 Radio Groups and one Button Mabe do the first request
 public class EditProfile extends ConnectedActivity {
+	private TsDataSource dataSource;
 
 //	ProfileDataForServer data;
 	private EditText pnInsert;
@@ -47,7 +42,6 @@ public class EditProfile extends ConnectedActivity {
 	private CheckBox paCheck;
 	
 	private EditProfile edp = this;
-
 	private int id;
 	private String pn;
 	private int height;
@@ -185,6 +179,7 @@ public class EditProfile extends ConnectedActivity {
 	        if (extras2 != null) {
 	            Bitmap photo = extras2.getParcelable("data");
 	            pic.setImageBitmap(photo);
+	            dataSource = new TsDataSource(this);
 
 	        }}
 	    }
