@@ -117,22 +117,35 @@ public class TsDataSource {
        * @return
        */
       public Picture getMyPic(){
+    	  String countQuery = "SELECT * FROM picture WHERE idp = -1 ;";
+  	    Cursor cursor = db.rawQuery(countQuery, null);
+  	    int cnt = cursor.getCount();
+  	    cursor.close(); 
+  	  Picture pic = null;
+  	  if(cnt>0){
     	  Cursor c = db.query(TsDbHelper.TABLE_PICTURE,columns,TsDbHelper.COLUMN_IDP + "=" + -1,null,null,null,null);
     	  c.moveToFirst();
-    	  Picture pic = cursorToPicture(c);
-    	  c.close();
-    	return  pic;
-    	 
-		
+    	  pic = cursorToPicture(c);
+    	//  c.close();
+    	
+    	}
+  	  return pic;
 		}
       public void amendPic(String cs, String ss,int idp ){
     	  /**
     	   * http://stackoverflow.com/questions/15645192/inserting-integer-values-into-mysql-database-using-variables
     	   */
 
-    	  String countQuery = "SLECT * FROM picture WHERE idp = "+idp+" ;";
+    	  String countQuery = "SELECT * FROM picture WHERE idp = "+idp+" ;";
     	    Cursor cursor = db.rawQuery(countQuery, null);
-    	    int cnt = cursor.getCount();
+    	    int cnt= 0;
+    	    try{
+    	     cnt = cursor.getCount();}
+    	    catch(Exception e){
+    	    	e.printStackTrace();
+    	    }
+    	   
+    	   
     	    cursor.close();
     	
     	  if(cnt>0){
@@ -148,6 +161,8 @@ public class TsDataSource {
  		 	}catch(Exception e){
  		 		e.printStackTrace();
  		 	}
+    	  }else{
+    		  createPicture(cs, ss, idp);
     	  }
       }
       /**

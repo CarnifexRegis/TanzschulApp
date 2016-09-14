@@ -21,6 +21,7 @@ updatelink("updatelink"),
 alogin("alogin"),
 agetkurs("agetkurs"),
 addkurs("addKurs"),
+updateimage("updateimage"),
 adeletekurs("adeletekurs");
 
 	private String text;

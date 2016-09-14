@@ -16,7 +16,8 @@ public enum Command {
 getprofile("getprofile"), 
  foreignprofile("foreignprofile"),
 getkurs("getkurs"),
-updatelink("updatelink");
+updatelink("updatelink"),
+updateimage("updateimage");
 
 	private String text;
 

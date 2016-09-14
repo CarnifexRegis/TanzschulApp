@@ -1,22 +1,32 @@
 package activitys;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 import java.util.Random;
 
 import model.ProfileData;
 import task.ProfileDataTask;
 import task.UpdateProfileTask;
+import android.Manifest;
+import android.app.Activity;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.MediaScannerConnection;
+import android.media.MediaScannerConnection.MediaScannerConnectionClient;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
+import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -49,6 +59,11 @@ public class EditProfile extends ConnectedActivity {
 	private TsDataSource dataSource;
 
 //	ProfileDataForServer data;
+	private static final int REQUEST_EXTERNAL_STORAGE = 1;
+	private static String[] PERMISSIONS_STORAGE = {
+	        Manifest.permission.READ_EXTERNAL_STORAGE,
+	        Manifest.permission.WRITE_EXTERNAL_STORAGE
+	};
 	private EditText pnInsert;
 	private EditText pTextInsert;
 	private EditText ageInsert;
@@ -68,14 +83,20 @@ public class EditProfile extends ConnectedActivity {
 	private static final int PICK_FROM_GALLERY = 2;
 	//private static final  Random generator = new Random();
 	private SharedPreferences prefs;
-	int count;
-	
+	private int count;
+//	private EditProfile ep;
+	private Picture myPicture;
+	Bitmap myBitmap = null;
+	static final String appDirectoryName = "TanzschulVermittlung";
+	static final File imageRoot = new File(Environment.getExternalStoragePublicDirectory(
+	        Environment.DIRECTORY_PICTURES), appDirectoryName);
 
 	/* (non-Javadoc)
 	 * @see android.app.Activity#onCreate(android.os.Bundle)
 	 */
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle 
+			savedInstanceState) {
 		 Bundle extras = getIntent().getExtras();
 			if(extras != null){
 				id = extras.getInt("ID");
@@ -95,11 +116,13 @@ public class EditProfile extends ConnectedActivity {
 		 
 	ProfileDataTask pdTask = new ProfileDataTask(edp,id);
     	pdTask.execute();
-    	dataSource = new TsDataSource(this);
+    	
+    //	dataSource.close();
         Log.d(LOG_TAG, "Die Datenquelle wird geöffnet.");
-        dataSource.open();
-        Picture picture = dataSource.createPicture("bla", "bla", 1000);
+        
+      //  Picture picture = dataSource.createPicture("bla", "bla", 1000);
    
+       getInternalPic();
      
 
        
@@ -181,7 +204,21 @@ public class EditProfile extends ConnectedActivity {
 		heightInsert.setText(pd.getHeight()+"");
 				}
 	
-	
+	public Bitmap getInternalPic(){
+    	 dataSource = new TsDataSource(this);
+     	dataSource.open();
+     	try{
+     	myPicture =dataSource.getMyPic();
+     	myBitmap  = BitmapFactory.decodeFile(myPicture.getClientSource());
+     	}catch(Exception e){
+     		Toast.makeText(this, "Es exestiert noch kein Bild in der Datenbank",Toast.LENGTH_LONG).show();
+     	}
+     	
+     	if(myBitmap != null){
+     	pic.setImageBitmap(myBitmap);
+     	}
+     	return myBitmap;
+     	}
 	/**
 	 * Update sucessful.
 	 */
@@ -206,9 +243,12 @@ public class EditProfile extends ConnectedActivity {
 	        if (extras2 != null) {
 	            Bitmap photo = extras2.getParcelable("data");
 	            pic.setImageBitmap(photo);
-	            dataSource.	amendPic(saveImage(photo),null, -1);
+	            dataSource = new TsDataSource(this);
+	            saveStorage(photo);
+	           // saveToInternalStorage(photo);
+	            //dataSource.	amendPic(saveToInternalStorage(photo),null, -1);
 	            Log.d(LOG_TAG, "Die Datenquelle wird geschlossen.");
-	            dataSource.close();
+	       //     dataSource.close();
 
 
 	        }}
@@ -234,68 +274,133 @@ public class EditProfile extends ConnectedActivity {
 	}
 	  
 	  //http://www.geeks.gallery/saving-image/
-	  private String saveImage(Bitmap finalBitmap) {
-          
-	        String root = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString();
-	        System.out.println(root +" Root value in saveImage Function");
-	        File myDir = new File(root + "/contact_images"); 
-	        if (!myDir.exists()) {
-	            myDir.mkdirs();
-	        }
+//	  private String saveImage(Bitmap finalBitmap) {
+//          
+//	        String root = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString();
+//	        System.out.println(root +" Root value in saveImage Function");
+//	        File myDir = new File(root + "/contact_images"); 
+//	        if (!myDir.exists()) {
+//	            myDir.mkdirs();
+//	        }
+//
+//	        Random generator = new Random();
+//	        int n = 10000;
+//	        n = generator.nextInt(n);
+//	       
+//	       String  iname = "Image-" + count + ".jpg";
+//	       count = count++;
+//	        File file = new File(myDir, iname);
+//
+//	        if (file.exists())
+//
+//	            file.delete();
+//
+//	        try {
+//
+//	            FileOutputStream out = new FileOutputStream(file);
+//	            finalBitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
+//	            out.flush();
+//	            out.close();
+//	        }
+//	        catch (Exception e) {
+//	            e.printStackTrace();
+//	        }
+//
+//	 
+//
+//	        // Tell the media scanner about the new file so that it is
+//
+//	        // immediately available to the user.
+//
+//	        MediaScannerConnection.scanFile(this, new String[] { file.toString() }, null,
+//
+//	                new MediaScannerConnection.OnScanCompletedListener() {
+//	        	@Override
+//	                    public void onScanCompleted(String path, Uri uri) {
+//
+//	                        Log.i("ExternalStorage", "Scanned " + path + ":");
+//
+//	                        Log.i("ExternalStorage", "-> uri=" + uri);
+//
+//	                    }
+//	        });
+//	        File[] files = myDir.listFiles();
+//	        int numberOfImages=files.length;
+//	        System.out.println("Total images in Folder "+numberOfImages);
+//	        return  Environment.getExternalStorageDirectory()+ "/Pictures/contact_images/"+iname;
+//	  }
+	  private String saveStorage(Bitmap bitmapImage){
+		  verifyStoragePermissions(this);
+		  ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+		  bitmapImage.compress(Bitmap.CompressFormat.PNG, 40, bytes);
 
-	        Random generator = new Random();
-	        int n = 10000;
-	        n = generator.nextInt(n);
-	       
-	       String  iname = "Image-" + count + ".jpg";
-	       count = count++;
-	        File file = new File(myDir, iname);
+		  //you can create a new file name "test.BMP" in sdcard folder.
+		  File f = new File(Environment.getExternalStorageDirectory()
+		                          + File.separator + "profile+"+count+".bmp");
+		  count ++;
+		  try {
+			f.createNewFile();
+			FileOutputStream fo = new FileOutputStream(f);
+			fo.write(bytes.toByteArray());
 
-	        if (file.exists())
-
-	            file.delete();
-
-	        try {
-
-	            FileOutputStream out = new FileOutputStream(file);
-	            finalBitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
-	            out.flush();
-	            out.close();
-	        }
-	        catch (Exception e) {
-	            e.printStackTrace();
-	        }
-
-	 
-
-	        // Tell the media scanner about the new file so that it is
-
-	        // immediately available to the user.
-
-	        MediaScannerConnection.scanFile(this, new String[] { file.toString() }, null,
-
-	                new MediaScannerConnection.OnScanCompletedListener() {
-	        	@Override
-	                    public void onScanCompleted(String path, Uri uri) {
-
-	                        Log.i("ExternalStorage", "Scanned " + path + ":");
-
-	                        Log.i("ExternalStorage", "-> uri=" + uri);
-
-	                    }
-	        });
-	        File[] files = myDir.listFiles();
-	        int numberOfImages=files.length;
-	        System.out.println("Total images in Folder "+numberOfImages);
-	        return  Environment.getExternalStorageDirectory()+ "/Pictures/contact_images/"+iname;
+		// remember close de FileOutput
+			fo.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//write the bytes in file
+		
+		  return f.getAbsolutePath();
 	  }
+	  private String saveToInternalStorage(Bitmap bitmapImage){
+		  //http://stackoverflow.com/questions/17674634/saving-and-reading-bitmaps-images-from-internal-memory-in-android
+		 // http://stackoverflow.com/questions/20523658/how-to-create-application-specific-folder-in-android-gallery
+	         // path to /data/data/yourapp/app_data/imageDir
+	      //  File directory = cw.getDir("PROFILE_PICS", Context.MODE_PRIVATE);
+	        // Create imageDir
+		  verifyStoragePermissions(this);
+		  imageRoot.mkdirs();
+	        File mypath=new File(imageRoot,"profile_"+ count +".jpg");
+	        scanPhoto(mypath.toString());	
+	        count ++;
+	        FileOutputStream  fos = null;
+	        try {
+	        	mypath.createNewFile();          
+	        	 fos = new FileOutputStream(mypath);
+	            
+	       // Use the compress method on the BitMap object to write image to the OutputStream
+	            bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, fos);
+	            fos.close();
+	        } catch (Exception e) {
+	        	Toast.makeText(this, "Couldn´t write Picture.", Toast.LENGTH_LONG).show();
+	              e.printStackTrace();
+	        } 
+	         
+	        return mypath.getAbsolutePath();
+	    }
 	  @Override
 	  public void onPause(){
 		  super.onPause();
 		  Editor editor = prefs.edit();
 	      editor.putInt("count",count);
 	      editor.commit();
-		  dataSource.close();
+		 // dataSource.close();
 	  }
+	  public static void verifyStoragePermissions(Activity activity) {
+		 // http://stackoverflow.com/questions/8854359/exception-open-failed-eacces-permission-denied-on-android
+		    // Check if we have write permission
+		    int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+		    if (permission != PackageManager.PERMISSION_GRANTED) {
+		        // We don't have permission so prompt the user
+		        ActivityCompat.requestPermissions(
+		                activity,
+		                PERMISSIONS_STORAGE,
+		                REQUEST_EXTERNAL_STORAGE
+		        );
+		    }
+		}
+	  
 	 }
 

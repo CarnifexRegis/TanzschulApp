@@ -91,6 +91,45 @@ private Connection c;
 			
 			}
 			try{
+				Class.forName("org.sqlite.JDBC");
+				stmt = c.createStatement();
+				String sql = "CREATE TABLE PIC "+
+						"(ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+						" SURL TEXT NOT NULL, " +
+						" CURL TEXT NOT NULL ;";
+	
+				stmt.executeUpdate(sql);
+
+				if(stmt != null){
+					stmt.close();}
+				c.commit();
+				System.out.println("New PIC Instance");
+			}catch(Exception e1){
+				System.err.println( e1.getClass().getName() + ": " + e1.getMessage() );
+		        System.exit(0);
+			}
+			try{
+				Class.forName("org.sqlite.JDBC");
+				stmt = c.createStatement();
+				String sql = "CREATE TABLE CHAT "+
+						"(ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+						" ID1 INTEGER NOT NULL, " +
+						" ACCEPTED INTEGER NOT NULL, " +
+						" ID2 INTEGER NOT NULL ;";
+	
+				stmt.executeUpdate(sql);
+
+				if(stmt != null){
+					stmt.close();}
+				c.commit();
+				System.out.println("New PIC Instance");
+			}catch(Exception e1){
+				System.err.println( e1.getClass().getName() + ": " + e1.getMessage() );
+		        System.exit(0);
+			}
+		
+		
+			try{
 				//TODO buggy
 				String sql2 = "SELECT COUNT(*) AS I FROM ADMIN ;";
 				//String sql = "SELECT COUNT(*) AS PS FROM USER WHERE EMAIL = 'hallo' AND PASSWORD = 'geheim' ;";

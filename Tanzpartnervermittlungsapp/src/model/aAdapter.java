@@ -18,7 +18,7 @@ import android.widget.ToggleButton;
 import com.example.Tanzpartnervermittlung.R;
 
 /**
- * The Class aAdapter.
+ * An Adapter for the ListView in AssingToKurs class
  *
  * @author Simon Stolz
  * @Sources: http://stackoverflow.com/questions/21053979/listview-duplicates-android
