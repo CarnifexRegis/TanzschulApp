@@ -68,6 +68,14 @@ private Connection c;
 					stmt.close();
 					}
 			}catch(Exception e){
+				/**
+				 * The table KURS containing the data of several dancing lessons
+				 * ID 			The ID of the object in the table
+				 * KURSSTUFE	the level of the dancing lesson
+				 * DATUM 		the date the dancing lessons start
+				 * WOCHENTAG	The day of the week the dancing lesson takes place
+				 * UHRZEIT		The time the dancing lesson takes place
+				 */
 				try{
 					Class.forName("org.sqlite.JDBC");
 					stmt = c.createStatement();
@@ -91,12 +99,21 @@ private Connection c;
 			
 			}
 			try{
+				/**
+				 * The Table pic used to safe profile pictures
+				 * ID		The ID of the object in the table
+				 * IMAGE 	An image encoded to an base64 String
+				 * UID 		The user the image belongs to
+				 * UIDP		The users public identifier
+				 * 
+				 */
 				Class.forName("org.sqlite.JDBC");
 				stmt = c.createStatement();
 				String sql = "CREATE TABLE PIC "+
 						"(ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
-						" SURL TEXT NOT NULL, " +
-						" CURL TEXT NOT NULL ;";
+						" IMAGE TEXT NOT NULL, " +
+						" UIDP INTEGER NOT NULL, " +
+						"UID INTEGER NOT NULL ;";
 	
 				stmt.executeUpdate(sql);
 
@@ -108,6 +125,9 @@ private Connection c;
 				System.err.println( e1.getClass().getName() + ": " + e1.getMessage() );
 		        System.exit(0);
 			}
+			/**
+			 * The Table Chat
+			 */
 			try{
 				Class.forName("org.sqlite.JDBC");
 				stmt = c.createStatement();
@@ -144,6 +164,12 @@ private Connection c;
 					}
 			}catch(Exception e){
 				try{
+					/**
+					 * The Table ADMIN used to provide special User that can modify the database e.g. kurs TABLE
+					 * ID		The ID of the object in the table
+					 * NAME		The admins Name
+					 * KEY		The admins  KEY needed to access his privilege permissions
+					 */
 					Class.forName("org.sqlite.JDBC");
 					stmt = c.createStatement();
 					String sql = "CREATE TABLE ADMIN "+
@@ -170,6 +196,21 @@ private Connection c;
 			//	dbm =c.getMetaData();	
 			//tables = dbm.getTables(null,null,"USER",null);
 			try{
+				/**
+				 * The Table User each User has to register his data is saved here
+				 * ID		The private ID of the object in the table
+				 * IPD		The public ID other Users may get to know
+				 * EMAIL	The users e-mail he needs it for login purposes
+				 * PASSWORD	The users key used to access his account
+				 * LN		The users last name
+				 * FN		The users first name
+				 * GENDER	The users gender
+				 * AGE		The users age
+				 * PTEXT	Some user created about me text
+				 * PNumber	The users phone number does not need to be specified
+				 * PA		Tells if the users age is public to other users
+				 * height	The users height does not nedd to be specified
+				 */
 				//TODO buggy
 				String sql2 = "SELECT COUNT(*) AS I FROM USER ;";
 				//String sql = "SELECT COUNT(*) AS PS FROM USER WHERE EMAIL = 'hallo' AND PASSWORD = 'geheim' ;";
@@ -229,6 +270,11 @@ private Connection c;
 			}catch(Exception e){
 				
 					try{
+						/**
+						 * The table LINK links the USER and KURS table
+						 * UID	The users id
+						 * KID	The lessons id
+						 */
 					Class.forName("org.sqlite.JDBC");
 						stmt= c.createStatement();
 						String sql = "CREATE TABLE LINK" +
@@ -350,10 +396,10 @@ private Connection c;
 	//methods
 	// sources: http://stackoverflow.com/questions/23851158/check-if-some-string-is-in-sqlite-database
 	/**
-	 * E mail exists.
+	 * Checks if an entry with that e-mail value exists
 	 *
-	 * @param em  the users e- mail
-	 * @return true, if thsi e-mail exists in the dtabase
+	 * @param em  the privided e-mail
+	 * @return true, if this e-mail exists in the database
 	 */
 	public boolean eMailExists(String em){
 		Statement stmt = null;
@@ -385,9 +431,9 @@ private Connection c;
 		}
 	
 	/**
-	 * Aviable ID.
+	 * checks if an id is aviable
 	 *
-	 * @param id the id
+	 * @param id the provided id(auto generated in addUser)
 	 * @return true, if successful
 	 */
 	
@@ -522,11 +568,11 @@ private Connection c;
 	}
 	
 	/**
-	 * A log in.
+	 * The login for admins
 	 *
-	 * @param n the n
-	 * @param k the k
-	 * @return the int
+	 * @param n the admins name
+	 * @param k the admins key
+	 * @return if ther is a match returns the admins id else returns -1 in case of an  exception it returns -2
 	 */
 	public 	int aLogIn(String n, String k){ // id check
 		int i;
@@ -582,9 +628,9 @@ private Connection c;
 		}
 	
 	/**
-	 * Aviable IDP.
+	 * Check if the provided idp value already exists in the database
 	 *
-	 * @param idp the idp
+	 * @param idp the provieded public identifer
 	 * @return true, if successful
 	 */
 	public boolean aviableIDP(String idp)
@@ -617,16 +663,16 @@ private Connection c;
 	}
 	
 	/**
-	 * Adds the user.
+	 * Adds an new  user to the  USER table.
 	 *
-	 * @param eMail the e mail
-	 * @param ps the ps
-	 * @param ln the ln
-	 * @param fn the fn
-	 * @param g the g
-	 * @param age the age
-	 * @param pa the pa
-	 * @return the int
+	 * @param eMail the users e-mail
+	 * @param ps the users key
+	 * @param ln the users last name
+	 * @param fn the users first name
+	 * @param g the users gender
+	 * @param age the users  age
+	 * @param pa indicates if the users age is public to other users
+	 * @return returns the new users id
 	 */
 	public int addUser(String eMail, String ps,String ln,  String fn, int g,int age,int pa){
 		
@@ -736,16 +782,6 @@ private Connection c;
 		}
 	
 	/**
-	 * Adds the kurs.
-	 *
-	 * @param kursstufe the kursstufe
-	 * @param datum the datum
-	 * @param wochentag the wochentag
-	 * @param uhrzeit the uhrzeit
-	 * @return true, if successful
-	 */
-	
-	/**
 	 * Adds a new column to the Kurs table .
 	 * @param kursstufe		level of the dancing lessons see {@link [<enums>.]<Kursstufen>}
 	 * @param datum		 	java.sql.Date("yyyy-MM-dd")
@@ -791,8 +827,9 @@ private Connection c;
 	}
 	
 	/**
-	 * Creates a Connection between the KURS and USER table.
+	 * Deletes  all Connections between the KURS and USER table.
 	 */
+	// TODO not used
 	public void deleteAllLink(){
 		Statement stmt;
 		try{
@@ -811,9 +848,9 @@ private Connection c;
 	}
 
 	/**
-	 * Deletes an Kurs object and all references on it
+	 * Deletes an Kurs object(dancing lesson) and all references on it
 	 *
-	 * @param kid the kid
+	 * @param kid the id of the lesson
 	 * @return true, if successful
 	 */
 	public boolean deleteKurs(int kid){
@@ -844,8 +881,8 @@ private Connection c;
 	/**
 	 * deletes an specific link
 	 *
-	 * @param uid the UID
-	 * @param kid the KID
+	 * @param uid the users id
+	 * @param kid the lessons id
 	 * @return true, if successful
 	 */
 	public boolean deleteLink (int uid, int kid){
@@ -873,10 +910,10 @@ private Connection c;
 	}
 	
 	/**
-	 * Adds the link.
+	 * Adds adds a new link betwen a user and dancing lesson
 	 *
-	 * @param uid the uid
-	 * @param kid the kid
+	 * @param uid the users id
+	 * @param kid the lessons id
 	 * @return true, if successful
 	 */
 	public boolean addLink(int uid, int kid){
@@ -921,55 +958,22 @@ private Connection c;
 		}	}
 		return false;
 	}
-	
-	/**
-	 * My kurs.
-	 *
-	 * @param uid the uid
-	 * @return the array list
-	 */
-	public ArrayList<Integer> myKurs(int uid){
-		Statement stmt;
-		ArrayList<Integer> kursList = new ArrayList<Integer>();
-		//TODO also Extract UHRZEIT DATUM  KURSSTUFE
-		try{
-			//System.out.println(""+uid);
-			stmt = c.createStatement();
-			String sql = "SELECT KURS.ID AS ID FROM KURS JOIN LINK  ON LINK.KID = KURS.ID"
-					+ " JOIN USER ON LINK.UID = USER.ID "
-					+ "WHERE LINK.UID ='"+ uid +"' ;" ;
-			//TODO further testing althoug  method passed the first Tests 
-			ResultSet rs = stmt.executeQuery(sql);
-			while(rs.next()){
-				
-				int id = rs.getInt("ID");
-				System.out.println("Listed Kurs :"+id);
-				kursList.add(id);
-			}
-		
-			if (rs != null)rs.close();
-			if(stmt!= null)stmt.close();
-			
-		}catch(Exception e){
-			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-	        System.exit(0);
-			e.printStackTrace();
-		}
-		return kursList;
-	}
+
 	
 	/**
 	 * Restore password.
 	 */
 	public void restorePassword (){}
+	//TODO  not used
 	
 	/**
 	 * Full profiledata.
 	 */
 	public void fullProfiledata(){}
+	//TODO not used
 	
 	/**
-	 * Gets the profilecharts.
+	 * Gets data from KURS and USER table and puts it into  profile chart objects
 	 *
 	 * @param gender The gender of the requesting User
 	 * @param kstu 	The required dancing lesson "level"
@@ -1014,10 +1018,10 @@ private Connection c;
 	 * With this Method the User can modify the saved Data about himself.
 	 *
 	 * @param id 	The id of the users account used to verify himself
-	 * @param pn the pn
+	 * @param pn the phone number
 	 * @param height 	The users height
-	 * @param age the age
-	 * @param pText the text
+	 * @param age the users  age
+	 * @param pText the users about me text
 	 * @param pa 	This parameter indicates if the users Age shall be public
 	 * @return true, if successful
 	 */
@@ -1114,7 +1118,7 @@ private Connection c;
 /**
  * Checks if this id exists in the Database
  *
- * @param id the id
+ * @param id the users  id
  * @return 	returns true if it exists.
  * @attribute 	Checks if an User with this ID exists
  */
@@ -1149,9 +1153,9 @@ private Connection c;
 		}
 		
 		/**
-		 * Acheck ID.
+		 * checks if ht eproviede id exists in the admin table
 		 *
-		 * @param id the id
+		 * @param id the admins id
 		 * @return true, if successful
 		 */
 		public  boolean acheckID(int id){ // Login returns the user id
@@ -1185,7 +1189,7 @@ private Connection c;
 		}
 		/**
 		 * Recieves the ID and reads out the Gender according to the id.
-		 * @param id	ID of the User
+		 * @param id	ID of the user
 		 * @return		Returns the Gender of the User as int three Values are possible :
 		 * 				1 for female, 0 for male and -1 in case of an Error
 		 */
@@ -1219,13 +1223,13 @@ private Connection c;
 		}
 		
 		/**
-		 * Gets the profile data.
+		 * Gets the profile data o an specific user
 		 *
-		 * @param id the id
-		 * @return the profile data
+		 * @param id the users  id
+		 * @return the user sprofile data
 		 */
 		public ProfileData getProfileData(int id){
-			
+			// TODO might be buggy if i use thios in edit profile activity cause age
 			Statement stmt;
 			ProfileData pd ;
 			try {
@@ -1278,37 +1282,38 @@ private Connection c;
 			return pd;
 		}
 
-		/**
-		 * Read links.
-		 */
-		public void readLinks(){
-			Statement stmt ;
-			try{
-				stmt = c.createStatement();
-				String sql = "SELECT * FROM LINK;";
-				ResultSet rs = stmt.executeQuery(sql);
-				while(rs.next()){
-					System.out.println("Link ID: " + rs.getInt("ID")+
-							"Kurs ID: " +rs.getInt("KID")+
-							"User ID: "+rs.getInt("UID"));
-				}
-				if(stmt!= null)stmt.close();
-				if(rs!= null)rs.close();
-			}catch(Exception e){
-				System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-		        System.exit(0);
-				e.printStackTrace();
-			}
-		}
+//		/**
+//		 * Reads out all links don´t know why
+//		 * 
+//		 */
+//		public void readLinks(){
+//			Statement stmt ;
+//			try{
+//				stmt = c.createStatement();
+//				String sql = "SELECT * FROM LINK;";
+//				ResultSet rs = stmt.executeQuery(sql);
+//				while(rs.next()){
+//					System.out.println("Link ID: " + rs.getInt("ID")+
+//							"Kurs ID: " +rs.getInt("KID")+
+//							"User ID: "+rs.getInt("UID"));
+//				}
+//				if(stmt!= null)stmt.close();
+//				if(rs!= null)rs.close();
+//			}catch(Exception e){
+//				System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+//		        System.exit(0);
+//				e.printStackTrace();
+//			}
+//		}
 			
 			
 		
 		/**
-		 * Gets the kurs.
+		 * Gets data from KURS table
 		 *
-		 * @param kstu the kstu
-		 * @param uid the uid
-		 * @return the kurs
+		 * @param kstu the level of the dancing lesson
+		 * @param uid the  users id used to see if any links exists between him and any KURS object
+		 * @return the data of teh Kur object
 		 */
 		public ArrayList<Kurs> getKurs(int kstu, int uid){
 			Statement stmt;
@@ -1348,6 +1353,7 @@ private Connection c;
 			
 		}
 //		public boolean aAddKurs(SQLKurs kurs) {
+	//	TODO  outdated
 //			PreparedStatement p;
 //			try{
 //				String sql = String sql = "INSERT INTO K (ID, NAME,KEY)"+ 

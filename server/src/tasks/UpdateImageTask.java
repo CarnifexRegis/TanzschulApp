@@ -2,9 +2,6 @@ package tasks;
 
 import java.util.ArrayList;
 import java.util.Base64;
-
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import model.Model;
 import database2.ProfileChart;
 import protocol.AbstractHandler;
@@ -21,8 +18,6 @@ public class UpdateImageTask extends AbstractHandler{
 		String base64 = request.getBase64();
 		ArrayList<ProfileChart> antwort;
 		String ec;
-		byte[] decoded = Base64.getDecoder().decode(base64);
-		Bitmap bitmap = BitmapFactory.decodeByteArray(decoded, 0, decoded.length);
 		// TODO add possibility to ad Day Filter
 		
 		 Model m = Model.getInstance();
