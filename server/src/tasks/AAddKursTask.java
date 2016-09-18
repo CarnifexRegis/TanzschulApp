@@ -10,7 +10,7 @@ import response.AAddKursResponse;
 // TODO: Auto-generated Javadoc
 /**
  * @author Simon Stolz
- * The Class AAddKursTask.
+ * Returns an Error String encoded to xml
  */
 public class AAddKursTask extends AbstractHandler {
 	

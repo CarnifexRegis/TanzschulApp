@@ -5,6 +5,7 @@ import org.simpleframework.xml.Root;
 
 // TODO: Auto-generated Javadoc
 /**
+ * Requests
  * @author Simon Stolz
  */
 @Root (name = "updatelinkrequest")

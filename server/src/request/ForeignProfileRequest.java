@@ -6,7 +6,7 @@ import org.simpleframework.xml.Root;
 
 
 /**
- * The Class ForeignProfileRequest.
+ * Requests the Profiledata of an specific user object
  *
  * @author Simon Stolz
  */

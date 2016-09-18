@@ -11,7 +11,7 @@ import org.simpleframework.xml.stream.Style;
 // TODO: Auto-generated Javadoc
 
 /**
- * Every handler extends thsi class.
+ * Every handler extends this class.Provides the handle and parseXML method.
  *
  * @author Simon Stolz
  * Source:

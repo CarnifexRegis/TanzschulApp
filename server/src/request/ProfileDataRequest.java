@@ -5,7 +5,7 @@ import org.simpleframework.xml.Root;
 // TODO: Auto-generated Javadoc
 
 /**
- * 
+ * An User requests Information about himself
  * @author Simon Stolz
  */
 @Root (name= "profiledatarequest")

@@ -21,7 +21,7 @@ private String error;
 /**
  * Instantiates a new error code.
  *
- * @param error the error
+ * @param error the errors message
  */
 private ErrorCode(String error) {
 	this.error = error;
@@ -34,10 +34,10 @@ public String getError() {
 
 
 /**
- * From string.
+ * Gets the error Object from the error Message
  *
- * @param error the error
- * @return the error code
+ * @param error the errors message
+ * @return the error Message
  */
 public static ErrorCode fromString(String error) {
 

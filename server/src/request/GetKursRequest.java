@@ -5,7 +5,7 @@ import org.simpleframework.xml.Root;
 // TODO: Auto-generated Javadoc
 
 /**
- * The Class GetKursRequest.
+ * Requests information about several kursobjects
  *
  * @author Simon Stolz
  */

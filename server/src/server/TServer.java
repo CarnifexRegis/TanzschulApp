@@ -9,7 +9,7 @@ import org.eclipse.jetty.server.ServerConnector;
 
 
 /**
- * The Class TServer.
+ * This class hosts the jetty server
  *
  * @author Simon Stolz
  * Sources: http://www.pabst-software.de/doku.php?id=programmieren:java:android:httpclient:start

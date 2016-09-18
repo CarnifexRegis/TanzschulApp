@@ -4,6 +4,7 @@ import org.simpleframework.xml.Root;
 // TODO: Auto-generated Javadoc
 
 /**
+ * Requests information about several userobjects
  * @author Simon Stolz
  */
 @Root(name = "updatechartrequest")

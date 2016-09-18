@@ -6,7 +6,7 @@ import org.simpleframework.xml.Root;
 
 
 /**
- * The Class ALoginRequest.
+ * Requests to "login" an admin.
  *
  * @author Simon Stolz
  */

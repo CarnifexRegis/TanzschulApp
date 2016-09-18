@@ -26,7 +26,7 @@ import tasks.UpdateProfileTask;
 // TODO: Auto-generated Javadoc
 
 /**
- * The Class THandler.
+ * This class recieves all Requests and passes them to the fitting Task or returns an default message
  *
  * @author Simon Stolz
  * Source:  http://www.pabst-software.de/doku.php?id=programmieren:java:android:httpclient:start

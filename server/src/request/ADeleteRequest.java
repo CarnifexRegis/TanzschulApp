@@ -7,7 +7,7 @@ import org.simpleframework.xml.Root;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class ADeleteRequest.
+ * Requests an specific Kursobject to be deleted
  */
 @Root(name = "adeleterequest")
 public class ADeleteRequest {

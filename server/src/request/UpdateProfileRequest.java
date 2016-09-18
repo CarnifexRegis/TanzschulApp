@@ -5,8 +5,7 @@ import org.simpleframework.xml.Root;
 // TODO: Auto-generated Javadoc
 
 /**
- * The Class UpdateProfileRequest.
- *
+ * Requests an update of an specific users Profile
  * @author Simon Stolz
  */
 @Root (name = "updateprofilerequest")

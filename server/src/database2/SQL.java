@@ -1,4 +1,5 @@
 package database2;
+import java.io.StringWriter;
 import java.security.SecureRandom;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,6 +10,12 @@ import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+
+import org.simpleframework.xml.Serializer;
+import org.simpleframework.xml.core.Persister;
+import org.simpleframework.xml.stream.Format;
+import org.simpleframework.xml.stream.HyphenStyle;
+import org.simpleframework.xml.stream.Style;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -394,6 +401,60 @@ private Connection c;
 				        System.exit(0);	}
 			}
 	//methods
+	public boolean amendPic(int id){
+		int count = 0;
+	
+	try{	Statement stmt = c.createStatement();
+		String sql2 = " SELECT COUNT(*) AS COUNT FROM ADMIN WHERE NAME = '" + id + "';";
+		ResultSet rs = stmt.executeQuery(sql2);
+			count = rs.getInt("COUNT");
+			if (rs != null)rs.close();
+			if(stmt!= null)stmt.close();
+			}catch(Exception e){
+				}
+			
+			if(count == 0){}
+		return false;
+	}
+	public boolean addPic(){
+		Statement stmt;
+	
+		try{
+			stmt = c.createStatement();
+			String sql2 = " SELECT COUNT(*) AS COUNT FROM ADMIN WHERE NAME = '" + n + "';";
+			ResultSet rs = stmt.executeQuery(sql2);
+				int count = rs.getInt("COUNT");
+				if (rs != null)rs.close();
+				if(stmt!= null)stmt.close();
+				if(count == 0){
+					int id;
+					PreparedStatement p;
+					try{	
+						//http://docs.oracle.com/javase/7/docs/api/java/security/SecureRandom.html
+						//http://www.javapractices.com/topic/TopicAction.do?Id=62
+						 id = random.nextInt(10000000); // taking the chanches for duplicate id  ^^
+						String sql = "INSERT INTO ADMIN (ID, NAME,KEY)"+ 
+								  	 "VALUES(?,?,?);";						// new Version similar to the dedicated source
+						p = c.prepareStatement (sql);
+
+						p.setInt(1,id);
+						p.setString(2,n);
+						p.setString(3, k);
+						p.executeUpdate();
+						if(p!=null)p.close();
+						c.commit();
+						System.out.println("added Admin ");
+						
+						return true;
+					}
+					catch(Exception e){
+						System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+				        System.exit(0);
+				       return false;
+				        
+						}
+		return false;
+	}
 	// sources: http://stackoverflow.com/questions/23851158/check-if-some-string-is-in-sqlite-database
 	/**
 	 * Checks if an entry with that e-mail value exists
@@ -1372,4 +1433,53 @@ private Connection c;
 //				e.printStackTrace();}
 //			return false;
 //		}
-}
+		private String buildXML(Object object)
+		{
+			Style style = new HyphenStyle();
+			Format format = new Format(style);
+			
+			Serializer serializer = new Persister(format);
+			
+			StringWriter writer = new StringWriter();
+			
+			try
+			{
+				serializer.write(object, writer);
+				return writer.getBuffer().toString();
+			}
+			catch(Exception e)
+			{
+				System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+				return null; //TODO Error-Handling
+			}
+		}
+		
+		private Object parseXML(String xml, Class myClass)
+		{
+			Serializer serializer = new Persister();
+			
+			try
+			{
+				Object object = serializer.read(myClass, xml);
+				return object;
+			}
+			catch(Exception e)
+			{
+				System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+				return null; //TODO: Error-Handling
+			}
+		}
+		
+		public void closeDatabaseConnection()
+		{
+			try
+			{
+				c.close();
+			}
+			catch(Exception e)
+			{
+				System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+		        System.exit(0);
+			}
+		}
+	}

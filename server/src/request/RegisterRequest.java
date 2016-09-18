@@ -3,6 +3,7 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 // TODO: Auto-generated Javadoc
 /**
+ * Requests to create a new Userobject
  * @author Simon Stolz
  */
 @Root(name = "registerrequest")

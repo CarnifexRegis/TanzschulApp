@@ -8,7 +8,7 @@ import database2.SQLKurs;
 // TODO: Auto-generated Javadoc
 
 /**
- * The Class AAddKursRequest.
+ * Requests  an specific Kursobject to be added.
  *
  * @author Simon Stolz
  */

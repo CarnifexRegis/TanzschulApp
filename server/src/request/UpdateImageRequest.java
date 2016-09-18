@@ -2,7 +2,11 @@ package request;
 
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
-
+/**
+ * Requests to update a users image
+ * @author Simon Stolz
+ *
+ */
 @Root (name = "updateimagerequest")
 public class UpdateImageRequest {
 @Element (name = "base64")

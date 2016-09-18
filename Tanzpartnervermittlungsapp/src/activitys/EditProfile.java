@@ -362,7 +362,7 @@ public class EditProfile extends ConnectedActivity {
 		  verifyStoragePermissions(this);
 		  imageRoot.mkdirs();
 	        File mypath=new File(imageRoot,"profile_"+ count +".jpg");
-	        scanPhoto(mypath.toString());	
+	      //  scanPhoto(mypath.toString());	
 	        count ++;
 	        FileOutputStream  fos = null;
 	        try {

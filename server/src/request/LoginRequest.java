@@ -5,7 +5,7 @@ import org.simpleframework.xml.Root;
 // TODO: Auto-generated Javadoc
 
 /**
- * The Class LoginRequest.
+ * An  User requests to be "logged in"
  *
  * @author Simon Stolz
  */
