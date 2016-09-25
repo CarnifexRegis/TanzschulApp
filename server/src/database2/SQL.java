@@ -48,23 +48,18 @@ private Connection c;
 	public SQL(){
 		try
 		{
-			//Create Database
 			c= null;
 			Statement stmt ;
-			
 			Class.forName("org.sqlite.JDBC");
 			c = DriverManager.getConnection("jdbc:sqlite:serverDatabase");
-			
 			c.setAutoCommit(false);
-			
-			//creating Table KURS
+			System.out.println("Established connection to the Database");
 			
 			//DatabaseMetaData dbm =c.getMetaData();
 			//ResultSet tables = dbm.getTables(null,null,"KURS",null);
+			// Checking if the KURS Table already exists
 			try{
-				//TODO buggy
 				String sql2 = "SELECT COUNT(*) AS I FROM KURS ;";
-				//String sql = "SELECT COUNT(*) AS PS FROM USER WHERE EMAIL = 'hallo' AND PASSWORD = 'geheim' ;";
 				stmt = c.createStatement();
 				ResultSet rs = stmt.executeQuery(sql2);
 				rs.getInt("I");
@@ -74,7 +69,9 @@ private Connection c;
 				if (stmt != null){
 					stmt.close();
 					}
+				System.out.println("Table Kurs already exists");
 			}catch(Exception e){
+				// Creates Table KURS
 				/**
 				 * The table KURS containing the data of several dancing lessons
 				 * ID 			The ID of the object in the table
@@ -98,68 +95,17 @@ private Connection c;
 					if(stmt != null){
 						stmt.close();}
 					c.commit();
-					System.out.println("New KURS Instance");
+					System.out.println("Created new Instance of Table Kurs");
 				}catch(Exception e1){
+					System.out.println("Couldn´t create a new Instance of the KURS Table");
 					System.err.println( e1.getClass().getName() + ": " + e1.getMessage() );
 			        System.exit(0);
 				}
 			
 			}
+			// Checking if the PIC Table already exists
 			try{
-				/**
-				 * The Table pic used to safe profile pictures
-				 * ID		The ID of the object in the table
-				 * IMAGE 	An image encoded to an base64 String
-				 * UID 		The user the image belongs to
-				 * UIDP		The users public identifier
-				 * 
-				 */
-				Class.forName("org.sqlite.JDBC");
-				stmt = c.createStatement();
-				String sql = "CREATE TABLE PIC "+
-						"(ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
-						" IMAGE TEXT NOT NULL, " +
-						" UIDP INTEGER NOT NULL, " +
-						"UID INTEGER NOT NULL ;";
-	
-				stmt.executeUpdate(sql);
-
-				if(stmt != null){
-					stmt.close();}
-				c.commit();
-				System.out.println("New PIC Instance");
-			}catch(Exception e1){
-				System.err.println( e1.getClass().getName() + ": " + e1.getMessage() );
-		        System.exit(0);
-			}
-			/**
-			 * The Table Chat
-			 */
-			try{
-				Class.forName("org.sqlite.JDBC");
-				stmt = c.createStatement();
-				String sql = "CREATE TABLE CHAT "+
-						"(ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
-						" ID1 INTEGER NOT NULL, " +
-						" ACCEPTED INTEGER NOT NULL, " +
-						" ID2 INTEGER NOT NULL ;";
-	
-				stmt.executeUpdate(sql);
-
-				if(stmt != null){
-					stmt.close();}
-				c.commit();
-				System.out.println("New PIC Instance");
-			}catch(Exception e1){
-				System.err.println( e1.getClass().getName() + ": " + e1.getMessage() );
-		        System.exit(0);
-			}
-		
-		
-			try{
-				//TODO buggy
-				String sql2 = "SELECT COUNT(*) AS I FROM ADMIN ;";
-				//String sql = "SELECT COUNT(*) AS PS FROM USER WHERE EMAIL = 'hallo' AND PASSWORD = 'geheim' ;";
+				String sql2 = "SELECT COUNT(*) AS I FROM PIC ;";
 				stmt = c.createStatement();
 				ResultSet rs = stmt.executeQuery(sql2);
 				rs.getInt("I");
@@ -169,8 +115,93 @@ private Connection c;
 				if (stmt != null){
 					stmt.close();
 					}
-			}catch(Exception e){
+				System.out.println("Table PIC already exists");
+				}catch(Exception e){
+					try{
+						//Creates Table PIC
+						/**
+						 * The Table pic used to safe profile pictures
+						 * ID		The ID of the object in the table
+						 * IMAGE 	An image encoded to an base64 String
+						 * UID 		The user the image belongs to
+						 * UIDP		The users public identifier
+						 * 
+						 */
+						Class.forName("org.sqlite.JDBC");
+						stmt = c.createStatement();
+						String sql = "CREATE TABLE PIC "+
+						"(ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+						" IMAGE TEXT NOT NULL, " +
+						" UIDP INTEGER NOT NULL, " +
+						" UID INTEGER NOT NULL ;";
+	
+						stmt.executeUpdate(sql);
+						if(stmt != null){
+							stmt.close();}
+						c.commit();
+						System.out.println("Created new instance of PIC table");
+					}catch(Exception e1){
+						System.out.println("Couldn´t create a new Instance of the PIC Table");
+						System.err.println( e1.getClass().getName() + ": " + e1.getMessage() );
+						System.exit(0);
+					}
+				}
+			
+			// Checking if the FRIEND Table already exists
+			try{
+				String sql2 = "SELECT COUNT(*) AS I FROM FRIEND ;";
+				stmt = c.createStatement();
+				ResultSet rs = stmt.executeQuery(sql2);
+				rs.getInt("I");
+				if (rs!= null){
+					rs.close();
+					}
+				if (stmt != null){
+					stmt.close();
+					}
+				System.out.println("Table FRIEND already exists");
+				}catch(Exception e){
+			//Creates table admin
+			/**
+			 * The Links ID
+			 * 
+			 */
 				try{
+					Class.forName("org.sqlite.JDBC");
+					stmt = c.createStatement();
+					String sql = "CREATE TABLE FRIEND "+
+						"(ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+						" ID1 INTEGER NOT NULL," +
+						" ID2 INTEGER NOT NULL," +
+						" CID INTEGER NOT NULL ;";
+	
+					stmt.executeUpdate(sql);
+					if(stmt != null){
+						stmt.close();}
+					c.commit();
+					System.out.println("Created new instance of FRIEND table");
+					}catch(Exception e1){
+						System.out.println("Couldn´t create a new Instance of the FRIEND Table");
+						System.err.println( e1.getClass().getName() + ": " + e1.getMessage() );
+						System.exit(0);
+					}
+				}
+			// Checking if the ADMIN Table already exists
+			try{
+				String sql2 = "SELECT COUNT(*) AS I FROM ADMIN ;";
+				stmt = c.createStatement();
+				ResultSet rs = stmt.executeQuery(sql2);
+				rs.getInt("I");
+				if (rs!= null){
+					rs.close();
+					}
+				if (stmt != null){
+					stmt.close();
+					}
+				System.out.println("Table ADMIN already exists");
+			}catch(Exception e){
+					try{
+					// Creates Table ADMIN
 					/**
 					 * The Table ADMIN used to provide special User that can modify the database e.g. kurs TABLE
 					 * ID		The ID of the object in the table
@@ -183,26 +214,27 @@ private Connection c;
 							"(ID INTEGER PRIMARY KEY , " +
 							" NAME TEXT NOT NULL, " +
 							" KEY    TEXT NOT NULL)";
-							
-		
 					stmt.executeUpdate(sql);
-					
-					
-					
 					if(stmt != null){
 						stmt.close();}
 					c.commit();
-					System.out.println("New ADMIN Instance");
-				}catch(Exception e1){
-					System.err.println( e1.getClass().getName() + ": " + e1.getMessage() );
-			        System.exit(0);
-				}
-			
+					System.out.println("Created new instance of ADMIN table");
+					}catch(Exception e1){
+						System.out.println("Couldn´t create a new Instance of the ADMIN Table");
+						System.err.println( e1.getClass().getName() + ": " + e1.getMessage() );
+						System.exit(0);
+					}
 			}
-			// creating Table USER
-			//	dbm =c.getMetaData();	
-			//tables = dbm.getTables(null,null,"USER",null);
+			//Checks if table USER already exists
 			try{
+				String sql2 = "SELECT COUNT(*) AS I FROM USER ;";
+				stmt = c.createStatement();
+				ResultSet rs = stmt.executeQuery(sql2);
+				rs.getInt("I");
+				if (rs!= null){rs.close();}
+				if (stmt != null){stmt.close();}
+				System.out.println("Table USER already exists");
+			}catch(Exception e){
 				/**
 				 * The Table User each User has to register his data is saved here
 				 * ID		The private ID of the object in the table
@@ -217,21 +249,13 @@ private Connection c;
 				 * PNumber	The users phone number does not need to be specified
 				 * PA		Tells if the users age is public to other users
 				 * height	The users height does not nedd to be specified
-				 */
-				//TODO buggy
-				String sql2 = "SELECT COUNT(*) AS I FROM USER ;";
-				//String sql = "SELECT COUNT(*) AS PS FROM USER WHERE EMAIL = 'hallo' AND PASSWORD = 'geheim' ;";
-				stmt = c.createStatement();
-				ResultSet rs = stmt.executeQuery(sql2);
-				rs.getInt("I");
-				if (rs!= null){rs.close();}
-				if (stmt != null){stmt.close();}
-			}catch(Exception e){	
-				try{
-					// TODO RESET AUTO INCREMENT AFTER DEBUGGING
-				Class.forName("org.sqlite.JDBC");
-				stmt = c.createStatement();
-				String sql= "CREATE TABLE USER" +
+				 */	
+					try{
+						//Creates new table USER	
+						// TODO RESET AUTO INCREMENT AFTER DEBUGGING
+						Class.forName("org.sqlite.JDBC");
+					stmt = c.createStatement();
+					String sql= "CREATE TABLE USER" +
 							"(ID INTEGER PRIMARY KEY AUTOINCREMENT, " + //0 identification Number   auto
 							"IDP TEXT, "+
 							" EMAIL TEXT NOT NULL," +					//1 e-Mail					!
@@ -245,26 +269,22 @@ private Connection c;
 							" PA INTEGER NOT NULL ,"+			//9 Public Age				!(Boolean, always set 0=False  1=True
 							" HEIGHT INTEGER)";							//10 height
 				
-				stmt.executeUpdate(sql);
-				if(stmt != null){
-				
-					stmt.close();
-					c.commit();
-				}
-				System.out.println("New USER Instance");	
-				}catch(Exception e1){
-					System.err.println( e1.getClass().getName() + ": " + e1.getMessage() );
-			        System.exit(0);
-				}
-			}
-				// creating link Table
-				// 7.8.16
-				//dbm = c.getMetaData();
-				//tables = dbm.getTables(null, null, "LINK", null);
+					stmt.executeUpdate(sql);
+					if(stmt != null){
+						stmt.close();
+						}
+						c.commit();
+						System.out.println("Created new instance of USER table");
+					}catch(Exception e1){
+						System.out.println("Couldn´t create a new Instance of the USER Table");
+						System.err.println( e1.getClass().getName() + ": " + e1.getMessage() );
+						System.exit(0);
+					}
+					}
+			//Checks if table USER already exists
 			try{
 				//TODO buggy
 				String sql2 = "SELECT COUNT(*) AS I FROM LINK ;";
-				//String sql = "SELECT COUNT(*) AS PS FROM USER WHERE EMAIL = 'hallo' AND PASSWORD = 'geheim' ;";
 				stmt = c.createStatement();
 				ResultSet rs = stmt.executeQuery(sql2);
 				rs.getInt("I");
@@ -274,6 +294,7 @@ private Connection c;
 				if (stmt != null){
 					stmt.close();
 					}
+				System.out.println("Table LINK already exists");
 			}catch(Exception e){
 				
 					try{
@@ -282,25 +303,68 @@ private Connection c;
 						 * UID	The users id
 						 * KID	The lessons id
 						 */
-					Class.forName("org.sqlite.JDBC");
+						Class.forName("org.sqlite.JDBC");
 						stmt= c.createStatement();
 						String sql = "CREATE TABLE LINK" +
 									 "(ID INTEGER PRIMARY KEY AUTOINCREMENT,"+ 
 									 " UID INTEGER NOT NULL,"+
 									 " KID INTEGER NOT NULL)";
 								 
-					stmt.executeUpdate(sql);
-					c.commit();
-					if(stmt != null){
-						stmt.close();
-						}	
+						stmt.executeUpdate(sql);
+						c.commit();
+						if(stmt != null){
+							stmt.close();
+							}	
 					
-						System.out.println("New LINK Instance");
+						System.out.println("Created new instance of LINK table");
 						}catch(Exception e1){
+							System.out.println("Couldn´t create a new Instance of the LINK Table");
 							System.err.println( e1.getClass().getName() + ": " + e1.getMessage() );
 					        System.exit(0);
 						}
+					
 								}
+			
+					try{
+					String sql2 = "SELECT COUNT(*) AS I FROM CHAT ;";
+					stmt = c.createStatement();
+					ResultSet rs = stmt.executeQuery(sql2);
+					rs.getInt("I");
+					if (rs!= null){
+						rs.close();
+						}
+					if (stmt != null){
+						stmt.close();
+						}
+					System.out.println("Table LINK already exists");
+					}catch(Exception e){
+						
+							try{
+								/**
+								 * The table LINK links the USER and KURS table
+								 * UID	The users id
+								 * KID	The lessons id
+								 */
+								Class.forName("org.sqlite.JDBC");
+								stmt= c.createStatement();
+								String sql = "CREATE TABLE CHAT" +
+											 "(ID INTEGER PRIMARY KEY AUTOINCREMENT,"+ 
+											 " IDP1 INTEGER NOT NULL,"+ 
+											 " IDP2 INTEGER NOT NULL,"+ 
+											 " CHAT TEXT NOT NULL)";
+										 
+								stmt.executeUpdate(sql);
+								c.commit();
+								if(stmt != null){
+								stmt.close();
+								}	
+							
+								System.out.println("Created new instance of Chat table");
+								}catch(Exception e1){
+									System.out.println("Couldn´t create a new Instance of the C Table");
+									System.err.println( e1.getClass().getName() + ": " + e1.getMessage() );
+							        System.exit(0);
+								}}
 			//Tests
 			//eMailExists("hi");
 			addUser("ich@also.de","geheim1","Stronk","Vitaly",0,8,0);
@@ -388,72 +452,43 @@ private Connection c;
 			addLink(10,9);
 			addLink(10,10);
 			addAdmin("d","d");
-//			
-			
-//			
-//			getKurs(1,1);
-		
-			//eMailExists("Huan@huan.de");
 		getProfilecharts(1, 3,87,null);
+		
+		}catch(Exception e3){
+			System.out.println("Couldn´t establish a connection to the database");
+			System.err.println( e3.getClass().getName() + ": " + e3.getMessage() );
+	        System.exit(0);
+		}
+		}
 	
-						}catch(Exception e){
-						System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-				        System.exit(0);	}
-			}
-	//methods
-	public boolean amendPic(int id){
-		int count = 0;
-	
-	try{	Statement stmt = c.createStatement();
-		String sql2 = " SELECT COUNT(*) AS COUNT FROM ADMIN WHERE NAME = '" + id + "';";
-		ResultSet rs = stmt.executeQuery(sql2);
-			count = rs.getInt("COUNT");
-			if (rs != null)rs.close();
-			if(stmt!= null)stmt.close();
-			}catch(Exception e){
-				}
 			
-			if(count == 0){}
+	//methods
+	/**
+	 * Adds a new Friend link to another User
+	 * @return
+	 */
+		public boolean addFriend(){
+			return false;}
+		/**
+		 * Adds a new Chat between two Users 
+		 * @return
+		 */
+		public int addChat(){
+			return 0;}
+		/**
+		 * 
+		 */
+		public void getFriendRequests(){
+			
+		}
+		public void getChatFromFriend(int uid, int u2id){
+			}
+		
+		public void getChat(int cid){}
+		public void addMessage(int cid,int uid,String Message){}
+	public boolean amendPic(int id){
 		return false;
-	}
-	public boolean addPic(){
-		Statement stmt;
 	
-		try{
-			stmt = c.createStatement();
-			String sql2 = " SELECT COUNT(*) AS COUNT FROM ADMIN WHERE NAME = '" + n + "';";
-			ResultSet rs = stmt.executeQuery(sql2);
-				int count = rs.getInt("COUNT");
-				if (rs != null)rs.close();
-				if(stmt!= null)stmt.close();
-				if(count == 0){
-					int id;
-					PreparedStatement p;
-					try{	
-						//http://docs.oracle.com/javase/7/docs/api/java/security/SecureRandom.html
-						//http://www.javapractices.com/topic/TopicAction.do?Id=62
-						 id = random.nextInt(10000000); // taking the chanches for duplicate id  ^^
-						String sql = "INSERT INTO ADMIN (ID, NAME,KEY)"+ 
-								  	 "VALUES(?,?,?);";						// new Version similar to the dedicated source
-						p = c.prepareStatement (sql);
-
-						p.setInt(1,id);
-						p.setString(2,n);
-						p.setString(3, k);
-						p.executeUpdate();
-						if(p!=null)p.close();
-						c.commit();
-						System.out.println("added Admin ");
-						
-						return true;
-					}
-					catch(Exception e){
-						System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-				        System.exit(0);
-				       return false;
-				        
-						}
-		return false;
 	}
 	// sources: http://stackoverflow.com/questions/23851158/check-if-some-string-is-in-sqlite-database
 	/**
@@ -841,7 +876,33 @@ private Connection c;
 			}
 		return -1;
 		}
-	
+	public int getUserIDPByID(String id){
+		//TODO not yet tested
+		Statement stmt = null;
+		try{
+			stmt = c.createStatement();
+			//String sql = "SELECT ID FROM USER WHERE EMAIL = '" + em + "';";
+			String sql = "SELECT IDP FROM USER WHERE ID = '" + id + "';";
+			ResultSet rs = stmt.executeQuery(sql);
+			if (rs.next()){
+				int idp = rs.getInt("idp");
+				if (rs != null)rs.close();
+				if(stmt!= null)stmt.close();
+				return idp;
+				}
+			else
+				{
+				if (rs != null)rs.close();
+				if(stmt!= null)stmt.close();
+				return -1;
+				}
+			}
+		catch (Exception e){
+			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	        System.exit(0);
+			}
+		return -1;
+		}
 	/**
 	 * Adds a new column to the Kurs table .
 	 * @param kursstufe		level of the dancing lessons see {@link [<enums>.]<Kursstufen>}

@@ -11,6 +11,7 @@ import request.UpdateImageRequest;
 import response.UpdateChartResponse;
 
 public class UpdateImageTask extends AbstractHandler{
+	// TODO Work in Progress
 	public String handle(String httpBody){
 		//gets the information from the request
 		UpdateImageRequest request = (UpdateImageRequest)parseXML(httpBody,UpdateImageRequest.class);
@@ -22,7 +23,7 @@ public class UpdateImageTask extends AbstractHandler{
 		
 		 Model m = Model.getInstance();
 		 if(m.checkId(id)){
-			 antwort= m.
+			 antwort= null;
 			 	if(antwort == null){
 			 		antwort = new ArrayList<ProfileChart>();
 			 		ec  = ErrorCode.nf.getError();
