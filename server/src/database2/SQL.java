@@ -173,6 +173,7 @@ private Connection c;
 						"(ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
 						" ID1 INTEGER NOT NULL," +
 						" ID2 INTEGER NOT NULL," +
+						" ACCEPTED INTEGER NOT NULL," +
 						" CID INTEGER NOT NULL ;";
 	
 					stmt.executeUpdate(sql);
@@ -467,14 +468,66 @@ private Connection c;
 	 * Adds a new Friend link to another User
 	 * @return
 	 */
-		public boolean addFriend(){
-			return false;}
+		public boolean addFriend(int myid,int id2,boolean accepted){
+			// TODO not tested implement add Chat
+			Statement stmt;
+			try{
+				stmt = c.createStatement();
+				String sql2 = " SELECT COUNT(*) AS COUNT FROM FRIEND WHERE ID1 = '" + myid + "' AND ID2 = '"+id2+"' ;";
+				ResultSet rs = stmt.executeQuery(sql2);
+					int count = rs.getInt("COUNT");
+					if (rs != null)rs.close();
+					if(stmt!= null)stmt.close();
+					if(count == 0){
+						int id;
+						PreparedStatement p;
+						try{	
+							String sql = "INSERT INTO FRIEND (ID1, ID2,CID)"+ 
+									  	 "VALUES(?,?,?);";						// new Version similar to the dedicated source
+							p = c.prepareStatement (sql);
+							p.setInt(1,myid);
+							p.setInt(2,id2);
+							p.setInt(3,addChat(myid,id2));
+							int a = 0;
+							if(accepted){a = 1;}
+							p.setInt(3, a);
+							p.executeUpdate();
+							if(p!=null)p.close();
+							c.commit();
+							System.out.println("added Admin ");
+							
+							return true;
+						}
+						catch(Exception e){
+							System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+					        System.exit(0);
+					       return false;
+					        
+							}
+						}
+					else
+						{
+						System.out.println("The requested admin already exists in our database");
+						
+						
+						
+						}
+				
+				}catch(Exception e){
+					e.printStackTrace();
+					return false;
+				}
+			return false;
+			}
 		/**
 		 * Adds a new Chat between two Users 
 		 * @return
 		 */
-		public int addChat(){
-			return 0;}
+		public int addChat(int id1, int id2){
+			
+			return 1;
+			
+		}
 		/**
 		 * 
 		 */

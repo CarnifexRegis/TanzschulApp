@@ -39,6 +39,9 @@
     <string name="title_edit_profile">Profil anpassen</string>
 	<string name="title_log_in">Tanzpartnervermittlungsapp</string>
 	<string name="title_assign_to_kurs">In Kurse eintragen</string>
+	<string name="title_friends">Meine Kontakte</string>
+	<string name="title_chat">Chatfenster</string>
+	<string name="title_pending_contacts">Kontakte hinzufügen</string>
 
 	
 		<string name="registrieren">Registrieren!</string>
