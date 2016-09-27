@@ -4,9 +4,9 @@ package activitys;
 
 	import java.util.ArrayList;
 
-import model.Adapter;
 import model.ProfileChart;
 import task.UpdateChartTask;
+import adapter.Adapter;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;

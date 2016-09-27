@@ -1,7 +1,8 @@
-package model;
+package adapter;
 
 import java.util.ArrayList;
 
+import model.Kurs;
 import task.UpdateLinkTask;
 import activitys.AssignToKurs;
 import android.content.Context;
@@ -14,6 +15,7 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 // TODO: Auto-generated Javadoc
+
 
 import com.example.Tanzpartnervermittlung.R;
 

@@ -1,9 +1,10 @@
-package model;
+package adapter;
 /**
  * 
  */
 import java.util.ArrayList;
 
+import model.ProfileChart;
 import activitys.SearchForDancingpartner;
 // TODO: Auto-generated Javadoc
 import android.content.Context;

@@ -3,8 +3,8 @@ package activitys;
 import java.util.ArrayList;
 
 import model.Kurs;
-import model.aAdapter;
 import task.GetKursTask;
+import adapter.aAdapter;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
