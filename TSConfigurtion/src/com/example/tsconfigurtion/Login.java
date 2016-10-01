@@ -149,7 +149,7 @@ public class Login extends ConnectedActivity {
 	public void getLoginValues(int id){
 		//Switch (calledBy.getAct)
 		
-		Intent intent = new Intent(getApplicationContext(),ManageKurs.class);
+		Intent intent = new Intent(getApplicationContext(),Menu.class);
 		intent.putExtra("id", id);
 		
 		startActivity(new Intent(intent));

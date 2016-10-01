@@ -30,7 +30,7 @@
             android:label="@string/activity_add" >
         </activity>
         <activity
-            android:name=".ManageKurs"
+            android:name=".Menu"
             android:label="@string/activity_manage" >
         </activity>
         <activity

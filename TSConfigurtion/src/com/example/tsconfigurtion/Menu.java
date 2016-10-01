@@ -11,7 +11,7 @@ import android.widget.Button;
 /**
  * @author Simon Stolz
  */
-public class ManageKurs  extends Activity {
+public class Menu  extends Activity {
 	private int id;
 	private Button addB;
 	private Button amendB;
@@ -22,7 +22,7 @@ public class ManageKurs  extends Activity {
 	 */
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_manage_kurs);
+		setContentView(R.layout.activity_menu);
 		Bundle extras = getIntent().getExtras();
 		if(extras != null){
 		id = extras.getInt("id");
