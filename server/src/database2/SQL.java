@@ -77,10 +77,11 @@ public class SQL {
 				// Creates Table KURS
 				/**
 				 * The table KURS containing the data of several dancing lessons
-				 * ID The ID of the object in the table KURSSTUFE the level of
-				 * the dancing lesson DATUM the date the dancing lessons start
-				 * WOCHENTAG The day of the week the dancing lesson takes place
-				 * UHRZEIT The time the dancing lesson takes place
+				 * ID			The ID of the object in the table
+				 * KURSSTUFE	The level of the dancing lesson
+				 * DATUM 		The date the dancing lessons start
+				 * WOCHENTAG 	The day of the week the dancing lesson takes place
+				 * UHRZEIT		The time the dancing lesson takes place
 				 */
 				try {
 					Class.forName("org.sqlite.JDBC");
@@ -136,7 +137,6 @@ public class SQL {
 					String sql = "CREATE TABLE PIC "
 							+ "(ID INTEGER PRIMARY KEY AUTOINCREMENT, "
 							+ " IMAGE TEXT NOT NULL, "
-							+ " UIDP INTEGER NOT NULL, "
 							+ " UID INTEGER NOT NULL );";
 
 					stmt.executeUpdate(sql);
@@ -255,15 +255,18 @@ public class SQL {
 			} catch (Exception e) {
 				/**
 				 * The Table User each User has to register his data is saved
-				 * here ID The private ID of the object in the table IPD The
-				 * public ID other Users may get to know EMAIL The users e-mail
-				 * he needs it for login purposes PASSWORD The users key used to
-				 * access his account LN The users last name FN The users first
-				 * name GENDER The users gender AGE The users age PTEXT Some
-				 * user created about me text PNumber The users phone number
-				 * does not need to be specified PA Tells if the users age is
-				 * public to other users height The users height does not nedd
-				 * to be specified
+				 * here 
+				 * ID		The private ID of the object in the table 
+				 * IPD		The public ID other Users may get to know
+				 * EMAIL	The users e-mail he needs it for login purposes 
+				 * PASSWORD The users key used to access his account 
+				 * LN		The users last name FN The users first name 
+				 * GENDER	The users gender 
+				 * AGE		The users age 
+				 * PTEXT	Some user created about me text 
+				 * PNumber	The users phone number does not need to be specified
+				 * PA		Tells if the users age is public to other users
+				 * height	The users height does not nedd to be specified
 				 */
 				try {
 					// Creates new table USER
@@ -271,24 +274,16 @@ public class SQL {
 					Class.forName("org.sqlite.JDBC");
 					stmt = c.createStatement();
 					String sql = "CREATE TABLE USER"
-							+ "(ID INTEGER PRIMARY KEY AUTOINCREMENT, " + // 0
-																			// identification
-																			// Number
-																			// auto
-							"IDP TEXT, " + " EMAIL TEXT NOT NULL," + // 1 e-Mail
-																		// !
+							+ "(ID INTEGER PRIMARY KEY AUTOINCREMENT, " + // 0 identification Number auto
+							"IDP TEXT, " + " EMAIL TEXT NOT NULL," + // 1 e-Mail !
 							" PASSWORD TEXT NOT NULL," + // 2 password !
 							" LN TEXT NOT NULL," + // 3 last name !
 							" FN TEXT NOT NULL," + // 4 first name !
 							" GENDER INTEGER NOT NULL, " + // 5 gender !
 							" AGE INTEGER NOT NULL," + // 6 age !
-							" PTEXT TEXT," + // 7 profile text (a possibility
-												// for the User to introduce him
-												// self)
+							" PTEXT TEXT," + // 7 profile text (a possibility for the User to introduce himself)
 							" PNumber TEXT ," + // 8 phone number
-							" PA INTEGER NOT NULL ," + // 9 Public Age
-														// !(Boolean, always set
-														// 0=False 1=True
+							" PA INTEGER NOT NULL ," + // 9 Public Age!(Boolean, always set 0=False 1=True)
 							" HEIGHT INTEGER)"; // 10 height
 
 					stmt.executeUpdate(sql);
@@ -373,9 +368,9 @@ public class SQL {
 					stmt = c.createStatement();
 					String sql = "CREATE TABLE CHAT"
 							+ "(ID INTEGER PRIMARY KEY AUTOINCREMENT,"
-							+ " IDP1 INTEGER NOT NULL,"
-							+ " IDP2 INTEGER NOT NULL,"
-							+ " CHAT TEXT NOT NULL)";
+							+ " ID1 INTEGER NOT NULL,"
+							+ " ID2 INTEGER NOT NULL,"
+							+ " MESSAGES TEXT NOT NULL)";
 
 					stmt.executeUpdate(sql);
 					c.commit();

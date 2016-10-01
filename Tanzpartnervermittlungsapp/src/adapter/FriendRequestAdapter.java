@@ -6,12 +6,14 @@ import model.FriendRequestItem;
 import model.Kurs;
 import task.UpdateLinkTask;
 import activitys.AssignToKurs;
+import activitys.FriendRequest;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -23,12 +25,12 @@ import com.example.Tanzpartnervermittlung.R;
  * @author Simon Stolz
  *
  */
+//TODO not ready
 public class FriendRequestAdapter extends ArrayAdapter<FriendRequestItem> {
 	
 		private int id;
 		private Context context;
-		private AssignToKurs atk;
-		
+	
 		/**
 		 * Instantiates a new a adapter.
 		 *
@@ -37,10 +39,10 @@ public class FriendRequestAdapter extends ArrayAdapter<FriendRequestItem> {
 		 * @param id the id
 		 * @param atk the atk
 		 */
-		public FriendRequestAdapter(Context context, ArrayList<FriendRequestItem> arrayList,int id, AssignToKurs atk) {
+		public FriendRequestAdapter(Context context, ArrayList<FriendRequestItem> arrayList,int id) {
 			super(context, R.layout.yet_searching_listitem, arrayList);
 			this.id= id;
-			this.atk = atk;
+	
 			this.context= context;
 			}
 		
@@ -53,43 +55,55 @@ public class FriendRequestAdapter extends ArrayAdapter<FriendRequestItem> {
 			View row = null;
 			if (convertView == null) {
 	            LayoutInflater inflater = ((AssignToKurs) context).getLayoutInflater();
-	            row = inflater.inflate(R.layout.yet_searching_listitem, parent, false);
+	            row = inflater.inflate(R.layout.friend_request_item, parent, false);
 	            //Make sure the textview exists in this xml
 	     } else {
 	            row = convertView;
 	     }
-			Kurs k = getItem(position);
+			FriendRequestItem fri = getItem(position);
 			
 				
-				TextView day =  (TextView) row.findViewById(R.id.ayDayView);
-				TextView time  =  (TextView) row.findViewById(R.id.ayKurszeitView);
-				TextView date =  (TextView) row.findViewById(R.id.ayDateView);
-				day.setText(k.getWochentag());
-				time.setText(k.getUhrzeit());
-				date.setText(k.getDatum());
-				ToggleButton delete = (ToggleButton) row.findViewById(R.id.ayEnlistButton);
+				TextView name =  (TextView) row.findViewById(R.id.FrNameView);
+				Button accept = (Button) row.findViewById(R.id.FrAcceptButton);
+				Button deny = (Button) row.findViewById(R.id.FrDenyButton);
 				
 				//http://developer.android.com/resources/samples/ApiDemos/src/com/example/android/apis/view/List14.html
-				delete.setTag(position);
-				delete.setClickable(true);
-				delete.setChecked(k.isEnlisted());
-				
-				delete.setOnClickListener(new OnClickListener() {
+				accept.setTag(position);
+				accept.setClickable(true);
+				accept.setOnClickListener(new OnClickListener() {
 					
 					@Override
 					public void onClick(View v) {
-						// TODO Auto-generated method stub
+						// TODO stop both buttons from being clickable whe on Click gets executed
 						int position =  (int) v.getTag();
-						Kurs k = getItem(position);
+						FriendRequestItem fr = getItem(position);
+						//UpdateLinkTask ult = new UpdateLinkTask(context, id,fri.getIdp(),false,position,v);
+						v.setClickable(false);
+			        	
+			        	((CompoundButton) v).setChecked(!((CompoundButton) v).isChecked());
+			        //	ult.execute();
 						
-						UpdateLinkTask ult = new UpdateLinkTask(atk, id,k.getKursId(),((CompoundButton) v).isChecked(),position,v);
+					}
+				});
+				
+				deny.setTag(position);
+				deny.setClickable(true);
+				deny.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						int position =  (int) v.getTag();
+						FriendRequestItem fr = getItem(position);
+						
+						//UpdateLinkTask ult = new UpdateLinkTask(fr, id,fr.getIdp(),false,position,v);
 						v.setClickable(false);
 			        	
 			        	((CompoundButton) v).setChecked(!((CompoundButton) v).isChecked());
 			        	
-			        	ult.execute();
+			        //	ult.execute();
 					}
-				});	return row;
+				});
+				return row;
 			}
 	}
-}
+
