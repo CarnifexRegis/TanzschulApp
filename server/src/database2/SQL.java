@@ -41,6 +41,7 @@ public class SQL {
 	private Connection c;
 
 	// TODO DEBUGGING
+	
 
 	// https://coderanch.com/t/300886/JDBC/databases/Proper-close-Connection-Statement-ResultSet
 	// TODO try out that fancy shit if you have leaft over time
@@ -368,8 +369,8 @@ public class SQL {
 					stmt = c.createStatement();
 					String sql = "CREATE TABLE CHAT"
 							+ "(ID INTEGER PRIMARY KEY AUTOINCREMENT,"
-							+ " ID1 INTEGER NOT NULL,"
-							+ " ID2 INTEGER NOT NULL,"
+							+ " IDP1 INTEGER NOT NULL,"
+							+ " IDP2 INTEGER NOT NULL,"
 							+ " MESSAGES TEXT NOT NULL)";
 
 					stmt.executeUpdate(sql);
@@ -548,28 +549,28 @@ public class SQL {
 	 * @param myid	the requesting user
 	 * @param uid2 the other user
 	 */
-	public void setAccepted(int accept,int myid,int uid2){
-		//TODO Debug
-		PreparedStatement p;
-		try {
-			String sql = "UPDATE FRIEND SET ACCEPTED = ?  WHERE ID1 = ? AND ID2 = ? ;";
-			p = c.prepareStatement(sql);
-			p.setInt(1,accept);
-			p.setInt(2, uid2);
-			p.setInt(3, myid);
-			p.executeUpdate();
-
-			if (p != null)
-				p.close();
-			c.commit();
-			System.out.println("Accepted status set to "+accept+ "for Link from "+uid2+" to "+myid);
-		} catch (Exception e) {
-			System.err.println(e.getClass().getName() + ": " + e.getMessage());
-			System.exit(0);
-			e.printStackTrace();
-			System.out.println("Couldn´t change accepted status");
-		}
-	}
+//	public void setAccepted(int accept,int myid,int uid2){
+//		//TODO Debug
+//		PreparedStatement p;
+//		try {
+//			String sql = "UPDATE FRIEND SET ACCEPTED = ?  WHERE ID1 = ? AND ID2 = ? ;";
+//			p = c.prepareStatement(sql);
+//			p.setInt(1,accept);
+//			p.setInt(2, uid2);
+//			p.setInt(3, myid);
+//			p.executeUpdate();
+//
+//			if (p != null)
+//				p.close();
+//			c.commit();
+//			System.out.println("Accepted status set to "+accept+ "for Link from "+uid2+" to "+myid);
+//		} catch (Exception e) {
+//			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+//			System.exit(0);
+//			e.printStackTrace();
+//			System.out.println("Couldn´t change accepted status");
+//		}
+//	}
 
 	/**
 	 * Source: http://stackoverflow.com/questions/12882874/how-can-i-get-the-autoincremented-id-when-i-insert-a-record-in-a-table-via-jdbct
@@ -583,7 +584,7 @@ public class SQL {
 	Statement stmt;
 		try {
 			stmt = c.createStatement();
-			String sql1 = " SELECT CID  AS COUNT FROM FRIEND WHERE ID1 = '"
+			String sql1 = " SELECT CID  FROM FRIEND WHERE ID1 = '"
 					+ id1 + "' AND ID2 = '" + id2 + "' ;";
 			ResultSet rs1 = stmt.executeQuery(sql1);
 			int cid = rs1.getInt("CID");
@@ -593,11 +594,11 @@ public class SQL {
 				stmt.close();
 			if (cid == -1) {
 					ChatMessage[] cMessages = new ChatMessage [50];
-					String sql2 = "INSERT INTO FRIEND (ID1, ID2,MESSAGES)"
+					String sql2 = "INSERT INTO FRIEND (IDP1, IDP2,MESSAGES)"
 							+ "VALUES(?,?,?);"; 
 					p = c.prepareStatement(sql2, Statement.RETURN_GENERATED_KEYS);
-					p.setInt(1, id1);
-					p.setInt(2, id2);
+					p.setInt(1, getUserIDPByID(id1));
+					p.setInt(2, getUserIDPByID(id2));
 					p.setString(3,buildXML(cMessages));
 					p.executeUpdate();
 				    ResultSet rs2 = p.getGeneratedKeys();
@@ -683,15 +684,103 @@ public class SQL {
 			return false;
 		}
 	}
-	public void getOpenChats(int uid, int u2id) {
+	public ArrayList<Friend> getOpenChats(int myid) {
+		Statement stmt;
+		//http://stackoverflow.com/questions/5901791/is-having-an-or-in-an-inner-join-condition-a-bad-idea
+		ArrayList<Friend> fl = new ArrayList<Friend>();
+		try{
+			String sql = "SELECT USER.FN, USER.LN, USER.IDP, CID FROM FRIENDS LEFT JOIN USER ON USER.ID = ID2 WHERE FRIEND.ID1 = "+myid+" UNIONSELECT USER.FN, USER.LN, USER.IDP, CID FROM FRIENDS LEFT JOIN USER ON USER.ID = ID1 WHERE FRIEND.ID2 = "+myid+" ;";
+			stmt = c.createStatement(); 
+			ResultSet rs = stmt.executeQuery(sql);
+			while(rs.next()){
+				fl.add(new Friend(rs.getString("FN"),rs.getString("LN"),rs.getInt("IDP"), rs.getInt("CID")));
+			}
+			if(rs != null){rs.close();}
+			if(stmt != null){stmt.close();}
+			return fl;
+		}catch(Exception e){
+			System.err.println(e.getClass().getName() + ": "
+					+ e.getMessage());
+			System.exit(0);
+			return null;
+		}
 	}
 
-	public void getChat(int cid) {
+	public ChatMessage[] getChatById(int cid) {
+		Statement stmt;
+		try{
+			String sql = "SELECT MESSAGES FROM FRIEND WHERE ID = " +cid+ "; ";
+			stmt = c.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			return (ChatMessage[]) parseXML(rs.getString("MESSAGES"),ChatMessage[].class );
+			
+		}catch(Exception e){
+			System.err.println(e.getClass().getName() + ": "
+					+ e.getMessage());
+			System.exit(0);
+			return null;
+		}
 	}
 
-	public void addMessage(int cid, int uid, String Message) {
+	public void addMessage(int cid, int uid, String message) {
+		Statement stmt;
+		
+		try{
+			String sql = "SELECT MESSAGES FROM FRIEND WHERE ID = " +cid+ "; ";
+			stmt = c.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+		ChatMessage[] cm =(ChatMessage[]) parseXML(rs.getString("MESSAGES"),ChatMessage[].class );
+		int cmLength = cm.length;
+			if(cmLength >= 49){
+				for(int i = 0; i< cmLength; i ++){
+					cm[i] = cm[i+1];
+					
+				}
+				cm[cmLength] = new ChatMessage(message, cm[cmLength-1].getMid()+1, getUserIDPByID(uid));
+			}else{
+				cm[cmLength] = new ChatMessage(message, cm[cmLength-1].getMid()+1, getUserIDPByID(uid));
+			}
+			if(stmt != null){
+				stmt.close();
+			}
+			if(rs!= null ){
+				rs.close();
+			}
+			stmt = c.createStatement();
+			String sql2 = "UPDATE CHAT SET MESSAGES = " +buildXML(cm)+ " WHERE ID = "+cid+" ;";
+			stmt.executeUpdate(sql);
+			c.commit();
+		
+		}catch(Exception e){
+			System.err.println(e.getClass().getName() + ": "
+					+ e.getMessage());
+			System.exit(0);
+			
+		}
 	}
-
+	public boolean checkUpdate(int cid, int lmid){
+		Statement stmt;
+		try{
+			String sql = "SELECT MESSAGES FROM CHAT WHERE ID = "+cid+";";
+			stmt = c.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			ChatMessage[] cm = (ChatMessage[]) parseXML(rs.getString("MESSAGES"),ChatMessage[].class);
+			if(cm[cm.length-1].getMid()== lmid){
+				// no update required
+				return false;
+			}else{
+				return true;
+			}
+			
+		}catch(Exception e){
+			System.err.println(e.getClass().getName() + ": "
+					+ e.getMessage());
+			System.exit(0);
+			// Exception must be caught
+		
+		}
+		return true;
+	}
 	public boolean amendPic(int id) {
 		return false;
 
@@ -1120,7 +1209,7 @@ public class SQL {
 		return -1;
 	}
 
-	public int getUserIDPByID(String id) {
+	public int getUserIDPByID(int id) {
 		// TODO not yet tested
 		Statement stmt = null;
 		try {
