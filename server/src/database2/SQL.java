@@ -384,6 +384,7 @@ public class SQL {
 							.println("Couldn´t create a new Instance of the C Table");
 					System.err.println(e1.getClass().getName() + ": "
 							+ e1.getMessage());
+					
 					System.exit(0);
 				}
 			}
@@ -474,7 +475,6 @@ public class SQL {
 			addLink(10, 10);
 			addAdmin("d", "d");
 			getProfilecharts(1, 3, 87, null);
-			addFriend(1, 1, false);
 
 		} catch (Exception e3) {
 			System.out
@@ -491,14 +491,13 @@ public class SQL {
 	 * 
 	 * @return true if successful
 	 */
-	public boolean addFriend(int myid, int id2, boolean accepted) {
+	public boolean addFriend(int id1, int id2) {
 		// TODO not tested implement add Chat
 		Statement stmt;
-		int a = 0;
 		try {
 			stmt = c.createStatement();
 			String sql2 = " SELECT COUNT(*) AS COUNT FROM FRIEND WHERE ID1 = '"
-					+ myid + "' AND ID2 = '" + id2 + "' ;";
+					+ id1 + "' AND ID2 = '" + id2 + "' ;";
 			ResultSet rs = stmt.executeQuery(sql2);
 			int count = rs.getInt("COUNT");
 			if (rs != null)
@@ -506,39 +505,34 @@ public class SQL {
 			if (stmt != null)
 				stmt.close();
 			if (count == 0) {
-				int id;
 				PreparedStatement p;
 				try {
 					String sql = "INSERT INTO FRIEND (ID1, ID2,CID,ACCEPTED)"
 							+ "VALUES(?,?,?,?);"; // new Version similar to the
 												// dedicated source
 					p = c.prepareStatement(sql);
-					p.setInt(1, myid);
+					p.setInt(1, id1);
 					p.setInt(2, id2);
-					p.setInt(3, addChat(myid, id2));
-				
-					if (accepted) {
-						a = 1;
-					}
-					p.setInt(4, a);
+					p.setInt(3, -1);
+
+					p.setInt(4, 0);
 					p.executeUpdate();
 					if (p != null)
 						p.close();
 					c.commit();
-					System.out.println("added Connection from "+myid+ "to "+id2);
-					setAccepted(a,myid, id2);
+					System.out.println("added Connection from "+id1+ "to "+id2);
 					return true;
 				} catch (Exception e) {
 					System.err.println(e.getClass().getName() + ": "
 							+ e.getMessage());
 					System.exit(0);
-					System.out.println("Couldn´t connect from "+myid+ "to "+id2 );
+					System.out.println("Couldn´t connect from "+id1+ "to "+id2 );
 					return false;
 					
 				}
 				
 			} else {
-				System.out.println("The requested connection between "+ myid+ "and " +id2+ "already exists");
+				System.out.println("The requested connection between "+ id1+ "and " +id2+ "already exists");
 
 			}
 
@@ -578,24 +572,118 @@ public class SQL {
 	}
 
 	/**
+	 * Source: http://stackoverflow.com/questions/12882874/how-can-i-get-the-autoincremented-id-when-i-insert-a-record-in-a-table-via-jdbct
 	 * Adds a new Chat between two Users
 	 * 
-	 * @return
+	 * @return Returns the id of the created chat
 	 */
 	public int addChat(int id1, int id2) {
-
-		return 1;
+		
+	PreparedStatement p;
+	Statement stmt;
+		try {
+			stmt = c.createStatement();
+			String sql1 = " SELECT CID  AS COUNT FROM FRIEND WHERE ID1 = '"
+					+ id1 + "' AND ID2 = '" + id2 + "' ;";
+			ResultSet rs1 = stmt.executeQuery(sql1);
+			int cid = rs1.getInt("CID");
+			if (rs1 != null)
+				rs1.close();
+			if (stmt != null)
+				stmt.close();
+			if (cid == -1) {
+					ChatMessage[] cMessages = new ChatMessage [50];
+					String sql2 = "INSERT INTO FRIEND (ID1, ID2,MESSAGES)"
+							+ "VALUES(?,?,?);"; 
+					p = c.prepareStatement(sql2, Statement.RETURN_GENERATED_KEYS);
+					p.setInt(1, id1);
+					p.setInt(2, id2);
+					p.setString(3,buildXML(cMessages));
+					p.executeUpdate();
+				    ResultSet rs2 = p.getGeneratedKeys();
+				    int  newCid = -1;
+				    if (rs2.next()) {
+				    	System.out.println("added Chat between "+id1+ "and "+id2);
+				    	newCid = rs2.getInt(1); 
+				    }	
+					c.commit();
+					if(rs2 != null){
+						rs2.close();
+					}
+					if (p!= null){
+						p.close();
+					}
+					
+					if(newCid != -1){
+					return newCid;}
+					
+			}
+			}catch (Exception e) {
+				System.err.println(e.getClass().getName() + ": "
+						+ e.getMessage());
+				System.exit(0);
+				System.out.println("Couldn´t create Chat between "+id1+ "to "+id2 );
+				return -1;
+			}
+					
+		System.out.println("Chat between "+id1+ " and "+id2+ "already exists" );	
+				return -1;
 
 	}
 
 	/**
-		 * 
-		 */
-	public void getFriendRequests() {
-
+	 * Reads out all pending friend requests for one user
+	 * @param myid the requesting users id
+	 * @return an FriendRequestItem ArrayList containing Infomation about each pending request
+	 */
+	public ArrayList<FriendRequestItem> getFriendRequests(int myid) {
+		Statement stmt;
+		ArrayList<FriendRequestItem> fri = new ArrayList<FriendRequestItem>();
+		try{
+			stmt = c.createStatement();
+			String sql = "SELECT USER.FN, USER.LN , USER.IDP FROM FRIEND LEFT JOIN USER  ON FRIEND.ID1 = USER.ID WHERE ACCEPTED = 0 AND ID2 = " + myid+" ;";
+			ResultSet rs = stmt.executeQuery(sql);
+			while(rs.next()){
+				fri.add(new FriendRequestItem(rs.getInt("IDP"),rs.getString("FN"),rs.getString("LN")));
+			}
+		}catch(Exception e){ 
+			System.err.println(e.getClass().getName() + ": "
+					+ e.getMessage());
+			System.exit(0);
+			return null;
+		}
+		return fri;
 	}
-
-	public void getChatFromFriend(int uid, int u2id) {
+	/**
+	 * This Methods sets the status of an Friendrequest to accepted and creates a new chat object for the Friend Request
+	 * @param id1
+	 * @param myid
+	 * @return
+	 */
+	public boolean acceptRequests(int[] id1, int myid){
+		PreparedStatement p;
+		try{
+			String sql = "UPDATE FRIEND SET ACCEPTED = 1 WHERE ID1 = ? AND ID2 = ?";
+			p = c.prepareStatement(sql);
+			p.setInt(2, myid);
+			for(int i = 0; i <id1.length; i ++){
+				p.setInt(1, id1[i]);
+				p.executeUpdate();
+				addChat(id1[i], myid);
+			}
+			if(p != null){
+				p.close();
+			}
+			c.commit();
+			return true;
+		}catch(Exception e){
+			System.err.println(e.getClass().getName() + ": "
+					+ e.getMessage());
+			System.exit(0);
+			return false;
+		}
+	}
+	public void getOpenChats(int uid, int u2id) {
 	}
 
 	public void getChat(int cid) {
