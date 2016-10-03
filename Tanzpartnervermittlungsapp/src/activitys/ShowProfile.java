@@ -1,6 +1,7 @@
 package activitys;
 
 import model.ProfileData;
+import task.AddFriendTask;
 import task.ForeignProfileTask;
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -80,7 +81,8 @@ public class ShowProfile extends ConnectedActivity {
 	       FriendRequestButton.setOnClickListener(new View.OnClickListener() {
 	            @Override
 				public void onClick(View v) {
-	            	
+	            	AddFriendTask aft = new AddFriendTask(sp, id, idp);
+	            	aft.execute();
 	            }
 	        });	
 	   
@@ -104,10 +106,6 @@ public class ShowProfile extends ConnectedActivity {
 	   ForeignProfileTask fpt =new ForeignProfileTask(sp, idp, id);
 			fpt.execute();
 			}
-
-	/* (non-Javadoc)
-	 * @see activitys.ConnectedActivity#onConnectionError()
-	 */
 	@Override
 		public void onConnectionError(){
 			
@@ -125,10 +123,6 @@ public class ShowProfile extends ConnectedActivity {
 			intent.putExtra("error", error);
 			startActivity(new Intent(intent));
 			}
-	
-	/* (non-Javadoc)
-	 * @see activitys.ConnectedActivity#onError(java.lang.String)
-	 */
 	@Override
 	public void onError(String ec) {
 		Intent intent;
@@ -144,6 +138,9 @@ public class ShowProfile extends ConnectedActivity {
 			intent.putExtra("gender", gender);
 			intent.putExtra("error", "Fatal error: "+ec);
 			startActivity(new Intent(intent));
+			break;
+		case "alreadyExists" :
+			Toast.makeText(this,"Es besteht bereits eine Anfrage", Toast.LENGTH_LONG).show();
 			break;
 		default:
 			intent = new Intent(getApplicationContext(),LogIn.class);
@@ -209,6 +206,11 @@ public class ShowProfile extends ConnectedActivity {
 
 	    context.startActivity(intent);
 
+	}
+
+	public void requestSended() {
+		Toast.makeText(this, "Freundschaftsanfrage erfolgreich versendet", Toast.LENGTH_LONG).show();
+		
 	}
 
 }

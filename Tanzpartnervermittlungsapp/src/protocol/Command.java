@@ -17,7 +17,14 @@ getprofile("getprofile"),
  foreignprofile("foreignprofile"),
 getkurs("getkurs"),
 updatelink("updatelink"),
-updateimage("updateimage");
+updateimage("updateimage"),
+getchatmessages("getchatmessages"),
+sendmessage("sendmessage"),
+getchats("getchats"),
+cehckforcupdate("cehckforcupdate"),
+acceptfr("acceptfr"),
+getfr("getfr"),
+addfriend("addfriend");
 
 	private String text;
 

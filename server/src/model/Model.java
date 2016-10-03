@@ -17,7 +17,9 @@ import java.util.ArrayList;
 
 
 
+
 import main.Main;
+import database2.FriendRequestItem;
 import database2.Kurs;
 import database2.ProfileChart;
 import database2.ProfileData;
@@ -58,7 +60,32 @@ public class Model {
 		System.out.println("got an Instance of the Model");
 		return instance;
 	}
-	
+	/**
+	 * Sets all FRIRND objects having a fitting combination of id1 and my id 1 to ACCEPTED = 1
+	 * @param mid my id
+	 * @param fidp the foreign users idp
+	 * @return true if succcessfull
+	 */
+	public boolean addFriend(int mid, String fidp){
+		return sql.addFriend (mid, sql.getUserIDByIDP(fidp));
+	}
+	/**
+	 * 
+	 * @param idpl
+	 * @param myid
+	 * @return
+	 */
+	public boolean acceptFriendrequest(ArrayList<Integer>idpl, int myid){
+		return sql.acceptRequests(idpl, myid);
+	}
+	/**
+	 * 
+	 * @param myid
+	 * @return
+	 */
+	public ArrayList<FriendRequestItem> getFriendrequests(int myid){
+		return sql.getFriendRequests(myid);
+	}
 	/**
 	 * Calls SQL.addAdmin to add a new admin if he doesn´t yet exist
 	 *
@@ -200,7 +227,7 @@ public class Model {
 	}
 	
 	/**
-	 * Check id.
+	 * Checks if the id exists for any user in the db
 	 *
 	 * @param id the id
 	 * @return true, if successful

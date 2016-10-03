@@ -22,7 +22,15 @@ alogin("alogin"),
 agetkurs("agetkurs"),
 addkurs("addKurs"),
 updateimage("updateimage"),
-adeletekurs("adeletekurs");
+adeletekurs("adeletekurs"),
+getchatmessages("getchatmessages"),
+sendmessage("sendmessage"),
+getchats("getchats"),
+cehckforcupdate("cehckforcupdate"),
+acceptfr("acceptfr"),
+getfr("getfr"),
+addfriend("addfriend");
+
 
 	private String text;
 

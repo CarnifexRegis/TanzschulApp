@@ -12,7 +12,7 @@ import android.util.Log;
  * @author Simon Stolz
  */
 public class ForeignProfileTask extends BaseHttpRequestTask {
-	private String eMail;
+	private String idp;
 	private int id;
 	
 	/**
@@ -22,14 +22,14 @@ public class ForeignProfileTask extends BaseHttpRequestTask {
 	 * @param eMail the e mail
 	 * @param id the id
 	 */
-	public ForeignProfileTask (ShowProfile sp,String eMail, int id) {
+	public ForeignProfileTask (ShowProfile sp,String idp, int id) {
 		super(sp);
-		this.eMail = eMail;
+		this.idp = idp;
 		this.id = id;
 	}
 	
 	public void execute() {
-		ForeignProfileRequest request = new ForeignProfileRequest(eMail, id);
+		ForeignProfileRequest request = new ForeignProfileRequest(idp, id);
 
 		try {
 			String xml = buildXML(request);

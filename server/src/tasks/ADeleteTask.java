@@ -6,17 +6,12 @@ import protocol.ErrorCode;
 import request.ADeleteRequest;
 import response.ADeleteResponse;
 
-
-// TODO: Auto-generated Javadoc
 /**
  * @author Simon Stolz
  * The Class ADeleteTask.
  */
 public class ADeleteTask extends AbstractHandler{
 	
-	/* (non-Javadoc)
-	 * @see protocol.AbstractHandler#handle(java.lang.String)
-	 */
 	public String handle(String httpBody){
 		//gets the information from the request
 		ADeleteRequest request = (ADeleteRequest)parseXML(httpBody,ADeleteRequest.class);

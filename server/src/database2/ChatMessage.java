@@ -35,6 +35,9 @@ public class ChatMessage {
 	 * @param mid the messages id
 	 * @param senderId the senders idp
 	 */
+	public ChatMessage(){
+		super();
+	}
 	public ChatMessage(String text, int mid, int senderId) {
 		super();
 		Text = text;

@@ -27,9 +27,6 @@ public class Menue extends ConnectedActivity {
 	private int ID ;
 	private boolean gender;
 	
-	/* (non-Javadoc)
-	 * @see android.app.Activity#onCreate(android.os.Bundle)
-	 */
 	@Override
 	/**
 	 * 
@@ -91,6 +88,32 @@ Intent intent = new Intent(getApplicationContext(),EditProfile.class);
 			startActivity(new Intent(intent));
 		}
 	});
+	final Button fr = (Button) findViewById(R.id.mFRequests);
+	fr.setOnClickListener(new View.OnClickListener() {
+		@Override
+		public void onClick(View v) {
+	
+			Intent intent = new Intent(getApplicationContext(),FriendRequest.class);
+			
+			intent.putExtra("ID", ID);
+			intent.putExtra("gender", gender);
+			
+			 startActivity(new Intent(intent));
+		}
+	});
+	final Button conversations = (Button) findViewById(R.id.Konv);
+	conversations.setOnClickListener(new View.OnClickListener() {
+		@Override
+		public void onClick(View v) {
+	
+			Intent intent = new Intent(getApplicationContext(),Friends.class);
+			
+			intent.putExtra("ID", ID);
+			intent.putExtra("gender", gender);
+			
+			 startActivity(new Intent(intent));
+		}
+	});
 }
 
 	/**
@@ -103,26 +126,18 @@ Intent intent = new Intent(getApplicationContext(),EditProfile.class);
 		//testView.setText(text);
 	}
 
-	/* (non-Javadoc)
-	 * @see android.app.Activity#onBackPressed()
-	 */
+
 	@Override
 	public void onBackPressed() {
 	}
 	
-	/* (non-Javadoc)
-	 * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
-	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 	    MenuInflater inflater=getMenuInflater();
 	    inflater.inflate(R.layout.new_main_menue, menu);
 	    return super.onCreateOptionsMenu(menu);
 	}
-	
-	/* (non-Javadoc)
-	 * @see android.app.Activity#onOptionsItemSelected(android.view.MenuItem)
-	 */
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    switch(item.getItemId())

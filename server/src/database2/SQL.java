@@ -476,6 +476,12 @@ public class SQL {
 			addLink(10, 10);
 			addAdmin("d", "d");
 			getProfilecharts(1, 3, 87, null);
+			addFriend(1, 2);
+			getFriendRequests(2);
+			ArrayList<Integer> testlist = new  ArrayList<Integer>();
+			testlist.add(getUserIDPByID(1));
+			acceptRequests(testlist, 2);
+			addMessage(1, 2, "hallo");
 
 		} catch (Exception e3) {
 			System.out
@@ -499,12 +505,24 @@ public class SQL {
 			stmt = c.createStatement();
 			String sql2 = " SELECT COUNT(*) AS COUNT FROM FRIEND WHERE ID1 = '"
 					+ id1 + "' AND ID2 = '" + id2 + "' ;";
+			String sql3 = " SELECT COUNT(*) AS COUNT FROM FRIEND WHERE ID1 = '"
+					+ id2 + "' AND ID2 = '" + id1 + "' ;";
 			ResultSet rs = stmt.executeQuery(sql2);
-			int count = rs.getInt("COUNT");
+			int count;
+			int count1 = rs.getInt("COUNT");
 			if (rs != null)
 				rs.close();
 			if (stmt != null)
 				stmt.close();
+			stmt = c.createStatement();
+			rs = stmt.executeQuery(sql3);
+			int count2 = rs.getInt("COUNT");
+			if (rs != null)
+				rs.close();
+			if (stmt != null)
+				stmt.close();
+			
+			count  = count1 + count2;
 			if (count == 0) {
 				PreparedStatement p;
 				try {
@@ -528,8 +546,6 @@ public class SQL {
 							+ e.getMessage());
 					System.exit(0);
 					System.out.println("Couldn´t connect from "+id1+ "to "+id2 );
-					return false;
-					
 				}
 				
 			} else {
@@ -539,7 +555,6 @@ public class SQL {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			return false;
 		}
 		return false;
 	}
@@ -584,22 +599,22 @@ public class SQL {
 	Statement stmt;
 		try {
 			stmt = c.createStatement();
-			String sql1 = " SELECT CID  FROM FRIEND WHERE ID1 = '"
-					+ id1 + "' AND ID2 = '" + id2 + "' ;";
+			String sql1 = " SELECT COUNT(*) AS C FROM CHAT WHERE IDP1 = '"
+					+ getUserIDPByID(id1) + "' AND IDP2 = '" + getUserIDPByID(id2) + "' ;";
 			ResultSet rs1 = stmt.executeQuery(sql1);
-			int cid = rs1.getInt("CID");
-			if (rs1 != null)
-				rs1.close();
-			if (stmt != null)
-				stmt.close();
-			if (cid == -1) {
-					ChatMessage[] cMessages = new ChatMessage [50];
-					String sql2 = "INSERT INTO FRIEND (IDP1, IDP2,MESSAGES)"
+			int count = rs1.getInt("C");
+				if (rs1 != null)
+					rs1.close();
+				if (stmt != null)
+					stmt.close();
+				if (count == 0) {
+					Messages m = new Messages();
+					String sql2 = "INSERT INTO CHAT (IDP1, IDP2,MESSAGES)"
 							+ "VALUES(?,?,?);"; 
 					p = c.prepareStatement(sql2, Statement.RETURN_GENERATED_KEYS);
 					p.setInt(1, getUserIDPByID(id1));
 					p.setInt(2, getUserIDPByID(id2));
-					p.setString(3,buildXML(cMessages));
+					p.setString(3,buildXML(m));
 					p.executeUpdate();
 				    ResultSet rs2 = p.getGeneratedKeys();
 				    int  newCid = -1;
@@ -607,16 +622,21 @@ public class SQL {
 				    	System.out.println("added Chat between "+id1+ "and "+id2);
 				    	newCid = rs2.getInt(1); 
 				    }	
-					c.commit();
-					if(rs2 != null){
-						rs2.close();
-					}
-					if (p!= null){
-						p.close();
-					}
+						if(rs2 != null){
+							rs2.close();
+						}
+						if (p!= null){
+							p.close();
+						}
 					
 					if(newCid != -1){
-					return newCid;}
+//					System.out.println("New chat with Id : " + newCid);
+//					String sql3 = "UPDATE FRIEND SET CID = "+newCid+" WHERE ID1 = "+id1+" AND ID2 = "+id2+";";
+//					stmt = c.createStatement();
+//					stmt.executeUpdate(sql3);
+					c.commit();
+					return newCid;
+					}
 					
 			}
 			}catch (Exception e) {
@@ -634,7 +654,7 @@ public class SQL {
 
 	/**
 	 * Reads out all pending friend requests for one user
-	 * @param myid the requesting users id
+	 * @param myid the requesting users idp
 	 * @return an FriendRequestItem ArrayList containing Infomation about each pending request
 	 */
 	public ArrayList<FriendRequestItem> getFriendRequests(int myid) {
@@ -646,6 +666,13 @@ public class SQL {
 			ResultSet rs = stmt.executeQuery(sql);
 			while(rs.next()){
 				fri.add(new FriendRequestItem(rs.getInt("IDP"),rs.getString("FN"),rs.getString("LN")));
+				System.out.println(rs.getInt("IDP"));
+			}
+			if(rs!= null){
+				rs.close();
+			}
+			if(stmt!= null){
+				stmt.close();
 			}
 		}catch(Exception e){ 
 			System.err.println(e.getClass().getName() + ": "
@@ -661,17 +688,20 @@ public class SQL {
 	 * @param myid
 	 * @return
 	 */
-	public boolean acceptRequests(int[] id1, int myid){
+	public boolean acceptRequests(ArrayList<Integer> idp1, int myid){
 		PreparedStatement p;
 		try{
-			String sql = "UPDATE FRIEND SET ACCEPTED = 1 WHERE ID1 = ? AND ID2 = ?";
+			String sql = "UPDATE FRIEND SET ACCEPTED = 1, CID = ? WHERE ID1 = ? AND ID2 = ?";
 			p = c.prepareStatement(sql);
-			p.setInt(2, myid);
-			for(int i = 0; i <id1.length; i ++){
-				p.setInt(1, id1[i]);
-				p.executeUpdate();
-				addChat(id1[i], myid);
+			
+			
+			for(int i = 0; i <idp1.size(); i ++){
+				p.setInt(1, addChat(getUserIDByIDP(idp1.get(i)+""),myid ));
+				p.setInt(2, getUserIDByIDP(idp1.get(i)+""));
+				p.setInt(3, myid);
+				p.addBatch();
 			}
+			p.executeBatch();
 			if(p != null){
 				p.close();
 			}
@@ -706,40 +736,31 @@ public class SQL {
 		}
 	}
 
-	public ChatMessage[] getChatById(int cid) {
-		Statement stmt;
-		try{
-			String sql = "SELECT MESSAGES FROM FRIEND WHERE ID = " +cid+ "; ";
-			stmt = c.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
-			return (ChatMessage[]) parseXML(rs.getString("MESSAGES"),ChatMessage[].class );
-			
-		}catch(Exception e){
-			System.err.println(e.getClass().getName() + ": "
-					+ e.getMessage());
-			System.exit(0);
-			return null;
-		}
-	}
+//	public Messages getChatById(int cid) {
+//		Statement stmt;
+//		try{
+//			String sql = "SELECT MESSAGES FROM FRIEND WHERE ID = " +cid+ "; ";
+//			stmt = c.createStatement();
+//			ResultSet rs = stmt.executeQuery(sql);
+//			return (Messages) parseXML(rs.getString("MESSAGES"),Messages.class );
+//			
+//		}catch(Exception e){
+//			System.err.println(e.getClass().getName() + ": "
+//					+ e.getMessage());
+//			System.exit(0);
+//			return null;
+//		}
+//	}
 
-	public void addMessage(int cid, int uid, String message) {
+	public void addMessage(int cid, int myid, String message) {
 		Statement stmt;
 		
 		try{
-			String sql = "SELECT MESSAGES FROM FRIEND WHERE ID = " +cid+ "; ";
+			String sql = "SELECT MESSAGES FROM CHAT WHERE ID = " +cid+ "; ";
 			stmt = c.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
-		ChatMessage[] cm =(ChatMessage[]) parseXML(rs.getString("MESSAGES"),ChatMessage[].class );
-		int cmLength = cm.length;
-			if(cmLength >= 49){
-				for(int i = 0; i< cmLength; i ++){
-					cm[i] = cm[i+1];
-					
-				}
-				cm[cmLength] = new ChatMessage(message, cm[cmLength-1].getMid()+1, getUserIDPByID(uid));
-			}else{
-				cm[cmLength] = new ChatMessage(message, cm[cmLength-1].getMid()+1, getUserIDPByID(uid));
-			}
+			Messages m =(Messages) parseXML(rs.getString("MESSAGES"),Messages.class );
+			m.addMessage(message, getUserIDPByID(myid));
 			if(stmt != null){
 				stmt.close();
 			}
@@ -747,8 +768,8 @@ public class SQL {
 				rs.close();
 			}
 			stmt = c.createStatement();
-			String sql2 = "UPDATE CHAT SET MESSAGES = " +buildXML(cm)+ " WHERE ID = "+cid+" ;";
-			stmt.executeUpdate(sql);
+			String sql2 = "UPDATE CHAT SET MESSAGES = '" +buildXML(m)+ "' WHERE ID = "+cid+" ;";
+			stmt.executeUpdate(sql2);
 			c.commit();
 		
 		}catch(Exception e){
@@ -758,20 +779,20 @@ public class SQL {
 			
 		}
 	}
-	public boolean checkUpdate(int cid, int lmid){
+	/**
+	 * Provides all missing messages
+	 * @param cid
+	 * @param lmid
+	 * @return missing messages
+	 */
+	public ArrayList<ChatMessage> checkUpdate(int cid, int lmid){
 		Statement stmt;
 		try{
 			String sql = "SELECT MESSAGES FROM CHAT WHERE ID = "+cid+";";
 			stmt = c.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
-			ChatMessage[] cm = (ChatMessage[]) parseXML(rs.getString("MESSAGES"),ChatMessage[].class);
-			if(cm[cm.length-1].getMid()== lmid){
-				// no update required
-				return false;
-			}else{
-				return true;
-			}
-			
+			Messages m = (Messages) parseXML(rs.getString("MESSAGES"),Messages.class);
+			return m.getMissingMessages(lmid);
 		}catch(Exception e){
 			System.err.println(e.getClass().getName() + ": "
 					+ e.getMessage());
@@ -779,7 +800,7 @@ public class SQL {
 			// Exception must be caught
 		
 		}
-		return true;
+		return null;
 	}
 	public boolean amendPic(int id) {
 		return false;
@@ -1888,27 +1909,6 @@ public class SQL {
 		}
 
 	}
-
-	// public boolean aAddKurs(SQLKurs kurs) {
-	// TODO outdated
-	// PreparedStatement p;
-	// try{
-	// String sql = String sql = "INSERT INTO K (ID, NAME,KEY)"+
-	// "VALUES(?,?,?);";
-	// p = c.prepareStatement(sql);
-	// p.executeUpdate();
-	// c.commit();
-	// if(p != null){
-	// p.close();
-	// }
-	// return true;
-	// }
-	// catch(Exception e){
-	// System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-	// System.exit(0);
-	// e.printStackTrace();}
-	// return false;
-	// }
 	private String buildXML(Object object) {
 		Style style = new HyphenStyle();
 		Format format = new Format(style);

@@ -3,8 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
- <ListView
-        android:id="@+id/ContactsListView"
+
+    <ListView
+        android:id="@+id/FRequestsListView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="366dp"
+        android:layout_weight="0.93" />
+
+    <Button
+        android:id="@+id/frButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.50"
+        android:text="Annehmen" />
+
 </LinearLayout>
