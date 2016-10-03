@@ -3,6 +3,7 @@ package database2;
 import java.io.StringWriter;
 import java.security.SecureRandom;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -441,16 +442,16 @@ public class SQL {
 
 			// getAllUserData();
 			// kein goldstar b im quartal
-			// addKurs(3,"25.03.2016","Donnerstag","15:25");
-			// addKurs(4,"25.03.2016","Donnerstag","16:25");
-			// addKurs(6,"26.03.2016","Freitag","16:35");
-			// addKurs(1,"26.03.2016","Freitag","13:25");
-			// addKurs(2,"26.03.2016","Freitag","14:35");
-			// addKurs(3,"26.03.2016","Freitag","15:35");
-			// addKurs(4,"26.03.2016","Freitag","16:35");
-			// addKurs(5,"26.03.2016","Freitag","17:35");
-			// addKurs(1,"24.03.2016","Mittwoch","13:25");
-			// addKurs(2,"24.03.2016","Mittwoch","14:25");
+//			 addKurs(3,new Date(600000000),"Donnerstag","15:25");
+//			 addKurs(4,new Date(60000),"Donnerstag","16:25");
+//			 addKurs(6,new Date(60000000),"Freitag","16:35");
+//			 addKurs(1,new Date(600000),"Freitag","13:25");
+//			 addKurs(2,new Date(600435543),"Freitag","14:35");
+//			 addKurs(3,new Date(345),"Freitag","15:35");
+//			 addKurs(4,new Date(6546),"Freitag","16:35");
+//			 addKurs(5,new Date(34),"Freitag","17:35");
+//			 addKurs(1,new Date(1),"Mittwoch","13:25");
+//			 addKurs(2,new Date(0),"Mittwoch","14:25");
 
 			addLink(1, 1);
 			addLink(2, 1);
@@ -482,6 +483,11 @@ public class SQL {
 			testlist.add(getUserIDPByID(1));
 			acceptRequests(testlist, 2);
 			addMessage(1, 2, "hallo");
+			addFriend(3, 1);
+			testlist.clear();
+			testlist.add(getUserIDPByID(3));
+			acceptRequests(testlist, 1);
+			System.out.println(getOpenChats(1));
 
 		} catch (Exception e3) {
 			System.out
@@ -495,8 +501,9 @@ public class SQL {
 	// methods
 	/**
 	 * Adds a new Friend link from the requesting User to another User
-	 * 
-	 * @return true if successful
+	 * @param id1 the requesting users id
+	 * @param id2 other users id
+	 * @return True if successfull
 	 */
 	public boolean addFriend(int id1, int id2) {
 		// TODO not tested implement add Chat
@@ -719,11 +726,18 @@ public class SQL {
 		//http://stackoverflow.com/questions/5901791/is-having-an-or-in-an-inner-join-condition-a-bad-idea
 		ArrayList<Friend> fl = new ArrayList<Friend>();
 		try{
-			String sql = "SELECT USER.FN, USER.LN, USER.IDP, CID FROM FRIENDS LEFT JOIN USER ON USER.ID = ID2 WHERE FRIEND.ID1 = "+myid+" UNIONSELECT USER.FN, USER.LN, USER.IDP, CID FROM FRIENDS LEFT JOIN USER ON USER.ID = ID1 WHERE FRIEND.ID2 = "+myid+" ;";
+			String sql = "SELECT USER.FN, USER.LN, USER.IDP, CID, ACCEPTED FROM FRIEND LEFT JOIN USER ON USER.ID = ID2 WHERE FRIEND.ID1 = "+myid+" UNION"
+					+ " SELECT USER.FN, USER.LN, USER.IDP, CID, ACCEPTED FROM FRIEND LEFT JOIN USER ON USER.ID = ID1 WHERE FRIEND.ID2 = "+myid+" ;";
 			stmt = c.createStatement(); 
 			ResultSet rs = stmt.executeQuery(sql);
+			String lm = null; // it´s calls last message so u can in future add the last messages for accepted friends
 			while(rs.next()){
-				fl.add(new Friend(rs.getString("FN"),rs.getString("LN"),rs.getInt("IDP"), rs.getInt("CID")));
+				if(rs.getInt("ACCEPTED")== 0){
+					lm = "Freundschaft Ausstehend";
+				}else{
+					lm = "Hier klicken";
+				}
+				fl.add(new Friend(rs.getString("USER.FN"),rs.getString("USER.LN"),rs.getInt("USER.IDP"), rs.getInt("CID"),lm));
 			}
 			if(rs != null){rs.close();}
 			if(stmt != null){stmt.close();}

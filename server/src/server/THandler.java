@@ -19,6 +19,7 @@ import tasks.ALoginTask;
 import tasks.AcceptFriendshipTask;
 import tasks.AddFriendTask;
 import tasks.GetFriendRequestsTask;
+import tasks.GetFriendsTask;
 import tasks.GetKursTask;
 import tasks.LoginTask;
 import tasks.ProfiledataTask;
@@ -147,9 +148,12 @@ public class THandler extends AbstractHandler {
 				antwort = addft.handle(body);
 				baseRequest.setHandled(true);
 				break;
+			case getfriends:
+				GetFriendsTask gft  = new GetFriendsTask();
+				antwort = gft.handle(body);
+				baseRequest.setHandled(true);
+				break;
 			default:
-
-				
 
 			}
 

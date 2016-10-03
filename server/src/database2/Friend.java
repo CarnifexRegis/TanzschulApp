@@ -21,21 +21,14 @@ public class Friend {
 	public Friend (){
 		super();
 	}
-	public Friend(String fn, String ln, int idp, String lastMessage) {
-		// TODO add pic when needed
-		super();
-		this.fn = fn;
-		this.ln = ln;
-		this.idp = idp;
-		this.lastMessage = lastMessage;
-		
-	}
-	public Friend(String fn, String ln, int idp, int cid) {
+
+	public Friend(String fn, String ln, int idp, int cid ,String lm) {
 		super();
 		this.fn = fn;
 		this.ln = ln;
 		this.idp = idp;
 		this.cid = cid;
+		lastMessage = lm;
 	}
 	public String getFn() {
 		return fn;

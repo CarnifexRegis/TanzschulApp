@@ -29,6 +29,7 @@ getchats("getchats"),
 cehckforcupdate("cehckforcupdate"),
 acceptfr("acceptfr"),
 getfr("getfr"),
+getfriends("getfriends"),
 addfriend("addfriend");
 
 

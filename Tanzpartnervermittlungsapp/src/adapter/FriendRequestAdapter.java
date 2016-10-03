@@ -66,7 +66,7 @@ public class FriendRequestAdapter extends ArrayAdapter<FriendRequestItem> {
 				
 				CheckBox name =  (CheckBox) row.findViewById(R.id.FriendRequestCheck);
 				
-				name.setText(fri.getFn()+fri.getLn());
+				name.setText(fri.getFn()+" "+fri.getLn());
 				//http://developer.android.com/resources/samples/ApiDemos/src/com/example/android/apis/view/List14.html
 				name.setTag(position);
 				name.setClickable(true);

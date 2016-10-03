@@ -15,24 +15,20 @@ public class Friend {
 	private String lastMessage;
 	@Element(name = "pic", required = false)// for implementations of the future
 	private String pic;
+	@Element (name = "cid")
+	private int cid;
 	
 	public Friend (){
 		super();
 	}
-	public Friend(String fn, String ln, int idp, String lastMessage) {
-		// TODO add pic when needed
+
+	public Friend(String fn, String ln, int idp, int cid ,String lm) {
 		super();
 		this.fn = fn;
 		this.ln = ln;
 		this.idp = idp;
-		this.lastMessage = lastMessage;
-		
-	}
-	public Friend(String fn, String ln, int idp) {
-		super();
-		this.fn = fn;
-		this.ln = ln;
-		this.idp = idp;
+		this.cid = cid;
+		lastMessage = lm;
 	}
 	public String getFn() {
 		return fn;

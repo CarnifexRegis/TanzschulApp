@@ -18,7 +18,9 @@ import java.util.ArrayList;
 
 
 
+
 import main.Main;
+import database2.Friend;
 import database2.FriendRequestItem;
 import database2.Kurs;
 import database2.ProfileChart;
@@ -48,7 +50,9 @@ public class Model {
 		sql = new SQL();
 		System.out.println("Constructor of the Model was called");
 	}
-
+public ArrayList<Friend> getOpenChats(int id){
+	return sql.getOpenChats(id);
+}
 /**
  * Static Method that calls an instance of it self if it doesn´t already exist.
  *
