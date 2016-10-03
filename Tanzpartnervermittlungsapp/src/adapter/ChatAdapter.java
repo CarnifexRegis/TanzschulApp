@@ -4,6 +4,6 @@ package adapter;
  * @author Simon Stolz
  *
  */
-public class ChatAdpater {
+public class ChatAdapter {
 
 }

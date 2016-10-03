@@ -7,6 +7,8 @@ import model.Friend;
 import adapter.FriendsAdapter;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -18,6 +20,7 @@ public class Friends extends ConnectedActivity {
 	private Friends f = this;
 	private ArrayList<Friend> fList = new ArrayList<Friend>();
 	private FriendsAdapter fAdapter ;
+	private int idp;
 	
 	
 	protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +29,7 @@ public class Friends extends ConnectedActivity {
 		if (extras != null) {
 			id = extras.getInt("ID", -1);
 			gender = extras.getBoolean("gender");
+			idp = extras.getInt("idp", -1);
 		}
 		GetFriendsTask gft = new GetFriendsTask(f, id);
 		gft.execute();
@@ -34,6 +38,21 @@ public class Friends extends ConnectedActivity {
 		final ListView fView = (ListView) findViewById(R.id.ContactsListView);
 		fAdapter = new FriendsAdapter(this,fList,f);
 		fView.setAdapter(fAdapter);
+		fView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //the .getName() is accessed from the School POJO class.
+              //  String eMail = adapterCustom.getItem(position).geteMail();
+                //http://stackoverflow.com/questions/9208827/how-to-extract-the-text-from-the-selected-item-on-the-listview
+                Intent intent = new Intent(getApplicationContext(),Chat.class);
+				intent.putExtra("ID", id);
+				intent.putExtra("gender", gender);
+		//		eMail = adapterCustom.getItem(position).getAge();
+				int cid = fAdapter.getItem(position).getIdp();
+				intent.putExtra("cid", cid);
+				 startActivity(new Intent(intent));
+            }
+        });
 		}
 	@Override
 	public void onBackPressed() {
