@@ -616,11 +616,11 @@ public class SQL {
 					return newCid;	
 			}else{
 				stmt = c.createStatement();
-				String sql3 = " SELECT CID  FROM CHAT WHERE IDP1 = '"
+				String sql3 = " SELECT ID  FROM CHAT WHERE IDP1 = '"
 						+ getUserIDPByID(id1) + "' AND IDP2 = '" + getUserIDPByID(id2) + "' ;";
 				ResultSet rs2 = stmt.executeQuery(sql3);
 				
-				int cid = rs2.getInt("CID");
+				int cid = rs2.getInt("ID");
 					if (rs2 != null)
 						rs2.close();
 					if (stmt != null)

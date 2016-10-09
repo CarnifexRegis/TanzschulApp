@@ -46,4 +46,8 @@ public class Friend {
 		return pic;
 	}
 
+	public int getCid() {
+		return cid;
+	}
+
 }

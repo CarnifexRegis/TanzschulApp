@@ -20,7 +20,7 @@ public class Friends extends ConnectedActivity {
 	private Friends f = this;
 	private ArrayList<Friend> fList = new ArrayList<Friend>();
 	private FriendsAdapter fAdapter ;
-	private int idp;
+
 	
 	
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +45,9 @@ public class Friends extends ConnectedActivity {
                 Intent intent = new Intent(getApplicationContext(),Chat.class);
 				intent.putExtra("ID", f.id);
 				intent.putExtra("gender", f.gender);
-				int cid = fAdapter.getItem(position).getIdp();
+				int cid = fAdapter.getItem(position).getCid();
 				intent.putExtra("cid", cid); 
-				intent.putExtra("idp", f.idp); 
+				intent.putExtra("idp", fAdapter.getItem(position).getIdp()); 
 				intent.putExtra("fname",fAdapter.getItem(position).getFn()+" "+fAdapter.getItem(position).getLn() ); 
 				 startActivity(new Intent(intent));
             }
