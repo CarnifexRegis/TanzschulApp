@@ -19,7 +19,6 @@ import com.example.Tanzpartnervermittlung.R;
 import model.ChatMessage;
 
 public class Chat extends ConnectedActivity {
-	private int lm = 0;
 	private boolean gender;
 	private Chat c = this;
 	private int id ;
@@ -27,8 +26,9 @@ public class Chat extends ConnectedActivity {
 	private int fidp ;
 	private ChatAdapter cAdapter;
 	private Thread thread;
-	private int sleepTime = 10000;
+	private int sleepTime = 3000;
 	private String fname;
+	private int lm;
 	private ArrayList<ChatMessage> cm = new ArrayList<ChatMessage>();
 	protected void onCreate(Bundle savedInstanceState) {
 		// gets the passed on data from mainActivity
@@ -48,24 +48,7 @@ public class Chat extends ConnectedActivity {
 		cAdapter = new ChatAdapter(this,cm,fidp);
 		mList.setAdapter(cAdapter);
 		//http://stackoverflow.com/questions/1921514/how-to-run-a-runnable-thread-in-android
-		thread = new Thread() {
-		    @Override
-		    public void run() {
-		        try {
-		             sleep(sleepTime);
-		             if (cm.size()>0){
-		            lm =  cm.get(cm.size()-1).getMid();}
-		             else{
-		            	lm = -1;
-		             }
-		             PollChatTask pct = new  PollChatTask(c, id, cid,lm);
-		            pct.execute();
-		        } catch (InterruptedException e) {
-		            e.printStackTrace();
-		        }
-		    }
-		};
-		thread.start();
+		
 		final EditText mInstert = (EditText) findViewById(R.id.ChatInsert);
 		final Button send = (Button) findViewById(R.id.SendButton);
 		send.setOnClickListener(new OnClickListener() {
@@ -76,24 +59,53 @@ public class Chat extends ConnectedActivity {
 				send.setClickable(false);
 				SendMessageTask smt =  new SendMessageTask(c,id,mInstert.getText().toString(),cid);
 				smt.execute();
-				thread.interrupt();
+				stopPollingThread();
 				
 			}
 		});
 		
-
+		startPollingThread();
 		}
 	public void addNewMessages(ArrayList<ChatMessage> cm) {
 		this.cm.addAll(cm);
 		cAdapter.notifyDataSetChanged();
-		thread.run();
+		if(thread== null){
+			startPollingThread();
+		}
 	}
 	
 	public void successful() {
 		Toast.makeText(this, "Nachricht versendet", Toast.LENGTH_SHORT).show();
-		if(!thread.isAlive()){
-			thread.run();
+		if(thread== null){
+			startPollingThread();
 		}
+	}
+	public void startPollingThread(){
+		thread = new Thread() {
+		    @Override
+		    public void run() {
+		        try {
+		             sleep(sleepTime);
+		             if (cm.size()>0){
+		            lm =  cm.get(cm.size()-1).getMid();}
+		             else{
+		            	lm = 0;
+		             }
+		             PollChatTask pct = new  PollChatTask(c, id, cid,lm);
+		            pct.execute();
+		        } catch (InterruptedException e) {
+		            e.printStackTrace();
+		        }
+		    }
+		};
+		thread.start();
+	}
+	
+	public void stopPollingThread(){
+		if(thread.isAlive()&&!thread.isInterrupted()){
+			thread.interrupt();
+		}
+		thread = null;
 	}
 	@Override
 	protected void onPause() {
