@@ -27,7 +27,7 @@ public class Chat extends ConnectedActivity {
 	private int fidp ;
 	private ChatAdapter cAdapter;
 	private Thread thread;
-	private int sleepTime;
+	private int sleepTime = 10000;
 	private String fname;
 	private ArrayList<ChatMessage> cm = new ArrayList<ChatMessage>();
 	protected void onCreate(Bundle savedInstanceState) {

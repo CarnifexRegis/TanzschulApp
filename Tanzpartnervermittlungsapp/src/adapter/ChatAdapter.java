@@ -45,8 +45,8 @@ public class ChatAdapter extends ArrayAdapter<ChatMessage>{
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View row = null;
 		if (convertView == null) {
-            LayoutInflater inflater = ((FriendRequest) context).getLayoutInflater();
-            row = inflater.inflate(R.layout.friend_request_item, parent, false);
+            LayoutInflater inflater = ((Chat) context).getLayoutInflater();
+            row = inflater.inflate(R.layout.chat_item, parent, false);
      } else {
             row = convertView;
      }

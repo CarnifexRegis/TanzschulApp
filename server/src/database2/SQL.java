@@ -757,8 +757,13 @@ public class SQL {
 			String sql = "SELECT MESSAGES FROM CHAT WHERE ID = " +cid+ "; ";
 			stmt = c.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
-			Messages m =(Messages) parseXML(rs.getString("MESSAGES"),Messages.class );
-			m.addMessage(message, getUserIDPByID(myid));
+			Messages m;
+			if(rs.next()){
+			 m =(Messages) parseXML(rs.getString("MESSAGES"),Messages.class );
+			m.addMessage(message, getUserIDPByID(myid));}
+			else{
+				return false;
+				}
 			if(rs!= null ){
 				rs.close();
 			}

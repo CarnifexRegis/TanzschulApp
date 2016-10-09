@@ -29,7 +29,6 @@ public class Friends extends ConnectedActivity {
 		if (extras != null) {
 			id = extras.getInt("ID", -1);
 			gender = extras.getBoolean("gender");
-			idp = extras.getInt("idp", -1);
 		}
 		GetFriendsTask gft = new GetFriendsTask(f, id);
 		gft.execute();
