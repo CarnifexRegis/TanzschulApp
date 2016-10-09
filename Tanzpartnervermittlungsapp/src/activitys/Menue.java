@@ -58,10 +58,8 @@ public class Menue extends ConnectedActivity {
 			public void onClick(View v) {
 		
 				Intent intent = new Intent(getApplicationContext(),SearchForDancingpartner.class);
-				
 				intent.putExtra("ID", ID);
 				intent.putExtra("gender", gender);
-				
 				 startActivity(new Intent(intent));
 			}
 		});

@@ -22,13 +22,14 @@ import tasks.GetFriendRequestsTask;
 import tasks.GetFriendsTask;
 import tasks.GetKursTask;
 import tasks.LoginTask;
+import tasks.PollChatTask;
 import tasks.ProfiledataTask;
 import tasks.RegisterTask;
+import tasks.SendMessageTask;
 import tasks.UpdateChartTask;
 import tasks.UpdateLinkTask;
 import tasks.UpdateProfileTask;
 // TODO: Auto-generated Javadoc
-
 /**
  * This class recieves all Requests and passes them to the fitting Task or returns an default message
  *
@@ -41,9 +42,6 @@ import tasks.UpdateProfileTask;
 
 public class THandler extends AbstractHandler {
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.jetty.server.Handler#handle(java.lang.String, org.eclipse.jetty.server.Request, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
-	 */
 	@Override
 	public void handle(String target, Request baseRequest,
 			HttpServletRequest request, HttpServletResponse response)
@@ -151,6 +149,16 @@ public class THandler extends AbstractHandler {
 			case getfriends:
 				GetFriendsTask gft  = new GetFriendsTask();
 				antwort = gft.handle(body);
+				baseRequest.setHandled(true);
+				break;
+			case pollchat:
+				PollChatTask pct  = new PollChatTask();
+				antwort = pct.handle(body);
+				baseRequest.setHandled(true);
+				break;
+			case sendmessage:
+				SendMessageTask smt  = new SendMessageTask();
+				antwort = smt.handle(body);
 				baseRequest.setHandled(true);
 				break;
 			default:

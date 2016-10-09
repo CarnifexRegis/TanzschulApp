@@ -19,7 +19,9 @@ import java.util.ArrayList;
 
 
 
+
 import main.Main;
+import database2.ChatMessage;
 import database2.Friend;
 import database2.FriendRequestItem;
 import database2.Kurs;
@@ -49,6 +51,12 @@ public class Model {
 	private Model() {
 		sql = new SQL();
 		System.out.println("Constructor of the Model was called");
+	}
+	public ArrayList <ChatMessage> PollChat(int cid , int lmid){
+		return sql.pollMessages(cid, lmid);
+	}
+	public boolean addMessage(int cid, int id, String message){
+		return sql.addMessage(cid, id, message);
 	}
 public ArrayList<Friend> getOpenChats(int id){
 	return sql.getOpenChats(id);

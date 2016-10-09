@@ -47,9 +47,6 @@ public class aAdapter extends ArrayAdapter<Kurs>{
 		this.context= context;
 		}
 	
-	/* (non-Javadoc)
-	 * @see android.widget.ArrayAdapter#getView(int, android.view.View, android.view.ViewGroup)
-	 */
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		//http://stackoverflow.com/questions/21053979/listview-duplicates-android
@@ -57,7 +54,6 @@ public class aAdapter extends ArrayAdapter<Kurs>{
 		if (convertView == null) {
             LayoutInflater inflater = ((AssignToKurs) context).getLayoutInflater();
             row = inflater.inflate(R.layout.yet_searching_listitem, parent, false);
-            //Make sure the textview exists in this xml
      } else {
             row = convertView;
      }

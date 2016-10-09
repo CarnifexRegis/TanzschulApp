@@ -9,20 +9,15 @@ import org.eclipse.jetty.server.ServerConnector;
 
 
 /**
- * This class hosts the jetty server
+ * This class instanciates the jetty server
  *
  * @author Simon Stolz
  * Sources: http://www.pabst-software.de/doku.php?id=programmieren:java:android:httpclient:start
  * @attribute This is my Server Class it contains Jetty server that is hosted on  192.168.1.104
  */
 public class TServer {
-	
-	/** The server. */
 	 private  Server server;
-	 
- 	/** The http. */
 	 private ServerConnector http;
-
 	/**
 	 * Instantiates a new t server.
 	 */
@@ -42,9 +37,7 @@ public class TServer {
 //		 	/**
 //		 	 * Bei jedem Request wird vom Webserver die handle-Methode der Handler-Klasse MyHandler aufgerufen. 
 //		 	 * For every incoming Request the handle-method of the THandler Class gets called.
-//		 	 */
-		    
-	    
+//		 	 */    
 	}
 	
 	/**
@@ -69,10 +62,10 @@ public class TServer {
 	}
 	
 	/**
-	 * Start server.
+	 * Starts the  server.
 	 *
-	 * @param host the host
-	 * @return the string
+	 * @param host the host ip 
+	 * @return the Ure the server is hosted on
 	 */
 	public String startServer(String host){
 		 try {
@@ -95,9 +88,5 @@ public class TServer {
 				return e.getMessage().toString();
 			}
 	}
-	
-
-	
- 
 }
 

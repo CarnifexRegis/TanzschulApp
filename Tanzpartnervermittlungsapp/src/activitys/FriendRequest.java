@@ -10,7 +10,7 @@ import com.example.Tanzpartnervermittlung.R;
 
 import model.FriendRequestItem;
 import model.ProfileChart;
-import adapter.Adapter;
+import adapter.SearchAdapter;
 import adapter.FriendRequestAdapter;
 import android.os.Bundle;
 import android.view.View;

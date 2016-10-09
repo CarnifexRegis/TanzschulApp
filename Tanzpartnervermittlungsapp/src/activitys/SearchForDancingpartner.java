@@ -6,7 +6,7 @@ package activitys;
 
 import model.ProfileChart;
 import task.UpdateChartTask;
-import adapter.Adapter;
+import adapter.SearchAdapter;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -44,7 +44,7 @@ import com.example.Tanzpartnervermittlung.R;
 	 * low.com/questions/9208827/how-to-extract-the-text-from-the-selected-item-on-the-listview
 	 */
 	public class SearchForDancingpartner extends ConnectedActivity {
-		private Adapter adapterCustom;
+		private SearchAdapter adapterCustom;
 		private ArrayList<ProfileChart> pc;
 		private int ID = -1;
 		private boolean gender;
@@ -138,7 +138,7 @@ kSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 });		
 			
 			pc =  new ArrayList<ProfileChart>();
-			adapterCustom = new Adapter(this,pc );
+			adapterCustom = new SearchAdapter(this,pc );
 			final ListView ProfileChartView = (ListView) findViewById(R.id.userListView);
 			ProfileChartView.setAdapter(adapterCustom);	
 			ProfileChartView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

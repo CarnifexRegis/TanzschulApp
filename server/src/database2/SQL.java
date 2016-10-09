@@ -103,10 +103,9 @@ public class SQL {
 					c.commit();
 					System.out.println("Created new Instance of Table Kurs");
 				} catch (Exception e1) {
-					System.out
-							.println("Couldn´t create a new Instance of the KURS Table");
+					System.out.println("Couldn´t create a new Instance of the KURS Table");
 					System.err.println(e1.getClass().getName() + ": "
-							+ e1.getMessage());
+							+ e1.getMessage()+ " creating Kurs Table ");
 					System.exit(0);
 				}
 
@@ -151,7 +150,7 @@ public class SQL {
 					System.out
 							.println("Couldn´t create a new Instance of the PIC Table");
 					System.err.println(e1.getClass().getName() + ": "
-							+ e1.getMessage());
+							+ e1.getMessage()+ " creating PIC Table ");
 					System.exit(0);
 				}
 			}
@@ -195,7 +194,7 @@ public class SQL {
 					System.out
 							.println("Couldn´t create a new Instance of the FRIEND Table");
 					System.err.println(e1.getClass().getName() + ": "
-							+ e1.getMessage());
+							+ e1.getMessage()+ " creating FRIEND Table ");
 					System.exit(0);
 				}
 			}
@@ -237,7 +236,7 @@ public class SQL {
 					System.out
 							.println("Couldn´t create a new Instance of the ADMIN Table");
 					System.err.println(e1.getClass().getName() + ": "
-							+ e1.getMessage());
+							+ e1.getMessage()+ " creating ADMIN Table ");
 					System.exit(0);
 				}
 			}
@@ -298,7 +297,7 @@ public class SQL {
 					System.out
 							.println("Couldn´t create a new Instance of the USER Table");
 					System.err.println(e1.getClass().getName() + ": "
-							+ e1.getMessage());
+							+ e1.getMessage()+ " creating USER Table ");
 					System.exit(0);
 				}
 			}
@@ -341,7 +340,7 @@ public class SQL {
 					System.out
 							.println("Couldn´t create a new Instance of the LINK Table");
 					System.err.println(e1.getClass().getName() + ": "
-							+ e1.getMessage());
+							+ e1.getMessage()+ " creating LINK Table ");
 					System.exit(0);
 				}
 
@@ -385,7 +384,7 @@ public class SQL {
 					System.out
 							.println("Couldn´t create a new Instance of the C Table");
 					System.err.println(e1.getClass().getName() + ": "
-							+ e1.getMessage());
+							+ e1.getMessage()+ " creating C Table ");
 					
 					System.exit(0);
 				}
@@ -418,40 +417,22 @@ public class SQL {
 			addUser("iaminnocent@kingslanding.de", "geheim14", "Lannister",
 					"Cersei", 1, 8, 1);
 
-			addLink(1, 3);
-			addLink(2, 3);
-			addLink(3, 3);
-			addLink(4, 3);
-			addLink(5, 3);
-			addLink(6, 3);
-			addLink(7, 3);
-			addLink(8, 3);
-			addLink(9, 3);
-			addLink(10, 3);
-			addLink(11, 3);
-			addLink(12, 3);
-			addLink(13, 3);
-			addLink(14, 3);
-			addLink(15, 3);
-			addLink(16, 3);
-			addLink(17, 3);
-			addLink(18, 3);
-			addLink(19, 3);
-			addLink(20, 3);
-			addLink(21, 3);
+			for(int i = 1; i == 21; i++){
+				addLink(i, 3);
+			}
 
 			// getAllUserData();
 			// kein goldstar b im quartal
-//			 addKurs(3,new Date(600000000),"Donnerstag","15:25");
-//			 addKurs(4,new Date(60000),"Donnerstag","16:25");
-//			 addKurs(6,new Date(60000000),"Freitag","16:35");
-//			 addKurs(1,new Date(600000),"Freitag","13:25");
-//			 addKurs(2,new Date(600435543),"Freitag","14:35");
-//			 addKurs(3,new Date(345),"Freitag","15:35");
-//			 addKurs(4,new Date(6546),"Freitag","16:35");
-//			 addKurs(5,new Date(34),"Freitag","17:35");
-//			 addKurs(1,new Date(1),"Mittwoch","13:25");
-//			 addKurs(2,new Date(0),"Mittwoch","14:25");
+			 addKurs(3,new Date(600000000),"Donnerstag","15:25");
+			 addKurs(4,new Date(60000),"Donnerstag","16:25");
+			 addKurs(6,new Date(60000000),"Freitag","16:35");
+			 addKurs(1,new Date(600000),"Freitag","13:25");
+			 addKurs(2,new Date(600435543),"Freitag","14:35");
+			 addKurs(3,new Date(345),"Freitag","15:35");
+			 addKurs(4,new Date(6546),"Freitag","16:35");
+			 addKurs(5,new Date(34),"Freitag","17:35");
+			 addKurs(1,new Date(1),"Mittwoch","13:25");
+			 addKurs(2,new Date(0),"Mittwoch","14:25");
 
 			addLink(1, 1);
 			addLink(2, 1);
@@ -488,12 +469,11 @@ public class SQL {
 			testlist.add(getUserIDPByID(3));
 			acceptRequests(testlist, 1);
 			System.out.println(getOpenChats(1));
-
+			pollMessages(8878901,-1);
+			pollMessages(8878901,-1);
 		} catch (Exception e3) {
-			System.out
-					.println("Couldn´t establish a connection to the database");
-			System.err
-					.println(e3.getClass().getName() + ": " + e3.getMessage());
+			System.out.println("Couldn´t establish a connection to the database");
+			System.err.println(e3.getClass().getName() + ": " + e3.getMessage()+ "in constructor");
 			System.exit(0);
 		}
 	}
@@ -624,39 +604,37 @@ public class SQL {
 					p.setString(3,buildXML(m));
 					p.executeUpdate();
 				    ResultSet rs2 = p.getGeneratedKeys();
-				    int  newCid = -1;
-				    if (rs2.next()) {
 				    	System.out.println("added Chat between "+id1+ "and "+id2);
-				    	newCid = rs2.getInt(1); 
-				    }	
+				    	int newCid = rs2.getInt(1); 
 						if(rs2 != null){
 							rs2.close();
 						}
 						if (p!= null){
 							p.close();
 						}
-					
-					if(newCid != -1){
-//					System.out.println("New chat with Id : " + newCid);
-//					String sql3 = "UPDATE FRIEND SET CID = "+newCid+" WHERE ID1 = "+id1+" AND ID2 = "+id2+";";
-//					stmt = c.createStatement();
-//					stmt.executeUpdate(sql3);
 					c.commit();
-					return newCid;
-					}
-					
+					return newCid;	
+			}else{
+				stmt = c.createStatement();
+				String sql3 = " SELECT CID  FROM CHAT WHERE IDP1 = '"
+						+ getUserIDPByID(id1) + "' AND IDP2 = '" + getUserIDPByID(id2) + "' ;";
+				ResultSet rs2 = stmt.executeQuery(sql3);
+				
+				int cid = rs2.getInt("CID");
+					if (rs2 != null)
+						rs2.close();
+					if (stmt != null)
+						stmt.close();
+					System.out.println("Chat between "+id1+ " and "+id2+ "already exists" );
+					return cid;
 			}
 			}catch (Exception e) {
 				System.err.println(e.getClass().getName() + ": "
-						+ e.getMessage());
+						+ e.getMessage()+" in addChat" );
 				System.exit(0);
 				System.out.println("Couldn´t create Chat between "+id1+ "to "+id2 );
-				return -1;
+				return -2;
 			}
-					
-		System.out.println("Chat between "+id1+ " and "+id2+ "already exists" );	
-				return -1;
-
 	}
 
 	/**
@@ -683,7 +661,7 @@ public class SQL {
 			}
 		}catch(Exception e){ 
 			System.err.println(e.getClass().getName() + ": "
-					+ e.getMessage());
+					+ e.getMessage()+" in getFriendRequests");
 			System.exit(0);
 			return null;
 		}
@@ -716,11 +694,16 @@ public class SQL {
 			return true;
 		}catch(Exception e){
 			System.err.println(e.getClass().getName() + ": "
-					+ e.getMessage());
+					+ e.getMessage()+" in acceptRequests");
 			System.exit(0);
 			return false;
 		}
 	}
+	/**
+	 * Selects all Friends that accpeted your friend request
+	 * @param myid
+	 * @return a List of Friend Objects
+	 */
 	public ArrayList<Friend> getOpenChats(int myid) {
 		Statement stmt;
 		//http://stackoverflow.com/questions/5901791/is-having-an-or-in-an-inner-join-condition-a-bad-idea
@@ -738,13 +721,14 @@ public class SQL {
 					lm = "Hier klicken";
 				}
 				fl.add(new Friend(rs.getString("USER.FN"),rs.getString("USER.LN"),rs.getInt("USER.IDP"), rs.getInt("CID"),lm));
+				System.out.println("Fn: "+rs.getString("USER.FN")+ " Ln: "+rs.getString("USER.LN")+" IDP: "+rs.getInt("USER.IDP")+ " CID: "+ rs.getInt("CID")+ " lm: "+ lm );
 			}
 			if(rs != null){rs.close();}
 			if(stmt != null){stmt.close();}
 			return fl;
 		}catch(Exception e){
 			System.err.println(e.getClass().getName() + ": "
-					+ e.getMessage());
+					+ e.getMessage()+" in getOpenChats");
 			System.exit(0);
 			return null;
 		}
@@ -766,7 +750,7 @@ public class SQL {
 //		}
 //	}
 
-	public void addMessage(int cid, int myid, String message) {
+	public boolean addMessage(int cid, int myid, String message) {
 		Statement stmt;
 		
 		try{
@@ -775,22 +759,26 @@ public class SQL {
 			ResultSet rs = stmt.executeQuery(sql);
 			Messages m =(Messages) parseXML(rs.getString("MESSAGES"),Messages.class );
 			m.addMessage(message, getUserIDPByID(myid));
-			if(stmt != null){
-				stmt.close();
-			}
 			if(rs!= null ){
 				rs.close();
 			}
+			if(stmt != null){
+				stmt.close();
+			}
+			
 			stmt = c.createStatement();
 			String sql2 = "UPDATE CHAT SET MESSAGES = '" +buildXML(m)+ "' WHERE ID = "+cid+" ;";
 			stmt.executeUpdate(sql2);
 			c.commit();
-		
+			if(stmt != null){
+				stmt.close();
+			}
+			return true;
 		}catch(Exception e){
 			System.err.println(e.getClass().getName() + ": "
-					+ e.getMessage());
+					+ e.getMessage()+" in addMessage");
 			System.exit(0);
-			
+			return false;
 		}
 	}
 	/**
@@ -799,20 +787,26 @@ public class SQL {
 	 * @param lmid
 	 * @return missing messages
 	 */
-	public ArrayList<ChatMessage> checkUpdate(int cid, int lmid){
+	public ArrayList<ChatMessage> pollMessages(int cid, int lmid){
 		Statement stmt;
 		try{
 			String sql = "SELECT MESSAGES FROM CHAT WHERE ID = "+cid+";";
 			stmt = c.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
+			if(rs.next()){
 			Messages m = (Messages) parseXML(rs.getString("MESSAGES"),Messages.class);
 			return m.getMissingMessages(lmid);
+			}
+			if(rs != null){
+				rs.close();
+			}if(stmt != null){
+				stmt.close();
+			}
+			return  null;
 		}catch(Exception e){
 			System.err.println(e.getClass().getName() + ": "
-					+ e.getMessage());
+					+ e.getMessage()+ " in pollMessages" );
 			System.exit(0);
-			// Exception must be caught
-		
 		}
 		return null;
 	}
@@ -853,7 +847,7 @@ public class SQL {
 				}
 			}
 		} catch (Exception e) {
-			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.err.println(e.getClass().getName() + ": " + e.getMessage()+ " in eMailExists");
 			System.exit(0);
 		}
 		return true;
@@ -891,7 +885,7 @@ public class SQL {
 				}
 			}
 		} catch (Exception e) {
-			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.err.println(e.getClass().getName() + ": " + e.getMessage()+" in aviableID");
 			System.exit(0);
 		}
 		return false;
@@ -945,7 +939,7 @@ public class SQL {
 					return true;
 				} catch (Exception e) {
 					System.err.println(e.getClass().getName() + ": "
-							+ e.getMessage());
+							+ e.getMessage()+ " in addAdmin");
 					System.exit(0);
 					return false;
 
@@ -1004,7 +998,7 @@ public class SQL {
 				rs.close();
 			return kurs;
 		} catch (Exception e) {
-			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.err.println(e.getClass().getName() + ": " + e.getMessage()+" in getaKurs");
 			System.exit(0);
 			e.printStackTrace();
 			return null;
@@ -1059,7 +1053,7 @@ public class SQL {
 				} catch (Exception e) {
 
 					System.err.println(e.getClass().getName() + ": "
-							+ e.getMessage());
+							+ e.getMessage()+ " in aLogIn" );
 					System.exit(0);
 					e.printStackTrace();
 					return -2;
@@ -1111,7 +1105,7 @@ public class SQL {
 				}
 			}
 		} catch (Exception e) {
-			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.err.println(e.getClass().getName() + ": " + e.getMessage() +" in aviableIDP");
 			System.exit(0);
 		}
 		return false;
@@ -1198,7 +1192,7 @@ public class SQL {
 
 			} catch (Exception e) {
 				System.err.println(e.getClass().getName() + ": "
-						+ e.getMessage());
+						+ e.getMessage()+ " in addUser" );
 				System.exit(0);
 				return -2;// Sql Error
 
@@ -1238,7 +1232,7 @@ public class SQL {
 				return -1;
 			}
 		} catch (Exception e) {
-			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.err.println(e.getClass().getName() + ": " + e.getMessage()+ " in getUserIDByIDP");
 			System.exit(0);
 		}
 		return -1;
@@ -1267,7 +1261,7 @@ public class SQL {
 				return -1;
 			}
 		} catch (Exception e) {
-			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.err.println(e.getClass().getName() + ": " + e.getMessage()+ " in getUserIDPByID");
 			System.exit(0);
 		}
 		return -1;
@@ -1295,31 +1289,17 @@ public class SQL {
 			p = c.prepareStatement("INSERT INTO KURS (KURSSTUFE, DATUM, WOCHENTAG, UHRZEIT)"
 					+ "  VALUES (?, ?, ?, ?);");
 			p.setInt(1, kursstufe);
-			// SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
-			// Date parsed = format.parse(datum);
-			// java.sql.Date sqldate = new java.sql.Date(parsed.getTime());
 			p.setDate(2, datum);
 			p.setString(3, wochentag);
 			p.setString(4, uhrzeit);
 			p.executeUpdate();
-			// p.addBatch();
-			// c.setAutoCommit(false);
-			// p.executeBatch();
-			// c.setAutoCommit(true);
-			// ResultSet rs = prep.getGeneratedKeys();
-			// if (rs.next()) {
-			// return (int) rs.getLong(1);
-			// }
-			//
-			// rs.close();
-
 			if (p != null)
-				p.close();
+				{p.close();}
 			c.commit();
 			return true;
 			// ParseException e
 		} catch (SQLException e) {
-			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.err.println(e.getClass().getName() + ": " + e.getMessage()+ " in addKurs");
 			System.exit(0);
 			e.printStackTrace();
 			return false;
@@ -1341,7 +1321,7 @@ public class SQL {
 				stmt.close();
 			}
 		} catch (Exception e) {
-			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.err.println(e.getClass().getName() + ": " + e.getMessage()+ " in deleteAllLink");
 			System.exit(0);
 			e.printStackTrace();
 		}
@@ -1372,7 +1352,7 @@ public class SQL {
 			return true;
 
 		} catch (Exception e) {
-			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.err.println(e.getClass().getName() + ": " + e.getMessage()+ " in deleteKurs");
 			System.exit(0);
 			e.printStackTrace();
 			return false;
@@ -1403,7 +1383,7 @@ public class SQL {
 			return true;
 
 		} catch (Exception e) {
-			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.err.println(e.getClass().getName() + ": " + e.getMessage() + "in deleteLink");
 			System.exit(0);
 			e.printStackTrace();
 			return false;
@@ -1458,8 +1438,8 @@ public class SQL {
 				return true;
 			} catch (Exception e) {
 				System.err.println(e.getClass().getName() + ": "
-						+ e.getMessage());
-				System.exit(0);
+						+ e.getMessage()+ " in addLink");
+				System.exit(0); 
 				e.printStackTrace();
 				return false;
 
@@ -1475,15 +1455,6 @@ public class SQL {
 	}
 
 	// TODO not used
-
-	/**
-	 * Full profiledata.
-	 */
-	public void fullProfiledata() {
-	}
-
-	// TODO not used
-
 	/**
 	 * Gets data from KURS and USER table and puts it into profile chart objects
 	 *
@@ -1531,7 +1502,7 @@ public class SQL {
 			if (rs != null)
 				stmt.close();
 		} catch (Exception e) {
-			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.err.println(e.getClass().getName() + ": " + e.getMessage()+ " in getProfilecharts");
 			System.exit(0);
 			e.printStackTrace();
 		}
@@ -1577,7 +1548,7 @@ public class SQL {
 			c.commit();
 			return true;
 		} catch (Exception e) {
-			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.err.println(e.getClass().getName() + ": " + e.getMessage()+ " in updateProfile");
 			System.exit(0);
 			e.printStackTrace();
 			return false;
@@ -1647,7 +1618,7 @@ public class SQL {
 				}
 			}
 		} catch (Exception e) {
-			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.err.println(e.getClass().getName() + ": " + e.getMessage() + " in LogIn" );
 			System.exit(0);
 			e.printStackTrace();
 			return -2;
@@ -1687,7 +1658,7 @@ public class SQL {
 				}
 			}
 		} catch (Exception e) {
-			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.err.println(e.getClass().getName() + ": " + e.getMessage()+ " in checkID");
 			System.exit(0);
 			e.printStackTrace();
 			System.out.println("Something went wrong at checkID(id)");
@@ -1727,7 +1698,7 @@ public class SQL {
 				}
 			}
 		} catch (Exception e) {
-			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.err.println(e.getClass().getName() + ": " + e.getMessage() +" in acheckID");
 			System.exit(0);
 			e.printStackTrace();
 			System.out.println("Something went wrong at checkID(id)");
@@ -1768,7 +1739,7 @@ public class SQL {
 				stmt.close();
 			return gender;
 		} catch (Exception e) {
-			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.err.println(e.getClass().getName() + ": " + e.getMessage()+ " in getGender");
 			System.exit(0);
 			e.printStackTrace();
 			return -1;
@@ -1834,7 +1805,7 @@ public class SQL {
 					gender, pAge);
 
 		} catch (SQLException e) {
-			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.err.println(e.getClass().getName() + ": " + e.getMessage()+ " in getProfileData");
 			System.exit(0);
 			e.printStackTrace();
 			return null;
@@ -1916,7 +1887,7 @@ public class SQL {
 				rs.close();
 			return kurs;
 		} catch (Exception e) {
-			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.err.println(e.getClass().getName() + ": " + e.getMessage()+ " in getKurs");
 			System.exit(0);
 			e.printStackTrace();
 			return null;
@@ -1935,7 +1906,7 @@ public class SQL {
 			serializer.write(object, writer);
 			return writer.getBuffer().toString();
 		} catch (Exception e) {
-			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.err.println(e.getClass().getName() + ": " + e.getMessage()+ " in buildXML ");
 			return null; // TODO Error-Handling
 		}
 	}
@@ -1947,7 +1918,7 @@ public class SQL {
 			Object object = serializer.read(myClass, xml);
 			return object;
 		} catch (Exception e) {
-			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.err.println(e.getClass().getName() + ": " + e.getMessage()+ " in parseXML ");
 			return null; // TODO: Error-Handling
 		}
 	}
@@ -1956,7 +1927,7 @@ public class SQL {
 		try {
 			c.close();
 		} catch (Exception e) {
-			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.err.println(e.getClass().getName() + ": " + e.getMessage() + " in closeDatabaseConnection ");
 			System.exit(0);
 		}
 	}

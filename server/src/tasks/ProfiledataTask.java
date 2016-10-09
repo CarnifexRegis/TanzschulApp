@@ -5,18 +5,14 @@ import protocol.AbstractHandler;
 import protocol.ErrorCode;
 import request.ProfileDataRequest;
 import response.ProfileDataResponse;
-// TODO: Auto-generated Javadoc
+
 
 /**
  * @author Simon Stolz
  * The Class ProfiledataTask.
  */
-// sc update
 public class ProfiledataTask extends AbstractHandler {
 
-	/* (non-Javadoc)
-	 * @see protocol.AbstractHandler#handle(java.lang.String)
-	 */
 	public String handle(String httpBody){
 		//gets the information from the request
 		ProfileDataRequest request = (ProfileDataRequest)parseXML(httpBody,ProfileDataRequest.class);

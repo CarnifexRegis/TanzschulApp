@@ -42,9 +42,6 @@ public class FriendsAdapter extends ArrayAdapter<Friend> {
 		this.context= context;
 		}
 	
-	/* (non-Javadoc)
-	 * @see android.widget.ArrayAdapter#getView(int, android.view.View, android.view.ViewGroup)
-	 */
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		//http://stackoverflow.com/questions/21053979/listview-duplicates-android

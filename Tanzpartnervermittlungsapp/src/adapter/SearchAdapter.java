@@ -25,7 +25,7 @@ import com.example.Tanzpartnervermittlung.R;
  * @Sources:http://stackoverflow.com/questions/8486511/how-to-set-on-click-listener-on-the-custom-list-view-in-android 				http://stackoverflow.com/questions/10726519/how-to-get-the-source-of-imageview-in-order-to-change-it 
  * 				http://stackoverflow.com/questions/21053979/listview-duplicates-android
  */
-public class Adapter extends ArrayAdapter<ProfileChart> {
+public class SearchAdapter extends ArrayAdapter<ProfileChart> {
 	private Context context;
 	
 	/**
@@ -34,7 +34,7 @@ public class Adapter extends ArrayAdapter<ProfileChart> {
 	 * @param context the context
 	 * @param arrayList the array list
 	 */
-	public Adapter(Context context, ArrayList<ProfileChart> arrayList) {
+	public SearchAdapter(Context context, ArrayList<ProfileChart> arrayList) {
 		super(context, R.layout.list_item_chart, arrayList);
 	this.context= context;	
 	}

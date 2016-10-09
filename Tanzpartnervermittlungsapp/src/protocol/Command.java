@@ -21,7 +21,7 @@ updateimage("updateimage"),
 getchatmessages("getchatmessages"),
 sendmessage("sendmessage"),
 getfriends("getfriends"),
-cehckforcupdate("cehckforcupdate"),
+pollchat("pollchat"),
 acceptfr("acceptfr"),
 getfr("getfr"),
 addfriend("addfriend");

@@ -17,7 +17,7 @@ public class TsDataSource {
 
     private SQLiteDatabase db;
     /**
-     * ource:http://www.programmierenlernenhq.de/sqlite-datenbank-in-android-app-integrieren/
+     * source: http://www.programmierenlernenhq.de/sqlite-datenbank-in-android-app-integrieren/
      * An instance of our deb helper used to interact with the db
      */
     private TsDbHelper dbHelper;

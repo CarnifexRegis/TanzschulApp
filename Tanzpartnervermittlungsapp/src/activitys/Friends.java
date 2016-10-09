@@ -41,15 +41,14 @@ public class Friends extends ConnectedActivity {
 		fView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //the .getName() is accessed from the School POJO class.
-              //  String eMail = adapterCustom.getItem(position).geteMail();
                 //http://stackoverflow.com/questions/9208827/how-to-extract-the-text-from-the-selected-item-on-the-listview
                 Intent intent = new Intent(getApplicationContext(),Chat.class);
-				intent.putExtra("ID", id);
-				intent.putExtra("gender", gender);
-		//		eMail = adapterCustom.getItem(position).getAge();
+				intent.putExtra("ID", f.id);
+				intent.putExtra("gender", f.gender);
 				int cid = fAdapter.getItem(position).getIdp();
-				intent.putExtra("cid", cid);
+				intent.putExtra("cid", cid); 
+				intent.putExtra("idp", f.idp); 
+				intent.putExtra("fname",fAdapter.getItem(position).getFn()+" "+fAdapter.getItem(position).getLn() ); 
 				 startActivity(new Intent(intent));
             }
         });

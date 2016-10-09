@@ -5,10 +5,10 @@
     android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/ChatMessage"
         android:layout_width="151dp"
         android:layout_height="wrap_content"
-        android:text="Medium Text"
+        android:layout_gravity="end"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </LinearLayout>

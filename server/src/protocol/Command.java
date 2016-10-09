@@ -30,6 +30,7 @@ cehckforcupdate("cehckforcupdate"),
 acceptfr("acceptfr"),
 getfr("getfr"),
 getfriends("getfriends"),
+pollchat("pollchat"),
 addfriend("addfriend");
 
 
