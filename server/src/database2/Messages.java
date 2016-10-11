@@ -14,14 +14,16 @@ public class Messages {
 	}
 	public void addMessage(String message,int senderIdp){
 			cm.add( new ChatMessage(message, cm.size(),  senderIdp));
-			System.out.println("Added Message with id: "+ cm.size());
+			System.out.println("Added Message with id: "+ (cm.size()-1));
 	}
 	public ArrayList<ChatMessage> getMissingMessages(int mid){
 		ArrayList<ChatMessage> missingM = new   ArrayList<ChatMessage>();
-	for(int i= mid;i<cm.size();i++){
+	
+	for(int i= mid+1;i<cm.size();i++){
 		missingM.add(cm.get(i));
 		System.out.println("Updating message with id: "+ cm.get(i).getMid());
 		}
+	
 		return missingM;
 	}
 	public ArrayList<ChatMessage> getCm() {

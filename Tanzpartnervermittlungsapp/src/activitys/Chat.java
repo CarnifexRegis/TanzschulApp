@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import task.PollChatTask;
 import task.SendMessageTask;
 import adapter.ChatAdapter;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -17,7 +18,12 @@ import android.widget.Toast;
 import com.example.Tanzpartnervermittlung.R;
 
 import model.ChatMessage;
-
+import model.Message;
+/**
+ * This Acticvity is used to communicate with other Users
+ * @author Simon
+ *
+ */
 public class Chat extends ConnectedActivity {
 	private boolean gender;
 	private Chat c = this;
@@ -30,6 +36,8 @@ public class Chat extends ConnectedActivity {
 	private String fname;
 	private int lm;
 	private ArrayList<ChatMessage> cm = new ArrayList<ChatMessage>();
+	private Button send;
+	
 	protected void onCreate(Bundle savedInstanceState) {
 		// gets the passed on data from mainActivity
 		Bundle extras = getIntent().getExtras();
@@ -50,7 +58,7 @@ public class Chat extends ConnectedActivity {
 		//http://stackoverflow.com/questions/1921514/how-to-run-a-runnable-thread-in-android
 		
 		final EditText mInstert = (EditText) findViewById(R.id.ChatInsert);
-		final Button send = (Button) findViewById(R.id.SendButton);
+		send = (Button) findViewById(R.id.SendButton);
 		send.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -59,28 +67,44 @@ public class Chat extends ConnectedActivity {
 				send.setClickable(false);
 				SendMessageTask smt =  new SendMessageTask(c,id,mInstert.getText().toString(),cid);
 				smt.execute();
-				stopPollingThread();
+				stopPollThread();
+				
 				
 			}
 		});
-		
-		startPollingThread();
+		createPollThread(sleepTime);
+		startPollThread();
 		}
 	public void addNewMessages(ArrayList<ChatMessage> cm) {
 		this.cm.addAll(cm);
 		cAdapter.notifyDataSetChanged();
-		if(thread== null){
-			startPollingThread();
+			startPollThread();
+		
+	}
+	/**
+	 * is called if an message was successfully send
+	 */
+	public void successful() {
+		send.setClickable(true);
+		Toast.makeText(this, "Nachricht versendet", Toast.LENGTH_SHORT).show();
+		if(thread.isInterrupted()){
+			startPollThread();
+		}
+		
+		
+	}
+	public void startPollThread(){
+		thread.run();
+	}
+	
+	public void stopPollThread(){
+		if(thread.isAlive()&&!thread.isInterrupted()){
+			thread.interrupt();
 		}
 	}
 	
-	public void successful() {
-		Toast.makeText(this, "Nachricht versendet", Toast.LENGTH_SHORT).show();
-		if(thread== null){
-			startPollingThread();
-		}
-	}
-	public void startPollingThread(){
+	public void createPollThread(int pollrate){
+		sleepTime = pollrate;
 		thread = new Thread() {
 		    @Override
 		    public void run() {
@@ -91,26 +115,33 @@ public class Chat extends ConnectedActivity {
 		             else{
 		            	lm = 0;
 		             }
-		             PollChatTask pct = new  PollChatTask(c, id, cid,lm);
-		            pct.execute();
+		             PollThread pt = new PollThread();
+		             pt.execute(1);
 		        } catch (InterruptedException e) {
 		            e.printStackTrace();
 		        }
 		    }
 		};
-		thread.start();
 	}
 	
-	public void stopPollingThread(){
-		if(thread.isAlive()&&!thread.isInterrupted()){
-			thread.interrupt();
-		}
-		thread = null;
-	}
 	@Override
-	protected void onPause() {
-		super.onPause();
-		thread.interrupt();
+	public void onBackPressed() {
+		super.onBackPressed();
+			thread.interrupt();
+			this.finish();
+			
+		}
+	private  class PollThread extends AsyncTask<Integer, Void, Void>{
+
+		@Override
+		protected Void doInBackground(Integer... params) {
+			PollChatTask pct = new PollChatTask(c, id, cid, lm);
+			pct.execute();
+			return null;
+		
+		}
+
 	}
 	}
+	
 
