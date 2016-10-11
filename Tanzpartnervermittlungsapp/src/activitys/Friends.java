@@ -49,6 +49,7 @@ public class Friends extends ConnectedActivity {
 				intent.putExtra("idp", fAdapter.getItem(position).getIdp()); 
 				intent.putExtra("fname",fAdapter.getItem(position).getFn()+" "+fAdapter.getItem(position).getLn() ); 
 				 startActivity(new Intent(intent));
+				 f.finish();
             }
         });
 		}
@@ -59,9 +60,13 @@ public class Friends extends ConnectedActivity {
 		intent.putExtra("ID", id);
 		intent.putExtra("gender", gender);
 			 startActivity(new Intent(intent));
+			 this.finish();
 	}
+	/**
+	 * Updates the ListLiew when new data was recieved
+	 * @param flist
+	 */
 	public void recieveFriends(ArrayList<Friend> flist) {
-		
 		fList.clear();
 		fList.addAll(flist);
 		fAdapter.notifyDataSetChanged();

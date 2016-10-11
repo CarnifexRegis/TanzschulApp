@@ -1,5 +1,13 @@
 package activitys;
 
+import java.io.StringWriter;
+
+import org.simpleframework.xml.Serializer;
+import org.simpleframework.xml.core.Persister;
+import org.simpleframework.xml.stream.Format;
+import org.simpleframework.xml.stream.HyphenStyle;
+import org.simpleframework.xml.stream.Style;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -75,6 +83,43 @@ public abstract class ConnectedActivity extends Activity {
 	    }
 	    return false;
 	    }
-	
+	/**
+	 * Builts an xml Object
+	 * @param object
+	 * @return
+	 */
+	protected String buildXML(Object object) {
+		Style style = new HyphenStyle();
+		Format format = new Format(style);
+
+		Serializer serializer = new Persister(format);
+
+		StringWriter writer = new StringWriter();
+
+		try {
+			serializer.write(object, writer);
+			return writer.getBuffer().toString();
+		} catch (Exception e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage()+ " in buildXML ");
+			return null; // TODO Error-Handling
+		}
+	}
+/**
+ * Serializes an xml object to the provided class
+ * @param xml
+ * @param myClass
+ * @return
+ */
+	protected Object parseXML(String xml, Class myClass) {
+		Serializer serializer = new Persister();
+
+		try {
+			Object object = serializer.read(myClass, xml);
+			return object;
+		} catch (Exception e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage()+ " in parseXML ");
+			return null; // TODO: Error-Handling
+		}
+	}
 }
 

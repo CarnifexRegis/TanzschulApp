@@ -1899,7 +1899,7 @@ public class SQL {
 		}
 
 	}
-	private String buildXML(Object object) {
+	protected String buildXML(Object object) {
 		Style style = new HyphenStyle();
 		Format format = new Format(style);
 
@@ -1916,7 +1916,7 @@ public class SQL {
 		}
 	}
 
-	private Object parseXML(String xml, Class myClass) {
+	protected Object parseXML(String xml, Class myClass) {
 		Serializer serializer = new Persister();
 
 		try {

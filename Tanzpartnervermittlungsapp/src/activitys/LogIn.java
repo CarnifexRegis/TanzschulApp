@@ -35,26 +35,12 @@ public class LogIn extends ConnectedActivity {
 	private String errorCode = null;
 	// Special thanks to Leander for this Tip
 	// https://developer.android.com/training/basics/activity-lifecycle/recreating.html
-
-	// static final String STATE_EMAIL = "logineMail";
-	// static final String STATE_PASSWORD = "loginPassword";
-	// static final String STATE_CHECK = "check";
 	private TextView errorView;
 	private EditText keyInsert;
 	private EditText eMailInsert;
-
 	// http://stackoverflow.com/questions/18341269/save-the-data-and-using-it-after-restarting-the-app-android
 	private SharedPreferences prefs;
-
-	// public static final String prefName = "MyPrefsFile";
-
 	// https://www.youtube.com/watch?v=iW71-sVyMzM
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Activity#onCreate(android.os.Bundle)
-	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 
@@ -114,10 +100,9 @@ public class LogIn extends ConnectedActivity {
 		register.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if (true) {
-					startActivity(new Intent(getApplicationContext(),
-							Registration.class));
-				}
+				
+					startActivity(new Intent(getApplicationContext(),Registration.class));
+					finish();
 			}
 		});
 
@@ -160,13 +145,10 @@ public class LogIn extends ConnectedActivity {
 	}
 
 	/**
-	 * Gets the login values.
+	 * Passes id and gender  on to the Menue class and calls finish for LogIn Activity
 	 *
-	 * @param id
-	 *            the id
-	 * @param gender
-	 *            the gender
-	 * @return the login values
+	 * @param id the users id
+	 * @param gender the users id
 	 */
 	public void getLoginValues(int id, boolean gender) {
 		// Switch (calledBy.getAct)
@@ -175,14 +157,9 @@ public class LogIn extends ConnectedActivity {
 		intent.putExtra("ID", id);
 		intent.putExtra("gender", gender);
 		startActivity(new Intent(intent));
-
+		finish();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see activitys.ConnectedActivity#onConnectionError()
-	 */
 	@Override
 	public void onConnectionError() {
 		errorView.setVisibility(View.VISIBLE);
@@ -195,11 +172,6 @@ public class LogIn extends ConnectedActivity {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see activitys.ConnectedActivity#isOnline(android.content.Context)
-	 */
 	@Override
 	public boolean isOnline(Context context) {
 		ConnectivityManager cm = (ConnectivityManager) context
@@ -211,11 +183,6 @@ public class LogIn extends ConnectedActivity {
 		return false;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Activity#onPause()
-	 */
 	@Override
 	public void onPause() {
 		super.onPause();
@@ -234,11 +201,6 @@ public class LogIn extends ConnectedActivity {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see activitys.ConnectedActivity#onError(java.lang.String)
-	 */
 	@Override
 	public void onError(String ec) {
 		switch (ec) {
@@ -252,6 +214,9 @@ public class LogIn extends ConnectedActivity {
 			break;
 		}
 
+	}
+	@Override
+	public void onBackPressed() {
 	}
 
 }

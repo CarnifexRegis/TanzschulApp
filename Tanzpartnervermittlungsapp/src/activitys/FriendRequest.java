@@ -66,7 +66,7 @@ public class FriendRequest extends ConnectedActivity {
 		frAdapter.addAll(frl);
 		frAdapter.notifyDataSetChanged();
 		idpl.clear();
-	
+		Toast.makeText(this, "Neue Freundschaftsanfragen vom Server empfangen.", Toast.LENGTH_LONG).show();
 		
 	}
 	public void accptedSuccessful() {

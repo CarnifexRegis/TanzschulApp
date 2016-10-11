@@ -123,9 +123,6 @@ public class EditProfile extends ConnectedActivity {
       //  Picture picture = dataSource.createPicture("bla", "bla", 1000);
    
        getInternalPic();
-     
-
-       
 		// This Button reads the Users inserted information and saves it in a ProfileDataForServer Object 
 		final Button ready = (Button) findViewById(R.id.fertigButton);
         ready.setOnClickListener(new View.OnClickListener() {
@@ -227,6 +224,7 @@ public class EditProfile extends ConnectedActivity {
 		intent.putExtra("ID", id);
 		intent.putExtra("gender", gender);
 		startActivity(new Intent(intent));
+		this.finish();
 	}
 	
 	/* (non-Javadoc)

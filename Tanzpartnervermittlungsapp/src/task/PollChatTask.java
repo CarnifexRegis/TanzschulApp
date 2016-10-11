@@ -26,6 +26,7 @@ public class PollChatTask extends BaseHttpRequestTask{
 			String xml = buildXML(request);
 			super.execute(Command.pollchat, xml);
 		} catch (Exception e) {
+			((Chat) activity).enableButton();
 			((Chat) activity).onConnectionError();
 			Log.e("Error in  LoginTask", e.toString());
 		}
@@ -42,7 +43,7 @@ public class PollChatTask extends BaseHttpRequestTask{
 			 {
 			 	
 			 	((Chat) activity).onError(ec);
-			 	
+			 	((Chat) activity).enableButton();
 			 }
 			 else
 			 {
@@ -51,6 +52,7 @@ public class PollChatTask extends BaseHttpRequestTask{
 			
 			
 		} catch (Exception e) {
+			((Chat) activity).enableButton();
 			((Chat) activity).onConnectionError();
 			Log.e("Error in  PollChatTask", e.toString());
 			

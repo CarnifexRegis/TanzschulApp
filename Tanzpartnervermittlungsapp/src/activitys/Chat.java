@@ -2,11 +2,16 @@ package activitys;
 
 import java.util.ArrayList;
 
+import org.simpleframework.xml.Serializer;
+
 import task.PollChatTask;
 import task.SendMessageTask;
 import adapter.ChatAdapter;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -19,11 +24,13 @@ import com.example.Tanzpartnervermittlung.R;
 
 import model.ChatMessage;
 import model.Message;
+import model.MessagesContainer;
 /**
  * This Acticvity is used to communicate with other Users
  * @author Simon
  *
  */
+//http://stackoverflow.com/questions/5452394/best-way-to-perform-an-action-periodically-while-an-app-is-running-handler
 public class Chat extends ConnectedActivity {
 	private boolean gender;
 	private Chat c = this;
@@ -32,13 +39,15 @@ public class Chat extends ConnectedActivity {
 	private int fidp ;
 	private ChatAdapter cAdapter;
 	private Thread thread;
-	private int sleepTime = 3000;
+	private int sleepTime = 10000;
 	private String fname;
 	private int lm;
 	private ArrayList<ChatMessage> cm = new ArrayList<ChatMessage>();
 	private Button send;
-	
+	private SharedPreferences prefs;
 	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.chat);
 		// gets the passed on data from mainActivity
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
@@ -48,8 +57,8 @@ public class Chat extends ConnectedActivity {
 			gender = extras.getBoolean("gender");
 			fname = extras.getString("fname");
 		}
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.chat);
+		prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());		
+		cm =((MessagesContainer) parseXML(prefs.getString("cm"+cid,buildXML(new MessagesContainer(new ArrayList<ChatMessage>()))), MessagesContainer.class)).getCm();
 		TextView nv = (TextView) findViewById(R.id.ChatName);
 		nv.setText(fname);
 		ListView mList = (ListView) findViewById(R.id.ChatList);
@@ -66,35 +75,36 @@ public class Chat extends ConnectedActivity {
 				mInstert.getText();
 				send.setClickable(false);
 				SendMessageTask smt =  new SendMessageTask(c,id,mInstert.getText().toString(),cid);
+				mInstert.setText("");
 				smt.execute();
-				stopPollThread();
-				
-				
 			}
 		});
-		createPollThread(sleepTime);
-		startPollThread();
+		if(thread== null){
+		createPollThread(sleepTime);}
+		 if (cm.size()>0){
+	            lm =  cm.get(cm.size()-1).getMid();}
+	             else{
+	            	lm = 0;
+	             }
+	             PollChatTask pct = new PollChatTask(c, id, cid, lm);
+	             pct.execute();
 		}
 	public void addNewMessages(ArrayList<ChatMessage> cm) {
 		this.cm.addAll(cm);
 		cAdapter.notifyDataSetChanged();
-			startPollThread();
-		
+			//startPollThread();
 	}
 	/**
 	 * is called if an message was successfully send
 	 */
 	public void successful() {
-		send.setClickable(true);
+		enableButton();
 		Toast.makeText(this, "Nachricht versendet", Toast.LENGTH_SHORT).show();
-		if(thread.isInterrupted()){
-			startPollThread();
-		}
 		
 		
 	}
 	public void startPollThread(){
-		thread.run();
+		//thread.run();
 	}
 	
 	public void stopPollThread(){
@@ -115,8 +125,8 @@ public class Chat extends ConnectedActivity {
 		             else{
 		            	lm = 0;
 		             }
-		             PollThread pt = new PollThread();
-		             pt.execute(1);
+		             PollChatTask pct = new PollChatTask(c, id, cid, lm);
+		 			pct.execute();
 		        } catch (InterruptedException e) {
 		            e.printStackTrace();
 		        }
@@ -131,16 +141,15 @@ public class Chat extends ConnectedActivity {
 			this.finish();
 			
 		}
-	private  class PollThread extends AsyncTask<Integer, Void, Void>{
-
-		@Override
-		protected Void doInBackground(Integer... params) {
-			PollChatTask pct = new PollChatTask(c, id, cid, lm);
-			pct.execute();
-			return null;
-		
-		}
-
+	public void enableButton(){
+		send.setClickable(true);
+	}
+	@Override
+	public void onPause() {
+		super.onPause();
+		Editor editor = prefs.edit();
+			editor.putString("cm",buildXML(cm)) ;
+			editor.commit();
 	}
 	}
 	
