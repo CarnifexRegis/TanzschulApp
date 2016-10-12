@@ -65,8 +65,7 @@ public class LogIn extends ConnectedActivity {
 			errorView.setText(errorCode);
 		}
 
-		prefs = PreferenceManager
-				.getDefaultSharedPreferences(getApplicationContext());
+		prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 		safelogin = (CheckBox) findViewById(R.id.safelogin);
 		safelogin.setOnClickListener(new OnClickListener() {
 

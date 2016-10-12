@@ -10,7 +10,7 @@ public class Properties
 {
 	
 	/** The Constant SERVERURL. */
-	public static final String SERVERURL = "http://192.168.1.103:8080";
+	public static final String SERVERURL = "http://192.168.1.104:8080";
 											
 			 									//10.189.78.95:8080";
 	//C:\Users\Simon>ipconfig

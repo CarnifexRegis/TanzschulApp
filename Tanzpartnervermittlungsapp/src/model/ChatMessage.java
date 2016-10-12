@@ -2,9 +2,9 @@ package model;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 /**
- * 
- * @author Simon Stolz
  * An Instance of this object contains the data of one chat message 
+ * @author Simon Stolz
+ * 
  */
 @Root(name = "chatmessage")
 public class ChatMessage {

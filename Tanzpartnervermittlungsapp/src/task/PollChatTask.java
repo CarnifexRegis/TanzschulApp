@@ -11,17 +11,16 @@ public class PollChatTask extends BaseHttpRequestTask{
 	int id;
 	int cid;
 	int lm;
+
 	public PollChatTask(Chat chat,int id, int cid, int lm) {
 		super(chat);
 		this.id = id;
 		this.cid=cid;
 		this.lm =lm;
-		
 	}
 	
 	public void execute() {
 		PollChatRequest request = new PollChatRequest(cid,id,lm);
-
 		try {
 			String xml = buildXML(request);
 			super.execute(Command.pollchat, xml);

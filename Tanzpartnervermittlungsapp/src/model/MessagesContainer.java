@@ -1,7 +1,9 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import org.simpleframework.xml.ElementArray;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
@@ -12,17 +14,25 @@ import org.simpleframework.xml.Root;
  *
  */
 public class MessagesContainer {
-	@ElementList
-	ArrayList<ChatMessage> cm ;
+	@ElementArray(name = "cmlist")
+	ChatMessage [] cm;
 	public MessagesContainer(){
 		super();
 	}
 	public MessagesContainer(ArrayList<ChatMessage> cm) {
 		super();
-		this.cm = cm;
+		if(cm != null){
+			if(cm.size()>0){
+		this.cm= new ChatMessage [cm.size()-1];
+		for(int i = 0; i<cm.size();i++){
+			this.cm[i] = cm.get(i);
+		}
+		
+			}
+			}
 	}
 
-	public ArrayList<ChatMessage> getCm() {
+	public ChatMessage [] getCm() {
 		return cm;
 	}
 

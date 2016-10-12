@@ -1,6 +1,7 @@
 package activitys;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.simpleframework.xml.Serializer;
 
@@ -11,6 +12,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -45,6 +47,7 @@ public class Chat extends ConnectedActivity {
 	private ArrayList<ChatMessage> cm = new ArrayList<ChatMessage>();
 	private Button send;
 	private SharedPreferences prefs;
+	private String test;
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.chat);
@@ -57,8 +60,18 @@ public class Chat extends ConnectedActivity {
 			gender = extras.getBoolean("gender");
 			fname = extras.getString("fname");
 		}
-		prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());		
-		cm =((MessagesContainer) parseXML(prefs.getString("cm"+cid,buildXML(new MessagesContainer(new ArrayList<ChatMessage>()))), MessagesContainer.class)).getCm();
+		prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+		String pref = prefs.getString("cm"+cid,null);
+		MessagesContainer mc = null;
+		if(pref != null){
+		 mc =((MessagesContainer) parseXML(pref, MessagesContainer.class));}
+		if (mc != null){
+			ChatMessage[] ca = mc.getCm();
+			for(int i = 0; i <ca.length;i++){
+				cm.add(ca[i]);
+			}
+		}
+		test = prefs.getString("cm"+cid,null);
 		TextView nv = (TextView) findViewById(R.id.ChatName);
 		nv.setText(fname);
 		ListView mList = (ListView) findViewById(R.id.ChatList);
@@ -79,8 +92,7 @@ public class Chat extends ConnectedActivity {
 				smt.execute();
 			}
 		});
-		if(thread== null){
-		createPollThread(sleepTime);}
+		
 		 if (cm.size()>0){
 	            lm =  cm.get(cm.size()-1).getMid();}
 	             else{
@@ -92,7 +104,25 @@ public class Chat extends ConnectedActivity {
 	public void addNewMessages(ArrayList<ChatMessage> cm) {
 		this.cm.addAll(cm);
 		cAdapter.notifyDataSetChanged();
-			//startPollThread();
+		poll(sleepTime);
+	}
+	public void poll(int i){
+		new CountDownTimer(i, 1000) {
+
+		     public void onTick(long millisUntilFinished) {
+		        
+		     }
+
+		     public void onFinish() {
+		    	 if (c.cm.size()>0){
+			            lm =  c.cm.get(c.cm.size()-1).getMid();}
+			             else{
+			            	lm = 0;
+			             }
+			             PollChatTask pct = new PollChatTask(c, id, cid, lm);
+			 			pct.execute();
+		     }
+		  }.start();
 	}
 	/**
 	 * is called if an message was successfully send
@@ -100,44 +130,11 @@ public class Chat extends ConnectedActivity {
 	public void successful() {
 		enableButton();
 		Toast.makeText(this, "Nachricht versendet", Toast.LENGTH_SHORT).show();
-		
-		
-	}
-	public void startPollThread(){
-		//thread.run();
-	}
-	
-	public void stopPollThread(){
-		if(thread.isAlive()&&!thread.isInterrupted()){
-			thread.interrupt();
-		}
-	}
-	
-	public void createPollThread(int pollrate){
-		sleepTime = pollrate;
-		thread = new Thread() {
-		    @Override
-		    public void run() {
-		        try {
-		             sleep(sleepTime);
-		             if (cm.size()>0){
-		            lm =  cm.get(cm.size()-1).getMid();}
-		             else{
-		            	lm = 0;
-		             }
-		             PollChatTask pct = new PollChatTask(c, id, cid, lm);
-		 			pct.execute();
-		        } catch (InterruptedException e) {
-		            e.printStackTrace();
-		        }
-		    }
-		};
 	}
 	
 	@Override
 	public void onBackPressed() {
 		super.onBackPressed();
-			thread.interrupt();
 			this.finish();
 			
 		}
@@ -148,7 +145,14 @@ public class Chat extends ConnectedActivity {
 	public void onPause() {
 		super.onPause();
 		Editor editor = prefs.edit();
-			editor.putString("cm",buildXML(cm)) ;
+		try{
+			for(int i = 0; i<cm.size();i++){
+				ChatMessage[] ca= new ChatMessage[cm.size()];
+				ca[i] = cm.get(i);
+			}
+			editor.putString("cm"+cid,buildXML(cm)) ;
+			}catch (Exception e){
+				e.printStackTrace();}
 			editor.commit();
 	}
 	}
