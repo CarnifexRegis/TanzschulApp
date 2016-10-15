@@ -1,7 +1,11 @@
 package request;
 
 import org.simpleframework.xml.Element;
-
+/**
+ * Polls new Messages for the Chat
+ * @author Simon Stolz
+ *
+ */
 public class PollChatRequest {
 	@Element(name = "cid")
 	private int cid;

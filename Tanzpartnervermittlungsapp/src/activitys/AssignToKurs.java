@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import model.Kurs;
 import task.GetKursTask;
-import adapter.aAdapter;
+import adapter.AtKAdapter;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -27,7 +27,7 @@ public class AssignToKurs extends ConnectedActivity{
 	private AssignToKurs atk = this;
 	private int kursstufe = 1;
 	private ArrayList<Kurs> k = new ArrayList <Kurs>();
-	private aAdapter Adapter;
+	private AtKAdapter Adapter;
 	private ListView kView;
 	
 //http://stackoverflow.com/questions/5195321/remove-an-onclick-listener	
@@ -113,7 +113,7 @@ public class AssignToKurs extends ConnectedActivity{
 			
 	});
 		kView  = (ListView) findViewById(R.id.aKursList);
-		Adapter = new aAdapter(this, k, id,atk) ;
+		Adapter = new AtKAdapter(this, k, id,atk) ;
 		kView.setAdapter(Adapter);
 		
 		
@@ -130,7 +130,7 @@ public class AssignToKurs extends ConnectedActivity{
 		if (k.isEmpty()){
 			Toast.makeText(this,getResources().getString(R.string.empty_result), Toast.LENGTH_LONG).show();
 		}
-		Adapter = new aAdapter(this, k, id,atk) ;
+		Adapter = new AtKAdapter(this, k, id,atk) ;
 		kView.setAdapter(Adapter);
 		
 	}

@@ -2,7 +2,11 @@ package request;
 
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
-
+/**
+ * Requests a new Message to be added to a chat between two users
+ * @author Simon Stolz
+ *
+ */
 @Root(name = "sendmessagerequest")
 public class SendMessageRequest {
 	@Element(name = "id")

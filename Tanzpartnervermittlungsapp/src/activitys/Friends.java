@@ -75,4 +75,7 @@ public class Friends extends ConnectedActivity {
 		}else{
 		Toast.makeText(this,"Neue Datensätze vom Server empfangen", Toast.LENGTH_LONG).show();}
 	}
+	public void setClickable(boolean c){
+
+	}
 }

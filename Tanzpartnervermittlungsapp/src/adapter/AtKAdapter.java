@@ -27,7 +27,7 @@ import com.example.Tanzpartnervermittlung.R;
  * 			model.adapter
  * 			http://developer.android.com/resources/samples/ApiDemos/src/com/example/android/apis/view/List14.html
  */
-public class aAdapter extends ArrayAdapter<Kurs>{
+public class AtKAdapter extends ArrayAdapter<Kurs>{
 	private int id;
 	private Context context;
 	private AssignToKurs atk;
@@ -40,7 +40,7 @@ public class aAdapter extends ArrayAdapter<Kurs>{
 	 * @param id the id
 	 * @param atk the atk
 	 */
-	public aAdapter(Context context, ArrayList<Kurs> arrayList,int id, AssignToKurs atk) {
+	public AtKAdapter(Context context, ArrayList<Kurs> arrayList,int id, AssignToKurs atk) {
 		super(context, R.layout.yet_searching_listitem, arrayList);
 		this.id= id;
 		this.atk = atk;
@@ -58,8 +58,6 @@ public class aAdapter extends ArrayAdapter<Kurs>{
             row = convertView;
      }
 		Kurs k = getItem(position);
-		
-			
 			TextView day =  (TextView) row.findViewById(R.id.ayDayView);
 			TextView time  =  (TextView) row.findViewById(R.id.ayKurszeitView);
 			TextView date =  (TextView) row.findViewById(R.id.ayDateView);
@@ -91,25 +89,3 @@ public class aAdapter extends ArrayAdapter<Kurs>{
 			});	return row;
 		}
 }
-//			delete.setOnCheckedChangeListener( new OnCheckedChangeListener() {
-//		        @Override
-//		        public void onCheckedChanged(CompoundButton tb, boolean isChecked) {
-//		        	
-//		        	int position =  (int) tb.getTag();
-//		        	Kurs k = getItem(position);
-//		        	
-//		        	UpdateLinkTask ult = new UpdateLinkTask(atk, id,k.getKursId(), isChecked,position,tb);
-//		        	tb.setClickable(false);
-//		        	tb.setEnabled(false);
-//		        	tb.setChecked(!isChecked);
-//		        	
-//		        	ult.execute();
-//		        	
-//		        }
-
-				
-		   // }) ;
-			
-
-	
-	

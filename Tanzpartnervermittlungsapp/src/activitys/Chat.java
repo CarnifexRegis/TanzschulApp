@@ -29,7 +29,7 @@ import model.Message;
 import model.MessagesContainer;
 /**
  * This Acticvity is used to communicate with other Users
- * @author Simon
+ * @author Simon Stolz
  *
  */
 //http://stackoverflow.com/questions/5452394/best-way-to-perform-an-action-periodically-while-an-app-is-running-handler
@@ -150,7 +150,7 @@ public class Chat extends ConnectedActivity {
 				ChatMessage[] ca= new ChatMessage[cm.size()];
 				ca[i] = cm.get(i);
 			}
-			editor.putString("cm"+cid,buildXML(cm)) ;
+			editor.putString("cm"+cid,buildXML(cm.toArray())) ;
 			}catch (Exception e){
 				e.printStackTrace();}
 			editor.commit();

@@ -23,7 +23,7 @@ import android.widget.ToggleButton;
 import com.example.Tanzpartnervermittlung.R;
 
 /**
- * Organizes the display of your friend requests
+ * Organizes the display of the users friend requests
  * @author Simon Stolz
  *
  */

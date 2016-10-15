@@ -5,7 +5,7 @@ import org.simpleframework.xml.Root;
 
 // TODO: Auto-generated Javadoc
 /**
- * Requests
+ * Requests to create or delete an Link object in the database
  * @author Simon Stolz
  */
 @Root (name = "updatelinkrequest")
@@ -24,13 +24,6 @@ public UpdateLinkRequest (){
 	super();
 }
 
-/**
- * Instantiates a new update link request.
- *
- * @param uid users id
- * @param kid id of a object in table KURS
- * @param command true for adding a link false for deleting it
- */
 public UpdateLinkRequest(int uid, int kid,boolean command) {
 	super();
 	this.uid = uid;

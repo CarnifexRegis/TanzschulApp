@@ -7,6 +7,11 @@ import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
 @Root(name = "accceptfriendshiprequest")
+/**
+ * Requests to accept aLind of friendrequests
+ * @author Simon Stolz
+ *
+ */
 public class AcceptFriendshipRequest {
 	@Element (name = "id")
 	private int id;

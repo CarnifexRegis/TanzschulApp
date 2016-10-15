@@ -19,7 +19,7 @@ import android.widget.TextView;
 import com.example.Tanzpartnervermittlung.R;
 
 /**
- * Organizes the display of your friend items
+ * Organizes the display of the users friend items
  * @author Simon Stolz
  *
  */
@@ -54,21 +54,15 @@ public class FriendsAdapter extends ArrayAdapter<Friend> {
             row = convertView;
      }
 		Friend fItem = getItem(position);
-		
-			
 			TextView name =  (TextView) row.findViewById(R.id.FNameView);
 			TextView message = (TextView) row.findViewById(R.id.FMessageView);
 			if(fItem.getLastMessage().equals("Freundschaft Ausstehend")){
-				row.setClickable(false);
+				name.setClickable(false);
 			}
 			message.setText(fItem.getLastMessage());
 			name.setText(fItem.getFn()+" "+fItem.getLn());
 			//http://developer.android.com/resources/samples/ApiDemos/src/com/example/android/apis/view/List14.html
 			name.setTag(position);
-			name.setClickable(true);
-			
-			
-			
 			return row;
 		}
 }
