@@ -2,12 +2,9 @@ package task;
 
 import protocol.Command;
 import protocol.ErrorCode;
-import request.RegisterRequest;
 import request.SendMessageRequest;
-import response.RegisterResponse;
 import response.SendMessageResponse;
 import activitys.Chat;
-import activitys.Registration;
 import android.util.Log;
 
 public class SendMessageTask extends BaseHttpRequestTask{

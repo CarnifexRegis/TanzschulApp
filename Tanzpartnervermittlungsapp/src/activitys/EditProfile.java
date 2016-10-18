@@ -174,6 +174,7 @@ public class EditProfile extends ConnectedActivity {
 		            	startActivityForResult(Intent.createChooser(intent,"Complete action using"),     PICK_FROM_GALLERY);
 
 		            	            } catch (ActivityNotFoundException e) {
+		            	            	Toast.makeText(edp, "Fehler beim Öffnen der Galerie", Toast.LENGTH_LONG).show();
 		            	            }
 				
 			}
@@ -181,9 +182,9 @@ public class EditProfile extends ConnectedActivity {
 	    }
 	
 	/**
-	 * Rechieve data.
+	 * Rechieves the Existing ProfileData form the Server
 	 *
-	 * @param pd the pd
+	 * @param pd the users Profiledata
 	 */
 	public void rechieveData(ProfileData pd) {
 		
@@ -219,17 +220,15 @@ public class EditProfile extends ConnectedActivity {
 	/**
 	 * Update sucessful.
 	 */
+	@Override
+	public void onBackPressed() {
+		super.onBackPressed();
+		finish();
+	}
 	public void updateSucessful() {
-		Intent intent = new Intent(getApplicationContext(),Menue.class);
-		intent.putExtra("ID", id);
-		intent.putExtra("gender", gender);
-		startActivity(new Intent(intent));
-		this.finish();
+		onBackPressed();
 	}
 	
-	/* (non-Javadoc)
-	 * @see activitys.ConnectedActivity#onConnectionError()
-	 */
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 	    super.onActivityResult(requestCode, resultCode, data);
@@ -253,22 +252,22 @@ public class EditProfile extends ConnectedActivity {
 	    }
 	}
 	
-	
-	@Override // must be overrided see TODO
+	// reads out the error and goes back to the Activity that called this one. Toast should be displayed over MenueActivity
+	@Override 
 	public void onConnectionError() {
-		
-			//TODO Error Handling 
-			//this activity has to switch back to the activity that called it
+		//TODO: Not tested due lack of Time and possibilitys
 			if(!isOnline(this)){
 				
 				Toast.makeText(getApplicationContext(), getResources().getString(R.string.check_connection), 
 		                Toast.LENGTH_SHORT).show(); 
+				
 			
 			}else{
 				Toast.makeText(getApplicationContext(), getResources().getString(R.string.connection_failed), 
 		                Toast.LENGTH_SHORT).show(); 
 				
-			}	
+			}
+			finish();
 	}
 	  
 	  //http://www.geeks.gallery/saving-image/
@@ -351,32 +350,32 @@ public class EditProfile extends ConnectedActivity {
 		
 		  return f.getAbsolutePath();
 	  }
-	  private String saveToInternalStorage(Bitmap bitmapImage){
-		  //http://stackoverflow.com/questions/17674634/saving-and-reading-bitmaps-images-from-internal-memory-in-android
-		 // http://stackoverflow.com/questions/20523658/how-to-create-application-specific-folder-in-android-gallery
-	         // path to /data/data/yourapp/app_data/imageDir
-	      //  File directory = cw.getDir("PROFILE_PICS", Context.MODE_PRIVATE);
-	        // Create imageDir
-		  verifyStoragePermissions(this);
-		  imageRoot.mkdirs();
-	        File mypath=new File(imageRoot,"profile_"+ count +".jpg");
-	      //  scanPhoto(mypath.toString());	
-	        count ++;
-	        FileOutputStream  fos = null;
-	        try {
-	        	mypath.createNewFile();          
-	        	 fos = new FileOutputStream(mypath);
-	            
-	       // Use the compress method on the BitMap object to write image to the OutputStream
-	            bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, fos);
-	            fos.close();
-	        } catch (Exception e) {
-	        	Toast.makeText(this, "Couldn´t write Picture.", Toast.LENGTH_LONG).show();
-	              e.printStackTrace();
-	        } 
-	         
-	        return mypath.getAbsolutePath();
-	    }
+//	  private String saveToInternalStorage(Bitmap bitmapImage){
+//		  //http://stackoverflow.com/questions/17674634/saving-and-reading-bitmaps-images-from-internal-memory-in-android
+//		 // http://stackoverflow.com/questions/20523658/how-to-create-application-specific-folder-in-android-gallery
+//	         // path to /data/data/yourapp/app_data/imageDir
+//	      //  File directory = cw.getDir("PROFILE_PICS", Context.MODE_PRIVATE);
+//	        // Create imageDir
+//		  verifyStoragePermissions(this);
+//		  imageRoot.mkdirs();
+//	        File mypath=new File(imageRoot,"profile_"+ count +".jpg");
+//	      //  scanPhoto(mypath.toString());	
+//	        count ++;
+//	        FileOutputStream  fos = null;
+//	        try {
+//	        	mypath.createNewFile();          
+//	        	 fos = new FileOutputStream(mypath);
+//	            
+//	       // Use the compress method on the BitMap object to write image to the OutputStream
+//	            bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, fos);
+//	            fos.close();
+//	        } catch (Exception e) {
+//	        	Toast.makeText(this, "Couldn´t write Picture.", Toast.LENGTH_LONG).show();
+//	              e.printStackTrace();
+//	        } 
+//	         
+//	        return mypath.getAbsolutePath();
+//	    }
 	  @Override
 	  public void onPause(){
 		  super.onPause();

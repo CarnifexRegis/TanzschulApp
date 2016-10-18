@@ -9,52 +9,42 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.20"
-        android:text="Mein Profil" />
+        android:text="@string/btn_my_profile" />
 
     <Button
         android:id="@+id/mMyKurs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.20"
-        android:text="Meine Kurse" />
+        android:text="@string/btn_my_lessons" />
 
     <Button
         android:id="@+id/TpFinden"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.20"
-        android:text="Tanzpartner/in finden" />
+        android:text="@string/btn_search_dancingpartner" />
 
     <Button
         android:id="@+id/Konv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.20"
-        android:text="Koversationen" />
+        android:text="@string/btn_my_conversations" />
 
     <Button
         android:id="@+id/mFRequests"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.20"
-        android:text="Freundschaftsanfragen" />
+        android:text="@string/btn_friend_requests" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
-    </LinearLayout>
+    
 
     <RadioGroup
         android:id="@+id/radioGroup1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" >
     </RadioGroup>
-
-    <TextView
-        android:id="@+id/test1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
 
 </LinearLayout>

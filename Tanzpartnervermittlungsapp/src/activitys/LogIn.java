@@ -19,6 +19,8 @@ import android.widget.TextView;
 // TODO: Auto-generated Javadoc
 
 
+import android.widget.Toast;
+
 import com.example.Tanzpartnervermittlung.R;
 
 /**
@@ -41,6 +43,8 @@ public class LogIn extends ConnectedActivity {
 	// http://stackoverflow.com/questions/18341269/save-the-data-and-using-it-after-restarting-the-app-android
 	private SharedPreferences prefs;
 	// https://www.youtube.com/watch?v=iW71-sVyMzM
+	LoginTask loginTask;
+	int exitC;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 
@@ -99,7 +103,9 @@ public class LogIn extends ConnectedActivity {
 		register.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				
+					if(loginTask != null){
+						loginTask.cancel(true);
+					}
 					startActivity(new Intent(getApplicationContext(),Registration.class));
 					finish();
 			}
@@ -117,9 +123,9 @@ public class LogIn extends ConnectedActivity {
 				String key = keyInsert.getText().toString();
 				System.out.println(eMail + key + "Values");
 				if (key.length() > 0 && eMail.length() > 0) {
-					LoginTask loginTask = new LoginTask(login, eMail, key);
+					loginTask = new LoginTask(login, eMail, key);
 					errorView.setVisibility(View.GONE);
-
+					
 					loginTask.execute();
 
 				} else {
@@ -214,8 +220,14 @@ public class LogIn extends ConnectedActivity {
 		}
 
 	}
-	@Override
-	public void onBackPressed() {
-	}
+//	public void onBackPressed() {
+//		//http://stackoverflow.com/questions/8430805/clicking-the-back-button-twice-to-exit-an-activity
+//		   exitC++;
+//		   if(exitC==1){
+//			   Toast.makeText(this, "Rücktaste nocheinmal drücken um die App zu verlassen.", Toast.LENGTH_LONG).show();
+//		   }else{
+//		      finish(); 
+//		   }
+//	}
 
 }

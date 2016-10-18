@@ -1,16 +1,11 @@
 package activitys;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import org.simpleframework.xml.Serializer;
-
 import task.PollChatTask;
 import task.SendMessageTask;
 import adapter.ChatAdapter;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
@@ -21,11 +16,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.Tanzpartnervermittlung.R;
-
 import model.ChatMessage;
-import model.Message;
 import model.MessagesContainer;
 /**
  * This Acticvity is used to communicate with other Users
@@ -34,20 +26,20 @@ import model.MessagesContainer;
  */
 //http://stackoverflow.com/questions/5452394/best-way-to-perform-an-action-periodically-while-an-app-is-running-handler
 public class Chat extends ConnectedActivity {
-	private boolean gender;
 	private Chat c = this;
 	private int id ;
 	private int cid;
 	private int fidp ;
 	private ChatAdapter cAdapter;
-	private Thread thread;
 	private int sleepTime = 10000;
 	private String fname;
 	private int lm;
 	private ArrayList<ChatMessage> cm = new ArrayList<ChatMessage>();
 	private Button send;
 	private SharedPreferences prefs;
-	private String test;
+	CountDownTimer ct;
+	PollChatTask pct;
+
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.chat);
@@ -57,7 +49,6 @@ public class Chat extends ConnectedActivity {
 			id = extras.getInt("ID", -1);
 			cid = extras.getInt("cid", -1);
 			fidp = extras.getInt("idp", -1);
-			gender = extras.getBoolean("gender");
 			fname = extras.getString("fname");
 		}
 		prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -71,7 +62,6 @@ public class Chat extends ConnectedActivity {
 				cm.add(ca[i]);
 			}
 		}
-		test = prefs.getString("cm"+cid,null);
 		TextView nv = (TextView) findViewById(R.id.ChatName);
 		nv.setText(fname);
 		ListView mList = (ListView) findViewById(R.id.ChatList);
@@ -98,16 +88,17 @@ public class Chat extends ConnectedActivity {
 	             else{
 	            	lm = 0;
 	             }
-	             PollChatTask pct = new PollChatTask(c, id, cid, lm);
+	            pct = new PollChatTask(c, id, cid, lm);
 	             pct.execute();
 		}
 	public void addNewMessages(ArrayList<ChatMessage> cm) {
 		this.cm.addAll(cm);
 		cAdapter.notifyDataSetChanged();
-		poll(sleepTime);
+		startPoll(sleepTime);
 	}
-	public void poll(int i){
-		new CountDownTimer(i, 1000) {
+
+	public void startPoll(int i){
+		 ct = new CountDownTimer(i, 1000) {
 
 		     public void onTick(long millisUntilFinished) {
 		        
@@ -119,7 +110,7 @@ public class Chat extends ConnectedActivity {
 			             else{
 			            	lm = 0;
 			             }
-			             PollChatTask pct = new PollChatTask(c, id, cid, lm);
+			            pct = new PollChatTask(c, id, cid, lm);
 			 			pct.execute();
 		     }
 		  }.start();
@@ -134,7 +125,16 @@ public class Chat extends ConnectedActivity {
 	
 	@Override
 	public void onBackPressed() {
+		
 		super.onBackPressed();
+		if(pct != null){
+			pct.cancel(true);}
+		if(ct != null){
+			ct.cancel();}
+//		Intent intent = new Intent(getApplicationContext(),Friends.class);
+//		intent.putExtra("ID", id);
+//		intent.putExtra("gender", gender);
+//			 startActivity(new Intent(intent));
 			this.finish();
 			
 		}
@@ -155,6 +155,7 @@ public class Chat extends ConnectedActivity {
 				e.printStackTrace();}
 			editor.commit();
 	}
+
 	}
 	
 

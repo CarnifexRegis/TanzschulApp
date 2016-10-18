@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.Tanzpartnervermittlung.R;
 // TODO: Auto-generated Javadoc
@@ -24,14 +25,11 @@ public class Menue extends ConnectedActivity {
 
 	//https://developer.android.com/guide/topics/data/data-storage.html#pref
 	 public static final String prefName = "MyPrefsFile";
-	private int ID ;
-	private boolean gender;
+
+	private Menue m = this;
+	private int exitC;
 	
 	@Override
-	/**
-	 * 
-	 */
-	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		//Requesttest
@@ -41,7 +39,7 @@ public class Menue extends ConnectedActivity {
 		
 		Bundle extras = getIntent().getExtras();
 		if(extras != null){
-		ID = extras.getInt("ID", -1);
+		id = extras.getInt("ID", -1);
 		gender = extras.getBoolean("gender", true);
 		}
 		setContentView(R.layout.menue);
@@ -56,11 +54,14 @@ public class Menue extends ConnectedActivity {
 		tpFinden.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-		
+				if(isOnline(m)){
 				Intent intent = new Intent(getApplicationContext(),SearchForDancingpartner.class);
-				intent.putExtra("ID", ID);
+				intent.putExtra("ID", id);
 				intent.putExtra("gender", gender);
-				 startActivity(new Intent(intent));
+				 startActivity(new Intent(intent));}
+				else{
+					Toast.makeText(m,"Überprüfen Sie ihre Internetverbindung", Toast.LENGTH_SHORT).show();
+				}
 			}
 		});
 		
@@ -69,10 +70,15 @@ public class Menue extends ConnectedActivity {
 		myProfile.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-Intent intent = new Intent(getApplicationContext(),EditProfile.class);
-				intent.putExtra("ID", ID);
+				if(isOnline(m)){
+				Intent intent = new Intent(getApplicationContext(),EditProfile.class);
+				intent.putExtra("ID", id);
 				intent.putExtra("gender", gender);
 				startActivity(new Intent(intent));
+				}
+				else{
+					Toast.makeText(m,"Überprüfen Sie ihre Internetverbindung", Toast.LENGTH_SHORT).show();
+				}
 			}
 		});
 	
@@ -80,36 +86,45 @@ Intent intent = new Intent(getApplicationContext(),EditProfile.class);
 	myKurs.setOnClickListener(new View.OnClickListener() {
 		@Override
 		public void onClick(View v) {
+			if(isOnline(m)){
 			Intent intent = new Intent(getApplicationContext(),AssignToKurs.class);
-			intent.putExtra("ID", ID);
+			intent.putExtra("ID", id);
 			intent.putExtra("gender", gender);
 			startActivity(new Intent(intent));
+			}
+			else{
+				Toast.makeText(m,"Überprüfen Sie ihre Internetverbindung", Toast.LENGTH_SHORT).show();
+			}
 		}
 	});
 	final Button fr = (Button) findViewById(R.id.mFRequests);
 	fr.setOnClickListener(new View.OnClickListener() {
 		@Override
 		public void onClick(View v) {
-	
+			if(isOnline(m)){
 			Intent intent = new Intent(getApplicationContext(),FriendRequest.class);
-			
-			intent.putExtra("ID", ID);
+			intent.putExtra("ID", id);
 			intent.putExtra("gender", gender);
-			
 			 startActivity(new Intent(intent));
+			}
+			else{
+				Toast.makeText(m,"Überprüfen Sie ihre Internetverbindung", Toast.LENGTH_SHORT).show();
+			}
 		}
 	});
 	final Button conversations = (Button) findViewById(R.id.Konv);
 	conversations.setOnClickListener(new View.OnClickListener() {
 		@Override
 		public void onClick(View v) {
-	
+			if(isOnline(m)){
 			Intent intent = new Intent(getApplicationContext(),Friends.class);
-			
-			intent.putExtra("ID", ID);
+			intent.putExtra("ID", id);
 			intent.putExtra("gender", gender);
-			
 			 startActivity(new Intent(intent));
+			}
+			else{
+				Toast.makeText(m,"Überprüfen Sie ihre Internetverbindung", Toast.LENGTH_SHORT).show();
+			}
 		}
 	});
 }
@@ -119,14 +134,18 @@ Intent intent = new Intent(getApplicationContext(),EditProfile.class);
 	 *
 	 * @param text the text
 	 */
-	public void testAusgabe(String text) {
-	//	TextView testView = (TextView) findViewById(R.id.test1);
-		//testView.setText(text);
-	}
+
 
 
 	@Override
 	public void onBackPressed() {
+		//http://stackoverflow.com/questions/8430805/clicking-the-back-button-twice-to-exit-an-activity
+		   exitC++;
+		   if(exitC==1){
+			   Toast.makeText(this, "Rücktaste nocheinmal drücken um die App zu verlassen.", Toast.LENGTH_LONG).show();
+		   }else{
+		      finish(); 
+		   }
 	}
 	
 	@Override
@@ -145,7 +164,7 @@ Intent intent = new Intent(getApplicationContext(),EditProfile.class);
 	    	break;
 	    case R.id.logOut:
 	    	//http://stacktips.com/tutorials/android/android-custom-dialog-example
-	    	if(ID >= 0){
+	    	if(id >= 0){
 	    		final Dialog dialog = new Dialog(Menue.this);
 	    		//setting custom layout to dialog
 	    		dialog.setContentView(R.layout.log_out_dialog);
@@ -159,11 +178,8 @@ Intent intent = new Intent(getApplicationContext(),EditProfile.class);
 				public void onClick(View v) {
 					dialog.dismiss();	
 					Intent intent = new Intent(getApplicationContext(),LogIn.class);
-//					if(ID >= 0){
-//					intent.putExtra("intentID", -1);}
-//					intent.putExtra("intentGender", false);
-					
-					 startActivity(new Intent(intent));
+					startActivity(new Intent(intent));
+					m.finish();
 				}
 				});
 				
@@ -177,23 +193,6 @@ Intent intent = new Intent(getApplicationContext(),EditProfile.class);
 			dialog.show();
 	        
 	    	}
-//	    	else{
-//	    		final Dialog dialog2 = new Dialog(Menue.this);
-//	    		//setting custom layout to dialog
-//	    		dialog2.setContentView(R.layout.no_log_out_dialog);
-//	    		dialog2.setTitle("Sie sind bereits ausgeloggt.");
-//	    		//adding text dynamically
-//	    		Button okButton = (Button) dialog2.findViewById(R.id.okButton);
-//	    		
-//	    		//adding button click event
-//	    		okButton.setOnClickListener(new OnClickListener() {
-//				@Override
-//				public void onClick(View v) {
-//					dialog2.dismiss();	
-//				}
-//				});
-//	    		dialog2.show();
-//	    	}
 	    	break;
 	    	}
 	    return true;

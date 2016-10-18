@@ -3,7 +3,6 @@ package task;
 import protocol.Command;
 import protocol.ErrorCode;
 import request.AddFriendRequest;
-import response.AcceptFriendshipResponse;
 import response.AddFriendResponse;
 import activitys.ShowProfile;
 import android.util.Log;

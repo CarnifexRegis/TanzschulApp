@@ -161,6 +161,10 @@ public class AssignToKurs extends ConnectedActivity{
 		
 	}
 	
-	
+	@Override
+	public void onBackPressed() {
+		super.onBackPressed();
+		finish();
+	}
 	
 	}	

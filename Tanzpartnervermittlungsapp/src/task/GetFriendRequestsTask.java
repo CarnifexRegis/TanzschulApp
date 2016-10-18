@@ -3,10 +3,7 @@ package task;
 import protocol.Command;
 import protocol.ErrorCode;
 import request.GetFriendRequestsRequest;
-import request.GetKursRequest;
 import response.GetFriendRequestsResponse;
-import response.GetKursResponse;
-import activitys.AssignToKurs;
 import activitys.FriendRequest;
 import android.util.Log;
 

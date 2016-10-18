@@ -76,6 +76,12 @@
 	<string name ="text_time">Uhrzeit:</string>
 	<string name ="text_day">Wochentag:</string>
 	<string name ="text_date">Startdatum:</string>
+	<string name ="btn_my_lessons">Steckbriefe Verwalten</string>
+	<string name ="btn_my_profile">Mein Profil</string>
+	<string name ="btn_search_dancingpartner">Tanzpartner/in suchen</string>
+	<string name ="btn_my_conversations">Konversationen</string>
+	<string name ="btn_friend_requests">Freundschaftsanfragen</string>
+	
 	
 	
 	<string name ="button_clipboard">Nummer in Zwischenablage.</string>

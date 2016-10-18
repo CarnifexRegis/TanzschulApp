@@ -43,6 +43,8 @@ public class Registration extends ConnectedActivity {
 	private String key;
 	private boolean gender;
 	private boolean aVisible;
+	
+	RegisterTask registerTask;
 
 	// private RadioGroup radioSexGroup;
 	// private RadioButton radioSexButton;
@@ -203,7 +205,7 @@ public class Registration extends ConnectedActivity {
 				}
 
 				if (isCorrect()) {
-					RegisterTask registerTask = new RegisterTask(r, fn, ln,
+					 registerTask = new RegisterTask(r, fn, ln,
 							eMail, key, age, gender, aVisible);
 					registerTask.execute();
 					rErrorView.setVisibility(View.GONE);
@@ -285,6 +287,7 @@ public class Registration extends ConnectedActivity {
 			intent.putExtra("ID", id);
 			// intent.putExtra("gender", gender);
 			startActivity(new Intent(intent));
+			this.finish();
 		}
 	}
 
@@ -296,8 +299,13 @@ public class Registration extends ConnectedActivity {
 	@Override
 	public void onBackPressed() {
 		super.onBackPressed();
+		
+		if(registerTask != null){
+			registerTask.cancel(true);
+		}
 		Intent intent = new Intent(getApplicationContext(), LogIn.class);
 		startActivity(new Intent(intent));
+		this.finish();
 	}
 
 }

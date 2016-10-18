@@ -7,7 +7,6 @@ import org.simpleframework.xml.core.Persister;
 import org.simpleframework.xml.stream.Format;
 import org.simpleframework.xml.stream.HyphenStyle;
 import org.simpleframework.xml.stream.Style;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -16,13 +15,15 @@ import android.widget.Toast;
 
 import com.example.Tanzpartnervermittlung.R;
 
-// TODO: Auto-generated Javadoc
 /**
  * @author Simon Stolz
- * The Class ConnectedActivity.
+ *Every Activity that connects with the server or needs to acces Internet resources extends this class
+ * 
+ * http://stackoverflow.com/questions/12947916/android-remove-all-the-previous-activities-from-the-back-stack
  */
 public abstract class ConnectedActivity extends Activity {
-	
+	protected int id;
+	protected boolean gender;
 	/**
 	 * @author Simon Stolz
 	 */
@@ -41,6 +42,7 @@ public abstract class ConnectedActivity extends Activity {
 		case  "wrongLogin":
 			intent = new Intent(getApplicationContext(),LogIn.class);
 			intent.putExtra("error", getResources().getString(R.string.session_expired));
+			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 			startActivity(new Intent(intent));
 			break;
 		case "notFound" :
@@ -50,6 +52,7 @@ public abstract class ConnectedActivity extends Activity {
 		default:
 			intent = new Intent(getApplicationContext(),LogIn.class);
 			intent.putExtra("error", "Fatal error: " + ec);
+			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 			startActivity(new Intent(intent));
 			break;
 		}
@@ -83,6 +86,17 @@ public abstract class ConnectedActivity extends Activity {
 	    }
 	    return false;
 	    }
+	// finishes the present activity and returns to Main Activity
+	public void disconectRetreat(){
+		Intent intent = new Intent(getApplicationContext(),SearchForDancingpartner.class);
+		intent.putExtra("ID", id);
+		intent.putExtra("gender", gender);
+		//http://stackoverflow.com/questions/7075349/android-clear-activity-stack
+		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+		 startActivity(new Intent(intent));
+		
+	
+	}
 	/**
 	 * Builts an xml Object
 	 * @param object
@@ -110,6 +124,11 @@ public abstract class ConnectedActivity extends Activity {
  * @param myClass
  * @return
  */
+	@Override
+    public void onBackPressed() {
+            super.onBackPressed();
+            this.finish();
+    }
 	protected Object parseXML(String xml, Class myClass) {
 		Serializer serializer = new Persister();
 

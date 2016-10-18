@@ -4,12 +4,10 @@ import java.io.ByteArrayOutputStream;
 
 import protocol.Command;
 import protocol.ErrorCode;
-import request.ForeignProfileRequest;
 import request.UpdateImageRequest;
 import response.ProfileDataResponse;
 import activitys.EditProfile;
 import activitys.ShowProfile;
-import android.app.Activity;
 import android.graphics.Bitmap;
 import android.util.Base64;
 import android.util.Log;
