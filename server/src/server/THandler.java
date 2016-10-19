@@ -11,7 +11,6 @@ import org.eclipse.jetty.server.handler.AbstractHandler;
 
 import protocol.Command;
 import tasks.ForeignProfileTask;
-import oldExampels.GetAllTask;
 import tasks.AAddKursTask;
 import tasks.ADeleteTask;
 import tasks.AGetKursTask;
@@ -54,20 +53,15 @@ public class THandler extends AbstractHandler {
 
 		Command command = Command.fromString(request.getParameter("do"));
 		String body = getHttpBody(request);
-
+		/**
+		 * Standard response Message
+		 */
 		String antwort = "<h1>Fehler!<h1>";
 		System.out.println("got any request");
 		
 		if (command != null) {
 			
 			switch (command) {
-			case getall:
-				GetAllTask getalltask = new GetAllTask();
-				System.out.println("Body: " + body);
-				antwort = getalltask.handle(body);
-				baseRequest.setHandled(true);
-				System.out.println("Get All Request");
-				break;
 			case register:
 				RegisterTask registertask = new RegisterTask();
 				antwort = registertask.handle(body);

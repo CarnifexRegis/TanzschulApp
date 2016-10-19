@@ -2,7 +2,7 @@ package tasks;
 
 import java.util.ArrayList;
 
-import database2.FriendRequestItem;
+import database_utils.FriendRequestItem;
 import model.Model;
 import protocol.AbstractHandler;
 import protocol.ErrorCode;

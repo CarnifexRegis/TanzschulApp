@@ -20,17 +20,19 @@ import java.util.ArrayList;
 
 
 
+
+
 import main.Main;
-import database2.ChatMessage;
-import database2.Friend;
-import database2.FriendRequestItem;
-import database2.Kurs;
-import database2.ProfileChart;
-import database2.ProfileData;
-import database2.SQL;
-import database2.SQLKurs;
-import database2.aKurs;
-// TODO: Auto-generated Javadoc
+import database.TableManager;
+import database_utils.ChatMessage;
+import database_utils.Friend;
+import database_utils.FriendRequestItem;
+import database_utils.Kurs;
+import database_utils.ProfileChart;
+import database_utils.ProfileData;
+import database_utils.SQL;
+import database_utils.SQLKurs;
+import database_utils.aKurs;
 
 /**
  * The Class Model.
@@ -42,14 +44,17 @@ import database2.aKurs;
 public class Model {
 	
 	private static Model instance;
-	private SQL sql;
+	private SQL sql2;
+	private TableManager sql;
 
 /**
  * The constructor gets an instance of the SQL class, which uses JDBC to access the Server sDatabase.
  */
 	
 	private Model() {
-		sql = new SQL();
+		sql = new TableManager();
+		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	//	sql = new SQL();
 		System.out.println("Constructor of the Model was called");
 	}
 	public ArrayList <ChatMessage> PollChat(int cid , int lmid){

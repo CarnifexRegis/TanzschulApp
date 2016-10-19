@@ -1,6 +1,6 @@
 package tasks;
 
-import database2.ProfileData;
+import database_utils.ProfileData;
 import model.Model;
 import protocol.AbstractHandler;
 import protocol.ErrorCode;

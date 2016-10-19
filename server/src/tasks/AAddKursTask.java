@@ -1,6 +1,6 @@
 package tasks;
 
-import database2.SQLKurs;
+import database_utils.SQLKurs;
 import model.Model;
 import protocol.AbstractHandler;
 import protocol.ErrorCode;

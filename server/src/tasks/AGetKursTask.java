@@ -3,7 +3,7 @@ package tasks;
 import java.util.ArrayList;
 
 import model.Model;
-import database2.aKurs;
+import database_utils.aKurs;
 import protocol.AbstractHandler;
 import protocol.ErrorCode;
 import request.AGetKursRequest;

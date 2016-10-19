@@ -2,8 +2,7 @@ package response;
 
 import org.simpleframework.xml.Element;
 
-import database2.ProfileData;
-// TODO: Auto-generated Javadoc
+import database_utils.ProfileData;
 
 /**
  * The Class ForeignProfileResponse.

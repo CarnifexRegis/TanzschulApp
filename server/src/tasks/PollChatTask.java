@@ -1,12 +1,13 @@
 package tasks;
 
 import java.util.ArrayList;
+
 import model.Model;
 import protocol.AbstractHandler;
 import protocol.ErrorCode;
 import request.PollChatRequest;
 import response.PollChatResponse;
-import database2.ChatMessage;
+import database_utils.ChatMessage;
 
 public class PollChatTask extends AbstractHandler{
 	public String handle(String httpBody){

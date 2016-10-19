@@ -6,7 +6,7 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
-import database2.Friend;
+import database_utils.Friend;
 
 @Root(name = "getfresponse")
 public class GetFriendsResponse {

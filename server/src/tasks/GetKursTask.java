@@ -2,7 +2,7 @@ package tasks;
 
 import java.util.ArrayList;
 
-import database2.Kurs;
+import database_utils.Kurs;
 import model.Model;
 import protocol.AbstractHandler;
 import protocol.ErrorCode;

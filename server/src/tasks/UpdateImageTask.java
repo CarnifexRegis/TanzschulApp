@@ -2,8 +2,9 @@ package tasks;
 
 import java.util.ArrayList;
 import java.util.Base64;
+
 import model.Model;
-import database2.ProfileChart;
+import database_utils.ProfileChart;
 import protocol.AbstractHandler;
 import protocol.ErrorCode;
 import request.UpdateChartRequest;

@@ -6,7 +6,7 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
-import database2.ProfileChart;
+import database_utils.ProfileChart;
 
 
 

@@ -4,8 +4,7 @@ package request;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
-import database2.SQLKurs;
-// TODO: Auto-generated Javadoc
+import database_utils.SQLKurs;
 
 /**
  * Requests  an specific Kursobject to be added.

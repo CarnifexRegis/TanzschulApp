@@ -2,7 +2,7 @@ package tasks;
 
 import java.util.ArrayList;
 
-import database2.ProfileChart;
+import database_utils.ProfileChart;
 import model.Model;
 import protocol.AbstractHandler;
 import protocol.ErrorCode;

@@ -28,7 +28,6 @@ public class TServer {
 		 * Instanziert einen Jetty-Webserver, der später auf Port 8080 horchen soll
 		 */
 		  server = new Server();
-//	        // HTTP connector
 	        http = new ServerConnector(server);
 
 	        http.setPort(8080);
@@ -65,12 +64,11 @@ public class TServer {
 	 * Starts the  server.
 	 *
 	 * @param host the host ip 
-	 * @return the Ure the server is hosted on
+	 * @return the Uri the server is hosted on
 	 */
 	public String startServer(String host){
 		 try {
 		    	/**
-		    	 * Starten des Webservers
 		    	 * This starts the Server
 		    	 */
 			

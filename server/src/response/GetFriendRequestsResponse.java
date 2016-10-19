@@ -5,11 +5,12 @@ import java.util.ArrayList;
 
 
 
+
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
-import database2.FriendRequestItem;
+import database_utils.FriendRequestItem;
 
 @Root(name = "getfrresponse")
 public class GetFriendRequestsResponse {

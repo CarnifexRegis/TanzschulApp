@@ -3,7 +3,7 @@ package response;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
-import database2.ProfileData;
+import database_utils.ProfileData;
 
 // TODO: Auto-generated Javadoc
 /**

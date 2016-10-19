@@ -1,4 +1,4 @@
-package database2;
+package database_utils;
 
 import java.io.StringWriter;
 import java.security.SecureRandom;
@@ -169,10 +169,9 @@ public class SQL {
 				}
 				System.out.println("Table FRIEND already exists");
 			} catch (Exception e) {
-				// Creates table admin
+				
 				/**
-				 * The Links ID
-				 * 
+				 * Creates the Table Friend
 				 */
 				try {
 					Class.forName("org.sqlite.JDBC");
@@ -486,7 +485,7 @@ public class SQL {
 	 * @return True if successfull
 	 */
 	public boolean addFriend(int id1, int id2) {
-		// TODO not tested implement add Chat
+		// TODO not tested
 		Statement stmt;
 		try {
 			stmt = c.createStatement();
@@ -668,7 +667,7 @@ public class SQL {
 		return fri;
 	}
 	/**
-	 * This Methods sets the status of an Friendrequest to accepted and creates a new chat object for the Friend Request
+	 * This Methods sets the status of an friend request to accepted and creates a new chat object for the friend request
 	 * @param id1
 	 * @param myid
 	 * @return
@@ -700,7 +699,7 @@ public class SQL {
 		}
 	}
 	/**
-	 * Selects all Friends that accpeted your friend request
+	 * Selects reads all your freinds also pending ones
 	 * @param myid
 	 * @return a List of Friend Objects
 	 */
@@ -897,12 +896,10 @@ public class SQL {
 	}
 
 	/**
-	 * Adds the admin.
+	 * Adds a new admin Object
 	 *
-	 * @param n
-	 *            the admins "name"
-	 * @param k
-	 *            the key to access the addmin permissions
+	 * @param n the admins "name"
+	 * @param k  the key to access the addmin permissions
 	 * @return returns the id of the created Admin
 	 * @attribute This mehtod adds a new user and returns the generated if from
 	 *            his column
@@ -1014,10 +1011,8 @@ public class SQL {
 	/**
 	 * The login for admins
 	 *
-	 * @param n
-	 *            the admins name
-	 * @param k
-	 *            the admins key
+	 * @param n the admins name
+	 * @param k the admins key
 	 * @return if ther is a match returns the admins id else returns -1 in case
 	 *         of an exception it returns -2
 	 */
@@ -1119,28 +1114,19 @@ public class SQL {
 	/**
 	 * Adds an new user to the USER table.
 	 *
-	 * @param eMail
-	 *            the users e-mail
-	 * @param ps
-	 *            the users key
-	 * @param ln
-	 *            the users last name
-	 * @param fn
-	 *            the users first name
-	 * @param g
-	 *            the users gender
-	 * @param age
-	 *            the users age
-	 * @param pa
-	 *            indicates if the users age is public to other users
+	 * @param eMail the users e-mail
+	 * @param ps the users key
+	 * @param ln the users last name
+	 * @param fn the users first name
+	 * @param g the users gender
+	 * @param age the users age
+	 * @param pa indicates if the users age is public to other users
 	 * @return returns the new users id
 	 */
 	public int addUser(String eMail, String ps, String ln, String fn, int g,
 			int age, int pa) {
-
 		String idp;
 		// int id;
-
 		if (!eMailExists(eMail)) {
 			try {
 
@@ -1244,7 +1230,7 @@ public class SQL {
 	}
 
 	public int getUserIDPByID(int id) {
-		// TODO not yet tested
+		// TODO not yet fully tested
 		Statement stmt = null;
 		try {
 			stmt = c.createStatement();
@@ -1275,15 +1261,10 @@ public class SQL {
 	/**
 	 * Adds a new column to the Kurs table .
 	 * 
-	 * @param kursstufe
-	 *            level of the dancing lessons see {@link
-	 *            [<enums>.]<Kursstufen>}
-	 * @param datum
-	 *            java.sql.Date("yyyy-MM-dd")
-	 * @param wochentag
-	 *            String for the Day {@link <Week>}
-	 * @param uhrzeit
-	 *            the time the lesson takes place
+	 * @param kursstufelevel of the dancing lessons 
+	 * @param datum java.sql.Date("yyyy-MM-dd")
+	 * @param wochentag String for the Day {@link <Week>}
+	 * @param uhrzeit the time the lesson takes place
 	 * @return Returns true if no exception is thrown otherwise returns false
 	 */
 	public boolean addKurs(int kursstufe, java.sql.Date datum,
@@ -1334,9 +1315,7 @@ public class SQL {
 
 	/**
 	 * Deletes an Kurs object(dancing lesson) and all references on it
-	 *
-	 * @param kid
-	 *            the id of the lesson
+	 * @param kid the id of the lesson
 	 * @return true, if successful
 	 */
 	public boolean deleteKurs(int kid) {
@@ -1365,12 +1344,9 @@ public class SQL {
 	}
 
 	/**
-	 * deletes an specific link
-	 *
-	 * @param uid
-	 *            the users id
-	 * @param kid
-	 *            the lessons id
+	 * deletes an specific link between a Kurs and an User object
+	 * @param uid the users id
+	 * @param kid the lessons id
 	 * @return true, if successful
 	 */
 	public boolean deleteLink(int uid, int kid) {
@@ -1397,12 +1373,10 @@ public class SQL {
 	}
 
 	/**
-	 * Adds adds a new link betwen a user and dancing lesson
+	 * Adds adds a new link between a user and dancing lesson
 	 *
-	 * @param uid
-	 *            the users id
-	 * @param kid
-	 *            the lessons id
+	 * @param uid the users id
+	 * @param kid the lessons id
 	 * @return true, if successful
 	 */
 	public boolean addLink(int uid, int kid) {
@@ -1463,16 +1437,11 @@ public class SQL {
 	/**
 	 * Gets data from KURS and USER table and puts it into profile chart objects
 	 *
-	 * @param gender
-	 *            The gender of the requesting User
-	 * @param kstu
-	 *            The required dancing lesson "level"
-	 * @param myage
-	 *            The age of the requesting user (not used but may be in the
-	 *            Future)
-	 * @param day
-	 *            the day
-	 * @return the profilecharts
+	 * @param gender The gender of the requesting User
+	 * @param kstu The required dancing lesson "level"
+	 * @param myage The age of the requesting user (not used but may be in the Future)
+	 * @param day the day the lesson usually takes place
+	 * @return returns a ArrayList of  ProfileChar objects
 	 */
 	public ArrayList<ProfileChart> getProfilecharts(int gender, int kstu,
 			int myage, String day) {
@@ -1515,20 +1484,13 @@ public class SQL {
 	}
 
 	/**
-	 * With this Method the User can modify the saved Data about himself.
-	 *
-	 * @param id
-	 *            The id of the users account used to verify himself
-	 * @param pn
-	 *            the phone number
-	 * @param height
-	 *            The users height
-	 * @param age
-	 *            the users age
-	 * @param pText
-	 *            the users about me text
-	 * @param pa
-	 *            This parameter indicates if the users Age shall be public
+	 * With this method the User can modify the saved data about himself.
+	 * @param id 		the id of the users account used to verify himself
+	 * @param pn 		the phone number
+	 * @param height 	the users height
+	 * @param age		 the users age
+	 * @param pText		 the users about me text
+	 * @param pa 		this parameter indicates if the users age is public to other users
 	 * @return true, if successful
 	 */
 	// int id, int pn, int height,int age,String pText, boolean pa
@@ -1562,7 +1524,7 @@ public class SQL {
 
 	// public Login logIn(){}
 	/**
-	 * Thsi method is called by the client to log in
+	 * This method is executed to gain a users id in exchange for email and password
 	 *
 	 * @param em
 	 *            the email you want to log in with
@@ -1673,10 +1635,9 @@ public class SQL {
 	}
 
 	/**
-	 * checks if ht eproviede id exists in the admin table
+	 * checks if the provided id exists in the admin table
 	 *
-	 * @param id
-	 *            the admins id
+	 * @param id the admins id
 	 * @return true, if successful
 	 */
 	public boolean acheckID(int id) { // Login returns the user id
@@ -1715,8 +1676,7 @@ public class SQL {
 	/**
 	 * Recieves the ID and reads out the Gender according to the id.
 	 * 
-	 * @param id
-	 *            ID of the user
+	 * @param id  ID of the user
 	 * @return Returns the Gender of the User as int three Values are possible :
 	 *         1 for female, 0 for male and -1 in case of an Error
 	 */
@@ -1754,11 +1714,10 @@ public class SQL {
 	}
 
 	/**
-	 * Gets the profile data o an specific user
+	 * Gets the profile data of an specific user
 	 *
-	 * @param id
-	 *            the users id
-	 * @return the user sprofile data
+	 * @param id  the users id
+	 * @return the users profile data
 	 */
 	public ProfileData getProfileData(int id) {
 		// TODO might be buggy if i use thios in edit profile activity cause age
@@ -1843,13 +1802,10 @@ public class SQL {
 	// }
 
 	/**
-	 * Gets data from KURS table
+	 * Gets data from KURS table specified by dancing lesson level and user id see AssingToKurs Activity
 	 *
-	 * @param kstu
-	 *            the level of the dancing lesson
-	 * @param uid
-	 *            the users id used to see if any links exists between him and
-	 *            any KURS object
+	 * @param kstu  the level of the dancing lesson
+	 * @param uid  the users id used to see if any links exists between him and any KURS object
 	 * @return the data of teh Kur object
 	 */
 	public ArrayList<Kurs> getKurs(int kstu, int uid) {
