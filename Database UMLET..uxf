@@ -46,7 +46,7 @@ HEIGHT
     <id>UMLClass</id>
     <coordinates>
       <x>50</x>
-      <y>100</y>
+      <y>30</y>
       <w>300</w>
       <h>80</h>
     </coordinates>
@@ -108,7 +108,7 @@ KID
     <id>Relation</id>
     <coordinates>
       <x>340</x>
-      <y>90</y>
+      <y>20</y>
       <w>130</w>
       <h>40</h>
     </coordinates>
