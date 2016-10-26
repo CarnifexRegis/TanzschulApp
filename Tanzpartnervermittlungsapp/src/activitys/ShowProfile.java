@@ -93,23 +93,7 @@ public class ShowProfile extends ConnectedActivity {
 	   ForeignProfileTask fpt =new ForeignProfileTask(sp, idp, id);
 			fpt.execute();
 			}
-	@Override
-		public void onConnectionError(){
-			
-			String error;
-			if(!isOnline(this)){
-				
-				  error = getResources().getString(R.string.check_connection);
-			}else{
-				error =getResources().getString(R.string.connection_failed);
-			}
-
-			Intent intent = new Intent(getApplicationContext(),SearchForDancingpartner.class);
-			intent.putExtra("ID", id);
-			intent.putExtra("gender", gender);
-			intent.putExtra("error", error);
-			startActivity(new Intent(intent));
-			}
+	
 	@Override
 	public void onError(String ec) {
 		Intent intent;
@@ -168,11 +152,7 @@ public class ShowProfile extends ConnectedActivity {
 	public void onBackPressed(){
 		super.onBackPressed();
 		String e  = null;
-		Intent intent = new Intent(getApplicationContext(),SearchForDancingpartner.class);
-		intent.putExtra("ID", id);
-		intent.putExtra("gender", gender);
-		intent.putExtra("error", e);
-		startActivity(new Intent(intent));
+		this.finish();
 	}
 	
 	/**

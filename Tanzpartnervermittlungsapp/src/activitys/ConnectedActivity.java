@@ -67,8 +67,10 @@ public abstract class ConnectedActivity extends Activity {
 	                Toast.LENGTH_LONG).show(); 
 		
 		}else{
+			// finishes if it cant  get a connection to the Server
 			Toast.makeText(getApplicationContext(), getResources().getString(R.string.connection_failed), 
 	                Toast.LENGTH_LONG).show(); 	
+			this.finish();
 		}
 	}
 	
