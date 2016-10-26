@@ -17,8 +17,8 @@ import android.widget.Toast;
 
 import com.example.Tanzpartnervermittlung.R;
 
-// TODO: Auto-generated Javadoc
 /**
+ * In this class u can assign your self to as many dancing lessons as u want users of the other gender will see that u want to take place in that courses
  *@author Simon Stolz
  */
 public class AssignToKurs extends ConnectedActivity{
@@ -31,10 +31,6 @@ public class AssignToKurs extends ConnectedActivity{
 	private ListView kView;
 	
 //http://stackoverflow.com/questions/5195321/remove-an-onclick-listener	
-	
-	/* (non-Javadoc)
- * @see android.app.Activity#onCreate(android.os.Bundle)
- */
 @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// ascribing the Layout to the activity

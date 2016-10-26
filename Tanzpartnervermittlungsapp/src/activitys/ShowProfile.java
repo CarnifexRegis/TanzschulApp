@@ -37,9 +37,7 @@ public class ShowProfile extends ConnectedActivity {
 	 private ClipData myClip;
 	 private ProfileData pd = new ProfileData();
 	
-	/* (non-Javadoc)
-	 * @see android.app.Activity#onCreate(android.os.Bundle)
-	 */
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -59,17 +57,6 @@ public class ShowProfile extends ConnectedActivity {
 			aboutMeView = (TextView) findViewById(R.id.spAboutMeView);
 			pnView = (TextView) findViewById(R.id.spPhoneView);
 			
-			
-	       final Button menueButton = (Button) findViewById(R.id.spMenueButton);
-	       menueButton.setOnClickListener(new View.OnClickListener() {
-	            @Override
-				public void onClick(View v) {
-	            	Intent intent = new Intent(getApplicationContext(),Menue.class);
-	        		intent.putExtra("ID", id);
-	        		intent.putExtra("gender", gender);
-	        			 startActivity(new Intent(intent));     	
-	            }
-	        });	
 	       final Button addToContactsButton = (Button) findViewById(R.id.spAddToContactsButton);
 	       addToContactsButton.setOnClickListener(new View.OnClickListener() {
 	            @Override

@@ -40,6 +40,10 @@ public class Friends extends ConnectedActivity {
 		fView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            	
+            	if((int) view.getTag()==1){
+            		
+            	
                 //http://stackoverflow.com/questions/9208827/how-to-extract-the-text-from-the-selected-item-on-the-listview
                 Intent intent = new Intent(getApplicationContext(),Chat.class);
 				intent.putExtra("ID", f.id);
@@ -49,17 +53,19 @@ public class Friends extends ConnectedActivity {
 				intent.putExtra("idp", fAdapter.getItem(position).getIdp()); 
 				intent.putExtra("fname",fAdapter.getItem(position).getFn()+" "+fAdapter.getItem(position).getLn() ); 
 				 startActivity(new Intent(intent));
-				 f.finish();
+				 }else{
+					 Toast.makeText(f,"Der Nutzer hat ihre Freundschaftsanfrage nochnicht akzeptiert", Toast.LENGTH_SHORT).show();
+				 }
             }
         });
 		}
 	@Override
 	public void onBackPressed() {
 		super.onBackPressed();
-		Intent intent = new Intent(getApplicationContext(),Menue.class);
-		intent.putExtra("ID", id);
-		intent.putExtra("gender", gender);
-			 startActivity(new Intent(intent));
+//		Intent intent = new Intent(getApplicationContext(),Menue.class);
+//		intent.putExtra("ID", id);
+//		intent.putExtra("gender", gender);
+//			 startActivity(new Intent(intent));
 			 this.finish();
 	}
 	/**

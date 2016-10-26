@@ -106,16 +106,17 @@
                 android:id="@+id/spAboutMeText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/text_about_me"
                 android:layout_margin="5dp"
+                android:text="@string/text_about_me"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <TextView
                 android:id="@+id/spAboutMeView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/about_me"
                 android:layout_margin="5dp"
+                android:layout_weight="1.84"
+                android:text="@string/about_me"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <Button
@@ -124,7 +125,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/button_clipboard" />
-
         </LinearLayout>
 
     </ScrollView>
@@ -141,11 +141,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/button_add_contact" />
-
-    <Button
-        android:id="@+id/spMenueButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/button_back_to_menue" />
 
 </LinearLayout>

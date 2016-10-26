@@ -57,8 +57,8 @@ public class FriendsAdapter extends ArrayAdapter<Friend> {
 			TextView name =  (TextView) row.findViewById(R.id.FNameView);
 			TextView message = (TextView) row.findViewById(R.id.FMessageView);
 			if(fItem.getLastMessage().equals("Freundschaft Ausstehend")){
-				name.setClickable(false);
-			}
+				name.setTag(0);
+			}else{name.setTag(1);}
 			message.setText(fItem.getLastMessage());
 			name.setText(fItem.getFn()+" "+fItem.getLn());
 			//http://developer.android.com/resources/samples/ApiDemos/src/com/example/android/apis/view/List14.html

@@ -224,14 +224,15 @@ public class EditProfile extends ConnectedActivity {
 	@Override
 	public void onBackPressed() {
 		super.onBackPressed();
-		// Activity must be restarted because on back won´t work in case id was called by Register Activity
-		Intent intent = new Intent(getApplicationContext(),Menue.class);
-		intent.putExtra("ID", id);
-		intent.putExtra("gender", gender);
-		startActivity(new Intent(intent));
+		// not supposed to be closed in registration process so the App wil just close in case of closing this Activity
+//		Intent intent = new Intent(getApplicationContext(),Menue.class);
+//		intent.putExtra("ID", id);
+//		intent.putExtra("gender", gender);
+//		startActivity(new Intent(intent));
 		finish();
 	}
 	public void updateSucessful() {
+		Toast.makeText(edp, "Profil erfolgreich aktualisiert", Toast.LENGTH_LONG).show();
 		onBackPressed();
 	}
 	

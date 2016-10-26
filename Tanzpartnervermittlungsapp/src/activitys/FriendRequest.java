@@ -74,5 +74,9 @@ public class FriendRequest extends ConnectedActivity {
 		GetFriendRequestsTask gfrt = new GetFriendRequestsTask(fr, id);
 		gfrt.execute();
 	}
-	
+	@Override
+	public void onBackPressed() {
+		super.onBackPressed();
+		finish();
+	}
 }

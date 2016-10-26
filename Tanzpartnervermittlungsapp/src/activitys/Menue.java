@@ -75,7 +75,6 @@ public class Menue extends ConnectedActivity {
 				intent.putExtra("ID", id);
 				intent.putExtra("gender", gender);
 				startActivity(new Intent(intent));
-				finish();
 				}
 				else{
 					Toast.makeText(m,"Überprüfen Sie ihre Internetverbindung", Toast.LENGTH_SHORT).show();

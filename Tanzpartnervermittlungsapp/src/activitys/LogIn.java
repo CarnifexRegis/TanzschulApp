@@ -220,14 +220,14 @@ public class LogIn extends ConnectedActivity {
 		}
 
 	}
-//	public void onBackPressed() {
-//		//http://stackoverflow.com/questions/8430805/clicking-the-back-button-twice-to-exit-an-activity
-//		   exitC++;
-//		   if(exitC==1){
-//			   Toast.makeText(this, "Rücktaste nocheinmal drücken um die App zu verlassen.", Toast.LENGTH_LONG).show();
-//		   }else{
-//		      finish(); 
-//		   }
-//	}
+	public void onBackPressed() {
+		//http://stackoverflow.com/questions/8430805/clicking-the-back-button-twice-to-exit-an-activity
+		   exitC++;
+		   if(exitC==1){
+			   Toast.makeText(this, "Rücktaste nocheinmal drücken um die App zu verlassen.", Toast.LENGTH_LONG).show();
+		   }else{
+		      finish(); 
+		   }
+	}
 
 }
