@@ -144,7 +144,7 @@ public class Menue extends ConnectedActivity {
 		   if(exitC==1){
 			   Toast.makeText(this, "Rücktaste nocheinmal drücken um die App zu verlassen.", Toast.LENGTH_LONG).show();
 		   }else{
-		      finish(); 
+		     super.onBackPressed();
 		   }
 	}
 	
