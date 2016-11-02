@@ -16,7 +16,7 @@ import android.widget.TextView;
 import com.example.Tanzpartnervermittlung.R;
 
 /**
- * The Class Registration.
+ * Here the User can create his own Account and request it to be creted
  *
  * @author Simon Stolz Sources
  *         http://stackoverflow.com/questions/5308200/clear-text

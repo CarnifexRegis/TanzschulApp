@@ -16,7 +16,7 @@ import com.example.Tanzpartnervermittlung.R;
 //SQL für Fortgeschritttene join..on group by Roman Create Table, insert,update 
 //Php my table
 /**
- * The Class Menue.
+ * The Menue Activitys Purpose is to help the User navigate trough the Functions of the App
  *
  * @author Simon Stolz
  */
