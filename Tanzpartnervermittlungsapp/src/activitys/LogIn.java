@@ -220,6 +220,10 @@ public class LogIn extends ConnectedActivity {
 		}
 
 	}
+	@Override
+	public void disconectRetreat(){
+		//do nothing because this is the main Activity it should not start the menue activity in case of an connection error
+	}
 	public void onBackPressed() {
 		//http://stackoverflow.com/questions/8430805/clicking-the-back-button-twice-to-exit-an-activity
 		   exitC++;
