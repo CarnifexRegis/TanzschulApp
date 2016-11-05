@@ -199,8 +199,7 @@ public class TableManager {
 
 					// TODO ADD ID AFTER DEBUGGING
 					String sql = "INSERT INTO USER(IDP, EMAIL,PASSWORD,LN,FN,GENDER,AGE,PA)"
-							+ "VALUES(?,?,?,?,?,?,?,?);"; // new Version similar to
-															// the dedicated source
+							+ "VALUES(?,?,?,?,?,?,?,?);"; 
 					PreparedStatement p = c.prepareStatement(sql);
 					// TODO Deactivated for Debugging
 					// p.setInt(1,id);
@@ -315,7 +314,6 @@ public class TableManager {
 		 */
 		public boolean addFriend(int id1, int id2) {
 			// TODO not fully tested
-			//TODO error improvement there is just a possibility of succes fail
 			Statement stmt;
 			try {
 				stmt = c.createStatement();
@@ -519,7 +517,7 @@ public class TableManager {
 			}
 		}
 		/**
-		 * This Methods sets the status of an friend request to accepted and creates a new chat object for the friend request
+		 * This Methods sets the status of an friend request to accepted and creates a new chat object for the friend object
 		 * @param id1
 		 * @param myid
 		 * @return

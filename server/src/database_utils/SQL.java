@@ -25,14 +25,11 @@ import org.simpleframework.xml.stream.Style;
  *
  * @author Simon Stolz
  * @sources: Abi Quiz-App by Tim Möschel
- *           http://stackoverflow.com/questions/23851158
- *           /check-if-some-string-is-in-sqlite-database
- *           http://stackoverflow.com
- *           /questions/7886462/how-to-get-row-count-using-resultset-in-java
+ *           http://stackoverflow.com/questions/23851158/check-if-some-string-is-in-sqlite-database
+ *           http://stackoverflow.com /questions/7886462/how-to-get-row-count-using-resultset-in-java
  *           http://www.tutorialspoint.com/jdbc/jdbc-select-records.htm
  *           http://www.w3schools.com/sql/sql_update.asp
- *           http://docs.oracle.com/javase
- *           /7/docs/api/java/security/SecureRandom.html
+ *           http://docs.oracle.com/javase/7/docs/api/java/security/SecureRandom.html
  *           http://www.javapractices.com/topic/TopicAction.do?Id=62
  */
 public class SQL {

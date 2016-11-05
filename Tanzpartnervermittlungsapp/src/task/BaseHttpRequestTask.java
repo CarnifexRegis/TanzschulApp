@@ -1,6 +1,6 @@
 package task;
 /**
- * @author Simon Stolz, Martin Pabst
+ * @author Simon Stolz
  * Soruces: http://www.pabst-software.de/doku.php?id=programmieren:java:android:httpclient:start
  * 			Abi Quiz-App by Tim Möschel
  */
@@ -26,14 +26,14 @@ import android.app.Activity;
 import android.os.AsyncTask;
 import android.util.Log;
 
-// TODO: Auto-generated Javadoc
 /**
+ * 
  * @author Simon Stolz
  */
 public class BaseHttpRequestTask extends AsyncTask<String, Void, String> {
 	
 	protected Activity activity;
-
+	//http://stackoverflow.com/questions/32553297/verify-android-internet-connection-and-error // missplaced
 	/**
 	 * Instantiates a new base http request task.
 	 *
@@ -44,13 +44,10 @@ public class BaseHttpRequestTask extends AsyncTask<String, Void, String> {
 		this.activity = activity;
 	}
 
-	/* (non-Javadoc)
-	 * @see android.os.AsyncTask#doInBackground(java.lang.Object[])
-	 */
 	@Override
 	protected String doInBackground(String... params) {
 		String result = "Error";
-		//http://stackoverflow.com/questions/32553297/verify-android-internet-connection-and-error
+	
 		
 		try {
 			URL url = new URL(Properties.SERVERURL + "?&do=" + params[0]);
@@ -87,11 +84,11 @@ public class BaseHttpRequestTask extends AsyncTask<String, Void, String> {
 	}
 
 	/**
-	 * Builds the XML.
+	 * Builds an Object to XML
 	 *
-	 * @param object the object
-	 * @return the string
-	 * @throws Exception the exception
+	 * @param object an Object
+	 * @return the XML string
+	 * @throws Exception
 	 */
 	protected String buildXML(Object object) throws Exception {
 		Style style = new HyphenStyle();
@@ -102,14 +99,7 @@ public class BaseHttpRequestTask extends AsyncTask<String, Void, String> {
 		return writer.getBuffer().toString();
 	}
 
-	/**
-	 * Parses the XML.
-	 *
-	 * @param xml the xml
-	 * @param myClass the my class
-	 * @return the object
-	 * @throws Exception the exception
-	 */
+	
 	protected Object parseXML(String xml, Class myClass) throws Exception {
 		Serializer serializer = new Persister();
 
@@ -123,10 +113,9 @@ public class BaseHttpRequestTask extends AsyncTask<String, Void, String> {
 	}
 
 	/**
-	 * Execute.
-	 *
-	 * @param command the command
-	 * @param postBody the post body
+	 * Calls the Super method execute, which executes the Task with given parameters
+	 * @param command	The identifier of the Request
+	 * @param postBody	The http Body of the Request
 	 */
 	protected void execute(Command command, String postBody) {
 		super.execute(command.toString(), postBody);

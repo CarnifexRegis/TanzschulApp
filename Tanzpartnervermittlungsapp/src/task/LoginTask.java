@@ -6,9 +6,8 @@ import request.LoginRequest;
 import response.LoginResponse;
 import activitys.LogIn;
 import android.util.Log;
-
-// TODO: Auto-generated Javadoc
 /**
+ * This Task sends an LoginRequest
  * @author Simon Stolz
  */
 public class LoginTask extends BaseHttpRequestTask{

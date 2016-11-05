@@ -30,7 +30,6 @@ import database_utils.FriendRequestItem;
 import database_utils.Kurs;
 import database_utils.ProfileChart;
 import database_utils.ProfileData;
-import database_utils.SQL;
 import database_utils.SQLKurs;
 import database_utils.aKurs;
 
@@ -39,12 +38,12 @@ import database_utils.aKurs;
  *
  * @author Simon Stolz
  * @ Source Abi Quiz app by Tim Möschel
- * This class is used to access the sql class
+ * This class is used to access the TableManager class
  */
 public class Model {
 	
 	private static Model instance;
-	private SQL sql2;
+
 	private TableManager sql;
 
 /**
@@ -53,7 +52,6 @@ public class Model {
 	
 	private Model() {
 		sql = new TableManager();
-		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	//	sql = new SQL();
 		System.out.println("Constructor of the Model was called");
 	}

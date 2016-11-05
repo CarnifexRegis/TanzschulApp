@@ -4,7 +4,7 @@
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>850</x>
+      <x>860</x>
       <y>130</y>
       <w>100</w>
       <h>40</h>
@@ -16,7 +16,7 @@ bg=red</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>580</x>
+      <x>590</x>
       <y>250</y>
       <w>100</w>
       <h>40</h>
@@ -28,7 +28,7 @@ bg=red</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>570</x>
+      <x>580</x>
       <y>130</y>
       <w>100</w>
       <h>40</h>
@@ -40,7 +40,7 @@ bg=red</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>780</x>
+      <x>790</x>
       <y>250</y>
       <w>170</w>
       <h>40</h>
@@ -52,7 +52,7 @@ bg=red</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>780</x>
+      <x>790</x>
       <y>420</y>
       <w>190</w>
       <h>40</h>
@@ -64,7 +64,7 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>660</x>
+      <x>670</x>
       <y>140</y>
       <w>210</w>
       <h>30</h>
@@ -75,7 +75,7 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>610</x>
+      <x>620</x>
       <y>160</y>
       <w>30</w>
       <h>110</h>
@@ -86,7 +86,7 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>880</x>
+      <x>890</x>
       <y>160</y>
       <w>30</w>
       <h>110</h>
@@ -97,7 +97,7 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>90</x>
+      <x>100</x>
       <y>200</y>
       <w>440</w>
       <h>40</h>
@@ -109,7 +109,7 @@ Neue Activity wird gestartet, alte zum Zerstören freigegeben</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>670</x>
+      <x>680</x>
       <y>250</y>
       <w>130</w>
       <h>40</h>
@@ -121,7 +121,7 @@ Neue Activity wird gestartet, alte zum Zerstören freigegeben</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>1090</x>
+      <x>1100</x>
       <y>290</y>
       <w>90</w>
       <h>40</h>
@@ -133,7 +133,7 @@ bg=red</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>990</x>
+      <x>1000</x>
       <y>420</y>
       <w>110</w>
       <h>40</h>
@@ -145,7 +145,7 @@ bg=red</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>620</x>
+      <x>630</x>
       <y>410</y>
       <w>120</w>
       <h>40</h>
@@ -157,7 +157,7 @@ bg=red</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>1090</x>
+      <x>1100</x>
       <y>370</y>
       <w>100</w>
       <h>40</h>
@@ -169,7 +169,7 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>860</x>
+      <x>870</x>
       <y>280</y>
       <w>30</w>
       <h>160</h>
@@ -180,7 +180,7 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>880</x>
+      <x>890</x>
       <y>280</y>
       <w>30</w>
       <h>160</h>
@@ -191,7 +191,7 @@ bg=red</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>780</x>
+      <x>790</x>
       <y>550</y>
       <w>190</w>
       <h>40</h>
@@ -203,7 +203,7 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>860</x>
+      <x>870</x>
       <y>440</y>
       <w>30</w>
       <h>130</h>
@@ -214,7 +214,7 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>880</x>
+      <x>890</x>
       <y>450</y>
       <w>30</w>
       <h>120</h>
@@ -225,7 +225,7 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>70</x>
+      <x>80</x>
       <y>250</y>
       <w>490</w>
       <h>40</h>
@@ -237,7 +237,7 @@ Eine neue Activity wird gestartet und die  Alte kommt auf den ActivityStack</pan
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>910</x>
+      <x>920</x>
       <y>280</y>
       <w>120</w>
       <h>160</h>
@@ -248,7 +248,7 @@ Eine neue Activity wird gestartet und die  Alte kommt auf den ActivityStack</pan
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>930</x>
+      <x>940</x>
       <y>280</y>
       <w>120</w>
       <h>160</h>
@@ -259,7 +259,7 @@ Eine neue Activity wird gestartet und die  Alte kommt auf den ActivityStack</pan
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>940</x>
+      <x>950</x>
       <y>250</y>
       <w>170</w>
       <h>60</h>
@@ -270,7 +270,7 @@ Eine neue Activity wird gestartet und die  Alte kommt auf den ActivityStack</pan
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>940</x>
+      <x>950</x>
       <y>260</y>
       <w>170</w>
       <h>60</h>
@@ -281,7 +281,7 @@ Eine neue Activity wird gestartet und die  Alte kommt auf den ActivityStack</pan
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>920</x>
+      <x>930</x>
       <y>160</y>
       <w>30</w>
       <h>110</h>
@@ -292,7 +292,7 @@ Eine neue Activity wird gestartet und die  Alte kommt auf den ActivityStack</pan
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>650</x>
+      <x>660</x>
       <y>280</y>
       <w>180</w>
       <h>150</h>
@@ -303,7 +303,7 @@ Eine neue Activity wird gestartet und die  Alte kommt auf den ActivityStack</pan
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1110</x>
+      <x>1120</x>
       <y>320</y>
       <w>30</w>
       <h>70</h>
@@ -314,7 +314,7 @@ Eine neue Activity wird gestartet und die  Alte kommt auf den ActivityStack</pan
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1140</x>
+      <x>1150</x>
       <y>320</y>
       <w>30</w>
       <h>70</h>
@@ -325,7 +325,7 @@ Eine neue Activity wird gestartet und die  Alte kommt auf den ActivityStack</pan
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>680</x>
+      <x>690</x>
       <y>280</y>
       <w>170</w>
       <h>150</h>
@@ -336,7 +336,7 @@ Eine neue Activity wird gestartet und die  Alte kommt auf den ActivityStack</pan
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>940</x>
+      <x>950</x>
       <y>150</y>
       <w>150</w>
       <h>30</h>
@@ -347,7 +347,7 @@ Eine neue Activity wird gestartet und die  Alte kommt auf den ActivityStack</pan
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>1070</x>
+      <x>1080</x>
       <y>130</y>
       <w>120</w>
       <h>40</h>
@@ -359,7 +359,7 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>920</x>
+      <x>930</x>
       <y>120</y>
       <w>170</w>
       <h>30</h>
@@ -370,7 +370,7 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>660</x>
+      <x>670</x>
       <y>150</y>
       <w>210</w>
       <h>30</h>
@@ -381,7 +381,7 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>660</x>
+      <x>670</x>
       <y>230</y>
       <w>140</w>
       <h>40</h>
@@ -393,7 +393,7 @@ bg=red</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>190</x>
+      <x>200</x>
       <y>420</y>
       <w>130</w>
       <h>40</h>
@@ -405,7 +405,7 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>300</x>
+      <x>310</x>
       <y>400</y>
       <w>340</w>
       <h>40</h>
@@ -417,7 +417,7 @@ Ruft die Activity auf um ein Ergebnis zu erhalten</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>310</x>
+      <x>320</x>
       <y>420</y>
       <w>330</w>
       <h>40</h>
@@ -429,7 +429,7 @@ gibt Ergebnis zurück</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>940</x>
+      <x>950</x>
       <y>160</y>
       <w>200</w>
       <h>120</h>
@@ -440,7 +440,7 @@ gibt Ergebnis zurück</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>930</x>
+      <x>940</x>
       <y>160</y>
       <w>170</w>
       <h>110</h>
