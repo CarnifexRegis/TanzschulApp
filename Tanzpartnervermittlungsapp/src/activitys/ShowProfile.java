@@ -145,13 +145,10 @@ public class ShowProfile extends ConnectedActivity {
 		 nameView.setText(pd.getFn()+" "+pd.getLn());
 	}
 	
-	/* (non-Javadoc)
-	 * @see android.app.Activity#onBackPressed()
-	 */
+	
 	@Override
 	public void onBackPressed(){
 		super.onBackPressed();
-		String e  = null;
 		this.finish();
 	}
 	

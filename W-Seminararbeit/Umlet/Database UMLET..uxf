@@ -11,11 +11,11 @@
     </coordinates>
     <panel_attributes>KURS
 --
-ID
-KURSSTUFE
-DATUM
-WOCHENTAG
-UHRZEIT
+_ID: INTEGER_
+KURSSTUFE: INTEGER
+DATUM: DATE
+WOCHENTAG: INTEGER
+UHRZEIT: TEXT
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -29,16 +29,16 @@ UHRZEIT
     </coordinates>
     <panel_attributes>USER
 --
-ID
-IDP
-EMAIL
-PASSWORD
-LN
-GENDER
-AGE
-PTEXT
-PA
-HEIGHT
+_ID: INTEGER_
+IDP: INTEGER
+EMAIL: TEXT
+PASSWORD: TEXT
+LN: TEXT
+GENDER: INTEGER
+AGE: INTEGER
+PTEXT: TEXT
+PA: INTEGER
+HEIGHT: INTEGER
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -52,9 +52,9 @@ HEIGHT
     </coordinates>
     <panel_attributes>PIC
 --
-ID
-IMAGE
-UID
+_ID: INTEGER_
+IMAGE: TEXT
+UID: INTEGER
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -62,31 +62,31 @@ UID
     <id>Relation</id>
     <coordinates>
       <x>310</x>
-      <y>200</y>
+      <y>210</y>
       <w>190</w>
-      <h>50</h>
+      <h>150</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=2
 m2=0..n
-stell Beiehung dar &gt;</panel_attributes>
-    <additional_attributes>170.0;20.0;10.0;20.0</additional_attributes>
+stellt Beziehung dar &gt;</panel_attributes>
+    <additional_attributes>170.0;10.0;10.0;130.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>20</x>
-      <y>220</y>
+      <y>340</y>
       <w>300</w>
       <h>110</h>
     </coordinates>
     <panel_attributes>FRIEND
 --
-ID
-ID1
-ID2
-ACCEPTED
-CID</panel_attributes>
+_ID: INTEGER_
+ID1: INTEGER
+ID2: INTEGER
+ACCEPTED: INTEGER
+CID: INTEGER</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -99,9 +99,9 @@ CID</panel_attributes>
     </coordinates>
     <panel_attributes>LINK
 --
-ID
-UID
-KID
+_ID: INTEGER_
+UID: INTEGER
+KID: INTEGER
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -150,33 +150,33 @@ verknüpft &gt;</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1070</x>
-      <y>280</y>
+      <x>1120</x>
+      <y>350</y>
       <w>300</w>
       <h>80</h>
     </coordinates>
     <panel_attributes>ADMIN
 --
-ID
-NAME
-KEY
+_ID: INTEGER_
+NAME: TEXT
+KEY: TEXT
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>680</x>
-      <y>330</y>
+      <x>670</x>
+      <y>450</y>
       <w>300</w>
       <h>100</h>
     </coordinates>
     <panel_attributes>CHAT
 --
-ID
-ID1
-ID2
-MESAAGES
+_ID: INTEGER_
+ID1: INTEGER
+ID2: INTEGER
+MESAAGES: TEXT
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -184,28 +184,28 @@ MESAAGES
     <id>Relation</id>
     <coordinates>
       <x>310</x>
-      <y>310</y>
-      <w>390</w>
+      <y>430</y>
+      <w>380</w>
       <h>50</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
 m2=1
 enthält &gt;</panel_attributes>
-    <additional_attributes>370.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>360.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>560</x>
       <y>210</y>
-      <w>360</w>
-      <h>140</h>
+      <w>350</w>
+      <h>260</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=0..n
 m2=2
 &lt; ist verfügbar für</panel_attributes>
-    <additional_attributes>340.0;120.0;10.0;10.0</additional_attributes>
+    <additional_attributes>330.0;240.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>

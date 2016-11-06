@@ -90,12 +90,14 @@ public abstract class ConnectedActivity extends Activity {
 	    }
 	// finishes the present activity and returns to Menue Activity
 	public void disconectRetreat(){
+		int id = this.id;
+		boolean gender = this.gender;
 		Intent intent = new Intent(getApplicationContext(),Menue.class);
-		intent.putExtra("ID", id);
-		intent.putExtra("gender", gender);
 		//http://stackoverflow.com/questions/7075349/android-clear-activity-stack
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-		 startActivity(new Intent(intent));
+		intent.putExtra("ID", id);
+		intent.putExtra("gender", gender);
+		startActivity(new Intent(intent));
 		
 	
 	}

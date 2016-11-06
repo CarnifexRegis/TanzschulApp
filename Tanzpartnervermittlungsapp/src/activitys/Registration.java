@@ -285,6 +285,7 @@ public class Registration extends ConnectedActivity {
 			Intent intent = new Intent(getApplicationContext(),
 					EditProfile.class);
 			intent.putExtra("ID", id);
+			intent.putExtra("RegisterCalled", true);
 			// intent.putExtra("gender", gender);
 			startActivity(new Intent(intent));
 			this.finish();

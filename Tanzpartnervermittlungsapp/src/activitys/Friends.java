@@ -54,7 +54,7 @@ public class Friends extends ConnectedActivity {
 				intent.putExtra("fname",fAdapter.getItem(position).getFn()+" "+fAdapter.getItem(position).getLn() ); 
 				 startActivity(new Intent(intent));
 				 }else{
-					 Toast.makeText(f,"Der Nutzer hat ihre Freundschaftsanfrage nochnicht akzeptiert", Toast.LENGTH_SHORT).show();
+					 Toast.makeText(f,"Der Nutzer hat ihre Freundschaftsanfrage noch nicht akzeptiert", Toast.LENGTH_SHORT).show();
 				 }
             }
         });
@@ -77,7 +77,7 @@ public class Friends extends ConnectedActivity {
 		fList.addAll(flist);
 		fAdapter.notifyDataSetChanged();
 		if(flist.size() ==0){
-			Toast.makeText(this,"Keine BEstehenden Freundschaften oder Anfragen mit anderen Usern", Toast.LENGTH_LONG).show();
+			Toast.makeText(this,"Es bestehen keine Freundschaftsverhältnisse mit anderen Usern", Toast.LENGTH_LONG).show();
 		}else{
 		Toast.makeText(this,"Neue Datensätze vom Server empfangen", Toast.LENGTH_LONG).show();}
 	}

@@ -448,4 +448,16 @@ gibt Ergebnis zurück</panel_attributes>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>150.0;10.0;10.0;90.0</additional_attributes>
   </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>640</x>
+      <y>160</y>
+      <w>250</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+Nach der Registration</panel_attributes>
+    <additional_attributes>230.0;10.0;10.0;90.0</additional_attributes>
+  </element>
 </diagram>

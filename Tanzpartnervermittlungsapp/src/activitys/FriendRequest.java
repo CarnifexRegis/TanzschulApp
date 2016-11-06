@@ -1,16 +1,10 @@
 package activitys;
 
 import java.util.ArrayList;
-import java.util.List;
-
 import task.AcceptFriendshipTask;
 import task.GetFriendRequestsTask;
-
 import com.example.Tanzpartnervermittlung.R;
-
 import model.FriendRequestItem;
-import model.ProfileChart;
-import adapter.SearchAdapter;
 import adapter.FriendRequestAdapter;
 import android.os.Bundle;
 import android.view.View;

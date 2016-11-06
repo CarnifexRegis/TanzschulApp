@@ -1,8 +1,10 @@
 package task;
 
 import protocol.Command;
+import protocol.ErrorCode;
 import request.UpdateChartRequest;
 import response.UpdateChartResponse;
+import activitys.Friends;
 import activitys.SearchForDancingpartner;
 import android.util.Log;
 
@@ -54,16 +56,20 @@ public void onPostExecute(String result) {
 	try {
 		UpdateChartResponse response = (UpdateChartResponse) parseXML(result,
 				UpdateChartResponse.class);
-		
-		// if(!(response.getEc() == ErrorCode.ok))
-		// {
-		//
-		// }
-		// else
-		// {
-		// Antwort erfolgreich erhalten
+		String ec = response.getEc();
+		if(!(ec.equals( ErrorCode.ja.getError())))
+		 {
+		 	
+		 	((Friends) activity).onError(ec);
+		 	
+		 }
+		 else
+		 {
+			 ((SearchForDancingpartner) activity).chartsUpdate(response.getPc());
+			 
+		 }
 
-		((SearchForDancingpartner) activity).chartsUpdate(response.getPc());
+		
 
 		// }
 	} catch (Exception e) {

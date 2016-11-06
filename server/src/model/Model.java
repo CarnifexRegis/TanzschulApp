@@ -22,6 +22,7 @@ import java.util.ArrayList;
 
 
 
+
 import main.Main;
 import database.TableManager;
 import database_utils.ChatMessage;
@@ -31,6 +32,7 @@ import database_utils.Kurs;
 import database_utils.ProfileChart;
 import database_utils.ProfileData;
 import database_utils.SQLKurs;
+import database_utils.Week;
 import database_utils.aKurs;
 
 /**

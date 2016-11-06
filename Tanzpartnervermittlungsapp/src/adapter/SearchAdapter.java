@@ -1,27 +1,21 @@
 package adapter;
-/**
- * 
- */
-import java.util.ArrayList;
 
+import java.util.ArrayList;
 import model.ProfileChart;
 import activitys.SearchForDancingpartner;
-// TODO: Auto-generated Javadoc
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.Tanzpartnervermittlung.R;
 
 /**
+ * This Adapter is used to display other users PrfoileCharts
  *@author Simon Stolz
- *
- * @author Simon Stolz, MartinPabst
  * @Sources:http://stackoverflow.com/questions/8486511/how-to-set-on-click-listener-on-the-custom-list-view-in-android 				http://stackoverflow.com/questions/10726519/how-to-get-the-source-of-imageview-in-order-to-change-it 
  * 				http://stackoverflow.com/questions/21053979/listview-duplicates-android
  */
@@ -60,13 +54,13 @@ public class SearchAdapter extends ArrayAdapter<ProfileChart> {
 			
 	/*Instanziierung der Views 
 	 * */
-		ImageView ivProfilePic = (ImageView) row.findViewById(R.id.pictureView);	
+		//ImageView ivProfilePic = (ImageView) row.findViewById(R.id.pictureView);	
 		TextView tvname = (TextView) row.findViewById(R.id.nameView);
-		TextView tvAge = (TextView) row.findViewById(R.id.ageView);
+		//TextView tvAge = (TextView) row.findViewById(R.id.ageView);
 	    TextView tvViewOfAge = (TextView) row.findViewById(R.id.ViewOfAge);
-	    TextView Tvkursstart = (TextView) row.findViewById(R.id.kursstartView);
+	    //TextView Tvkursstart = (TextView) row.findViewById(R.id.kursstartView);
         TextView tvViewOfKursstart = (TextView) row.findViewById(R.id.ViewOfKursstart);
-        TextView tvKurszeit = (TextView) row.findViewById(R.id.kurszeitView);
+        //TextView tvKurszeit = (TextView) row.findViewById(R.id.kurszeitView);
         TextView tvViewOfKurszeit = (TextView) row.findViewById(R.id.ViewOfKurszeit);
        
         Log.d("derp", "tvname = " + tvname);

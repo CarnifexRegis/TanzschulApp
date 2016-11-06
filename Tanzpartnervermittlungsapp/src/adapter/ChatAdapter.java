@@ -44,11 +44,21 @@ public class ChatAdapter extends ArrayAdapter<ChatMessage>{
             row = convertView;
      }
 		ChatMessage cm = getItem(position);
-			TextView message =  (TextView) row.findViewById(R.id.ChatMessage);
-			message.setText(cm.getText()); 
+		
+			
+			TextView m1 =  (TextView) row.findViewById(R.id.ForeignMessage);
+			TextView m2 =  (TextView) row.findViewById(R.id.MyMessage);
 			if (idp == cm.getSenderId()){
-				message.setGravity(Gravity.START);
+				m2.setText(cm.getText());
+				m2.setVisibility(View.VISIBLE);
+				m1.setVisibility(View.GONE);
+			}else{
+				m1.setText(cm.getText());
+				m1.setVisibility(View.VISIBLE);
+				m2.setVisibility(View.GONE);
+				
 			}
+			
 			return row;
 		}
 }

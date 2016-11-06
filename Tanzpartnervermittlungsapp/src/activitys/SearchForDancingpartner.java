@@ -7,18 +7,12 @@ package activitys;
 import model.ProfileChart;
 import task.UpdateChartTask;
 import adapter.SearchAdapter;
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -213,11 +207,7 @@ kSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 				}
 			});
 		}
-			
-			
-		 
-	       
-	        
+			    
 		//http://stackoverflow.com/questions/2789612/how-can-i-check-whether-an-android-device-is-connected-to-the-web
 		
 		/**

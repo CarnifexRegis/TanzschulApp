@@ -1,16 +1,15 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.List;
-
 import org.simpleframework.xml.ElementArray;
-import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
 @Root(name = "cmc")
+// doesn´t work
 /**
+ *
  * is Used to be able to built xml for  the cm object in Chat class
- * @author Simon
+ * @author Simon Stolz
  *
  */
 public class MessagesContainer {

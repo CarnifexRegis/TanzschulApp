@@ -3,8 +3,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.List;
-import java.util.Random;
 
 import model.ProfileData;
 import task.ProfileDataTask;
@@ -12,17 +10,12 @@ import task.UpdateProfileTask;
 import android.Manifest;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
-import android.content.Context;
-import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.MediaScannerConnection;
-import android.media.MediaScannerConnection.MediaScannerConnectionClient;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
@@ -30,12 +23,10 @@ import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,10 +37,11 @@ import database.TsDataSource;
 
 
 
-// TODO: Auto-generated Javadoc
+
 // Added: 13.06.2016
 //Last Modofied:14.6.2016 
 /**
+ * In this Activity you can edit your Profile
  * @author Simon Stolz
  * Source : http://codetheory.in/android-pick-select-image-from-gallery-with-intents/
  * http://stackoverflow.com/questions/25490928/androidselect-image-from-gallery-then-crop-that-and-show-in-an-imageview
@@ -78,7 +70,6 @@ public class EditProfile extends ConnectedActivity {
 	private int age;
 	private String pText;
 	private boolean pa;
-	private boolean gender;
 	private ImageView pic;
 	private static final int PICK_FROM_GALLERY = 2;
 	//private static final  Random generator = new Random();
@@ -87,19 +78,18 @@ public class EditProfile extends ConnectedActivity {
 //	private EditProfile ep;
 	private Picture myPicture;
 	Bitmap myBitmap = null;
+	private boolean rc;
 	static final String appDirectoryName = "TanzschulVermittlung";
 	static final File imageRoot = new File(Environment.getExternalStoragePublicDirectory(
 	        Environment.DIRECTORY_PICTURES), appDirectoryName);
 
-	/* (non-Javadoc)
-	 * @see android.app.Activity#onCreate(android.os.Bundle)
-	 */
 	@Override
 	protected void onCreate(Bundle 
 			savedInstanceState) {
 		 Bundle extras = getIntent().getExtras();
 			if(extras != null){
 				id = extras.getInt("ID");
+				rc = extras.getBoolean("RegisterCalled");
 			}
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.edit_profile);
@@ -225,15 +215,24 @@ public class EditProfile extends ConnectedActivity {
 	public void onBackPressed() {
 		super.onBackPressed();
 		// not supposed to be closed in registration process so the App wil just close in case of closing this Activity
-//		Intent intent = new Intent(getApplicationContext(),Menue.class);
-//		intent.putExtra("ID", id);
-//		intent.putExtra("gender", gender);
-//		startActivity(new Intent(intent));
+
+		if(rc){
+				Intent intent = new Intent(getApplicationContext(),
+						LogIn.class);
+				startActivity(new Intent(intent));
+			}
 		finish();
 	}
 	public void updateSucessful() {
+		//TODO not tested
 		Toast.makeText(edp, "Profil erfolgreich aktualisiert", Toast.LENGTH_LONG).show();
-		onBackPressed();
+		if(rc){
+			Intent intent = new Intent(getApplicationContext(),Menue.class);
+			intent.putExtra("ID", id);
+			intent.putExtra("gender", gender);
+			startActivity(new Intent(intent));
+		}
+	finish();
 	}
 	
 	@Override

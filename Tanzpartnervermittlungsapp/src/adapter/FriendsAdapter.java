@@ -3,19 +3,13 @@ package adapter;
 import java.util.ArrayList;
 
 import model.Friend;
-import model.FriendRequestItem;
-import activitys.FriendRequest;
 import activitys.Friends;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.TextView;
-
 import com.example.Tanzpartnervermittlung.R;
 
 /**
@@ -26,8 +20,6 @@ import com.example.Tanzpartnervermittlung.R;
 public class FriendsAdapter extends ArrayAdapter<Friend> {
 	
 	private Context context;
-	private Friends f;
-
 	/**
 	 * Instantiates a new a adapter.
 	 *
@@ -37,8 +29,6 @@ public class FriendsAdapter extends ArrayAdapter<Friend> {
 	 */
 	public FriendsAdapter(Context context, ArrayList<Friend> arrayList,Friends f) {
 		super(context, R.layout.friends_item, arrayList);
-		
-		this.f = f;
 		this.context= context;
 		}
 	
@@ -57,8 +47,8 @@ public class FriendsAdapter extends ArrayAdapter<Friend> {
 			TextView name =  (TextView) row.findViewById(R.id.FNameView);
 			TextView message = (TextView) row.findViewById(R.id.FMessageView);
 			if(fItem.getLastMessage().equals("Freundschaft Ausstehend")){
-				name.setTag(0);
-			}else{name.setTag(1);}
+				row.setTag(0);
+			}else{row.setTag(1);}
 			message.setText(fItem.getLastMessage());
 			name.setText(fItem.getFn()+" "+fItem.getLn());
 			//http://developer.android.com/resources/samples/ApiDemos/src/com/example/android/apis/view/List14.html

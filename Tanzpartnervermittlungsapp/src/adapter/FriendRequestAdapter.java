@@ -3,23 +3,15 @@ package adapter;
 import java.util.ArrayList;
 
 import model.FriendRequestItem;
-import model.Kurs;
-import task.UpdateLinkTask;
-import activitys.AssignToKurs;
 import activitys.FriendRequest;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.TextView;
-import android.widget.ToggleButton;
-
 import com.example.Tanzpartnervermittlung.R;
 
 /**

@@ -74,6 +74,7 @@ public class Menue extends ConnectedActivity {
 				Intent intent = new Intent(getApplicationContext(),EditProfile.class);
 				intent.putExtra("ID", id);
 				intent.putExtra("gender", gender);
+				intent.putExtra("RegisterCalled", false);
 				startActivity(new Intent(intent));
 				}
 				else{
