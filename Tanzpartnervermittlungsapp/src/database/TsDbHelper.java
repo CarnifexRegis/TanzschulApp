@@ -8,6 +8,7 @@ import android.util.Log;
  * Source:http://www.programmierenlernenhq.de/sqlite-datenbank-in-android-app-integrieren/
  * http://www.programmierenlernenhq.de/tabelle-in-sqlite-datenbank-erstellen-in-android/
  * @author Simon Stolz
+ * NOT READY
  * 
  */
 public class TsDbHelper extends SQLiteOpenHelper{

@@ -2,7 +2,11 @@ package model;
 
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
-
+/**
+ * Contains the Information of an FriendRequest Item in the Listview of the FriendRequest Activity
+ * @author Simon Stolz
+ *
+ */
 @Root (name = "friendrequest")
 public class FriendRequestItem {
 	@Element (name = "idp")

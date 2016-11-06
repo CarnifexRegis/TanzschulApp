@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import model.ConnectedActivity;
 import model.ProfileData;
 import task.ProfileDataTask;
 import task.UpdateProfileTask;
@@ -41,7 +42,7 @@ import database.TsDataSource;
 // Added: 13.06.2016
 //Last Modofied:14.6.2016 
 /**
- * In this Activity you can edit your Profile
+ * In this Activity you can edit your Profile and send the new Information to the Server
  * @author Simon Stolz
  * Source : http://codetheory.in/android-pick-select-image-from-gallery-with-intents/
  * http://stackoverflow.com/questions/25490928/androidselect-image-from-gallery-then-crop-that-and-show-in-an-imageview

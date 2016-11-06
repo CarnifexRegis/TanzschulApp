@@ -1,4 +1,4 @@
-package activitys;
+package model;
 
 import java.io.StringWriter;
 
@@ -7,6 +7,9 @@ import org.simpleframework.xml.core.Persister;
 import org.simpleframework.xml.stream.Format;
 import org.simpleframework.xml.stream.HyphenStyle;
 import org.simpleframework.xml.stream.Style;
+
+import activitys.LogIn;
+import activitys.Menue;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -17,7 +20,7 @@ import com.example.Tanzpartnervermittlung.R;
 
 /**
  * @author Simon Stolz
- *Every Activity that connects with the server or needs to acces Internet resources extends this class
+ *Every Activity that connects with the server or needs to access Internet resources extends this class
  * 
  * http://stackoverflow.com/questions/12947916/android-remove-all-the-previous-activities-from-the-back-stack
  */

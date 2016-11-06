@@ -2,7 +2,11 @@ package model;
 
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
-
+/**
+ * This Object contains tthe Information of one item in the ListView of the Freinds Activity 
+ * @author Simon Stolz
+ *
+ */
 @Root(name = "friend")
 public class Friend {
 	@Element(name = "fn")

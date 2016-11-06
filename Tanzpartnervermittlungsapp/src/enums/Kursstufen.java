@@ -1,9 +1,9 @@
 package enums;
 
-// TODO: Auto-generated Javadoc
 /**
+ * An Enum Representing the possible Levels of any Dancing lesson
  * @author Simon Stolz
- * The Enum Kursstufen.
+ * 
  */
 public enum Kursstufen {
 	

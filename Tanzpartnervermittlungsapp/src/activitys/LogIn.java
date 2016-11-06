@@ -2,6 +2,7 @@ package activitys;
 
 import java.util.Locale;
 
+import model.ConnectedActivity;
 import task.LoginTask;
 import android.content.Context;
 import android.content.Intent;
@@ -24,7 +25,8 @@ import android.widget.Toast;
 import com.example.Tanzpartnervermittlung.R;
 
 /**
- * @author Simon Stolz, Klaus Hackner
+ * In this Activity the user can logg in
+ * @author Simon Stolz
  */
 // maby change to popup that runs in an seperate thread
 public class LogIn extends ConnectedActivity {
@@ -150,11 +152,12 @@ public class LogIn extends ConnectedActivity {
 	}
 
 	/**
-	 * Passes id and gender  on to the Menue class and calls finish for LogIn Activity
+	 * Passes id and gender  on to the Menue class and calls finish for LogIn Activity (Called by LoginTask)
 	 *
 	 * @param id the users id
 	 * @param gender the users id
 	 */
+	
 	public void getLoginValues(int id, boolean gender) {
 		// Switch (calledBy.getAct)
 
@@ -177,16 +180,7 @@ public class LogIn extends ConnectedActivity {
 		}
 	}
 
-	@Override
-	public boolean isOnline(Context context) {
-		ConnectivityManager cm = (ConnectivityManager) context
-				.getSystemService(Context.CONNECTIVITY_SERVICE);
-		android.net.NetworkInfo networkinfo = cm.getActiveNetworkInfo();
-		if (networkinfo != null && networkinfo.isConnected()) {
-			return true;
-		}
-		return false;
-	}
+	
 
 	@Override
 	public void onPause() {

@@ -6,7 +6,11 @@ import request.AddFriendRequest;
 import response.AddFriendResponse;
 import activitys.ShowProfile;
 import android.util.Log;
-
+/**
+ * This Task Requests the Server to add an othe ruser to friends
+ * @author Simon Stolz
+ *
+ */
 public class AddFriendTask extends BaseHttpRequestTask{
 	private int mid;
 	private String fidp;

@@ -1,6 +1,7 @@
 package activitys;
 
 import java.util.ArrayList;
+
 import task.PollChatTask;
 import task.SendMessageTask;
 import adapter.ChatAdapter;
@@ -16,8 +17,11 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.example.Tanzpartnervermittlung.R;
+
 import model.ChatMessage;
+import model.ConnectedActivity;
 import model.MessagesContainer;
 /**
  * This Acticvity is used to communicate with other Users

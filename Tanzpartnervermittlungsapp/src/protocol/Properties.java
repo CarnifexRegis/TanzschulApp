@@ -2,8 +2,9 @@ package protocol;
 // TODO: Auto-generated Javadoc
 /**
  *  sources : Abiquiz App by Tim Möschel
+ *  This Class is used to safe the Servers URL
  * @author Simon Stolz
- *Sources: Abi Quiz-App by Tim Möschel
+ *
  */
 
 public class Properties

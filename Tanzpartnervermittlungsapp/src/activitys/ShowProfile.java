@@ -1,5 +1,6 @@
 package activitys;
 
+import model.ConnectedActivity;
 import model.ProfileData;
 import task.AddFriendTask;
 import task.ForeignProfileTask;
@@ -16,9 +17,8 @@ import android.widget.Toast;
 
 import com.example.Tanzpartnervermittlung.R;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class ShowProfile.
+ * In this Activity you can spectate the profile of an foreign User
  *
  * @author Simon Stolz
  * @ Source: http://stackoverflow.com/questions/19253786/how-to-copy-text-to-clip-board-in-android

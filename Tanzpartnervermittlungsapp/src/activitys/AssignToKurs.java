@@ -2,6 +2,7 @@ package activitys;
 
 import java.util.ArrayList;
 
+import model.ConnectedActivity;
 import model.Kurs;
 import task.GetKursTask;
 import adapter.AtKAdapter;

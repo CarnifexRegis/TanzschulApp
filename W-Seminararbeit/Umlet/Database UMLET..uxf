@@ -4,7 +4,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1340</x>
+      <x>1330</x>
       <y>40</y>
       <w>300</w>
       <h>120</h>
@@ -22,7 +22,7 @@ UHRZEIT: TEXT
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>480</x>
+      <x>470</x>
       <y>30</y>
       <w>300</w>
       <h>190</h>
@@ -45,7 +45,7 @@ HEIGHT: INTEGER
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>20</x>
+      <x>10</x>
       <y>30</y>
       <w>300</w>
       <h>80</h>
@@ -61,7 +61,7 @@ UID: INTEGER
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>310</x>
+      <x>300</x>
       <y>210</y>
       <w>190</w>
       <h>150</h>
@@ -75,7 +75,7 @@ stellt Beziehung dar &gt;</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>20</x>
+      <x>10</x>
       <y>340</y>
       <w>300</w>
       <h>110</h>
@@ -92,7 +92,7 @@ CID: INTEGER</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>940</x>
+      <x>930</x>
       <y>120</y>
       <w>300</w>
       <h>80</h>
@@ -108,7 +108,7 @@ KID: INTEGER
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>310</x>
+      <x>300</x>
       <y>10</y>
       <w>190</w>
       <h>50</h>
@@ -122,7 +122,7 @@ hochgeladen von &gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>770</x>
+      <x>760</x>
       <y>100</y>
       <w>190</w>
       <h>50</h>
@@ -136,7 +136,7 @@ m2=1
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1230</x>
+      <x>1220</x>
       <y>100</y>
       <w>130</w>
       <h>50</h>
@@ -150,7 +150,7 @@ verknüpft &gt;</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1120</x>
+      <x>1110</x>
       <y>350</y>
       <w>300</w>
       <h>80</h>
@@ -166,7 +166,7 @@ KEY: TEXT
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>670</x>
+      <x>660</x>
       <y>450</y>
       <w>300</w>
       <h>100</h>
@@ -183,7 +183,7 @@ MESAAGES: TEXT
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>310</x>
+      <x>300</x>
       <y>430</y>
       <w>380</w>
       <h>50</h>
@@ -197,7 +197,7 @@ enthält &gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>560</x>
+      <x>550</x>
       <y>210</y>
       <w>350</w>
       <h>260</h>

@@ -2,6 +2,7 @@ package activitys;
 
 import java.util.Locale;
 
+import model.ConnectedActivity;
 import task.RegisterTask;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,10 +14,11 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 // TODO: Auto-generated Javadoc
 
+
 import com.example.Tanzpartnervermittlung.R;
 
 /**
- * Here the User can create his own Account and request it to be creted
+ * Here the User can create his own Account in the Servers Database
  *
  * @author Simon Stolz Sources
  *         http://stackoverflow.com/questions/5308200/clear-text
@@ -230,11 +232,7 @@ public class Registration extends ConnectedActivity {
 		return true;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see activitys.ConnectedActivity#onConnectionError()
-	 */
+
 	@Override
 	// i kept it the "View way" because the user has much other data he has to
 	// pay atention so that he might not recognize a Toast
@@ -249,11 +247,7 @@ public class Registration extends ConnectedActivity {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see activitys.ConnectedActivity#onError(java.lang.String)
-	 */
+	
 	@Override
 	public void onError(String error) {
 		rErrorView.setVisibility(View.VISIBLE);

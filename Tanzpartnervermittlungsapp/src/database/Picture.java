@@ -1,7 +1,9 @@
 package database;
 
 /**
- * TODO
+ *  This Class Accesses the Picture Table
+ *  @author Simon Stolz
+ *  NOT READY
  */
 public class Picture {
 	String clientSource;

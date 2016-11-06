@@ -1,8 +1,7 @@
 package enums;
 
-
-// TODO: Auto-generated Javadoc
 /**
+ * This Enum Represents one full week the Moday is the first Day
  *@author Simon Stolz
  */
 public enum Week {

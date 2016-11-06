@@ -13,7 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import com.example.Tanzpartnervermittlung.R;
 /**
- * Organizes the display of your chat messages
+ * Organizes the display of the chat messages in Chat Activity
  * @author Simon Stolz
  *
  */

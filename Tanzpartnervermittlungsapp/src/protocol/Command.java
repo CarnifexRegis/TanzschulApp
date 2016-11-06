@@ -2,9 +2,9 @@ package protocol;
 
 // TODO: Auto-generated Javadoc
 /**
- * sources : Abiquiz App by Tim Möschel
+ * This Enum is used to have a common command repatuire with the Server
+ * sources : Abiquiz App by Tim Möschel/ Unterricht
  * @author Simon Stolz
- * The Enum Command.
  */
 public enum Command {
 

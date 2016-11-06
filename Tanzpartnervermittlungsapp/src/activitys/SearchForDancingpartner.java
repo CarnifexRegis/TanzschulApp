@@ -4,6 +4,7 @@ package activitys;
 
 	import java.util.ArrayList;
 
+import model.ConnectedActivity;
 import model.ProfileChart;
 import task.UpdateChartTask;
 import adapter.SearchAdapter;
@@ -21,13 +22,9 @@ import com.example.Tanzpartnervermittlung.R;
 
 
 	
-	// TODO: Auto-generated Javadoc
 //Geschlechts bezogenen Menubar fehlt 
-	//TODO add add() Method and listener for Start Search Button"
-	//Geschlechts bezogenen Menubar fehlt 
-	//TODO add add() Method and listener for Start Search Button"
 /**
-	 * The Class SearchForDancingpartner.
+	 * Here the User can see the Filtered profile charts of the users
 	 *
 	 * @author Simon Stolz
 	 * @attribute This Activity is used to fulfill the core funktion of the app: finding people who intend to participate in the same course

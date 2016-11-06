@@ -2,7 +2,8 @@ package protocol;
 
 // TODO: Auto-generated Javadoc
 /**
- * sources : Abiquiz App by Tim Möschel
+ * This Enum Contains the Error Messages that can be recieved by teh client from the server
+ * sources : Abiquiz App by Tim Möschel/ Unterricht
  * @author Simon Stolz
  */
 public enum ErrorCode {

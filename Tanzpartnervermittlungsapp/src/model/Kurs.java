@@ -1,12 +1,10 @@
 package model;
 
-//import java.sql.Date;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class Kurs.
+ * Contains the Information needed for an ListItem in the AssignToKurs-Activity
  */
 @Root (name  = "kurs")
 public class Kurs {

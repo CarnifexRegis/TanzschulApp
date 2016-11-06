@@ -5,6 +5,7 @@ import org.simpleframework.xml.Root;
 
 // TODO: Auto-generated Javadoc
 /**
+ *The profiledata of an USer used in ShowProfile and EditProfile
  * @author Simon Stolz
  */
 @ Root (name = "profiledata")

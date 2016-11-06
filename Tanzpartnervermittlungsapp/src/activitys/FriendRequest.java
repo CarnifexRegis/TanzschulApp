@@ -1,9 +1,13 @@
 package activitys;
 
 import java.util.ArrayList;
+
 import task.AcceptFriendshipTask;
 import task.GetFriendRequestsTask;
+
 import com.example.Tanzpartnervermittlung.R;
+
+import model.ConnectedActivity;
 import model.FriendRequestItem;
 import adapter.FriendRequestAdapter;
 import android.os.Bundle;
@@ -12,7 +16,11 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
-
+/**
+ *  In this Activity Friendrequest from other Users cn be displayed and Accpeted
+ * @author Simon Stolz
+ *
+ */
 public class FriendRequest extends ConnectedActivity {
 	private FriendRequestAdapter frAdapter;
 	private ArrayList<FriendRequestItem> fritems;

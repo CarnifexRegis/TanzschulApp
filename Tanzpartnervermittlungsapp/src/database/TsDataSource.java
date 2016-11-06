@@ -10,7 +10,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
 
-
+/**
+ * Manages Database Interactions
+ * NOT  READY
+ * @author Simon Stolz
+ *
+ */
 public class TsDataSource {
 
     private static final String LOG_TAG = TsDataSource.class.getSimpleName();

@@ -15,7 +15,7 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import com.example.Tanzpartnervermittlung.R;
 
 /**
- * Organizes the display of the users friend requests
+ * Organizes the display of the users friend requests in FriendRequets-Activity
  * @author Simon Stolz
  *
  */

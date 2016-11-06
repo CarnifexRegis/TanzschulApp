@@ -261,8 +261,8 @@ Kommunikation	: Blau</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>30</x>
-      <y>280</y>
+      <x>520</x>
+      <y>690</y>
       <w>100</w>
       <h>40</h>
     </coordinates>
@@ -273,8 +273,8 @@ bg=red</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>160</x>
-      <y>280</y>
+      <x>680</x>
+      <y>690</y>
       <w>100</w>
       <h>40</h>
     </coordinates>
@@ -285,8 +285,8 @@ bg=red</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>80</x>
-      <y>60</y>
+      <x>590</x>
+      <y>480</y>
       <w>100</w>
       <h>40</h>
     </coordinates>
@@ -297,8 +297,8 @@ bg=green</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>80</x>
-      <y>170</y>
+      <x>590</x>
+      <y>600</y>
       <w>100</w>
       <h>40</h>
     </coordinates>
@@ -309,35 +309,35 @@ bg=yellow</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>120</x>
-      <y>90</y>
+      <x>630</x>
+      <y>510</y>
       <w>30</w>
-      <h>100</h>
+      <h>110</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-&gt;&gt;</panel_attributes>
-    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>160</x>
-      <y>200</y>
-      <w>60</w>
-      <h>100</h>
+      <x>660</x>
+      <y>630</y>
+      <w>80</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-&gt;</panel_attributes>
-    <additional_attributes>40.0;80.0;10.0;10.0</additional_attributes>
+    <additional_attributes>60.0;60.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>70</x>
-      <y>200</y>
-      <w>50</w>
-      <h>100</h>
+      <x>560</x>
+      <y>630</y>
+      <w>70</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-&gt;</panel_attributes>
-    <additional_attributes>10.0;80.0;30.0;10.0</additional_attributes>
+    <additional_attributes>10.0;60.0;50.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -411,10 +411,10 @@ Nur nach der Registration</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>50</x>
-      <y>10</y>
+      <x>520</x>
+      <y>450</y>
       <w>110</w>
-      <h>30</h>
+      <h>60</h>
     </coordinates>
     <panel_attributes>Admin App</panel_attributes>
     <additional_attributes/>

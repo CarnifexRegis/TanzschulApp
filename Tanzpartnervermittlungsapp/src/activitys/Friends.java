@@ -3,6 +3,7 @@ package activitys;
 import java.util.ArrayList;
 
 import task.GetFriendsTask;
+import model.ConnectedActivity;
 import model.Friend;
 import adapter.FriendsAdapter;
 import android.content.Intent;
@@ -13,7 +14,11 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.Tanzpartnervermittlung.R;
-
+/**
+ * This calls shows you all your Freindships also those teh other User has not accepted
+ * @author Simon Stolz
+ *
+ */
 public class Friends extends ConnectedActivity {
 	private int id;
 	boolean gender;

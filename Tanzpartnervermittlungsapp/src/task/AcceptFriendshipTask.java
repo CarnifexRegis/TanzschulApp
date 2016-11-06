@@ -9,7 +9,7 @@ import response.AcceptFriendshipResponse;
 import activitys.FriendRequest;
 import android.util.Log;
  /**
-  * Requests several friendship requests to be accepted
+  * Requests several friendships to be accepted
   * @author Simon Stolz
   *
   */
